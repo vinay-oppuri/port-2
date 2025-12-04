@@ -7,6 +7,7 @@ import { heroConfig } from '@/lib/hero.config';
 import { Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
 import { Button } from "@/components/ui/button";
+import { SocialLinks } from './SocialLinks';
 
 export const Header = () => {
   const { theme, setTheme } = useTheme();
@@ -43,6 +44,7 @@ export const Header = () => {
         </nav>
       </div>
       <div className="flex items-center space-x-4">
+        <SocialLinks />
         <span className="text-gray-400 text-sm">Shortcuts CtrlK</span>
         <Button variant="outline" size="icon" onClick={toggleTheme}>
           <Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
@@ -53,4 +55,3 @@ export const Header = () => {
     </header>
   );
 };
-

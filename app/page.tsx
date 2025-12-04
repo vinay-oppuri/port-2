@@ -4,7 +4,6 @@ import { Header } from "@/components/Header";
 import { heroConfig, skillComponents } from "@/lib/hero.config";
 import { Button } from "@/components/ui/button";
 import SpotifyNowPlaying from "@/components/spotify"; // Ensure this path is correct
-import SpotifyPlayer from "@/components/spotify";
 
 const Page = () => {
   // Renders template description with embedded skills
@@ -95,7 +94,6 @@ const Page = () => {
 
         {/* 🟢 Spotify Widget Inside Hero */}
         <div className="w-full">
-          {/* <SpotifyPlayer />  */}
           <SpotifyNowPlaying />
         </div>
       </section>
