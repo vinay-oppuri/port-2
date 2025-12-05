@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Header } from "@/components/Home/1-Header";
-import { heroConfig, skillComponents } from "@/lib/hero.config";
+import { heroConfig } from "@/lib/hero.config";
 import { Button } from "@/components/ui/button";
 import SpotifyNowPlaying from "@/components/Home/2-Spotify";
 import ExperienceCard from "@/components/Home/3-Experience";
@@ -16,57 +16,15 @@ const Page = () => {
   const [mounted, setMounted] = useState(false);
   const { theme } = useTheme();
 
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
+  useEffect(() => setMounted(true), []);
   if (!mounted) return null;
-
-  // Renders description text + skill pills
-  const renderDescription = (
-    template: string,
-    skills: typeof heroConfig.skills
-  ) => {
-    const parts = template.split(/(\{skills:\d+\})/g);
-
-    return (
-      <p className="text-base sm:text-lg text-gray-400 mb-6 max-w-xl text-left leading-relaxed">
-        {parts.map((part, index) => {
-          if (part.startsWith("{skills:") && part.endsWith("}")) {
-            const skillIndex = Number(part.replace(/\D/g, ""));
-            const skill = skills[skillIndex];
-            const Icon =
-              skillComponents[skill.component as keyof typeof skillComponents];
-
-            return (
-              <span
-                key={index}
-                className="inline-flex items-center mx-1 sm:mx-2 px-2 sm:px-3 py-1 bg-muted rounded-full text-xs sm:text-sm font-medium text-secondary-foreground"
-              >
-                <Link
-                  href={skill.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="mr-1 flex items-center justify-center"
-                >
-                  <Icon className="w-3 h-3 sm:w-4 sm:h-4" />
-                </Link>
-                {skill.name}
-              </span>
-            );
-          }
-
-          return <span key={index} dangerouslySetInnerHTML={{ __html: part }} />;
-        })}
-      </p>
-    );
-  };
 
   return (
     <>
       <Header />
 
-      <section className="flex flex-col items-start space-y-6 mx-auto w-full p-4">
+      <section className="flex flex-col items-start space-y-6 mx-auto mt-10 w-full px-4 py-4 md:px-0">
+
         {/* Avatar */}
         <div className="w-24 h-24 sm:w-32 sm:h-32 rounded-full bg-foreground/10 flex items-center justify-center overflow-hidden">
           <Image
@@ -79,12 +37,40 @@ const Page = () => {
         </div>
 
         {/* Heading */}
-        <h1 className="text-3xl sm:text-4xl font-bold leading-tight text-foreground">
-          Hi, I'm {heroConfig.name} — {heroConfig.title}
+        <h1 className="text-2xl sm:text-3xl font-bold leading-tight text-foreground">
+          Hi, I'm {heroConfig.name} — <span className="text-muted-foreground"> {heroConfig.title} </span>
         </h1>
 
-        {/* Description */}
-        {renderDescription(heroConfig.description.template, heroConfig.skills)}
+        {/* DESCRIPTION */}
+        <p className="text-md sm:text-lg text-gray-400 leading-relaxed flex flex-wrap gap-2">
+
+          I build interactive web apps using
+
+          {/* Tech Pills (exact UI like screenshot) */}
+          {heroConfig.skills.slice(0,5).map((skill, i) => (
+            <span key={i} className="flex items-center justify-center gap-1">
+              <span className="inline-flex items-center justify-center px-2 py-1 bg-foreground/10 border border-foreground/20 rounded-lg text-xs sm:text-sm font-medium text-foreground gap-1">
+                {skill.component}
+                {skill.name}
+              </span>,
+            </span>
+          ))}
+
+          {/* AND PostgreSQL pill exactly like screenshot */}
+          <span className="inline-flex items-center px-2 py-1 bg-foreground/10 border border-foreground/20 rounded-lg text-xs font-medium text-foreground gap-1">
+            {heroConfig.skills[5].component}
+            {heroConfig.skills[5].name}
+          </span>
+
+          <span>.</span>
+
+          {/* Bold parts */}
+          <span className="ml-1">
+            With a focus on <b>UI</b> design. Enthusiastic about <b>Three.js</b>,
+            driven by a keen eye for design.
+          </span>
+        </p>
+
 
         {/* Buttons */}
         <div className="flex flex-wrap gap-3">
@@ -95,7 +81,7 @@ const Page = () => {
               variant={button.variant === "outline" ? "outline" : "default"}
               className="px-4 py-2 text-sm sm:text-base"
             >
-              <Link href={button.href}>{button.text}</Link>
+              <Link href={button.href}>{button.icon} {button.text}</Link>
             </Button>
           ))}
         </div>

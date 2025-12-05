@@ -1,9 +1,10 @@
 "use client";
 
 import Image from "next/image";
-import { heroConfig, skillComponents } from "@/lib/hero.config";
+import { heroConfig } from "@/lib/hero.config";
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
+import { Badge } from "../ui/badge";
 
 const AboutPage = () => {
   const skills = heroConfig.skills;
@@ -17,8 +18,8 @@ const AboutPage = () => {
   if (!mounted) return null;
 
   return (
-    <section className="flex flex-col gap-8 sm:gap-10 w-full p-4">
-      
+    <section className="flex flex-col gap-8 sm:gap-10 w-full px-4 py-4 md:px-0">
+
       {/* Heading */}
       <div>
         <p className="text-sm text-muted-foreground">About</p>
@@ -26,7 +27,7 @@ const AboutPage = () => {
       </div>
 
       {/* Main About Section */}
-      <div className="flex flex-col md:flex-row items-start md:items-start gap-8 md:gap-10">
+      <div className="flex flex-col md:flex-row items-start gap-8 md:gap-10">
 
         {/* Left: Avatar */}
         <div className="rounded-xl overflow-hidden mx-auto md:mx-0 w-40 h-40 md:w-150 md:h-70">
@@ -35,13 +36,14 @@ const AboutPage = () => {
             alt="Profile Avatar"
             width={500}
             height={500}
-            className="rounded-xs object-cover w-full h-full"
+            className="rounded-lg object-cover w-full h-full"
           />
         </div>
 
         {/* Right: Info */}
         <div className="flex flex-col gap-4 max-w-2xl text-left">
-          <h2 className="text-xl sm:text-2xl font-semibold flex items-center justify-center md:justify-start gap-2">
+
+          <h2 className="text-xl sm:text-2xl font-semibold flex items-center gap-2">
             {heroConfig.name}
           </h2>
 
@@ -55,20 +57,12 @@ const AboutPage = () => {
             <p className="font-semibold text-foreground">Skills</p>
 
             <div className="flex flex-wrap gap-2 sm:gap-3">
-              {skills.map((skill, index) => {
-                const Icon =
-                  skillComponents[skill.component as keyof typeof skillComponents];
-
-                return (
-                  <div
-                    key={index}
-                    className="flex items-center gap-1 bg-foreground/10 px-3 py-1 rounded-full text-xs sm:text-sm"
-                  >
-                    <Icon className="w-4 h-4 sm:w-5 sm:h-5" />
-                    {skill.name}
-                  </div>
-                );
-              })}
+              {skills.map((skill, index) => (
+                <Badge key={index} variant='secondary' className="px-2 py-1 gap-1">
+                  <span>{skill.component}</span>
+                  <span>{skill.name}</span>
+                </Badge>
+              ))}
             </div>
           </div>
 

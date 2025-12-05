@@ -6,13 +6,14 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Globe, Github } from "lucide-react";
 import { ProjectsData } from "@/lib/hero.config";
+import { heroConfig } from "@/lib/hero.config";
 
 const ProjectsPage = () => {
   const projects = ProjectsData;
 
   return (
-    <section className="flex flex-col gap-6 w-full p-4">
-      
+    <section className="flex flex-col gap-6 w-full px-4 py-4 md:px-0">
+
       {/* Header */}
       <div className="flex flex-col gap-1">
         <p className="text-sm text-muted-foreground">Featured</p>
@@ -20,26 +21,26 @@ const ProjectsPage = () => {
       </div>
 
       {/* Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {projects.map((project) => (
           <Card
             key={project.title}
             className="overflow-hidden bg-white/5 border border-white/10 hover:border-foreground/20 transition rounded-lg"
           >
             {/* IMAGE */}
-            <div className="h-40 sm:h-48 w-full bg-linear-to-r from-pink-600 to-purple-600">
+            <div className="h-40 md:h-48 w-full bg-linear-to-r from-pink-600 to-purple-600">
               <Image
                 src={project.imageUrl}
                 alt={project.title}
                 width={600}
                 height={300}
-                className="h-full w-full object-cover"
+                className="h-full w-full object-cover transition-transform duration-300 hover:scale-105"
               />
             </div>
 
             {/* CONTENT */}
-            <CardHeader className="pb-2">
-              <div className="flex flex-col xs:flex-row justify-between xs:items-center gap-2">
+            <CardHeader>
+              <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2">
                 <CardTitle className="text-lg sm:text-xl text-foreground">
                   {project.title}
                 </CardTitle>
@@ -69,8 +70,8 @@ const ProjectsPage = () => {
               </div>
             </CardHeader>
 
-            <CardContent className="space-y-4">
-              
+            <CardContent className="space-y-3">
+
               {/* DESCRIPTION */}
               <p className="text-muted-foreground text-sm leading-relaxed">
                 {project.description}
@@ -78,28 +79,25 @@ const ProjectsPage = () => {
 
               {/* TAGS */}
               <div>
-                <p className="text-sm font-semibold text-secondary-foreground mb-2">
+                <p className="text-sm font-semibold text-muted-foreground mb-2">
                   Technologies
                 </p>
 
                 <div className="flex flex-wrap gap-2">
-                  {project.tags.map((tag) => (
-                    <Badge
-                      key={tag}
-                      variant="outline"
-                      className="border-foreground/10 text-secondary-foreground px-2 py-0.5 rounded-md text-xs sm:text-sm"
-                    >
-                      {tag}
+                  {project.tags.map((tag, id) => (
+                    <Badge key={id} className="p-1">
+                      <span className="text-md">{tag}</span>
                     </Badge>
                   ))}
                 </div>
               </div>
 
+
               {/* FOOTER */}
               <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3 pt-3">
                 <Badge
                   variant="secondary"
-                  className="bg-green-600/20 dark:text-green-500 text-foreground rounded-md px-3 py-1 text-xs sm:text-sm"
+                  className="bg-green-600/20 dark:text-green-500 text-foreground rounded-md px-3 py-1 text-xs"
                 >
                   ● All Systems Operational
                 </Badge>

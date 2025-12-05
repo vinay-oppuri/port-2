@@ -1,136 +1,109 @@
-// SVG Icon Components
-import Github from '@/components/technologies/Github';
-import LinkedIn from '@/components/technologies/LinkedIn';
-import Mail from '@/components/technologies/Mail';
-import X from '@/components/technologies/X';
+import { GrChat } from "react-icons/gr";
+import {
+  SiExpress,
+  SiGithub,
+  SiGoogledocs,
+  SiGooglegemini,
+  SiLinkedin,
+  SiMaildotcom,
+  SiMongodb,
+  SiNextdotjs,
+  SiNodedotjs,
+  SiPostgresql,
+  SiReact,
+  SiShadcnui,
+  SiTailwindcss,
+  SiTrpc,
+  SiTypescript,
+  SiX
+} from "react-icons/si";
 
-// Technology SVG Components
-import Bun from '@/components/technologies/Bun';
-import JavaScript from '@/components/technologies/JavaScript';
-import MongoDB from '@/components/technologies/MongoDB';
-import NextJs from '@/components/technologies/NextJs';
-import NodeJs from '@/components/technologies/NodeJs';
-import PostgreSQL from '@/components/technologies/PostgreSQL';
-import Prisma from '@/components/technologies/Prisma';
-import ReactIcon from '@/components/technologies/ReactIcon';
-import TypeScript from '@/components/technologies/TypeScript';
-
-/**
- * @field TypeScript - TypeScript icon component
- * @field ReactIcon - React icon component
- * @field NextJs - Next.js icon component
- * @field Bun - Bun icon component
- * @field PostgreSQL - PostgreSQL icon component
- * @field NodeJs - Node.js icon component
- * @field MongoDB - MongoDB icon component
- * @field Prisma - Prisma icon component
- * @field JavaScript - JavaScript icon component
- */
-export const skillComponents = {
-  TypeScript: TypeScript,
-  ReactIcon: ReactIcon,
-  NextJs: NextJs,
-  Bun: Bun,
-  PostgreSQL: PostgreSQL,
-  NodeJs: NodeJs,
-  MongoDB: MongoDB,
-  Prisma: Prisma,
-  JavaScript: JavaScript,
-};
-
-/**
- * Configuration for the hero section of the portfolio.
- * Defines personal information, skills, description, and call-to-action buttons.
- */
 export const heroConfig = {
-  // Personal Information
-  name: 'Vinay',
-  title: 'A Full Stack web developer.',
-  avatar: '/avatar.png', // Keeping this path as avatar.png is currently the placeholder
-  // Skills Configuration
-  // Each skill includes its name, a link to its official website, and the corresponding component name
+  name: "Vinay",
+  title: "A Full Stack web developer.",
+  avatar: "/avatar.png",
+
   skills: [
     {
-      name: 'Typescript',
-      href: 'https://www.typescriptlang.org/',
-      component: 'TypeScript',
+      name: "Next.js",
+      href: "https://nextjs.org/",
+      component: <SiNextdotjs className="h-4 w-4 text-white" />,
     },
     {
-      name: 'React',
-      href: 'https://react.dev/',
-      component: 'ReactIcon',
+      name: "React",
+      href: "https://react.dev/",
+      component: <SiReact className="h-4 w-4 text-[#61DAFB]" />,
     },
     {
-      name: 'Next.js',
-      href: 'https://nextjs.org/',
-      component: 'NextJs',
+      name: "Typescript",
+      href: "https://www.typescriptlang.org/",
+      component: <SiTypescript className="h-4 w-4 text-[#3178C6]" />,
     },
     {
-      name: 'Bun',
-      href: 'https://bun.sh/',
-      component: 'Bun',
+      name: "PostgreSQL",
+      href: "https://www.postgresql.org/",
+      component: <SiPostgresql className="h-4 w-4 text-[#336791]" />,
     },
     {
-      name: 'PostgreSQL',
-      href: 'https://www.postgresql.org/',
-      component: 'PostgreSQL',
+      name: "tRPC",
+      href: "https://trpc.io/",
+      component: <SiTrpc className="h-4 w-4 text-[#0D9488]" />,
+    },
+    {
+      name: "Better Auth",
+      href: "https://better-auth.com/",
+      component: <SiShadcnui className="h-4 w-4 text-[#9333EA]" />,
     },
   ],
 
-  // Description Configuration
-  // The template uses {skills:index} placeholders to dynamically insert skill components
   description: {
-    template:'I build interactive web apps using {skills:0}, {skills:1}, {skills:2}, {skills:3} and {skills:4}. With a focus on <b>UI</b> design. Enthusiastic about <b>Three.js</b>, driven by a keen eye for design.',
-    about: ''
+    template:
+      "I build interactive web apps using Next.js, React, Bun, Typescript and PostgreSQL. With a focus on UI design. Enthusiastic about Three.js, driven by a keen eye for design.",
+    about: "",
   },
 
-  // Buttons Configuration
-  // Each button includes its variant for styling, text, href, and an icon identifier
   buttons: [
     {
-      variant: 'outline',
-      text: 'Resume / CV',
-      href: '/resume',
-      icon: 'CV',
+      variant: "outline",
+      text: "Resume / CV",
+      href: "/resume",
+      icon: <SiGoogledocs/>,
     },
     {
-      variant: 'default',
-      text: 'Get in touch',
-      href: '/contact',
-      icon: 'Chat',
+      variant: "default",
+      text: "Get in touch",
+      href: "/contact",
+      icon: <GrChat/>,
     },
   ],
 };
 
-/**
- * Configuration for social media links.
- * Each link includes its name, href, and the corresponding SVG icon component.
- */
+// ------------------ SOCIAL LINKS ------------------
+
 export const socialLinks = [
   {
-    name: 'X',
-    href: 'https://x.com/yourusername',
-    icon: <X />,
+    name: "X",
+    href: "https://x.com/yourusername",
+    icon: <SiX className="text-white" />,
   },
   {
-    name: 'LinkedIn',
-    href: 'https://www.linkedin.com/in/yourusername/',
-    icon: <LinkedIn />,
+    name: "LinkedIn",
+    href: "https://www.linkedin.com/in/yourusername/",
+    icon: <SiLinkedin className="text-[#0A66C2]" />,
   },
   {
-    name: 'Github',
-    href: 'https://github.com/yourusername',
-    icon: <Github />,
+    name: "Github",
+    href: "https://github.com/yourusername",
+    icon: <SiGithub className="text-white" />,
   },
   {
-    name: 'Email',
-    href: 'mailto:your@email.com',
-    icon: <Mail />,
+    name: "Email",
+    href: "mailto:your@email.com",
+    icon: <SiMaildotcom className="text-[#D44638]" />,
   },
 ];
 
-
-// hero.config.ts
+// ------------------ PROJECT TAG ICONS ------------------
 
 export const ProjectsData = [
   {
@@ -138,15 +111,14 @@ export const ProjectsData = [
     description:
       "MeetAI lets users create AI agents to schedule meetings, generate post-meeting summaries, and answer follow-up questions once meetings are completed.",
     tags: [
-      "Next.js",
-      "TypeScript",
-      "Tailwind CSS",
-      "TRPC",
-      "GeminiAI",
-      "Inngest",
-      "ShadCN",
+      <SiNextdotjs className="h-5 w-5 text-white" />,
+      <SiTypescript className="h-5 w-5 text-[#3178C6]" />,
+      <SiTailwindcss className="h-5 w-5 text-[#38BDF8]" />,
+      <SiTrpc className="h-5 w-5 text-[#0D9488]" />,
+      <SiGooglegemini className="h-5 w-5 text-[#4285F4]" />,
+      <SiShadcnui className="h-5 w-5 text-white" />,
     ],
-    imageUrl: "/projects/ai-agent.png", // Update with your real image
+    imageUrl: "/projects/ai-agent.png",
     liveUrl: "https://agents-meet-ai.vercel.app/",
     githubUrl: "https://github.com/vinay-oppuri/genai",
   },
@@ -155,9 +127,14 @@ export const ProjectsData = [
     title: "Interactive Data Dashboard",
     description:
       "A dynamic dashboard for visualizing complex datasets. Features real-time data fetching, interactive charts, and customizable reports. Backend powered by Node.js and MongoDB.",
-    tags: ["React", "Node.js", "MongoDB", "D3.js", "Express"],
+    tags: [
+      <SiReact className="h-5 w-5 text-[#61DAFB]" />,
+      <SiNodedotjs className="h-5 w-5 text-[#3C873A]" />,
+      <SiMongodb className="h-5 w-5 text-[#47A248]" />,
+      <SiExpress className="h-5 w-5 text-white" />,
+    ],
     imageUrl: "/projects/dashboard.png",
     liveUrl: "#",
     githubUrl: "#",
   },
-]
+];

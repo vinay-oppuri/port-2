@@ -135,3 +135,13 @@
 .animate-slide-down {
   animation: slide-down 0.2s ease-out;
 }
+
+/* Hide scrollbar for Chrome, Safari, Edge */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for Firefox */
+.no-scrollbar {
+  scrollbar-width: none;
+}

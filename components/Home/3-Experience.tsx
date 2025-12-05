@@ -1,10 +1,23 @@
 "use client";
 
+import Image from "next/image";
 import { Badge } from "../ui/badge";
+import { SiMongodb, SiNextdotjs, SiNodedotjs, SiReact, SiTailwindcss, SiTypescript } from "react-icons/si";
 
 const ExperienceCard = () => {
+
+  const technologies = [
+    {name: 'Next.js', logo: <SiNextdotjs/> },
+    {name: 'Tailwind CSS', logo: <SiTailwindcss/> },
+    {name: 'React', logo: <SiReact/> },
+    {name: 'TypeScript', logo: <SiTypescript/>},
+    {name: 'Node.js', logo: <SiNodedotjs/>},
+    {name: 'MongoDB', logo: <SiMongodb/>},
+  ]
+            
+
   return (
-    <div className="flex flex-col rounded-xl max-w-4xl gap-6 w-full p-4">
+    <div className="flex flex-col rounded-xl max-w-4xl gap-6 w-full px-4 py-4 md:px-0">
 
       {/* Section Title */}
       <div className="flex flex-col gap-1">
@@ -18,18 +31,22 @@ const ExperienceCard = () => {
         {/* Left */}
         <div className="flex items-start gap-3">
           {/* Company Icon */}
-          <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-lg bg-gray-800 flex items-center justify-center">
-            <span className="text-xl">🏫</span>
-          </div>
+          <Image
+            src='/collegelogo.png'
+            alt="Logo"
+            width={60}
+            height={60}
+            className="bg-foreground/5 rounded-sm p-2 border border-foreground/20"
+          />
 
           <div className="flex flex-col">
             <div className="flex flex-wrap gap-2">
               <h3 className="text-lg font-bold text-secondary-foreground">
-                College Website
+                IIIT Raichur Website
               </h3>
 
               <Badge className="bg-green-600/20 flex items-center gap-1 rounded-lg text-foreground py-0">
-                <span className="text-xl font-bold text-green-500">•</span>
+                <span className="text-lg md:text-xl font-bold text-green-500">•</span>
                 Working
               </Badge>
             </div>
@@ -54,20 +71,10 @@ const ExperienceCard = () => {
         </p>
 
         <div className="flex flex-wrap gap-2">
-          {[
-            "Next.js",
-            "Tailwind CSS",
-            "React",
-            "TypeScript",
-            "Node.js",
-            "MongoDB",
-          ].map((tech) => (
-            <span
-              key={tech}
-              className="px-3 py-1 bg-foreground/10 border border-foreground/5 rounded-lg text-sm text-secondary-foreground"
-            >
-              {tech}
-            </span>
+          {technologies.map((tech, id) => (
+            <Badge variant='default' key={id} className="flex gap-2">
+              {tech.logo} {tech.name}
+            </Badge>
           ))}
         </div>
       </div>
