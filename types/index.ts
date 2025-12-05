@@ -1,9 +1,11 @@
-
-export type NowPlayingData = {
+// types/index.ts
+export interface NowPlayingData {
+    album?: string;
+    albumImageUrl?: string;
+    artist?: string;
     isPlaying: boolean;
     songUrl?: string;
     name?: string;
-    artist?: string;
-    album?: string;
-    albumImageUrl?: string;
-};
+    source?: "current" | "recent";
+  }
+  

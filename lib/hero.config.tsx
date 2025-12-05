@@ -44,7 +44,7 @@ export const skillComponents = {
  */
 export const heroConfig = {
   // Personal Information
-  name: 'Ram',
+  name: 'Vinay',
   title: 'A Full Stack web developer.',
   avatar: '/avatar.png', // Keeping this path as avatar.png is currently the placeholder
   // Skills Configuration

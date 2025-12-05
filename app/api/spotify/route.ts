@@ -1,40 +1,39 @@
+// app/api/spotify/route.ts
+import { NextResponse } from "next/server";
+import { getNowPlaying } from "@/lib/spotify";
 
-import { NextResponse } from 'next/server';
-import { getNowPlaying } from '@/lib/spotify';
-
-export const dynamic = 'force-dynamic';
+export const dynamic = "force-dynamic";
 
 export async function GET() {
+  const empty = {
+    isPlaying: false,
+    name: null,
+    artist: null,
+    album: null,
+    albumImageUrl: null,
+    songUrl: null,
+    source: "none",
+  };
+
   try {
     const response = await getNowPlaying();
 
-    if (response.status === 204 || response.status > 400 || !response.data) {
-      return NextResponse.json({ isPlaying: false });
+    if (response.status === 204 || !response.data || !response.data.item) {
+      return NextResponse.json(empty);
     }
 
     const song = response.data;
 
-    if (!song || !song.item) {
-      return NextResponse.json({ isPlaying: false });
-    }
-
-    const isPlaying = song.is_playing;
-    const name = song.item.name;
-    const artist = song.item.artists?.map((_artist) => _artist.name).join(', ') || 'Unknown Artist';
-    const album = song.item.album?.name || 'Unknown Album';
-    const albumImageUrl = song.item.album?.images?.[0]?.url;
-    const songUrl = song.item.external_urls?.spotify;
-
     return NextResponse.json({
-      album,
-      albumImageUrl,
-      artist,
-      isPlaying,
-      songUrl,
-      name,
+      isPlaying: song.is_playing,
+      name: song.item.name,
+      artist: song.item.artists.map((a: any) => a.name).join(", "),
+      album: song.item.album.name,
+      albumImageUrl: song.item.album.images?.[0]?.url,
+      songUrl: song.item.external_urls.spotify,
+      source: "Playing Now",
     });
-  } catch (error) {
-    console.error('Error fetching Spotify data:', error);
-    return NextResponse.json({ isPlaying: false });
+  } catch (e) {
+    return NextResponse.json(empty);
   }
 }
