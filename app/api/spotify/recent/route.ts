@@ -1,6 +1,6 @@
 // app/api/spotify/recent/route.ts
 import { NextResponse } from "next/server";
-import { getRecentlyPlayed } from "@/lib/spotify";
+import { getRecentlyPlayed } from "@/lib/spotify-helper";
 
 export const dynamic = "force-dynamic";
 

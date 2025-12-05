@@ -5,7 +5,7 @@ import { useEffect, useRef, useState } from "react";
 import useSWR from "swr";
 import { SiSpotify } from "react-icons/si";
 import { PauseIcon, PlayIcon } from "lucide-react";
-import { Button } from "./ui/button";
+import { Button } from "../ui/button";
 
 const fetcher = (url: string) => fetch(url).then((r) => r.json());
 

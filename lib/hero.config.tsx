@@ -1,8 +1,8 @@
 // SVG Icon Components
-import Github from '@/components/svgs/Github';
-import LinkedIn from '@/components/svgs/LinkedIn';
-import Mail from '@/components/svgs/Mail';
-import X from '@/components/svgs/X';
+import Github from '@/components/technologies/Github';
+import LinkedIn from '@/components/technologies/LinkedIn';
+import Mail from '@/components/technologies/Mail';
+import X from '@/components/technologies/X';
 
 // Technology SVG Components
 import Bun from '@/components/technologies/Bun';
@@ -80,8 +80,8 @@ export const heroConfig = {
   // Description Configuration
   // The template uses {skills:index} placeholders to dynamically insert skill components
   description: {
-    template:
-      'I build interactive web apps using {skills:0}, {skills:1}, {skills:2}, {skills:3} and {skills:4}. With a focus on <b>UI</b> design. Enthusiastic about <b>Three.js</b>, driven by a keen eye for design.',
+    template:'I build interactive web apps using {skills:0}, {skills:1}, {skills:2}, {skills:3} and {skills:4}. With a focus on <b>UI</b> design. Enthusiastic about <b>Three.js</b>, driven by a keen eye for design.',
+    about: ''
   },
 
   // Buttons Configuration
@@ -128,3 +128,36 @@ export const socialLinks = [
     icon: <Mail />,
   },
 ];
+
+
+// hero.config.ts
+
+export const ProjectsData = [
+  {
+    title: "AI-Agent Meetings",
+    description:
+      "MeetAI lets users create AI agents to schedule meetings, generate post-meeting summaries, and answer follow-up questions once meetings are completed.",
+    tags: [
+      "Next.js",
+      "TypeScript",
+      "Tailwind CSS",
+      "TRPC",
+      "GeminiAI",
+      "Inngest",
+      "ShadCN",
+    ],
+    imageUrl: "/projects/ai-agent.png", // Update with your real image
+    liveUrl: "https://agents-meet-ai.vercel.app/",
+    githubUrl: "https://github.com/vinay-oppuri/genai",
+  },
+
+  {
+    title: "Interactive Data Dashboard",
+    description:
+      "A dynamic dashboard for visualizing complex datasets. Features real-time data fetching, interactive charts, and customizable reports. Backend powered by Node.js and MongoDB.",
+    tags: ["React", "Node.js", "MongoDB", "D3.js", "Express"],
+    imageUrl: "/projects/dashboard.png",
+    liveUrl: "#",
+    githubUrl: "#",
+  },
+]

@@ -1,6 +1,6 @@
 // app/api/spotify/token/route.ts
 import { NextResponse } from "next/server";
-import { getAccessToken } from "@/lib/spotify";
+import { getAccessToken } from "@/lib/spotify-helper";
 
 export async function GET() {
   try {
