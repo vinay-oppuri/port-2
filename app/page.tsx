@@ -23,7 +23,7 @@ const Page = () => {
     <>
       <Header />
 
-      <section className="flex flex-col items-start space-y-6 mx-auto mt-10 w-full px-4 py-4 md:px-0">
+      <section className="flex flex-col items-start space-y-6 mx-auto md:mt-16 w-full px-4 py-4 md:px-0">
 
         {/* Avatar */}
         <div className="w-24 h-24 sm:w-32 sm:h-32 rounded-full bg-foreground/10 flex items-center justify-center overflow-hidden">
@@ -43,37 +43,18 @@ const Page = () => {
 
         {/* DESCRIPTION */}
         <p className="text-md sm:text-lg text-gray-400 leading-relaxed flex flex-wrap gap-2">
-
           I build interactive web apps using
-
-          {/* Tech Pills (exact UI like screenshot) */}
-          {heroConfig.skills.slice(0,5).map((skill, i) => (
-            <span key={i} className="flex items-center justify-center gap-1">
-              <span className="inline-flex items-center justify-center px-2 py-1 bg-foreground/10 border border-foreground/20 rounded-lg text-xs sm:text-sm font-medium text-foreground gap-1">
-                {skill.component}
-                {skill.name}
-              </span>,
+          {heroConfig.skills.map((skill, i) => (
+            <span key={i} className="inline-flex items-center justify-center px-2 py-1 bg-foreground/10 border border-foreground/20 rounded-lg text-xs sm:text-sm font-medium text-foreground gap-1">
+              {skill.component}
+              {skill.name}
             </span>
           ))}
-
-          {/* AND PostgreSQL pill exactly like screenshot */}
-          <span className="inline-flex items-center px-2 py-1 bg-foreground/10 border border-foreground/20 rounded-lg text-xs font-medium text-foreground gap-1">
-            {heroConfig.skills[5].component}
-            {heroConfig.skills[5].name}
-          </span>
-
-          <span>.</span>
-
-          {/* Bold parts */}
-          <span className="ml-1">
-            With a focus on <b>UI</b> design. Enthusiastic about <b>Three.js</b>,
-            driven by a keen eye for design.
-          </span>
+          . With a focus on <b>UI</b> design. Enthusiastic about <b>Three.js</b>, driven by a keen eye for design.
         </p>
 
-
         {/* Buttons */}
-        <div className="flex flex-wrap gap-3">
+        <div className="w-full flex flex-wrap justify-center md:justify-end gap-3">
           {heroConfig.buttons.map((button) => (
             <Button
               asChild
@@ -81,10 +62,13 @@ const Page = () => {
               variant={button.variant === "outline" ? "outline" : "default"}
               className="px-4 py-2 text-sm sm:text-base"
             >
-              <Link href={button.href}>{button.icon} {button.text}</Link>
+              <Link href={button.href}>
+                {button.icon} {button.text}
+              </Link>
             </Button>
           ))}
         </div>
+
 
         {/* Sections */}
         <div className="w-full flex flex-col pt-6 gap-6">

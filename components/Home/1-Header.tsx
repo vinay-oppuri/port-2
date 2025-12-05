@@ -7,6 +7,7 @@ import { heroConfig } from "@/lib/hero.config";
 import { Moon, Sun, Menu, X } from "lucide-react";
 import { useTheme } from "next-themes";
 import { Button } from "@/components/ui/button";
+import { FaGithub } from "react-icons/fa";
 
 export const Header = () => {
   const { theme, setTheme } = useTheme();
@@ -25,7 +26,7 @@ export const Header = () => {
 
   return (
     <header className="sticky top-0 z-50 flex justify-between items-center backdrop-blur-lg sm:px-6 border-b border-border/40 px-4 py-4 md:px-0">
-      
+
       {/* Left: Avatar + Desktop Nav */}
       <div className="flex items-center space-x-3 sm:space-x-4">
         {/* Avatar */}
@@ -50,10 +51,13 @@ export const Header = () => {
       {/* Right: Theme Toggle + Mobile Menu Button */}
       <div className="flex items-center space-x-3">
         {/* Theme Toggle */}
+        <Link href='www.github.com/vinay-oppuri'>
+          <Button variant='outline' className="rounded-lg gap-2">
+            Github <FaGithub className="w-10 h-10"/>
+          </Button>
+        </Link>
         <Button variant="outline" size="icon" onClick={toggleTheme}>
-          <Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-          <Moon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
-          <span className="sr-only">Toggle theme</span>
+          {theme == 'dark' ? <Sun/> : <Moon/>}
         </Button>
 
         {/* Mobile Menu Toggle */}
