@@ -111,13 +111,14 @@ export default function SpotifyNowPlaying() {
 
   if (!track) return null;
 
+
   return (
     <div className="flex flex-col gap-2">
-      <div className="flex gap-2 items-center">
+      <div className="hidden md:flex gap-2 items-center">
         <SiSpotify size={22} color="#1DB954" />
         <p className="text-sm font-medium text-muted-foreground">{track.source}</p>
       </div>
-      <div className="bg-white/5 border border-white/10 p-4 rounded-lg flex items-center gap-3">
+      <div className="bg-white/5 border border-white/10 p-4 rounded-lg hidden md:flex items-center gap-3">
         {track.albumImageUrl && (
           <img
             src={track.albumImageUrl}

@@ -17,7 +17,7 @@ const ExperienceCard = () => {
             
 
   return (
-    <div className="flex flex-col rounded-xl max-w-4xl gap-6 w-full px-4 py-4 md:px-0">
+    <div className="flex flex-col rounded-xl max-w-4xl gap-6 w-full px-4 py-16 md:px-0">
 
       {/* Section Title */}
       <div className="flex flex-col gap-1">
