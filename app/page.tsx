@@ -54,7 +54,7 @@ const Page = () => {
         </p>
 
         {/* Buttons */}
-        <div className="w-full flex flex-wrap justify-center md:justify-end gap-3">
+        <div className="w-full flex flex-col md:flex-wrap justify-center md:justify-end gap-3">
           {heroConfig.buttons.map((button) => (
             <Button
               asChild
