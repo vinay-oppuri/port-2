@@ -25,7 +25,7 @@ export const Header = () => {
   if (!mounted) return null;
 
   return (
-    <header className="sticky top-0 z-50 flex justify-between items-center backdrop-blur-lg sm:px-6 border-b border-border/40 px-4 py-4 md:px-0">
+    <header className="sticky top-0 z-50 flex justify-between items-center backdrop-blur-lg sm:px-6 border-b border-border/40 px-4 py-4">
 
       {/* Left: Avatar + Desktop Nav */}
       <div className="flex items-center space-x-3 sm:space-x-4">

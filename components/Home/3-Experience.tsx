@@ -1,108 +1,121 @@
 "use client";
 
 import Image from "next/image";
-import { Badge } from "../ui/badge";
-import { SiMongodb, SiNextdotjs, SiNodedotjs, SiReact, SiTailwindcss, SiTypescript } from "react-icons/si";
+import { experiences } from "@/lib/hero.config";
 
-const ExperienceCard = () => {
+import {
+  Accordion,
+  AccordionItem,
+  AccordionTrigger,
+  AccordionContent,
+} from "@/components/ui/accordion";
 
-  const technologies = [
-    {name: 'Next.js', logo: <SiNextdotjs/> },
-    {name: 'Tailwind CSS', logo: <SiTailwindcss/> },
-    {name: 'React', logo: <SiReact/> },
-    {name: 'TypeScript', logo: <SiTypescript/>},
-    {name: 'Node.js', logo: <SiNodedotjs/>},
-    {name: 'MongoDB', logo: <SiMongodb/>},
-  ]
-            
+import { Badge } from "@/components/ui/badge";
+import { Button } from "../ui/button";
+import Link from "next/link";
+
+const ExperienceAccordion = () => {
+  const topExperiences = experiences.slice(0, 2);
 
   return (
-    <div className="flex flex-col rounded-xl max-w-4xl gap-6 w-full px-4 py-16 md:px-0">
+    <div className="w-full mx-auto px-4 py-4 md:px-0">
+      <p className="text-sm text-muted-foreground">Featured</p>
+      <h2 className="text-2xl font-semibold mb-8">Experience</h2>
 
-      {/* Section Title */}
-      <div className="flex flex-col gap-1">
-        <p className="text-sm text-muted-foreground">Featured</p>
-        <h2 className="text-2xl font-semibold text-foreground">Experience</h2>
-      </div>
+      <Accordion
+        defaultValue="exp-0"
+        type="single"
+        collapsible
+        className="space-y-6"
+      >
+        {topExperiences.map((exp, idx) => (
+          <AccordionItem
+            key={idx}
+            value={`exp-${idx}`}
+            className="border-b-0 px-2 md:px-4"
+          >
+            {/* TOP SECTION */}
+            <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 w-full font-semibold">
 
-      {/* Header Section */}
-      <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
+              {/* LEFT SIDE CONTENT */}
+              <div className="flex items-start gap-4 w-full">
+                <Image
+                  src={exp.logo}
+                  width={58}
+                  height={58}
+                  alt="Logo"
+                  className="bg-foreground/5 h-18 md:h-13 w-20 md:w-14 rounded-md p-2 shrink-0"
+                />
 
-        {/* Left */}
-        <div className="flex items-start gap-3">
-          {/* Company Icon */}
-          <Image
-            src='/collegelogo.png'
-            alt="Logo"
-            width={60}
-            height={60}
-            className="bg-foreground/5 rounded-sm p-2 border border-foreground/20"
-          />
+                <div className="flex flex-col gap-1.5 md:gap-0">
+                  <AccordionTrigger className="no-arrow p-0 hover:no-underline flex flex-wrap items-center gap-2 text-left">
+                    <h3 className="font-bold text-md md:text-lg">{exp.companyName}</h3>
 
-          <div className="flex flex-col">
-            <div className="flex flex-wrap gap-2">
-              <h3 className="text-lg font-bold text-secondary-foreground">
-                IIIT Raichur Website
-              </h3>
+                    <Badge className="flex items-center gap-2 bg-green-600/20 text-[9px] md:text-xs text-foreground rounded-sm px-2 py-0.5">
+                      <span className="w-2 h-2 rounded-full bg-green-500"></span>
+                      {exp.status}
+                    </Badge>
+                  </AccordionTrigger>
 
-              <Badge className="bg-green-600/20 flex items-center gap-1 rounded-lg text-foreground py-0">
-                <span className="text-lg md:text-xl font-bold text-green-500">•</span>
-                Working
-              </Badge>
+                  <p className="text-xs md:text-sm text-muted-foreground">{exp.role}</p>
+                </div>
+              </div>
+
+              {/* RIGHT SIDE — DATES & LOCATION */}
+              <div className="text-sm sm:text-right text-muted-foreground whitespace-nowrap">
+                <p>{exp.timeline}</p>
+                <p>{exp.location}</p>
+              </div>
+
             </div>
 
-            <p className="text-md text-muted-foreground">Full Stack Developer</p>
-          </div>
-        </div>
+            {/* CONTENT SECTION */}
+            <AccordionContent className="mt-6 space-y-6">
 
-        {/* Right Side (dates + location) */}
-        <div className="text-left sm:text-right">
-          <p className="text-secondary-foreground text-sm sm:text-base">
-            August 2025 – Present
-          </p>
-          <p className="text-muted-foreground text-sm">India (Remote)</p>
-        </div>
+              {/* TECHNOLOGIES */}
+              <div>
+                <h4 className="text-base md:text-lg font-semibold mb-2">Technologies & Tools</h4>
+
+                <div className="flex flex-wrap gap-2">
+                  {exp.technologies.map((tech, i) => (
+                    <Badge
+                      key={i}
+                      variant="secondary"
+                      className="flex gap-2 items-center text-xs md:text-md font-semibold border border-dashed border-muted-foreground/40 px-3 py-1 rounded-md"
+                    >
+                      {tech.logo} {tech.name}
+                    </Badge>
+                  ))}
+                </div>
+              </div>
+
+              {/* RESPONSIBILITIES */}
+              <div>
+                <ul className="space-y-2 text-sm leading-relaxed text-muted-foreground">
+                  {exp.responsibilities.map((res, i) => (
+                    <li key={i} className="flex text-sm md:text-base gap-2">
+                      <span>▪</span>
+                      {res}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+            </AccordionContent>
+          </AccordionItem>
+        ))}
+      </Accordion>
+
+      {/* BOTTOM BUTTON */}
+      <div className="w-full flex justify-center mt-10 mb-4">
+        <Link href="/experience">
+          <Button variant='outline' className="px-4 md:px-6 py-2 text-sm md:text-md font-semibold">
+            Show all work experiences
+          </Button>
+        </Link>
       </div>
-
-      {/* Technologies */}
-      <div>
-        <p className="text-lg font-semibold text-foreground mb-3">
-          Technologies & Tools
-        </p>
-
-        <div className="flex flex-wrap gap-2">
-          {technologies.map((tech, id) => (
-            <Badge variant='default' key={id} className="flex gap-2">
-              {tech.logo} {tech.name}
-            </Badge>
-          ))}
-        </div>
-      </div>
-
-      {/* Bullet Points */}
-      <ul className="text-muted-foreground space-y-2 text-[15px] leading-relaxed">
-        <li className="flex gap-2">
-          <span>•</span>
-          Built and optimized the entire college website with modern full-stack technologies.
-        </li>
-
-        <li className="flex gap-2">
-          <span>•</span>
-          Implemented dynamic dashboards, authentication, and admin features.
-        </li>
-
-        <li className="flex gap-2">
-          <span>•</span>
-          Improved performance, accessibility, and UI/UX for students & faculty.
-        </li>
-
-        <li className="flex gap-2">
-          <span>•</span>
-          Integrated secure API endpoints and optimized backend workflows.
-        </li>
-      </ul>
     </div>
   );
 };
 
-export default ExperienceCard;
+export default ExperienceAccordion;

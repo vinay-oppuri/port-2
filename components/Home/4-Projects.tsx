@@ -6,7 +6,6 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Globe, Github } from "lucide-react";
 import { ProjectsData } from "@/lib/hero.config";
-import { heroConfig } from "@/lib/hero.config";
 
 const ProjectsPage = () => {
   const projects = ProjectsData;

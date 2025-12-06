@@ -20,65 +20,61 @@ const Page = () => {
   if (!mounted) return null;
 
   return (
-    <>
-      <Header />
+    <section className="flex flex-col items-start space-y-6 mx-auto md:mt-16 w-full px-4 py-4 md:px-0">
 
-      <section className="flex flex-col items-start space-y-6 mx-auto md:mt-16 w-full px-4 py-4 md:px-0">
+      {/* Avatar */}
+      <div className="w-24 h-24 sm:w-32 sm:h-32 rounded-full bg-foreground/10 flex items-center justify-center overflow-hidden">
+        <Image
+          src={theme === "dark" ? "/avatar-dark.png" : "/avatar-light.png"}
+          width={130}
+          height={130}
+          alt="Avatar"
+          className="rounded-full object-cover"
+        />
+      </div>
 
-        {/* Avatar */}
-        <div className="w-24 h-24 sm:w-32 sm:h-32 rounded-full bg-foreground/10 flex items-center justify-center overflow-hidden">
-          <Image
-            src={theme === "dark" ? "/avatar-dark.png" : "/avatar-light.png"}
-            width={130}
-            height={130}
-            alt="Avatar"
-            className="rounded-full object-cover"
-          />
-        </div>
+      {/* Heading */}
+      <h1 className="text-2xl sm:text-3xl font-bold leading-tight text-foreground">
+        Hi, I'm {heroConfig.name} — <span className="text-muted-foreground"> {heroConfig.title} </span>
+      </h1>
 
-        {/* Heading */}
-        <h1 className="text-2xl sm:text-3xl font-bold leading-tight text-foreground">
-          Hi, I'm {heroConfig.name} — <span className="text-muted-foreground"> {heroConfig.title} </span>
-        </h1>
+      {/* DESCRIPTION */}
+      <p className="text-md sm:text-lg text-gray-400 leading-relaxed flex flex-wrap gap-2">
+        I build interactive web apps using
+        {heroConfig.skills.map((skill, i) => (
+          <span key={i} className="inline-flex items-center justify-center px-2 py-1 bg-foreground/10 border border-foreground/20 rounded-lg text-xs sm:text-sm font-medium text-foreground gap-1">
+            {skill.component}
+            {skill.name}
+          </span>
+        ))}
+        . With a focus on <b>UI</b> design. Enthusiastic about <b>Three.js</b>, driven by a keen eye for design.
+      </p>
 
-        {/* DESCRIPTION */}
-        <p className="text-md sm:text-lg text-gray-400 leading-relaxed flex flex-wrap gap-2">
-          I build interactive web apps using
-          {heroConfig.skills.map((skill, i) => (
-            <span key={i} className="inline-flex items-center justify-center px-2 py-1 bg-foreground/10 border border-foreground/20 rounded-lg text-xs sm:text-sm font-medium text-foreground gap-1">
-              {skill.component}
-              {skill.name}
-            </span>
-          ))}
-          . With a focus on <b>UI</b> design. Enthusiastic about <b>Three.js</b>, driven by a keen eye for design.
-        </p>
-
-        {/* Buttons */}
-        <div className="w-full flex flex-col md:flex-row justify-center md:justify-end gap-3 p-4 md:p-0">
-          {heroConfig.buttons.map((button) => (
-            <Button
-              asChild
-              key={button.text}
-              variant={button.variant === "outline" ? "outline" : "default"}
-              className="px-4 py-2 text-sm sm:text-base"
-            >
-              <Link href={button.href}>
-                {button.icon} {button.text}
-              </Link>
-            </Button>
-          ))}
-        </div>
+      {/* Buttons */}
+      <div className="w-full flex flex-col md:flex-row justify-center md:justify-end gap-3 p-4 md:p-0">
+        {heroConfig.buttons.map((button) => (
+          <Button
+            asChild
+            key={button.text}
+            variant={button.variant === "outline" ? "outline" : "default"}
+            className="px-4 py-2 text-sm sm:text-base"
+          >
+            <Link href={button.href}>
+              {button.icon} {button.text}
+            </Link>
+          </Button>
+        ))}
+      </div>
 
 
-        {/* Sections */}
-        <div className="w-full flex flex-col pt-6 gap-6">
-          <SpotifyNowPlaying />
-          <ExperienceCard />
-          <ProjectsPage />
-          <AboutPage />
-        </div>
-      </section>
-    </>
+      {/* Sections */}
+      <div className="w-full flex flex-col pt-6 gap-6">
+        <SpotifyNowPlaying />
+        <ExperienceCard />
+        <ProjectsPage />
+        <AboutPage />
+      </div>
+    </section>
   );
 };
 
