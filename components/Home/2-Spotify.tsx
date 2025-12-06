@@ -113,7 +113,7 @@ export default function SpotifyNowPlaying() {
 
 
   return (
-    <div className="flex flex-col gap-2">
+    <div className="flex flex-col gap-3">
       <div className="hidden md:flex gap-2 items-center">
         <SiSpotify size={22} color="#1DB954" />
         <p className="text-sm font-medium text-muted-foreground">{track.source}</p>

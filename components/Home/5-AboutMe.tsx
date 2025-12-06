@@ -18,7 +18,7 @@ const AboutPage = () => {
   if (!mounted) return null;
 
   return (
-    <section className="flex flex-col gap-8 sm:gap-10 w-full px-4 py-4 md:px-0">
+    <section className="flex flex-col gap-8 sm:gap-10 w-full py-4">
 
       {/* Heading */}
       <div>
@@ -58,7 +58,7 @@ const AboutPage = () => {
 
             <div className="flex flex-wrap gap-2 sm:gap-3">
               {skills.map((skill, index) => (
-                <Badge key={index} variant='secondary' className="px-2 py-1 gap-1">
+                <Badge key={index} variant='secondary' className="border border-dashed border-muted-foreground/40 rounded-sm px-2 py-1 gap-1">
                   <span>{skill.component}</span>
                   <span>{skill.name}</span>
                 </Badge>

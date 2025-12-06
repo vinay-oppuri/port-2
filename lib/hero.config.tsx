@@ -27,7 +27,7 @@ export const heroConfig = {
     {
       name: "Next.js",
       href: "https://nextjs.org/",
-      component: <SiNextdotjs className="h-4 w-4 text-white" />,
+      component: <SiNextdotjs className="h-4 w-4 text-foreground" />,
     },
     {
       name: "React",
@@ -84,7 +84,7 @@ export const socialLinks = [
   {
     name: "X",
     href: "https://x.com/yourusername",
-    icon: <SiX className="text-white" />,
+    icon: <SiX className="text-foreground" />,
   },
   {
     name: "LinkedIn",
@@ -94,7 +94,7 @@ export const socialLinks = [
   {
     name: "Github",
     href: "https://github.com/yourusername",
-    icon: <SiGithub className="text-white" />,
+    icon: <SiGithub className="text-foreground" />,
   },
   {
     name: "Email",
@@ -111,12 +111,12 @@ export const ProjectsData = [
     description:
       "MeetAI lets users create AI agents to schedule meetings, generate post-meeting summaries, and answer follow-up questions once meetings are completed.",
     tags: [
-      <SiNextdotjs className="h-5 w-5 text-white" />,
+      <SiNextdotjs className="h-5 w-5 text-foreground" />,
       <SiTypescript className="h-5 w-5 text-[#3178C6]" />,
       <SiTailwindcss className="h-5 w-5 text-[#38BDF8]" />,
       <SiTrpc className="h-5 w-5 text-[#0D9488]" />,
       <SiGooglegemini className="h-5 w-5 text-[#4285F4]" />,
-      <SiShadcnui className="h-5 w-5 text-white" />,
+      <SiShadcnui className="h-5 w-5 text-foreground" />,
     ],
     imageUrl: "/projects/ai-agent.png",
     liveUrl: "https://agents-meet-ai.vercel.app/",
@@ -131,7 +131,7 @@ export const ProjectsData = [
       <SiReact className="h-5 w-5 text-[#61DAFB]" />,
       <SiNodedotjs className="h-5 w-5 text-[#3C873A]" />,
       <SiMongodb className="h-5 w-5 text-[#47A248]" />,
-      <SiExpress className="h-5 w-5 text-white" />,
+      <SiExpress className="h-5 w-5 text-foreground" />,
     ],
     imageUrl: "/projects/dashboard.png",
     liveUrl: "#",
@@ -149,7 +149,7 @@ export const experiences = [
     timeline: "August 2025 – Present",
     location: "India (Remote)",
     technologies: [
-      { name: "Next.js", logo: <SiNextdotjs className="h-4 w-4 text-white" /> },
+      { name: "Next.js", logo: <SiNextdotjs className="h-4 w-4 text-foreground" /> },
       { name: "Tailwind CSS", logo: <SiTailwindcss className="h-5 w-5 text-[#38BDF8]" /> },
       { name: "React", logo: <SiReact className="h-4 w-4 text-[#61DAFB]" /> },
       { name: "TypeScript", logo: <SiTypescript className="h-4 w-4 text-[#3178C6]" /> },
@@ -171,7 +171,7 @@ export const experiences = [
     timeline: "August 2025 – Present",
     location: "India (Remote)",
     technologies: [
-      { name: "Next.js", logo: <SiNextdotjs className="h-4 w-4 text-white" /> },
+      { name: "Next.js", logo: <SiNextdotjs className="h-4 w-4 text-foreground" /> },
       { name: "Tailwind CSS", logo: <SiTailwindcss className="h-5 w-5 text-[#38BDF8]" /> },
       { name: "React", logo: <SiReact className="h-4 w-4 text-[#61DAFB]" /> },
       { name: "TypeScript", logo: <SiTypescript className="h-4 w-4 text-[#3178C6]" /> },

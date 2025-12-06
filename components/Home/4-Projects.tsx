@@ -11,7 +11,7 @@ const ProjectsPage = () => {
   const projects = ProjectsData;
 
   return (
-    <section className="flex flex-col gap-6 w-full px-4 py-4 md:px-0">
+    <section className="flex flex-col gap-6 w-full py-4">
 
       {/* Header */}
       <div className="flex flex-col gap-1">

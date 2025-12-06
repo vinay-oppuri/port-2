@@ -18,7 +18,7 @@ const ExperienceAccordion = () => {
   const topExperiences = experiences.slice(0, 2);
 
   return (
-    <div className="w-full mx-auto px-4 py-4 md:px-0">
+    <div className="w-full mx-auto py-4">
       <p className="text-sm text-muted-foreground">Featured</p>
       <h2 className="text-2xl font-semibold mb-8">Experience</h2>
 

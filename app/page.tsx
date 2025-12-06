@@ -42,7 +42,7 @@ const Page = () => {
       <p className="text-md sm:text-lg text-gray-400 leading-relaxed flex flex-wrap gap-2">
         I build interactive web apps using
         {heroConfig.skills.map((skill, i) => (
-          <span key={i} className="inline-flex items-center justify-center px-2 py-1 bg-foreground/10 border border-foreground/20 rounded-lg text-xs sm:text-sm font-medium text-foreground gap-1">
+          <span key={i} className="flex items-center justify-center px-2 py-1 bg-foreground/10 border border-dashed border-muted-foreground/40 rounded-lg text-xs sm:text-sm font-medium text-foreground gap-1">
             {skill.component}
             {skill.name}
           </span>
