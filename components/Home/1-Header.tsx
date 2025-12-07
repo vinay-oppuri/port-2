@@ -8,6 +8,7 @@ import { Moon, Sun, Menu, X } from "lucide-react";
 import { useTheme } from "next-themes";
 import { Button } from "@/components/ui/button";
 import { FaGithub } from "react-icons/fa";
+import { createAnimation, injectAnimationStyles } from "@/lib/theme-animation";
 
 export const Header = () => {
   const { theme, setTheme } = useTheme();
@@ -15,9 +16,15 @@ export const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
 
   const toggleTheme = () => {
-    setTheme(theme === "dark" ? "light" : "dark");
+    const animation = createAnimation("circle-blur", "top-right");
+    injectAnimationStyles(animation.css);
+  
+    document.startViewTransition?.(() =>
+      setTheme(theme === "dark" ? "light" : "dark")
+    ) ??
+      setTheme(theme === "dark" ? "light" : "dark");
   };
-
+  
   useEffect(() => {
     setMounted(true);
   }, []);
@@ -87,4 +94,4 @@ export const Header = () => {
       )}
     </header>
   );
-};
+}

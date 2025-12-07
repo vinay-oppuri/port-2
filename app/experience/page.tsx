@@ -16,7 +16,7 @@ const Page = () => {
     const topExperiences = experiences
 
     return (
-        <div className="w-full max-h-screen mx-auto px-4 py-4 md:px-0">
+        <div className="w-full max-h-screen mx-auto px-4 py-4 md:px-8">
             <div className="flex flex-col items-center justify-center border-b gap-3 md:gap-6 mt-6 md:mt-12 mb-4 md:mb-8 p-8">
                 <h1 className="text-3xl md:text-5xl font-bold">Work Experience</h1>
                 <h1 className="text-md md:text-xl text-muted-foreground font-semibold">My work experiences across different companies and roles.</h1>

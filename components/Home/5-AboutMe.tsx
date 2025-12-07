@@ -18,7 +18,7 @@ const AboutPage = () => {
   if (!mounted) return null;
 
   return (
-    <section className="flex flex-col gap-8 sm:gap-10 w-full py-4">
+    <section className="flex flex-col gap-8 sm:gap-10 w-full px-2 md:px-0 py-4">
 
       {/* Heading */}
       <div>

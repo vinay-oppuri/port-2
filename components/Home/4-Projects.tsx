@@ -6,12 +6,13 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Globe, Github } from "lucide-react";
 import { ProjectsData } from "@/lib/hero.config";
+import { Button } from "../ui/button";
 
 const ProjectsPage = () => {
-  const projects = ProjectsData;
+  const projects = ProjectsData.slice(0, 2)
 
   return (
-    <section className="flex flex-col gap-6 w-full py-4">
+    <section className="flex flex-col gap-6 w-full px-2 md:px-0 py-4">
 
       {/* Header */}
       <div className="flex flex-col gap-1">
@@ -24,7 +25,7 @@ const ProjectsPage = () => {
         {projects.map((project) => (
           <Card
             key={project.title}
-            className="overflow-hidden bg-white/5 border border-white/10 hover:border-foreground/20 transition rounded-lg"
+            className="overflow-hidden bg-white/5 border border-white/10 hover:border-foreground/20 transition rounded-lg p-0"
           >
             {/* IMAGE */}
             <div className="h-40 md:h-48 w-full bg-linear-to-r from-pink-600 to-purple-600">
@@ -38,9 +39,9 @@ const ProjectsPage = () => {
             </div>
 
             {/* CONTENT */}
-            <CardHeader>
-              <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2">
-                <CardTitle className="text-lg sm:text-xl text-foreground">
+            <CardHeader >
+              <div className="flex flex-row justify-between items-center gap-2">
+                <CardTitle className="text-base sm:text-xl text-foreground">
                   {project.title}
                 </CardTitle>
 
@@ -69,10 +70,10 @@ const ProjectsPage = () => {
               </div>
             </CardHeader>
 
-            <CardContent className="space-y-3">
+            <CardContent className="flex flex-col gap-2 md:gap-3">
 
               {/* DESCRIPTION */}
-              <p className="text-muted-foreground text-sm leading-relaxed">
+              <p className="text-muted-foreground text-xs md:text-sm leading-relaxed">
                 {project.description}
               </p>
 
@@ -82,18 +83,18 @@ const ProjectsPage = () => {
                   Technologies
                 </p>
 
-                <div className="flex flex-wrap gap-2">
+                {/* <div className="flex flex-wrap gap-0"> */}
                   {project.tags.map((tag, id) => (
-                    <Badge key={id} className="p-1">
+                    <Badge key={id} className="bg-transparent p-1">
                       <span className="text-md">{tag}</span>
                     </Badge>
                   ))}
-                </div>
+                {/* </div> */}
               </div>
 
 
               {/* FOOTER */}
-              <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3 pt-3">
+              <div className="flex flex-row justify-between items-center py-4">
                 <Badge
                   variant="secondary"
                   className="bg-green-600/20 dark:text-green-500 text-foreground rounded-md px-3 py-1 text-xs"
@@ -102,13 +103,21 @@ const ProjectsPage = () => {
                 </Badge>
 
                 <span className="text-muted-foreground text-sm hover:underline cursor-pointer">
-                  View Details →
+                  <span className="hidden md:flex">View Details →</span>
+                  <span className="flex md:hidden">Details →</span>
                 </span>
               </div>
 
             </CardContent>
           </Card>
         ))}
+      </div>
+      <div className="w-full flex justify-center mt-10 mb-4">
+        <Link href="/projects">
+          <Button variant='outline' className="px-4 md:px-6 py-2 text-sm md:text-md font-semibold">
+            Show all projects
+          </Button>
+        </Link>
       </div>
     </section>
   );

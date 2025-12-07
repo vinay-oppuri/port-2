@@ -145,3 +145,11 @@
 .no-scrollbar {
   scrollbar-width: none;
 }
+
+:root {
+  view-transition-name: root;
+}
+
+html {
+  view-transition-name: root;
+}
