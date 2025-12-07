@@ -13,7 +13,6 @@ const ProjectsPage = () => {
 
   return (
     <section className="flex flex-col gap-6 w-full px-2 md:px-0 py-4">
-
       {/* Header */}
       <div className="flex flex-col gap-1">
         <p className="text-sm text-muted-foreground">Featured</p>
@@ -112,7 +111,7 @@ const ProjectsPage = () => {
           </Card>
         ))}
       </div>
-      <div className="w-full flex justify-center mt-10 mb-4">
+      <div className="w-full flex justify-center my-4">
         <Link href="/projects">
           <Button variant='outline' className="px-4 md:px-6 py-2 text-sm md:text-md font-semibold">
             Show all projects

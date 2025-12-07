@@ -4,6 +4,7 @@ import { ThemeProvider } from "next-themes";
 import "./globals.css";
 import { SocialLinks } from "@/components/SocialLinks";
 import { Header } from "@/components/Home/1-Header";
+import Footer from "@/components/Home/8-Footer";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -34,6 +35,7 @@ export default function RootLayout({
           <SocialLinks/>
           <Header/>
           {children}
+          <Footer/>
         </ThemeProvider>
       </body>
     </html>
