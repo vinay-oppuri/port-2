@@ -44,7 +44,7 @@ const AboutPage = () => {
         <div className="flex flex-col gap-4 max-w-2xl text-left">
 
           <h2 className="text-xl sm:text-2xl font-semibold flex items-center gap-2">
-            {heroConfig.name}
+            {heroConfig.fullName}
           </h2>
 
           <p className="text-muted-foreground leading-relaxed text-sm sm:text-base">

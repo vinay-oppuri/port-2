@@ -20,7 +20,8 @@ import {
 
 export const heroConfig = {
   name: "Vinay",
-  title: "A Full Stack web developer.",
+  fullName: "Oppuri Vinay Reddy",
+  title: "A Full Stack Web Developer • Agentic AI",
   avatar: "/avatar.png",
 
   skills: [

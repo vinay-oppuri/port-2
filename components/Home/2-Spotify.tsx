@@ -118,7 +118,7 @@ export default function SpotifyNowPlaying() {
         <SiSpotify size={22} color="#1DB954" />
         <p className="text-sm font-medium text-muted-foreground">{track.source}</p>
       </div>
-      <div className="bg-white/5 border border-white/10 p-4 rounded-lg hidden md:flex items-center gap-3">
+      <div className="bg-foreground/5 border border-foreground/10 p-4 rounded-lg hidden md:flex items-center gap-3">
         {track.albumImageUrl && (
           <img
             src={track.albumImageUrl}
@@ -132,8 +132,9 @@ export default function SpotifyNowPlaying() {
         </div>
 
         <Button
+          variant='outline'
           onClick={() => playerRef.current.togglePlay()}
-          className="bg-background text-foreground hover:bg-background/60"
+          className="text-foreground hover:bg-background/60"
         >
           {isPlaying ? <PauseIcon className="size-4"/> : <PlayIcon className="size-4"/>}
         </Button>
