@@ -1,11 +1,10 @@
-import { GrChat } from "react-icons/gr";
+import { SendIcon } from "lucide-react";
 import {
   SiExpress,
   SiGithub,
   SiGoogledocs,
   SiGooglegemini,
   SiLinkedin,
-  SiMaildotcom,
   SiMongodb,
   SiNextdotjs,
   SiNodedotjs,
@@ -74,7 +73,7 @@ export const heroConfig = {
       variant: "default",
       text: "Get in touch",
       href: "/contact",
-      icon: <GrChat />,
+      icon: <SendIcon/>,
     },
   ],
 };

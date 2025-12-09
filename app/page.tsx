@@ -10,6 +10,7 @@ import ProjectsPage from "@/components/Home/4-Projects";
 import AboutPage from "@/components/Home/5-AboutMe";
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
+import GitHubActivity from "@/components/Home/6-GithubActivity";
 
 const Page = () => {
   const [mounted, setMounted] = useState(false);
@@ -76,6 +77,7 @@ const Page = () => {
         <ExperienceCard />
         <ProjectsPage />
         <AboutPage />
+        <GitHubActivity />
       </div>
     </section>
   );

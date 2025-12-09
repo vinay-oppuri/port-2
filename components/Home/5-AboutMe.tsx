@@ -21,7 +21,7 @@ const AboutPage = () => {
     <section className="flex flex-col gap-8 sm:gap-10 w-full px-2 md:px-0 py-4">
 
       {/* Heading */}
-      <div>
+      <div className="flex flex-col gap-1">
         <p className="text-sm text-muted-foreground">About</p>
         <h1 className="text-2xl font-bold text-foreground">Me</h1>
       </div>

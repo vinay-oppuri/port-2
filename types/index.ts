@@ -8,4 +8,19 @@ export interface NowPlayingData {
     name?: string;
     source?: "current" | "recent";
   }
-  
+
+type ContributionDay = {
+  contributionCount: number;
+  date: string;
+  color: string;
+};
+
+type ContributionWeek = {
+  contributionDays: ContributionDay[];
+};
+
+type ContributionCalendar = {
+  totalContributions: number;
+  colors: string[];
+  weeks: ContributionWeek[];
+};
