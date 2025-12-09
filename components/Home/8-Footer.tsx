@@ -1,6 +1,13 @@
 "use client";
 
+import { useEffect, useState } from "react";
+
 const Footer = () => {
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => setMounted(true), [])
+  if (!mounted) return null
+
   return (
     <footer className="w-full flex justify-center py-6 mb-16 md:mb-0 px-4">
       <div
@@ -13,7 +20,7 @@ const Footer = () => {
         "
       >
         <p className="flex items-center gap-1">
-          Developed by 
+          Developed by
           <span className="font-semibold text-foreground">Vinay</span>
           <span className="opacity-70">•</span>
           2025 — All rights reserved.

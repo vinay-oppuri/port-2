@@ -57,7 +57,7 @@ export default function SpotifyNowPlaying() {
         const json = await res.json();
         cb(json.accessToken);
       },
-      volume: 0.5,
+      volume: 0.25,
     });
 
     playerRef.current = player;
@@ -107,38 +107,76 @@ export default function SpotifyNowPlaying() {
     player.connect();
   }, [sdkReady, recent]);
 
+  const isLoading = !nowPlaying && !recent;
   const track = nowPlaying?.isPlaying ? nowPlaying : recent;
 
-  if (!track) return null;
-
-
   return (
-    <div className="flex flex-col gap-3">
-      <div className="hidden md:flex gap-2 items-center">
-        <SiSpotify size={22} color="#1DB954" />
-        <p className="text-sm font-medium text-muted-foreground">{track.source}</p>
-      </div>
-      <div className="bg-foreground/5 border border-foreground/10 p-4 rounded-lg hidden md:flex items-center gap-3">
-        {track.albumImageUrl && (
-          <img
-            src={track.albumImageUrl}
-            className="w-12 h-12 rounded"
-            alt="album"
-          />
-        )}
-        <div className="flex-1">
-          <p className="font-semibold text-foreground">{track.name}</p>
-          <p className="text-sm text-muted-foreground">{track.artist}</p>
-        </div>
+    <div className="flex flex-col gap-3 min-h-[90px]">
+      {/* prevents height collapse flicker */}
 
-        <Button
-          variant='outline'
-          onClick={() => playerRef.current.togglePlay()}
-          className="text-foreground hover:bg-background/60"
-        >
-          {isPlaying ? <PauseIcon className="size-4"/> : <PlayIcon className="size-4"/>}
-        </Button>
+      {/* Header */}
+      <div className="hidden md:flex gap-2 items-center">
+        {isLoading ? (
+          <>
+            <div className="w-5 h-5 rounded bg-foreground/10 animate-pulse"></div>
+            <div className="w-20 h-3 rounded bg-foreground/10 animate-pulse"></div>
+          </>
+        ) : (
+          <>
+            <SiSpotify size={22} color="#1DB954" />
+            <p className="text-sm font-medium text-muted-foreground">
+              {track?.source}
+            </p>
+          </>
+        )}
+      </div>
+
+      {/* Body */}
+      <div className="bg-foreground/5 border border-foreground/10 p-4 rounded-lg hidden md:flex items-center gap-3 min-h-[64px]">
+
+        {isLoading ? (
+          /* ⭐ SKELETON — stays mounted */
+          <>
+            <div className="w-12 h-12 bg-foreground/10 rounded animate-pulse"></div>
+
+            <div className="flex-1 flex flex-col gap-2">
+              <div className="w-32 h-4 bg-foreground/10 rounded animate-pulse"></div>
+              <div className="w-24 h-3 bg-foreground/10 rounded animate-pulse"></div>
+            </div>
+
+            <div className="w-10 h-10 rounded bg-foreground/10 animate-pulse"></div>
+          </>
+        ) : (
+          /* ⭐ CONTENT — replaces skeleton without unmounting parent div */
+          <>
+            {track?.albumImageUrl && (
+              <img
+                src={track.albumImageUrl}
+                className="w-12 h-12 rounded"
+                alt="album"
+              />
+            )}
+
+            <div className="flex-1">
+              <p className="font-semibold text-foreground">{track?.name}</p>
+              <p className="text-sm text-muted-foreground">{track?.artist}</p>
+            </div>
+
+            <Button
+              variant="outline"
+              onClick={() => playerRef.current.togglePlay()}
+              className="text-foreground hover:bg-background/60"
+            >
+              {isPlaying ? (
+                <PauseIcon className="size-4" />
+              ) : (
+                <PlayIcon className="size-4" />
+              )}
+            </Button>
+          </>
+        )}
       </div>
     </div>
   );
+
 }

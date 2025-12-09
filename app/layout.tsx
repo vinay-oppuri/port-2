@@ -3,7 +3,7 @@ import { Inter } from "next/font/google";
 import { ThemeProvider } from "next-themes";
 import "./globals.css";
 
-import { SocialLinks } from "@/components/SocialLinks";
+import { SocialLinks } from "@/components/common/social-links";
 import { Header } from "@/components/Home/1-Header";
 import Footer from "@/components/Home/8-Footer";
 
@@ -31,7 +31,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${inter.variable} antialiased min-h-screen flex flex-col px-0 md:px-90`}
+        className={`${inter.variable} antialiased min-h-screen flex flex-col px-0 md:px-85`}
       >
         <ThemeProvider
           attribute="class"

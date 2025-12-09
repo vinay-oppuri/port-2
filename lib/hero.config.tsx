@@ -94,14 +94,14 @@ export const socialLinks = [
   },
   {
     name: "Github",
-    href: "https://github.com/yourusername",
+    href: "https://github.com/vinay-oppuri",
     icon: <SiGithub className="text-foreground" />,
   },
-  {
-    name: "Email",
-    href: "mailto:your@email.com",
-    icon: <SiMaildotcom className="text-[#D44638]" />,
-  },
+  // {
+  //   name: "Email",
+  //   href: "mailto:oppurivinay25@gmail.com",
+  //   icon: <SiMaildotcom className="text-[#D44638]" />,
+  // },
 ];
 
 // ------------------ PROJECT TAG ICONS ------------------

@@ -11,9 +11,15 @@ import {
 } from "@/components/ui/accordion";
 
 import { Badge } from "@/components/ui/badge";
+import { useEffect, useState } from "react";
+import LoadingScreen from "@/components/common/loading-state";
 
 const Page = () => {
     const topExperiences = experiences
+    const [mounted, setMounted] = useState(false);
+
+    useEffect(() => setMounted(true), []);
+    if (!mounted) return <LoadingScreen />;
 
     return (
         <div className="w-full max-h-screen mx-auto px-6 py-4 md:px-10">

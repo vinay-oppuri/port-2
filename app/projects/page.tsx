@@ -6,9 +6,15 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Globe, Github } from "lucide-react";
 import { ProjectsData } from "@/lib/hero.config";
+import { useEffect, useState } from "react";
+import LoadingScreen from "@/components/common/loading-state";
 
 const Page = () => {
     const projects = ProjectsData;
+    const [mounted, setMounted] = useState(false);
+
+    useEffect(() => setMounted(true), []);
+    if (!mounted) return <LoadingScreen />;
 
     return (
         <section className="flex flex-col gap-6 w-full px-6 py-4 md:px-10">

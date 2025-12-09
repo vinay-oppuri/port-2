@@ -8,7 +8,7 @@ import { Moon, Sun, Menu, X } from "lucide-react";
 import { useTheme } from "next-themes";
 import { Button } from "@/components/ui/button";
 import { FaGithub } from "react-icons/fa";
-import { createAnimation, injectAnimationStyles } from "@/lib/theme-animation";
+import { circleBlurTopRightCSS, injectAnimationStyles } from "@/lib/theme-animation";
 
 export const Header = () => {
   const { theme, setTheme } = useTheme();
@@ -16,19 +16,15 @@ export const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
 
   const toggleTheme = () => {
-    const animation = createAnimation("circle-blur", "top-right");
-    injectAnimationStyles(animation.css);
-  
-    document.startViewTransition?.(() =>
-      setTheme(theme === "dark" ? "light" : "dark")
-    ) ??
-      setTheme(theme === "dark" ? "light" : "dark");
-  };
-  
-  useEffect(() => {
-    setMounted(true);
-  }, []);
+  document.startViewTransition?.(() => {
+    setTheme(theme === "dark" ? "light" : "dark");
+  });
 
+  injectAnimationStyles(circleBlurTopRightCSS);
+};
+
+  
+  useEffect(() => setMounted(true), [])
   if (!mounted) return null;
 
   return (
@@ -49,7 +45,7 @@ export const Header = () => {
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex space-x-6 text-foreground text-sm font-medium">
-          <Link href="/work">Work</Link>
+          <Link href="/experience">Work</Link>
           <Link href="/blogs">Blogs</Link>
           <Link href="/projects">Projects</Link>
         </nav>
@@ -78,7 +74,7 @@ export const Header = () => {
 
       {/* Mobile Navigation Menu */}
       {menuOpen && (
-        <div className="absolute top-full left-0 w-full bg-background/95 backdrop-blur-lg border-b border-border/40 shadow-lg md:hidden animate-slide-down">
+        <div className="absolute top-full left-0 w-full bg-background/90 backdrop-blur-xs border-b border-border/40 shadow-lg md:hidden animate-slide-down">
           <nav className="flex flex-col p-4 space-y-4 text-foreground text-base font-medium">
             <Link href="/work" onClick={() => setMenuOpen(false)}>
               Work
