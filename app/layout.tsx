@@ -31,7 +31,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${inter.variable} antialiased min-h-screen flex flex-col px-0 md:px-85`}
+        className={`${inter.variable} antialiased min-h-screen mx-auto max-w-3xl flex flex-col`}
       >
         <ThemeProvider
           attribute="class"
