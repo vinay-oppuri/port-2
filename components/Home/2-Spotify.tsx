@@ -172,7 +172,27 @@ export default function SpotifyNowPlaying() {
                   } catch (e) {
                     console.error("Failed to activate element", e);
                   }
-                  playerRef.current.togglePlay();
+                  const state = await playerRef.current.getCurrentState();
+                  if (!state) {
+                    // Player is not active, transfer playback
+                    if (deviceId) {
+                      const res = await fetch("/api/spotify/token");
+                      const { accessToken } = await res.json();
+                      await fetch("https://api.spotify.com/v1/me/player", {
+                        method: "PUT",
+                        headers: {
+                          Authorization: `Bearer ${accessToken}`,
+                          "Content-Type": "application/json",
+                        },
+                        body: JSON.stringify({
+                          device_ids: [deviceId],
+                          play: true,
+                        }),
+                      });
+                    }
+                  } else {
+                    playerRef.current.togglePlay();
+                  }
                 } else {
                   // Fallback for mobile/when SDK is not ready
                   const action = isPlaying ? "pause" : "play";
