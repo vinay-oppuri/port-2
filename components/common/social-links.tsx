@@ -17,10 +17,10 @@ export const SocialLinks = () => {
         bottom-0 left-1/2 -translate-x-1/2 
         md:left-0 md:bottom-auto md:top-1/2 md:-translate-y-1/2 md:translate-x-0
         flex md:flex-col items-center 
-        gap-4
+        gap-4 shadow-inner-strong
         bg-foreground/5 backdrop-blur-lg 
         px-4 md:px-4 py-2 md:py-6
-        rounded-t-2xl md:rounded-r-2xl md:rounded-none shadow-lg
+        rounded-t-2xl md:rounded-r-2xl md:rounded-none
       "
     >
       {socialLinks.map((link) => (
@@ -29,7 +29,7 @@ export const SocialLinks = () => {
           href={link.href}
           target="_blank"
           rel="noopener noreferrer"
-          className="text-gray-400 hover:text-white w-7 h-7 flex items-center justify-center"
+          className="w-7 h-7 flex items-center justify-center hover:scale-135 transition-all duration-200 ease-in-out"
         >
           {link.icon}
         </Link>

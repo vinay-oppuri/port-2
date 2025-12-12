@@ -28,13 +28,14 @@ export default function GitHubActivity() {
       </header>
 
       {/* Calendar */}
-      <div className="px-12 py-6 -mx-2 border-2 border-foreground/10 overflow-x-auto rounded-xl">
+      <div className="px-4 py-6 -mx-2 overflow-x-auto rounded-lg flex justify-center shadow-inner-strong">
         <GitHubCalendar
           username="vinay-oppuri"
-          blockSize={14}
-          blockMargin={4}
+          blockSize={9}
+          blockMargin={3}
           fontSize={12}
           colorScheme={theme === "dark" ? "dark" : "light"}
+          year={new Date().getFullYear()}
         />
       </div>
 

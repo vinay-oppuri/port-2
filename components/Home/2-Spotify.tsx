@@ -6,15 +6,9 @@ import useSWR from "swr";
 import { SiSpotify } from "react-icons/si";
 import { PauseIcon, PlayIcon } from "lucide-react";
 import { Button } from "../ui/button";
+import { SpotifyPlayer } from "@/types/spotify";
 
 const fetcher = (url: string) => fetch(url).then((r) => r.json());
-
-declare global {
-  interface Window {
-    Spotify?: any;
-    onSpotifyWebPlaybackSDKReady?: () => void;
-  }
-}
 
 export default function SpotifyNowPlaying() {
   const { data: nowPlaying } = useSWR("/api/spotify", fetcher, {
@@ -28,7 +22,7 @@ export default function SpotifyNowPlaying() {
 
   const [sdkReady, setSdkReady] = useState(false);
   const [deviceId, setDeviceId] = useState<string | null>(null);
-  const playerRef = useRef<any>(null);
+  const playerRef = useRef<SpotifyPlayer | null>(null);
   const [isPlaying, setIsPlaying] = useState(false);
 
   // Load SDK
@@ -52,7 +46,7 @@ export default function SpotifyNowPlaying() {
 
     const player = new window.Spotify.Player({
       name: "Vinay Portfolio Player",
-      getOAuthToken: async (cb: any) => {
+      getOAuthToken: async (cb: (token: string) => void) => {
         const res = await fetch("/api/spotify/token");
         const json = await res.json();
         cb(json.accessToken);
@@ -62,7 +56,7 @@ export default function SpotifyNowPlaying() {
 
     playerRef.current = player;
 
-    player.addListener("ready", async ({ device_id }: any) => {
+    player.addListener("ready", async ({ device_id }: { device_id: string }) => {
       console.log("PLAYER READY", device_id);
       setDeviceId(device_id);
 
@@ -132,7 +126,7 @@ export default function SpotifyNowPlaying() {
       </div>
 
       {/* Body */}
-      <div className="bg-foreground/5 border border-foreground/10 p-4 rounded-lg hidden md:flex items-center gap-3 min-h-[64px]">
+      <div className="bg-foreground/5 shadow-inner-strong p-4 rounded-lg hidden md:flex items-center gap-3 min-h-[64px]">
 
         {isLoading ? (
           /* ⭐ SKELETON — stays mounted */
@@ -163,9 +157,9 @@ export default function SpotifyNowPlaying() {
             </div>
 
             <Button
-              variant="outline"
-              onClick={() => playerRef.current.togglePlay()}
-              className="text-foreground hover:bg-background/60"
+              variant='secondary'
+              size='icon'
+              onClick={() => playerRef.current?.togglePlay()}
             >
               {isPlaying ? (
                 <PauseIcon className="size-4" />

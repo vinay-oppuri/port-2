@@ -1,4 +1,3 @@
-"use client";
 
 import Image from "next/image";
 import { experiences } from "@/lib/hero.config";
@@ -109,7 +108,7 @@ const ExperienceAccordion = () => {
       {/* BOTTOM BUTTON */}
       <div className="w-full flex justify-center mt-10 mb-4">
         <Link href="/experience">
-          <Button variant='outline' className="px-4 md:px-6 py-2 text-sm md:text-md font-semibold">
+          <Button variant='outline' className="text-xs md:text-sm text-primary/80 font-semibold">
             Show all work experiences
           </Button>
         </Link>

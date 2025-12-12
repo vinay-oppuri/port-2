@@ -16,31 +16,38 @@ export const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
 
   const toggleTheme = () => {
-  document.startViewTransition?.(() => {
-    setTheme(theme === "dark" ? "light" : "dark");
-  });
+    document.startViewTransition?.(() => {
+      setTheme(theme === "dark" ? "light" : "dark");
+    });
 
-  injectAnimationStyles(circleBlurTopRightCSS);
-};
+    injectAnimationStyles(circleBlurTopRightCSS);
+  };
 
-  
+
   useEffect(() => setMounted(true), [])
   if (!mounted) return null;
 
   return (
-    <header className="sticky top-0 z-50 flex justify-between items-center backdrop-blur-lg sm:px-6 border-b border-border/40 px-4 py-4">
+    <header className="sticky top-0 z-50 flex justify-between items-center backdrop-blur-lg sm:px-6 border-b border-foreground/5 px-4 py-4">
 
       {/* Left: Avatar + Desktop Nav */}
       <div className="flex items-center space-x-3 sm:space-x-4">
         {/* Avatar */}
         <Link href="/">
-          <Image
-            src={theme === "dark" ? "/avatar-dark.png" : "/avatar-light.png"}
-            alt={heroConfig.name}
-            width={36}
-            height={36}
-            className="rounded-full sm:w-10 sm:h-10 transition-transform hover:scale-105"
-          />
+          <div className="relative w-9 h-9 sm:w-10 sm:h-10">
+            <Image
+              src="/avatar-light.png"
+              alt={heroConfig.name}
+              fill
+              className="rounded-full object-cover transition-transform hover:scale-105 dark:hidden"
+            />
+            <Image
+              src="/avatar-dark.png"
+              alt={heroConfig.name}
+              fill
+              className="rounded-full object-cover transition-transform hover:scale-105 hidden dark:block"
+            />
+          </div>
         </Link>
 
         {/* Desktop Navigation */}
@@ -55,12 +62,12 @@ export const Header = () => {
       <div className="flex items-center space-x-3">
         {/* Theme Toggle */}
         <Link href='www.github.com/vinay-oppuri'>
-          <Button variant='outline' className="rounded-lg gap-2">
-            Github <FaGithub className="w-10 h-10"/>
+          <Button variant='outline' className="text-foreground/80">
+            <span className="text-xs">Github</span> <FaGithub />
           </Button>
         </Link>
         <Button variant="outline" size="icon" onClick={toggleTheme}>
-          {theme == 'dark' ? <Sun/> : <Moon/>}
+          {theme == 'dark' ? <Sun /> : <Moon />}
         </Button>
 
         {/* Mobile Menu Toggle */}

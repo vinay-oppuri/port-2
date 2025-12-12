@@ -61,7 +61,7 @@ const Page = () => {
             asChild
             key={button.text}
             variant={button.variant === "outline" ? "outline" : "default"}
-            className="px-4 py-2 text-sm sm:text-base"
+            className="px-10 py-5 text-sm sm:text-base hover:-translate-y-1 transition-all duration-300"
           >
             <Link href={button.href}>
               {button.icon} {button.text}
