@@ -59,7 +59,7 @@ export const Header = () => {
       </div>
 
       {/* Right: Theme Toggle + Mobile Menu Button */}
-      <div className="flex items-center space-x-3">
+      <div className="flex items-center space-x-3 -mr-2 md:mr-0">
         {/* Theme Toggle */}
         <Link href='www.github.com/vinay-oppuri'>
           <Button variant='outline' className="text-foreground/80">
@@ -72,24 +72,36 @@ export const Header = () => {
 
         {/* Mobile Menu Toggle */}
         <button
-          className="md:hidden p-2 rounded-lg hover:bg-muted transition-colors"
+          className="md:hidden p-2 rounded-lg text-foreground/80 hover:bg-muted transition-colors"
           onClick={() => setMenuOpen(!menuOpen)}
         >
-          {menuOpen ? <X size={22} /> : <Menu size={22} />}
+          {menuOpen ? <X size='18' /> : <Menu size='18' />}
         </button>
       </div>
 
-      {/* Mobile Navigation Menu */}
+      {/* Mobile Navigation Menu (Simple Dropdown) */}
       {menuOpen && (
-        <div className="absolute top-full left-0 w-full bg-background/90 backdrop-blur-xs border-b border-border/40 shadow-lg md:hidden animate-slide-down">
-          <nav className="flex flex-col p-4 space-y-4 text-foreground text-base font-medium">
-            <Link href="/work" onClick={() => setMenuOpen(false)}>
+        <div className="absolute top-full left-0 w-full bg-background/98 backdrop-blur-md border-b border-foreground/5 rounded-b-lg shadow-lg md:hidden animate-in slide-in-from-top-5 fade-in duration-200">
+          <nav className="flex flex-col p-4 space-y-1">
+            <Link
+              href="/experience"
+              onClick={() => setMenuOpen(false)}
+              className="p-3 rounded-md hover:bg-muted transition-colors text-foreground font-medium text-sm"
+            >
               Work
             </Link>
-            <Link href="/blogs" onClick={() => setMenuOpen(false)}>
+            <Link
+              href="/blogs"
+              onClick={() => setMenuOpen(false)}
+              className="p-3 rounded-md hover:bg-muted transition-colors text-foreground font-medium text-sm"
+            >
               Blogs
             </Link>
-            <Link href="/projects" onClick={() => setMenuOpen(false)}>
+            <Link
+              href="/projects"
+              onClick={() => setMenuOpen(false)}
+              className="p-3 rounded-md hover:bg-muted transition-colors text-foreground font-medium text-sm"
+            >
               Projects
             </Link>
           </nav>
