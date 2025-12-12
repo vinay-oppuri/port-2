@@ -109,7 +109,7 @@ export default function SpotifyNowPlaying() {
       {/* prevents height collapse flicker */}
 
       {/* Header */}
-      <div className="hidden md:flex gap-2 items-center">
+      <div className="flex gap-2 items-center">
         {isLoading ? (
           <>
             <div className="w-5 h-5 rounded bg-foreground/10 animate-pulse"></div>
@@ -126,7 +126,7 @@ export default function SpotifyNowPlaying() {
       </div>
 
       {/* Body */}
-      <div className="bg-foreground/5 shadow-inner-strong p-4 rounded-lg hidden md:flex items-center gap-3 min-h-[64px]">
+      <div className="bg-foreground/5 shadow-inner-strong p-4 rounded-lg flex items-center gap-3 min-h-[64px]">
 
         {isLoading ? (
           /* ⭐ SKELETON — stays mounted */
