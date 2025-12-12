@@ -59,7 +59,7 @@ export const Header = () => {
       </div>
 
       {/* Right: Theme Toggle + Mobile Menu Button */}
-      <div className="flex items-center space-x-3 -mr-2 md:mr-0">
+      <div className="flex items-center space-x-3 ">
         {/* Theme Toggle */}
         <Link href='www.github.com/vinay-oppuri'>
           <Button variant='outline' className="text-foreground/80">
@@ -72,7 +72,7 @@ export const Header = () => {
 
         {/* Mobile Menu Toggle */}
         <button
-          className="md:hidden p-2 rounded-lg text-foreground/80 hover:bg-muted transition-colors"
+          className="md:hidden rounded-lg text-foreground/80 hover:bg-muted transition-colors"
           onClick={() => setMenuOpen(!menuOpen)}
         >
           {menuOpen ? <X size='18' /> : <Menu size='18' />}
@@ -81,7 +81,7 @@ export const Header = () => {
 
       {/* Mobile Navigation Menu (Simple Dropdown) */}
       {menuOpen && (
-        <div className="absolute top-full left-0 w-full bg-background/98 backdrop-blur-md border-b border-foreground/5 rounded-b-lg shadow-lg md:hidden animate-in slide-in-from-top-5 fade-in duration-200">
+        <div className="absolute top-full left-0 w-full bg-background/95 backdrop-blur-md border-b border-foreground/5 rounded-b-lg shadow-lg md:hidden animate-in slide-in-from-top-5 fade-in duration-200">
           <nav className="flex flex-col p-4 space-y-1">
             <Link
               href="/experience"

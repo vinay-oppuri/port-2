@@ -55,13 +55,13 @@ const Page = () => {
 
 
       {/* Buttons */}
-      <div className="w-full flex flex-col md:flex-row justify-center md:justify-end gap-3 p-4 md:p-0">
+      <div className="w-full flex flex-col md:flex-row justify-center md:justify-end gap-3 px-8 md:p-0">
         {heroConfig.buttons.map((button) => (
           <Button
             asChild
             key={button.text}
             variant={button.variant === "outline" ? "outline" : "default"}
-            className="px-10 py-5 text-sm sm:text-base hover:-translate-y-1 transition-all duration-300"
+            className="md:px-10 md:py-5 text-sm sm:text-base hover:-translate-y-1 transition-all duration-300"
           >
             <Link href={button.href}>
               {button.icon} {button.text}
