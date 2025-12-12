@@ -61,3 +61,26 @@ export async function getRecentlyPlayed() {
 
   return { status: res.status, data: await res.json() };
 }
+
+// Controls
+export async function play() {
+  const token = await getAccessToken();
+  await fetch("https://api.spotify.com/v1/me/player/play", {
+    method: "PUT",
+    headers: {
+      Authorization: `Bearer ${token}`,
+      "Content-Type": "application/json",
+    },
+  });
+}
+
+export async function pause() {
+  const token = await getAccessToken();
+  await fetch("https://api.spotify.com/v1/me/player/pause", {
+    method: "PUT",
+    headers: {
+      Authorization: `Bearer ${token}`,
+      "Content-Type": "application/json",
+    },
+  });
+}

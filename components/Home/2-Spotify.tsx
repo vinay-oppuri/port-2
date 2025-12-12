@@ -25,6 +25,12 @@ export default function SpotifyNowPlaying() {
   const playerRef = useRef<SpotifyPlayer | null>(null);
   const [isPlaying, setIsPlaying] = useState(false);
 
+  useEffect(() => {
+    if (nowPlaying?.isPlaying !== undefined && !playerRef.current) {
+      setIsPlaying(nowPlaying.isPlaying);
+    }
+  }, [nowPlaying]);
+
   // Load SDK
   useEffect(() => {
     if (window.Spotify) {
@@ -159,7 +165,24 @@ export default function SpotifyNowPlaying() {
             <Button
               variant='secondary'
               size='icon'
-              onClick={() => playerRef.current?.togglePlay()}
+              onClick={async () => {
+                if (playerRef.current) {
+                  await playerRef.current.activateElement();
+                  playerRef.current.togglePlay();
+                } else {
+                  // Fallback for mobile/when SDK is not ready
+                  const action = isPlaying ? "pause" : "play";
+                  // Optimistic update
+                  setIsPlaying(!isPlaying);
+                  await fetch("/api/spotify/controls", {
+                    method: "POST",
+                    headers: {
+                      "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({ action }),
+                  });
+                }
+              }}
             >
               {isPlaying ? (
                 <PauseIcon className="size-4" />
