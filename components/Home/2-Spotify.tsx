@@ -167,7 +167,11 @@ export default function SpotifyNowPlaying() {
               size='icon'
               onClick={async () => {
                 if (playerRef.current) {
-                  await playerRef.current.activateElement();
+                  try {
+                    await playerRef.current.activateElement();
+                  } catch (e) {
+                    console.error("Failed to activate element", e);
+                  }
                   playerRef.current.togglePlay();
                 } else {
                   // Fallback for mobile/when SDK is not ready

@@ -71,6 +71,7 @@ export async function play() {
       Authorization: `Bearer ${token}`,
       "Content-Type": "application/json",
     },
+    body: JSON.stringify({}),
   });
 }
 
@@ -82,5 +83,6 @@ export async function pause() {
       Authorization: `Bearer ${token}`,
       "Content-Type": "application/json",
     },
+    body: JSON.stringify({}),
   });
 }
