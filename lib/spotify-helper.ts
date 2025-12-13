@@ -70,3 +70,26 @@ export async function pause() {
     },
   });
 }
+
+export async function getAvailableDevices() {
+  const token = await getAccessToken();
+  const res = await fetch("https://api.spotify.com/v1/me/player/devices", {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+
+  if (!res.ok) return [];
+  const json = await res.json();
+  return json.devices || [];
+}
+
+export async function transferPlayback(deviceId: string) {
+  const token = await getAccessToken();
+  await fetch("https://api.spotify.com/v1/me/player", {
+    method: "PUT",
+    headers: {
+      Authorization: `Bearer ${token}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ device_ids: [deviceId], play: true }),
+  });
+}

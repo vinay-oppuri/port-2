@@ -6,11 +6,12 @@ export const dynamic = "force-dynamic";
 export async function GET() {
   const empty = {
     isPlaying: false,
-    name: null,
+    title: null,
     artist: null,
     album: null,
     albumImageUrl: null,
     songUrl: null,
+    trackId: null,
     source: "none",
   };
 
@@ -25,11 +26,12 @@ export async function GET() {
 
     return NextResponse.json({
       isPlaying: song.is_playing,
-      name: song.item.name,
+      title: song.item.name,
       artist: song.item.artists.map((a: any) => a.name).join(", "),
       album: song.item.album.name,
       albumImageUrl: song.item.album.images?.[0]?.url,
       songUrl: song.item.external_urls.spotify,
+      trackId: song.item.id,
       source: "Playing Now",
     });
   } catch {

@@ -1,11 +1,13 @@
 import { NextResponse } from "next/server";
 import { getAccessToken } from "@/lib/spotify-helper";
 
+export const dynamic = "force-dynamic";
+
 export async function GET() {
   try {
-    const accessToken = await getAccessToken();
-    return NextResponse.json({ accessToken });
-  } catch {
-    return NextResponse.json({ error: "Token error" }, { status: 500 });
+    const token = await getAccessToken();
+    return NextResponse.json({ token });
+  } catch (error) {
+    return NextResponse.json({ error: "Failed to get token" }, { status: 500 });
   }
 }
