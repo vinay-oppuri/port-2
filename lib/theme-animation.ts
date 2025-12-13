@@ -17,7 +17,7 @@ export const circleBlurTopRightCSS = `
   /* Smooth timing */
   ::view-transition-old(root),
   ::view-transition-new(root) {
-    animation-duration: 0.55s;
+    animation-duration: 1s;
     animation-timing-function: ease-out;
   }
 

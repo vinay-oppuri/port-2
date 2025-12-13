@@ -163,27 +163,5 @@ export const experiences = [
       "Integrated secure API endpoints and optimized backend workflows.",
     ],
   },
-
-  {
-    companyName: "Amazon",
-    logo: "/collegelogo.png",
-    role: "Full Stack Developer",
-    timeline: "August 2025 – Present",
-    location: "India (Remote)",
-    technologies: [
-      { name: "Next.js", logo: <SiNextdotjs className="h-4 w-4 text-foreground" /> },
-      { name: "Tailwind CSS", logo: <SiTailwindcss className="h-5 w-5 text-[#38BDF8]" /> },
-      { name: "React", logo: <SiReact className="h-4 w-4 text-[#61DAFB]" /> },
-      { name: "TypeScript", logo: <SiTypescript className="h-4 w-4 text-[#3178C6]" /> },
-      { name: "Node.js", logo: <SiNodedotjs className="h-5 w-5 text-[#3C873A]" /> },
-      { name: "MongoDB", logo: <SiMongodb className="h-5 w-5 text-[#47A248]" /> },
-    ],
-    responsibilities: [
-      "Built and optimized the entire college website with modern full-stack technologies.",
-      "Implemented dynamic dashboards, authentication, and admin features.",
-      "Improved performance, accessibility, and UI/UX for students & faculty.",
-      "Integrated secure API endpoints and optimized backend workflows.",
-    ],
-  },
   // add more entries here...
 ];

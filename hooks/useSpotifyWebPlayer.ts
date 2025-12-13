@@ -96,14 +96,19 @@ export function useSpotifyWebPlayer() {
 
     const playTrack = useCallback(async (uri: string, contextUri?: string) => {
         if (!deviceId) return;
-        const res = await fetch("/api/spotify/token");
-        const { accessToken } = await res.json();
+        try {
+            const res = await fetch("/api/spotify/token");
+            if (!res.ok) return;
+            const { accessToken } = await res.json();
 
-        await fetch(`https://api.spotify.com/v1/me/player/play?device_id=${deviceId}`, {
-            method: "PUT",
-            headers: { Authorization: `Bearer ${accessToken}` },
-            body: JSON.stringify(contextUri ? { context_uri: contextUri, offset: { uri } } : { uris: [uri] }),
-        });
+            await fetch(`https://api.spotify.com/v1/me/player/play?device_id=${deviceId}`, {
+                method: "PUT",
+                headers: { Authorization: `Bearer ${accessToken}` },
+                body: JSON.stringify(contextUri ? { context_uri: contextUri, offset: { uri } } : { uris: [uri] }),
+            });
+        } catch (e) {
+            console.error(e);
+        }
     }, [deviceId]);
 
     const control = useCallback(async (action: "next" | "previous" | "resume" | "pause") => {

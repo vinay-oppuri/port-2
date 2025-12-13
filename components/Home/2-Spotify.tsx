@@ -14,6 +14,8 @@ export default function SpotifyLastPlayed() {
   const [progress, setProgress] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
 
+
+
   useEffect(() => {
     if (!isPlaying || !currentTrack || isDragging) return;
     const interval = setInterval(() => setProgress((p) => Math.min(p + 1000, currentTrack.duration)), 1000);
@@ -28,10 +30,10 @@ export default function SpotifyLastPlayed() {
     if (!track?.uri) return;
     setLoading(true);
     try {
-      if (currentTrack?.uri === track.uri) {
+      if (currentTrack) {
         await player?.togglePlay();
       } else {
-        await playTrack(track.uri, track.context_uri);
+        await playTrack(track.uri, track.context_uri || track.albumUri);
       }
     } catch (e) {
       console.error(e);
@@ -49,10 +51,10 @@ export default function SpotifyLastPlayed() {
 
   return (
     <>
-      <div className="text-muted-foreground text-sm font-semibold flex items-center gap-2 -mb-3">
+      <div className="hidden md:flex text-muted-foreground text-sm font-semibold items-center gap-2 -mb-3">
         <SiSpotify size={22} color="#1DB954" /> Last Played
       </div>
-      <div className="w-full bg-foreground/5 shadow-inner-strong rounded-lg p-4 flex flex-col gap-6 min-h-[64px]">
+      <div className="hidden md:flex w-full bg-foreground/5 shadow-inner-strong rounded-lg p-4 flex-col gap-6 min-h-[64px]">
         <div className="flex items-start justify-between">
           <div className="flex items-center gap-4">
             <div className="relative group">
@@ -104,7 +106,6 @@ export default function SpotifyLastPlayed() {
           </div>
         )}
       </div>
-      <div className="flex md:hidden mx-auto text-center text-xs text-destructive -mt-4">Doesn&apos;t work on mobile browser</div>
     </>
   );
 }
