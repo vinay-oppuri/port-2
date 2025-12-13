@@ -3,43 +3,26 @@
 import { useEffect, useRef, useState } from "react";
 import useSWR from "swr";
 import { SiSpotify } from "react-icons/si";
-import { PauseIcon, PlayIcon } from "lucide-react";
+import { PlayIcon, PauseIcon, PowerIcon } from "lucide-react";
 import { Button } from "../ui/button";
 import { SpotifyPlayer } from "@/types/spotify";
 
 const fetcher = (url: string) => fetch(url).then((r) => r.json());
 
 export default function SpotifyNowPlaying() {
-  /* -------------------- DATA -------------------- */
-  const { data: nowPlaying } = useSWR("/api/spotify", fetcher, {
-    refreshInterval: 15000,
-  });
+  /* ================= DATA ================= */
+  const { data: recent } = useSWR("/api/spotify/recent", fetcher);
 
-  const { data: recent } = useSWR(
-    !nowPlaying?.isPlaying ? "/api/spotify/recent" : null,
-    fetcher
-  );
-
-  /* -------------------- STATE -------------------- */
+  /* ================= STATE ================= */
   const [sdkReady, setSdkReady] = useState(false);
-  const [unlocked, setUnlocked] = useState(false);
+  const [playerStarted, setPlayerStarted] = useState(false);
+  const [playerReady, setPlayerReady] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
   const [deviceId, setDeviceId] = useState<string | null>(null);
 
   const playerRef = useRef<SpotifyPlayer | null>(null);
 
-  const isMobile =
-    typeof window !== "undefined" &&
-    /Mobi|Android|iPhone/i.test(navigator.userAgent);
-
-  /* -------------------- SYNC PLAY STATE -------------------- */
-  useEffect(() => {
-    if (nowPlaying?.isPlaying !== undefined) {
-      setIsPlaying(nowPlaying.isPlaying);
-    }
-  }, [nowPlaying]);
-
-  /* -------------------- LOAD SPOTIFY SDK -------------------- */
+  /* ================= LOAD SDK ================= */
   useEffect(() => {
     if (window.Spotify) {
       setSdkReady(true);
@@ -53,10 +36,9 @@ export default function SpotifyNowPlaying() {
     document.body.appendChild(script);
   }, []);
 
-  /* -------------------- CREATE PLAYER -------------------- */
+  /* ================= CREATE PLAYER ================= */
   useEffect(() => {
-    if (!sdkReady || !window.Spotify || playerRef.current) return;
-    if (isMobile && !unlocked) return;
+    if (!sdkReady || !playerStarted || playerRef.current) return;
 
     const player = new window.Spotify.Player({
       name: "Vinay Portfolio Player",
@@ -70,161 +52,148 @@ export default function SpotifyNowPlaying() {
 
     playerRef.current = player;
 
-    /* -------- PLAYER READY (TRANSFER ONLY, NO AUTOPLAY) -------- */
     player.addListener("ready", async ({ device_id }) => {
       console.log("Spotify Player ready:", device_id);
       setDeviceId(device_id);
+      setPlayerReady(true);
 
-      try {
-        const res = await fetch("/api/spotify/token");
-        const { accessToken } = await res.json();
+      // Transfer playback ownership ONLY (no autoplay)
+      const res = await fetch("/api/spotify/token");
+      const { accessToken } = await res.json();
 
-        // 🔑 Transfer playback WITHOUT playing
-        await fetch("https://api.spotify.com/v1/me/player", {
+      await fetch("https://api.spotify.com/v1/me/player", {
+        method: "PUT",
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          device_ids: [device_id],
+          play: false,
+        }),
+      });
+    });
+
+    player.addListener("player_state_changed", (state) => {
+      if (!state) return;
+      setIsPlaying(!state.paused);
+    });
+
+    player.addListener("not_ready", ({ device_id }) => {
+      console.warn("Player offline:", device_id);
+    });
+
+    player.connect();
+  }, [sdkReady, playerStarted]);
+
+  /* ================= START PLAYER ================= */
+  const startPlayer = async () => {
+    if (!playerRef.current) {
+      setPlayerStarted(true);
+      return;
+    }
+
+    // Unlock browser audio (CRITICAL)
+    try {
+      await playerRef.current.activateElement();
+      console.log("Audio unlocked");
+    } catch (e) {
+      console.error("Audio unlock failed", e);
+    }
+  };
+
+  /* ================= PLAY / PAUSE ================= */
+  const togglePlayPause = async () => {
+    if (!playerRef.current || !playerReady) return;
+
+    const state = await playerRef.current.getCurrentState();
+
+    // First resume → load track ONCE
+    if (!state && deviceId && recent?.songUrl) {
+      const trackId = recent.songUrl.split("/").pop();
+      if (!trackId) return;
+
+      const uri = `spotify:track:${trackId}`;
+      const res = await fetch("/api/spotify/token");
+      const { accessToken } = await res.json();
+
+      await fetch(
+        `https://api.spotify.com/v1/me/player/play?device_id=${deviceId}`,
+        {
           method: "PUT",
           headers: {
             Authorization: `Bearer ${accessToken}`,
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({
-            device_ids: [device_id],
-            play: false, // ❌ no autoplay
-          }),
-        });
-      } catch (e) {
-        console.error("Playback transfer failed", e);
-      }
-    });
-
-    player.addListener("player_state_changed", (state) => {
-      if (state) {
-        setIsPlaying(!state.paused);
-      }
-    });
-
-    player.addListener("not_ready", ({ device_id }) => {
-      console.log("Spotify Player offline:", device_id);
-    });
-
-    player.connect();
-  }, [sdkReady, unlocked, isMobile]);
-
-  /* -------------------- UI DATA -------------------- */
-  const isLoading = !nowPlaying && !recent;
-  const track = nowPlaying?.isPlaying ? nowPlaying : recent;
-
-  /* -------------------- PLAY HANDLER -------------------- */
-  const handlePlayPause = async () => {
-    // SDK path
-    if (playerRef.current) {
-      const state = await playerRef.current.getCurrentState();
-
-      if (!state) {
-        // Player has device but no active track → resume via API
-        if (deviceId) {
-          const res = await fetch("/api/spotify/token");
-          const { accessToken } = await res.json();
-
-          await fetch(
-            `https://api.spotify.com/v1/me/player/play?device_id=${deviceId}`,
-            {
-              method: "PUT",
-              headers: {
-                Authorization: `Bearer ${accessToken}`,
-                "Content-Type": "application/json",
-              },
-            }
-          );
-          setIsPlaying(true);
+          body: JSON.stringify({ uris: [uri] }),
         }
-      } else {
-        await playerRef.current.togglePlay();
-      }
+      );
+
+      setIsPlaying(true);
       return;
     }
 
-    // Fallback API path
-    const action = isPlaying ? "pause" : "play";
-    setIsPlaying(action === "play");
-
-    await fetch("/api/spotify/controls", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ action }),
-    });
+    // Normal pause / resume
+    await playerRef.current.togglePlay();
   };
 
-  /* -------------------- RENDER -------------------- */
+  /* ================= RENDER ================= */
   return (
-    <div className="flex flex-col gap-3 min-h-[90px]">
-      {/* 🔓 Mobile audio unlock */}
-      {isMobile && !unlocked && (
-        <Button
-          className="w-full bg-[#1DB954] text-white"
-          onClick={async () => {
-            setUnlocked(true);
-            try {
-              await playerRef.current?.activateElement();
-            } catch { }
-          }}
-        >
-          Enable Spotify Player
-        </Button>
-      )}
-
+    <div className="flex flex-col gap-3 min-h-[100px]">
       {/* Header */}
-      <div className="flex gap-2 items-center">
-        {isLoading ? (
-          <>
-            <div className="w-5 h-5 rounded bg-foreground/10 animate-pulse" />
-            <div className="w-20 h-3 rounded bg-foreground/10 animate-pulse" />
-          </>
-        ) : (
-          <>
-            <SiSpotify size={22} color="#1DB954" />
-            <p className="text-sm font-medium text-muted-foreground">
-              {track?.source}
-            </p>
-          </>
-        )}
+      <div className="flex items-center gap-2">
+        <SiSpotify size={22} color="#1DB954" />
+        <span className="text-sm text-muted-foreground">
+          Spotify Player
+        </span>
       </div>
 
       {/* Body */}
-      <div className="bg-foreground/5 shadow-inner-strong p-4 rounded-lg flex items-center gap-3 min-h-[64px]">
-        {isLoading ? (
-          <>
-            <div className="w-12 h-12 bg-foreground/10 rounded animate-pulse" />
-            <div className="flex-1 flex flex-col gap-2">
-              <div className="w-32 h-4 bg-foreground/10 rounded animate-pulse" />
-              <div className="w-24 h-3 bg-foreground/10 rounded animate-pulse" />
-            </div>
-            <div className="w-10 h-10 rounded bg-foreground/10 animate-pulse" />
-          </>
-        ) : (
-          <>
-            {track?.albumImageUrl && (
-              <img
-                src={track.albumImageUrl}
-                className="w-12 h-12 rounded"
-                alt="album"
-              />
+      <div className="bg-foreground/5 p-4 rounded-lg flex items-center gap-3">
+        {recent?.albumImageUrl && (
+          <img
+            src={recent.albumImageUrl}
+            alt="album"
+            className="w-12 h-12 rounded"
+          />
+        )}
+
+        <div className="flex-1">
+          <p className="font-semibold">
+            {recent?.name ?? "No track"}
+          </p>
+          <p className="text-sm text-muted-foreground">
+            {recent?.artist ?? ""}
+          </p>
+        </div>
+
+        {/* START PLAYER (one-time) */}
+        {!playerStarted && (
+          <Button
+            variant="secondary"
+            size="icon"
+            onClick={startPlayer}
+            title="Start Spotify Player"
+          >
+            <PowerIcon className="size-4" />
+          </Button>
+        )}
+
+        {/* PLAY / PAUSE */}
+        {playerStarted && (
+          <Button
+            variant="secondary"
+            size="icon"
+            onClick={togglePlayPause}
+            disabled={!playerReady}
+            title={isPlaying ? "Pause" : "Resume"}
+          >
+            {isPlaying ? (
+              <PauseIcon className="size-4" />
+            ) : (
+              <PlayIcon className="size-4" />
             )}
-
-            <div className="flex-1">
-              <p className="font-semibold text-foreground">{track?.name}</p>
-              <p className="text-sm text-muted-foreground">
-                {track?.artist}
-              </p>
-            </div>
-
-            <Button variant="secondary" size="icon" onClick={handlePlayPause}>
-              {isPlaying ? (
-                <PauseIcon className="size-4" />
-              ) : (
-                <PlayIcon className="size-4" />
-              )}
-            </Button>
-          </>
+          </Button>
         )}
       </div>
     </div>
