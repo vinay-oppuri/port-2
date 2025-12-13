@@ -1,4 +1,3 @@
-// app/api/spotify/route.ts
 import { NextResponse } from "next/server";
 import { getNowPlaying } from "@/lib/spotify-helper";
 
@@ -18,7 +17,7 @@ export async function GET() {
   try {
     const response = await getNowPlaying();
 
-    if (response.status === 204 || !response.data || !response.data.item) {
+    if (response.status === 204 || !response.data?.item) {
       return NextResponse.json(empty);
     }
 
@@ -33,7 +32,7 @@ export async function GET() {
       songUrl: song.item.external_urls.spotify,
       source: "Playing Now",
     });
-  } catch (e) {
+  } catch {
     return NextResponse.json(empty);
   }
 }

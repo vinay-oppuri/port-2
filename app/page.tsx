@@ -20,7 +20,7 @@ const Page = () => {
   if (!mounted) return null;
 
   return (
-    <section className="flex flex-col items-start space-y-6 mx-auto md:mt-12 w-full px-4 py-4 md:px-8">
+    <section className="flex flex-col items-start space-y-6 mx-auto mt-12 w-full px-4 py-4 md:px-8">
 
       {/* Avatar */}
       <div className="w-24 h-24 sm:w-32 sm:h-32 rounded-full bg-foreground/10 p-1 flex items-center justify-center overflow-hidden">

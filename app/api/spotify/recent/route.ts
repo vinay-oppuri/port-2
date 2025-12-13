@@ -1,4 +1,3 @@
-// app/api/spotify/recent/route.ts
 import { NextResponse } from "next/server";
 import { getRecentlyPlayed } from "@/lib/spotify-helper";
 
