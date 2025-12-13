@@ -12,6 +12,9 @@ export async function GET() {
     album: null,
     albumImageUrl: null,
     songUrl: null,
+    uri: null,
+    context_uri: null,
+    duration_ms: 0,
     source: "recent",
   };
 
@@ -28,6 +31,9 @@ export async function GET() {
       album: track.album.name,
       albumImageUrl: track.album.images?.[0]?.url,
       songUrl: track.external_urls.spotify,
+      uri: track.uri,
+      context_uri: track.context?.uri || null,
+      duration_ms: track.duration_ms,
       source: "Last Played",
     });
   } catch {

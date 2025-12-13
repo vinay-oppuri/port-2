@@ -124,18 +124,18 @@ export const ProjectsData = [
   },
 
   {
-    title: "Interactive Data Dashboard",
+    title: "Inzite",
     description:
-      "A dynamic dashboard for visualizing complex datasets. Features real-time data fetching, interactive charts, and customizable reports. Backend powered by Node.js and MongoDB.",
+      "Inzite delivers actionable startup insights through market analysis, competitor intelligence, and technology evaluation to guide smarter business decisions.",
     tags: [
       <SiReact className="h-5 w-5 text-[#61DAFB]" />,
       <SiNodedotjs className="h-5 w-5 text-[#3C873A]" />,
       <SiMongodb className="h-5 w-5 text-[#47A248]" />,
       <SiExpress className="h-5 w-5 text-foreground" />,
     ],
-    imageUrl: "/projects/dashboard.png",
-    liveUrl: "#",
-    githubUrl: "#",
+    imageUrl: "/projects/inzite.png",
+    liveUrl: "inzite.vercel.app",
+    githubUrl: "https://github.com/vinay-oppuri/agentic-ai",
   },
 ];
 

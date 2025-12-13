@@ -34,12 +34,12 @@ const Page = () => {
       </div>
 
       {/* Heading */}
-      <h1 className="text-2xl sm:text-3xl font-bold leading-tight text-foreground">
+      <h1 className="text-3xl sm:text-4xl font-bold leading-tight text-foreground">
         Hi, I'm {heroConfig.name} — <span className="text-muted-foreground"> {heroConfig.title} </span>
       </h1>
 
       {/* DESCRIPTION */}
-      <p className="text-md sm:text-lg text-gray-400 leading-relaxed flex flex-wrap gap-2">
+      <p className="text-md sm:text-lg text-muted-foreground leading-relaxed flex flex-wrap gap-2">
         I build interactive web apps using
         {heroConfig.skills.map((skill, i) => (
           <span

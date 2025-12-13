@@ -26,13 +26,13 @@ const ProjectsPage = () => {
             className="overflow-hidden bg-white/5 border border-white/5 hover:border-foreground/10 hover:shadow-xl hover:shadow-foreground/5 hover:-translate-y-1 transition-all duration-300 rounded-lg p-0"
           >
             {/* IMAGE */}
-            <div className="h-40 md:h-48 w-full bg-linear-to-r from-pink-600 to-purple-600">
+            <div className="relative h-48 md:h-56 w-full bg-linear-to-br from-pink-500 via-purple-500 to-indigo-500 overflow-hidden group">
               <Image
                 src={project.imageUrl}
                 alt={project.title}
                 width={600}
                 height={300}
-                className="h-full w-full object-cover transition-transform duration-300 hover:scale-105"
+                className="absolute -bottom-2 left-80 -translate-x-1/2 scale-150 h-auto border-2 border-white/30 shadow-2xl transition-all duration-500 ease-out transform-[perspective(1000px)_rotateX(40deg)_rotateZ(-15deg)] group-hover:transform-[perspective(1000px)_rotateX(0deg)_rotateZ(0deg)] group-hover:-translate-y-4 group-hover:scale-110 object-cover object-top"
               />
             </div>
 

@@ -6,8 +6,7 @@ export async function GET() {
   try {
     const accessToken = await getAccessToken();
     return NextResponse.json({ accessToken });
-  } catch (error) {
-    console.error("[API] Token Error:", error);
+  } catch {
     return NextResponse.json({ error: "Token error" }, { status: 500 });
   }
 }
