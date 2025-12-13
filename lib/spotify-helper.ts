@@ -23,6 +23,12 @@ export async function getAccessToken() {
     }),
   });
 
+  if (!res.ok) {
+    const text = await res.text();
+    console.error(`[Spotify Helper] Failed to get token: ${res.status} ${text}`);
+    throw new Error(`Spotify API Error: ${res.status}`);
+  }
+
   const json = await res.json();
   return json.access_token;
 }

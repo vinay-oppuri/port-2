@@ -13,7 +13,7 @@ export async function GET(request: Request) {
   const client_secret = process.env.SPOTIFY_CLIENT_SECRET!;
   const redirect_uri =
     process.env.SPOTIFY_REDIRECT_URI ||
-    "http://localhost:3000/api/spotify/callback";
+    "http://localhost:3000/api/spotify/callback"; // <- keep this same as in auth URL + Spotify dashboard
 
   const tokenResponse = await fetch("https://accounts.spotify.com/api/token", {
     method: "POST",
@@ -21,7 +21,7 @@ export async function GET(request: Request) {
       "Content-Type": "application/x-www-form-urlencoded",
       Authorization:
         "Basic " +
-        Buffer.from(`${client_id}:${client_secret}`).toString("base64"),
+        Buffer.from(client_id + ":" + client_secret).toString("base64"),
     },
     body: new URLSearchParams({
       grant_type: "authorization_code",
@@ -40,5 +40,6 @@ export async function GET(request: Request) {
     );
   }
 
-  return NextResponse.json(JSON.parse(text));
-}
+  const data = JSON.parse(text);
+  return NextResponse.json(data);
+} 

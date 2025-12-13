@@ -1,3 +1,4 @@
+// app/api/spotify/recent/route.ts
 import { NextResponse } from "next/server";
 import { getRecentlyPlayed } from "@/lib/spotify-helper";
 
@@ -6,12 +7,11 @@ export const dynamic = "force-dynamic";
 export async function GET() {
   const empty = {
     isPlaying: false,
-    title: null,
+    name: null,
     artist: null,
     album: null,
     albumImageUrl: null,
     songUrl: null,
-    trackId: null,
     source: "recent",
   };
 
@@ -23,12 +23,11 @@ export async function GET() {
 
     return NextResponse.json({
       isPlaying: false,
-      title: track.name,
+      name: track.name,
       artist: track.artists.map((a: any) => a.name).join(", "),
       album: track.album.name,
       albumImageUrl: track.album.images?.[0]?.url,
       songUrl: track.external_urls.spotify,
-      trackId: track.id,
       source: "Last Played",
     });
   } catch {

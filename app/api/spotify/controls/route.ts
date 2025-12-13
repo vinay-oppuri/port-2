@@ -7,6 +7,8 @@ export async function POST(req: Request) {
     const action = body?.action;
     const deviceId = body?.deviceId; // Get deviceId from frontend
 
+    console.log(`[Spotify Controls] Received request: action=${action}, deviceId=${deviceId}`);
+
     if (action !== "play" && action !== "pause") {
       return NextResponse.json(
         { success: false, reason: "INVALID_ACTION" },
@@ -15,6 +17,17 @@ export async function POST(req: Request) {
     }
 
     const token = await getAccessToken();
+
+    // STRICT MODE: If we have a specific deviceId (SDK) and want to PLAY,
+    // use transferPlayback directly. This is more reliable than /play?device_id
+    // because it wakes up the device and sets it as active in one go.
+    if (action === "play" && deviceId) {
+      console.log(`[Spotify Controls] Strictly transferring playback to SDK device: ${deviceId}`);
+      const { transferPlayback } = await import("@/lib/spotify-helper");
+
+      await transferPlayback(deviceId);
+      return NextResponse.json({ success: true, message: "Playback started on Web SDK" });
+    }
 
     const endpoint =
       action === "play"
@@ -29,6 +42,8 @@ export async function POST(req: Request) {
       },
     });
 
+    console.log(`[Spotify Controls] Spotify API response: ${res.status}`);
+
     // ✅ SUCCESS
     if (res.status === 204) {
       return NextResponse.json({ success: true });
@@ -36,6 +51,7 @@ export async function POST(req: Request) {
 
     // ✅ NO ACTIVE DEVICE (normal, NOT error)
     if (res.status === 404) {
+      console.log("[Spotify Controls] 404 No Active Device. Attempting recovery...");
       // If we tried to PLAY and got 404
       if (action === "play") {
         const { transferPlayback, getAvailableDevices } = await import(
@@ -44,6 +60,7 @@ export async function POST(req: Request) {
 
         // 1. If frontend sent a specific deviceId (SDK), try that FIRST (fastest)
         if (deviceId) {
+          console.log(`[Spotify Controls] Transferring playback to SDK device: ${deviceId}`);
           await transferPlayback(deviceId);
           return NextResponse.json({
             success: true,
@@ -51,15 +68,14 @@ export async function POST(req: Request) {
           });
         }
 
-        // 2. Fallback: Search for other available devices
-        const devices = await getAvailableDevices();
-        if (devices.length > 0) {
-          await transferPlayback(devices[0].id);
-          return NextResponse.json({
-            success: true,
-            message: "Transferred to available device",
-          });
-        }
+        console.log("[Spotify Controls] No SDK deviceId provided. Cannot transfer.");
+        // REMOVED fallback search for other devices as per user request.
+
+        return NextResponse.json({
+          success: false,
+          reason: "NO_ACTIVE_DEVICE",
+          message: "Web Player not ready",
+        });
       }
 
       return NextResponse.json({
