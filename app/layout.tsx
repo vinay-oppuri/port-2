@@ -17,21 +17,6 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: "Vinay - Portfolio",
   description: "Full-Stack · Agentic AI",
-  openGraph: {
-    title: "Vinay - Portfolio",
-    description: "Full-Stack · Agentic AI",
-    url: "https://vinay-oppuri2.vercel.app",
-    siteName: "Vinay Portfolio",
-    images: [
-      {
-        url: "/avatar-rounded.png",
-        width: 800,
-        height: 600,
-      },
-    ],
-    locale: "en_US",
-    type: "website",
-  },
   icons: {
     icon: "/avatar-rounded.png",
     shortcut: "/avatar-rounded.png",

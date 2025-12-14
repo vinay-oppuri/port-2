@@ -29,11 +29,13 @@ export default function SpotifyLastPlayed() {
   const handlePlayPause = async () => {
     if (!track?.uri) return;
     setLoading(true);
+    console.log("Attempting to play. Track data:", track);
     try {
       if (currentTrack) {
         await player?.togglePlay();
       } else {
-        await playTrack(track.uri, track.context_uri || track.albumUri);
+        // Use albumUri as context to ensure we have a valid queue (next songs) and avoid restriction errors
+        await playTrack(track.uri, track.albumUri);
       }
     } catch (e) {
       console.error(e);
@@ -93,9 +95,9 @@ export default function SpotifyLastPlayed() {
                 <span className="text-xs text-muted-foreground w-8 font-mono">{fmt(duration)}</span>
               </div>
               {nextTracks.length > 0 && (
-                <div className="flex items-center gap-2 pl-11">
-                  <span className="text-[10px] text-muted-foreground uppercase tracking-wider font-medium">Next:</span>
-                  <span className="text-xs text-foreground/80 truncate max-w-[200px]">{nextTracks[0].name}</span>
+                <div className="flex items-center gap-2">
+                  <span className="text-xs text-muted-foreground uppercase tracking-wider font-medium">Next:</span>
+                  <span className="text-xs text-foreground/80 tracking-wider max-w-[200px]">{nextTracks[0].name}</span>
                 </div>
               )}
             </div>

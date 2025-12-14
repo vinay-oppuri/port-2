@@ -101,11 +101,16 @@ export function useSpotifyWebPlayer() {
             if (!res.ok) return;
             const { accessToken } = await res.json();
 
-            await fetch(`https://api.spotify.com/v1/me/player/play?device_id=${deviceId}`, {
+            const playRes = await fetch(`https://api.spotify.com/v1/me/player/play?device_id=${deviceId}`, {
                 method: "PUT",
                 headers: { Authorization: `Bearer ${accessToken}` },
                 body: JSON.stringify(contextUri ? { context_uri: contextUri, offset: { uri } } : { uris: [uri] }),
             });
+
+            if (!playRes.ok) {
+                const errorData = await playRes.json();
+                console.error("Spotify Play Error:", playRes.status, errorData);
+            }
         } catch (e) {
             console.error(e);
         }

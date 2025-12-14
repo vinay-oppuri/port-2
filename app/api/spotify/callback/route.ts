@@ -11,9 +11,7 @@ export async function GET(request: Request) {
 
   const client_id = process.env.SPOTIFY_CLIENT_ID!;
   const client_secret = process.env.SPOTIFY_CLIENT_SECRET!;
-  const redirect_uri =
-    process.env.SPOTIFY_REDIRECT_URI ||
-    "http://localhost:3000/api/spotify/callback"; // <- keep this same as in auth URL + Spotify dashboard
+  const redirect_uri = process.env.SPOTIFY_REDIRECT_URI!
 
   const tokenResponse = await fetch("https://accounts.spotify.com/api/token", {
     method: "POST",

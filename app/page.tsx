@@ -44,7 +44,7 @@ const Page = () => {
         {heroConfig.skills.map((skill, i) => (
           <span
             key={i}
-            className="flex items-center justify-center px-2 py-1 bg-foreground/10 border border-dashed border-muted-foreground/40 rounded-lg text-xs sm:text-sm font-medium text-foreground gap-1"
+            className="flex items-center justify-center px-2 py-1 bg-foreground/10 border border-dashed border-foreground/20 shadow-inner shadow-foreground/5 rounded-lg text-xs sm:text-sm font-medium text-foreground gap-1"
           >
             {skill.component}
             {skill.name}
