@@ -40,16 +40,19 @@ const Page = () => {
 
       {/* DESCRIPTION */}
       <p className="text-md sm:text-lg text-muted-foreground leading-relaxed flex flex-wrap gap-2">
-        I build interactive web apps using
+        build interactive web apps using
         {heroConfig.skills.map((skill, i) => (
-          <span
+          <Link
             key={i}
+            href={skill.href}
+            target="_blank"
+            rel="noopener noreferrer"
             className="flex items-center justify-center px-2 py-1 bg-foreground/10 border border-dashed border-foreground/20 shadow-inner shadow-foreground/5 rounded-lg text-xs sm:text-sm font-medium text-foreground gap-1"
           >
             {skill.component}
             {skill.name}
-          </span>
-        ))}
+          </Link>
+        ))}I
         . I focus on <b>UI</b> design, explore <b>Three.js</b>, and am passionate about <b>Agentic AI</b> systems.
       </p>
 

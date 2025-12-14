@@ -6,6 +6,11 @@ import { Badge } from "@/components/ui/badge";
 import { Globe, Github } from "lucide-react";
 import { ProjectsData } from "@/lib/hero.config";
 import { Button } from "../ui/button";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 const ProjectsPage = () => {
   const projects = ProjectsData.slice(0, 2)
@@ -46,23 +51,37 @@ const ProjectsPage = () => {
                 {/* ICONS */}
                 <div className="flex gap-3 text-muted-foreground">
                   {project.liveUrl && (
-                    <Link
-                      href={project.liveUrl}
-                      target="_blank"
-                      className="hover:text-white transition"
-                    >
-                      <Globe className="h-5 w-5" />
-                    </Link>
+                    <Tooltip>
+                      <TooltipTrigger asChild>
+                        <Link
+                          href={project.liveUrl}
+                          target="_blank"
+                          className="hover:text-foreground transition"
+                        >
+                          <Globe className="h-5 w-5" />
+                        </Link>
+                      </TooltipTrigger>
+                      <TooltipContent>
+                        <p>Live Demo</p>
+                      </TooltipContent>
+                    </Tooltip>
                   )}
 
                   {project.githubUrl && (
-                    <Link
-                      href={project.githubUrl}
-                      target="_blank"
-                      className="hover:text-white transition"
-                    >
-                      <Github className="h-5 w-5" />
-                    </Link>
+                    <Tooltip>
+                      <TooltipTrigger asChild>
+                        <Link
+                          href={project.githubUrl}
+                          target="_blank"
+                          className="hover:text-foreground transition"
+                        >
+                          <Github className="h-5 w-5" />
+                        </Link>
+                      </TooltipTrigger>
+                      <TooltipContent>
+                        <p>Github Repo</p>
+                      </TooltipContent>
+                    </Tooltip>
                   )}
                 </div>
               </div>
@@ -83,9 +102,16 @@ const ProjectsPage = () => {
 
                 {/* <div className="flex flex-wrap gap-0"> */}
                 {project.tags.map((tag, id) => (
-                  <Badge key={id} className="bg-transparent p-1">
-                    <span className="text-md">{tag}</span>
-                  </Badge>
+                  <Tooltip key={id}>
+                    <TooltipTrigger asChild>
+                      <Badge className="bg-transparent p-1">
+                        <span className="text-md">{tag.logo}</span>
+                      </Badge>
+                    </TooltipTrigger>
+                    <TooltipContent>
+                      <p>{tag.name}</p>
+                    </TooltipContent>
+                  </Tooltip>
                 ))}
                 {/* </div> */}
               </div>
@@ -100,10 +126,10 @@ const ProjectsPage = () => {
                   ● All Systems Operational
                 </Badge>
 
-                <span className="text-muted-foreground text-sm hover:underline cursor-pointer">
+                <Link href={`/projects/${project.id}`} className="text-muted-foreground text-sm hover:underline cursor-pointer">
                   <span className="hidden md:flex">View Details →</span>
                   <span className="flex md:hidden">Details →</span>
-                </span>
+                </Link>
               </div>
 
             </CardContent>

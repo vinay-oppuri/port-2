@@ -73,7 +73,7 @@ export const heroConfig = {
       variant: "default",
       text: "Get in touch",
       href: "/contact",
-      icon: <SendIcon/>,
+      icon: <SendIcon />,
     },
   ],
 };
@@ -107,16 +107,24 @@ export const socialLinks = [
 
 export const ProjectsData = [
   {
+    id: "ai-agent-meetings",
     title: "AI-Agent Meetings",
     description:
       "MeetAI lets users create AI agents to schedule meetings, generate post-meeting summaries, and answer follow-up questions once meetings are completed.",
+    features: [
+      "Create custom AI agents for meeting management",
+      "Automated meeting scheduling and coordination",
+      "Generate comprehensive post-meeting summaries",
+      "Interactive Q&A with meeting context"
+    ],
+    motivation: "I built this to solve the problem of fragmented meeting information and the time-consuming nature of scheduling and follow-ups. I wanted to leverage AI to make meetings more productive and less administrative.",
     tags: [
-      <SiNextdotjs className="h-5 w-5 text-foreground" />,
-      <SiTypescript className="h-5 w-5 text-[#3178C6]" />,
-      <SiTailwindcss className="h-5 w-5 text-[#38BDF8]" />,
-      <SiTrpc className="h-5 w-5 text-[#0D9488]" />,
-      <SiGooglegemini className="h-5 w-5 text-[#4285F4]" />,
-      <SiShadcnui className="h-5 w-5 text-foreground" />,
+      { name: "Next.js", logo: <SiNextdotjs className="h-5 w-5 text-foreground" /> },
+      { name: "Typescript", logo: <SiTypescript className="h-5 w-5 text-[#3178C6]" /> },
+      { name: "Tailwind CSS", logo: <SiTailwindcss className="h-5 w-5 text-[#38BDF8]" /> },
+      { name: "tRPC", logo: <SiTrpc className="h-5 w-5 text-[#0D9488]" /> },
+      { name: "GeminiAI", logo: <SiGooglegemini className="h-5 w-5 text-[#4285F4]" /> },
+      { name: "Shadcn UI", logo: <SiShadcnui className="h-5 w-5 text-foreground" /> },
     ],
     imageUrl: "/projects/ai-agent.png",
     liveUrl: "https://agents-meet-ai.vercel.app/",
@@ -124,14 +132,22 @@ export const ProjectsData = [
   },
 
   {
+    id: "inzite",
     title: "Inzite",
     description:
       "Inzite delivers actionable startup insights through market analysis, competitor intelligence, and technology evaluation to guide smarter business decisions.",
+    features: [
+      "Deep market analysis and trend forecasting",
+      "Competitor intelligence gathering",
+      "Technology stack evaluation and recommendations",
+      "Data-driven startup insights"
+    ],
+    motivation: "I created Inzite to help entrepreneurs and investors make data-backed decisions. The goal was to aggregate complex market data into actionable insights, reducing the risk associated with early-stage startup ventures.",
     tags: [
-      <SiReact className="h-5 w-5 text-[#61DAFB]" />,
-      <SiNodedotjs className="h-5 w-5 text-[#3C873A]" />,
-      <SiMongodb className="h-5 w-5 text-[#47A248]" />,
-      <SiExpress className="h-5 w-5 text-foreground" />,
+      { name: "React", logo: <SiReact className="h-5 w-5 text-[#61DAFB]" /> },
+      { name: "Node.js", logo: <SiNodedotjs className="h-5 w-5 text-[#3C873A]" /> },
+      { name: "MongoDB", logo: <SiMongodb className="h-5 w-5 text-[#47A248]" /> },
+      { name: "Express", logo: <SiExpress className="h-5 w-5 text-foreground" /> },
     ],
     imageUrl: "/projects/inzite.png",
     liveUrl: "inzite.vercel.app",

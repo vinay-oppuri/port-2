@@ -8,6 +8,11 @@ import { Globe, Github } from "lucide-react";
 import { ProjectsData } from "@/lib/hero.config";
 import { useEffect, useState } from "react";
 import LoadingScreen from "@/components/common/loading-state";
+import {
+    Tooltip,
+    TooltipContent,
+    TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 const Page = () => {
     const projects = ProjectsData;
@@ -33,13 +38,13 @@ const Page = () => {
                         className="overflow-hidden bg-white/5 border border-white/10 hover:border-foreground/20 transition rounded-lg p-0"
                     >
                         {/* IMAGE */}
-                        <div className="h-40 md:h-48 w-full bg-linear-to-r from-pink-600 to-purple-600">
+                        <div className="relative h-48 md:h-56 w-full bg-linear-to-br from-pink-500 via-purple-500 to-indigo-500 overflow-hidden group">
                             <Image
                                 src={project.imageUrl}
                                 alt={project.title}
                                 width={600}
                                 height={300}
-                                className="h-full w-full object-cover transition-transform duration-300 hover:scale-105"
+                                className="absolute -bottom-2 left-80 -translate-x-1/2 scale-150 h-auto border-2 border-white/30 shadow-2xl transition-all duration-500 ease-out transform-[perspective(1000px)_rotateX(40deg)_rotateZ(-15deg)] group-hover:transform-[perspective(1000px)_rotateX(0deg)_rotateZ(0deg)] group-hover:-translate-y-4 group-hover:scale-110 object-cover object-top"
                             />
                         </div>
 
@@ -90,9 +95,16 @@ const Page = () => {
 
                                 {/* <div className="flex flex-wrap gap-0"> */}
                                 {project.tags.map((tag, id) => (
-                                    <Badge key={id} className="bg-transparent p-1">
-                                        <span className="text-md">{tag}</span>
-                                    </Badge>
+                                    <Tooltip key={id}>
+                                        <TooltipTrigger asChild>
+                                            <Badge className="bg-transparent p-1 cursor-help">
+                                                <span className="text-md">{tag.logo}</span>
+                                            </Badge>
+                                        </TooltipTrigger>
+                                        <TooltipContent>
+                                            <p>{tag.name}</p>
+                                        </TooltipContent>
+                                    </Tooltip>
                                 ))}
                                 {/* </div> */}
                             </div>
@@ -107,10 +119,10 @@ const Page = () => {
                                     ● All Systems Operational
                                 </Badge>
 
-                                <span className="text-muted-foreground text-sm hover:underline cursor-pointer">
+                                <Link href={`/projects/${project.id}`} className="text-muted-foreground text-sm hover:underline cursor-pointer">
                                     <span className="hidden md:flex">View Details →</span>
                                     <span className="flex md:hidden">Details →</span>
-                                </span>
+                                </Link>
                             </div>
 
                         </CardContent>

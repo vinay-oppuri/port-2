@@ -41,6 +41,11 @@
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
+  --color-d-sheet: var(--d-sheet);
+  --color-d-border: var(--d-border);
+  --color-d-fg: var(--d-fg);
+  --color-d-muted: var(--d-muted);
+  --color-d-bg: var(--d-bg);
 }
 
 :root {
@@ -76,6 +81,11 @@
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
+  --d-bg: hsl(0 0% 100%);
+  --d-muted: hsl(0 0% 90%);
+  --d-fg: hsl(0 0% 0%);
+  --d-border: hsl(0 0% 90%);
+  --d-sheet: hsl(0 0% 98%);
 }
 
 .dark {
@@ -110,6 +120,11 @@
   --sidebar-accent-foreground: oklch(95% 0 0);
   --sidebar-border: oklch(95% 0 0 / 0.1);
   --sidebar-ring: oklch(50% 0 0);
+  --d-bg: hsl(0 0% 10%);
+  --d-muted: hsl(0 0% 20%);
+  --d-fg: hsl(0 0% 100%);
+  --d-border: hsl(0 0% 20%);
+  --d-sheet: hsl(0 0% 12%);
 }
 
 @layer base {
@@ -170,8 +185,6 @@
 .shadow-inner-strong {
   @apply shadow-inner shadow-foreground/5 border border-foreground/5;
 }
-
-
 
 :root {
   view-transition-name: root;

@@ -4,11 +4,17 @@ import Link from "next/link";
 import { socialLinks } from "@/lib/hero.config";
 import { useEffect, useState } from "react";
 
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
+
 export const SocialLinks = () => {
   const [mounted, setMounted] = useState(false)
   useEffect(() => setMounted(true), [])
 
-  if(!mounted) return null
+  if (!mounted) return null
 
   return (
     <div
@@ -24,15 +30,21 @@ export const SocialLinks = () => {
       "
     >
       {socialLinks.map((link) => (
-        <Link
-          key={link.name}
-          href={link.href}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="w-7 h-7 flex items-center justify-center hover:scale-135 transition-all duration-200 ease-in-out"
-        >
-          {link.icon}
-        </Link>
+        <Tooltip key={link.name}>
+          <TooltipTrigger asChild>
+            <Link
+              href={link.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-7 h-7 flex items-center justify-center"
+            >
+              {link.icon}
+            </Link>
+          </TooltipTrigger>
+          <TooltipContent side="right">
+            <p>{link.name}</p>
+          </TooltipContent>
+        </Tooltip>
       ))}
     </div>
   );
