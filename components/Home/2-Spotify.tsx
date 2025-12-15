@@ -67,7 +67,7 @@ export default function SpotifyLastPlayed() {
               <p className="text-sm text-muted-foreground truncate max-w-[200px]">{active.artist}</p>
             </div>
           </div>
-          <Button variant="secondary" size="icon" className="my-auto" onClick={handlePlayPause} disabled={!sdkReady && !track}>
+          <Button variant="secondary" size="icon" className="hidden md:flex my-auto" onClick={handlePlayPause} disabled={!sdkReady && !track}>
             {loading ? <Loader2 className="size-4 animate-spin" /> : isPlaying ? <PauseIcon className="size-4" /> : <PlayIcon className="size-4" />}
           </Button>
         </div>

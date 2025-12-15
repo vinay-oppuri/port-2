@@ -19,7 +19,7 @@ export const SocialLinks = () => {
   return (
     <div
       className="
-        fixed 
+        fixed z-50
         bottom-0 left-1/2 -translate-x-1/2 
         md:left-0 md:bottom-auto md:top-1/2 md:-translate-y-1/2 md:translate-x-0
         flex md:flex-col items-center 

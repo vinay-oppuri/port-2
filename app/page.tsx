@@ -11,6 +11,7 @@ import AboutPage from "@/components/Home/5-AboutMe";
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 import GitHubActivity from "@/components/Home/6-GithubActivity";
+import ContactDialog from "@/components/Home/7-Contact";
 
 const Page = () => {
   const [mounted, setMounted] = useState(false);
@@ -81,6 +82,7 @@ const Page = () => {
         <ProjectsPage />
         <AboutPage />
         <GitHubActivity />
+        <ContactDialog />
       </div>
     </section>
   );
