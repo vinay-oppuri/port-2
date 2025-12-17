@@ -146,12 +146,15 @@ export const ProjectsData = [
     tags: [
       { name: "React", logo: <SiReact className="h-5 w-5 text-[#61DAFB]" /> },
       { name: "Node.js", logo: <SiNodedotjs className="h-5 w-5 text-[#3C873A]" /> },
-      { name: "MongoDB", logo: <SiMongodb className="h-5 w-5 text-[#47A248]" /> },
-      { name: "Express", logo: <SiExpress className="h-5 w-5 text-foreground" /> },
+      { name: "Next.js", logo: <SiNextdotjs className="h-5 w-5 text-foreground" /> },
+      { name: "Typescript", logo: <SiTypescript className="h-5 w-5 text-[#3178C6]" /> },
+      { name: "Tailwind CSS", logo: <SiTailwindcss className="h-5 w-5 text-[#38BDF8]" /> },
+      { name: "GeminiAI", logo: <SiGooglegemini className="h-5 w-5 text-[#4285F4]" /> },
+      { name: "Shadcn UI", logo: <SiShadcnui className="h-5 w-5 text-foreground" /> },
     ],
     imageUrl: "/projects/inzite.png",
-    liveUrl: "inzite.vercel.app",
-    githubUrl: "https://github.com/vinay-oppuri/agentic-ai",
+    liveUrl: "https://inzite.vercel.app/",
+    githubUrl: "https://github.com/vinay-oppuri/inzite",
   },
 ];
 
