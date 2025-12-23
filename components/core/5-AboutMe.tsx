@@ -30,7 +30,7 @@ const AboutPage = () => {
       <div className="flex flex-col md:flex-row items-start gap-8 md:gap-10">
 
         {/* Left: Avatar */}
-        <div className="rounded-xl overflow-hidden mx-auto h-40 w-40 md:h-60 md:w-150 relative">
+        <div className="rounded-xl overflow-hidden h-40 w-40 md:h-60 md:w-150 relative">
           <Image
             src="/avatar-light.png"
             alt="Profile Avatar"

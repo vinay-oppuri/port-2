@@ -15,7 +15,6 @@ import { useEffect, useState } from "react";
 import LoadingScreen from "@/components/common/loading-state";
 
 const Page = () => {
-    const topExperiences = experiences
     const [mounted, setMounted] = useState(false);
 
     useEffect(() => setMounted(true), []);
@@ -35,7 +34,7 @@ const Page = () => {
                 collapsible
                 className="space-y-6"
             >
-                {topExperiences.map((exp, idx) => (
+                {experiences.map((exp, idx) => (
                     <AccordionItem
                         key={idx}
                         value={`exp-${idx}`}
@@ -56,20 +55,22 @@ const Page = () => {
 
                                 <div className="flex flex-col gap-1.5 md:gap-0">
                                     <AccordionTrigger className="no-arrow p-0 hover:no-underline flex flex-wrap items-center gap-2 text-left">
-                                        <h3 className="font-bold text-md md:text-lg">{exp.companyName}</h3>
+                                        <h3 className="font-bold text-md md:text-lg text-foreground/90">{exp.companyName}</h3>
 
-                                        <Badge className="flex items-center gap-2 bg-green-600/20 text-[9px] md:text-xs text-foreground rounded-sm px-2 py-0.5">
-                                            <span className="w-2 h-2 rounded-full bg-green-500"></span>
-                                            {exp.status}
-                                        </Badge>
+                                        {exp.status && (
+                                            <Badge className="flex items-center gap-1 bg-green-600/20 text-[9px] md:text-xs text-foreground/80 rounded-sm px-1 py-0.5">
+                                                <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
+                                                {exp.status}
+                                            </Badge>
+                                        )}
                                     </AccordionTrigger>
 
-                                    <p className="text-xs md:text-sm text-muted-foreground">{exp.role}</p>
+                                    <p className="text-xs md:text-sm font-serif text-muted-foreground">{exp.role}</p>
                                 </div>
                             </div>
 
                             {/* RIGHT SIDE — DATES & LOCATION */}
-                            <div className="text-sm sm:text-right text-muted-foreground whitespace-nowrap">
+                            <div className="text-sm sm:text-right text-muted-foreground font-normal whitespace-nowrap">
                                 <p>{exp.timeline}</p>
                                 <p>{exp.location}</p>
                             </div>
@@ -81,7 +82,7 @@ const Page = () => {
 
                             {/* TECHNOLOGIES */}
                             <div>
-                                <h4 className="text-base md:text-lg font-semibold mb-2">Technologies & Tools</h4>
+                                <h4 className="text-base font-semibold text-foreground/90 mb-2">Technologies & Tools</h4>
 
                                 <div className="flex flex-wrap gap-2">
                                     {exp.technologies.map((tech, i) => (

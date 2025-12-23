@@ -124,7 +124,7 @@ export default function ContactPage() {
           <Button
             type="submit"
             disabled={loading}
-            className="mt-4 px-6 py-5 flex items-center gap-2 text-sm md:text-base">
+            className="mt-4 flex items-center gap-2 text-xs md:text-sm">
             {loading ? (
               <span>Sending...</span>
             ) : (

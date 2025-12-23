@@ -56,7 +56,7 @@ export default function SpotifyLastPlayed() {
       <div className="flex text-muted-foreground text-sm font-semibold items-center gap-2 -mb-3">
         <SiSpotify size={22} color="#1DB954" /> Last Played
       </div>
-      <div className="flex w-full bg-foreground/5 shadow-inner-strong rounded-lg p-4 flex-col gap-6 min-h-[64px]">
+      <div className="flex w-full bg-foreground/5 shadow-inner-strong rounded-lg p-4 flex-col gap-6 min-h-16">
         <div className="flex items-start justify-between">
           <div className="flex items-center gap-4">
             <div className="relative group">

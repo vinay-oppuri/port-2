@@ -41,7 +41,7 @@ const ProjectDetailsPage = () => {
 
             <div className="space-y-8">
                 {/* Project Image */}
-                <div className="relative w-full aspect-video rounded-lg overflow-hidden bg-linear-to-br from-pink-500 via-purple-500 to-indigo-500 group shadow-2xl">
+                <div className="relative w-full aspect-video rounded-lg overflow-hidden project-bg-ocean group shadow-2xl">
                     <Image
                         src={project.imageUrl}
                         alt={project.title}
@@ -105,26 +105,22 @@ const ProjectDetailsPage = () => {
                     </div>
 
                     {/* Tech Stack Sidebar */}
-                    <div className="space-y-6">
-                        <Card>
-                            <CardContent className="p-6 space-y-4">
-                                <h3 className="font-semibold text-lg">Tech Stack</h3>
-                                <div className="flex flex-wrap gap-2">
-                                    {project.tags.map((tag, index) => (
-                                        <Tooltip key={index}>
-                                            <TooltipTrigger asChild>
-                                                <Badge variant="secondary" className="p-2 cursor-help hover:bg-secondary/80 transition-colors">
-                                                    <span className="text-lg mr-1">{tag.logo}</span>
-                                                </Badge>
-                                            </TooltipTrigger>
-                                            <TooltipContent>
-                                                <p>{tag.name}</p>
-                                            </TooltipContent>
-                                        </Tooltip>
-                                    ))}
-                                </div>
-                            </CardContent>
-                        </Card>
+                    <div className="space-y-3">
+                        <h3 className="font-semibold text-lg">Tech Stack</h3>
+                        <div className="flex flex-wrap gap-2">
+                            {project.tags.map((tag, index) => (
+                                <Tooltip key={index}>
+                                    <TooltipTrigger asChild>
+                                        <Badge variant="secondary" className="p-2 hover:bg-secondary/80 transition-colors">
+                                            <span className="text-lg">{tag.logo}</span>
+                                        </Badge>
+                                    </TooltipTrigger>
+                                    <TooltipContent>
+                                        <p>{tag.name}</p>
+                                    </TooltipContent>
+                                </Tooltip>
+                            ))}
+                        </div>
                     </div>
                 </div>
 

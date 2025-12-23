@@ -4,8 +4,8 @@ import { ThemeProvider } from "next-themes";
 import "./globals.css";
 
 import { SocialLinks } from "@/components/common/social-links";
-import { Header } from "@/components/Home/1-Header";
-import Footer from "@/components/Home/8-Footer";
+import { Header } from "@/components/core/1-Header";
+import Footer from "@/components/core/8-Footer";
 import { ScrollToTop } from "@/components/ui/scroll-to-top";
 
 

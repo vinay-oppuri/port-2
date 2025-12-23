@@ -20,7 +20,7 @@ import {
 export const heroConfig = {
   name: "Vinay",
   fullName: "Oppuri Vinay Reddy",
-  title: "A Full Stack Web Developer • Agentic AI",
+  title: "A Full Stack Web Developer • Agentic AI Engineer",
   avatar: "/avatar.png",
 
   skills: [
@@ -129,6 +129,7 @@ export const ProjectsData = [
     imageUrl: "/projects/ai-agent.png",
     liveUrl: "https://agents-meet-ai.vercel.app/",
     githubUrl: "https://github.com/vinay-oppuri/genai",
+    status: "Building"
   },
 
   {
@@ -155,6 +156,7 @@ export const ProjectsData = [
     imageUrl: "/projects/inzite.png",
     liveUrl: "https://inzite.vercel.app/",
     githubUrl: "https://github.com/vinay-oppuri/inzite",
+    status: "Building"
   },
 ];
 

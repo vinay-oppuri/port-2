@@ -4,14 +4,14 @@ import Image from "next/image";
 import Link from "next/link";
 import { heroConfig } from "@/lib/hero.config";
 import { Button } from "@/components/ui/button";
-import SpotifyNowPlaying from "@/components/Home/2-Spotify";
-import ExperienceCard from "@/components/Home/3-Experience";
-import ProjectsPage from "@/components/Home/4-Projects";
-import AboutPage from "@/components/Home/5-AboutMe";
+import SpotifyNowPlaying from "@/components/core/2-Spotify";
+import ExperienceCard from "@/components/core/3-Experience";
+import ProjectsPage from "@/components/core/4-Projects";
+import AboutPage from "@/components/core/5-AboutMe";
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
-import GitHubActivity from "@/components/Home/6-GithubActivity";
-import ContactDialog from "@/components/Home/7-Contact";
+import GitHubActivity from "@/components/core/6-GithubActivity";
+import ContactDialog from "@/components/core/7-Contact";
 
 const Page = () => {
   const [mounted, setMounted] = useState(false);
@@ -21,7 +21,7 @@ const Page = () => {
   if (!mounted) return null;
 
   return (
-    <section className="flex flex-col items-start space-y-6 mx-auto mt-16 w-full px-4 py-4 md:px-8">
+    <section className="flex flex-col items-start space-y-6 mx-auto mt-8 md:mt-16 w-full px-4 py-4 md:px-8">
 
       {/* Avatar */}
       <div className="w-24 h-24 sm:w-32 sm:h-32 rounded-full bg-foreground/10 p-1 flex items-center justify-center overflow-hidden">
@@ -35,37 +35,37 @@ const Page = () => {
       </div>
 
       {/* Heading */}
-      <h1 className="text-3xl sm:text-4xl font-bold leading-tight text-foreground">
+      <h1 className="text-2xl sm:text-3xl font-bold leading-tight text-foreground">
         Hi, I'm {heroConfig.name} — <span className="text-muted-foreground"> {heroConfig.title} </span>
       </h1>
 
       {/* DESCRIPTION */}
-      <p className="text-md sm:text-lg text-muted-foreground leading-relaxed flex flex-wrap gap-2">
-        build interactive web apps using
+      <p className="text-sm sm:text-base text-muted-foreground leading-relaxed flex flex-wrap gap-2">
+        I build interactive web apps using
         {heroConfig.skills.map((skill, i) => (
           <Link
             key={i}
             href={skill.href}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center justify-center px-2 py-1 bg-foreground/10 border border-dashed border-foreground/20 shadow-inner shadow-foreground/5 rounded-lg text-xs sm:text-sm font-medium text-foreground gap-1"
+            className="flex items-center justify-center px-2 py-1 bg-foreground/10 border border-dashed border-foreground/20 shadow-inner shadow-foreground/5 rounded-sm text-xs font-medium text-foreground gap-1"
           >
             {skill.component}
             {skill.name}
           </Link>
         ))}I
-        . I focus on <b>UI</b> design, explore <b>Three.js</b>, and am passionate about <b>Agentic AI</b> systems.
+        . I focus on <b>UI</b> design, explore <b>Three.js</b> and am passionate about <b>Agentic AI</b> systems.
       </p>
 
 
       {/* Buttons */}
-      <div className="w-full flex flex-col md:flex-row justify-center md:justify-end gap-3 px-8 md:p-0">
+      <div className="w-full flex flex-row justify-start gap-3 md:p-0 mt-2">
         {heroConfig.buttons.map((button) => (
           <Button
             asChild
             key={button.text}
             variant={button.variant === "outline" ? "outline" : "default"}
-            className="md:px-10 md:py-5 text-sm sm:text-base hover:-translate-y-1 transition-all duration-300"
+            className="text-xs md:text-sm hover:-translate-y-1 transition-all duration-300"
           >
             <Link href={button.href}>
               {button.icon} {button.text}

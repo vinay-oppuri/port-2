@@ -13,6 +13,7 @@ import {
     TooltipContent,
     TooltipTrigger,
 } from "@/components/ui/tooltip";
+import { cn } from "@/lib/utils";
 
 const Page = () => {
     const projects = ProjectsData;
@@ -31,20 +32,20 @@ const Page = () => {
             <h2 className="text-2xl font-semibold mb-8">All Projects</h2>
 
             {/* Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {projects.map((project) => (
                     <Card
                         key={project.title}
-                        className="overflow-hidden bg-white/5 border border-white/10 hover:border-foreground/20 transition rounded-lg p-0"
+                        className="overflow-hidden bg-white/5 border border-white/5 hover:border-foreground/10 hover:shadow-xl hover:shadow-foreground/5 hover:-translate-y-1 transition-all duration-300 rounded-lg p-0"
                     >
                         {/* IMAGE */}
-                        <div className="relative h-48 md:h-56 w-full bg-linear-to-br from-pink-500 via-purple-500 to-indigo-500 overflow-hidden group">
+                        <div className="relative h-48 md:h-48 w-full project-bg-ocean overflow-hidden group">
                             <Image
                                 src={project.imageUrl}
                                 alt={project.title}
                                 width={600}
                                 height={300}
-                                className="absolute -bottom-2 left-80 -translate-x-1/2 scale-150 h-auto border-2 border-white/30 shadow-2xl transition-all duration-500 ease-out transform-[perspective(1000px)_rotateX(40deg)_rotateZ(-15deg)] group-hover:transform-[perspective(1000px)_rotateX(0deg)_rotateZ(0deg)] group-hover:-translate-y-4 group-hover:scale-110 object-cover object-top"
+                                className="absolute -bottom-2 left-80 -translate-x-1/2 scale-150 h-auto border-2 border-white/30 shadow-2xl transition-all duration-500 ease-out transform-[perspective(1000px)_rotateX(40deg)_rotateZ(-15deg)] "
                             />
                         </div>
 
@@ -58,29 +59,43 @@ const Page = () => {
                                 {/* ICONS */}
                                 <div className="flex gap-3 text-muted-foreground">
                                     {project.liveUrl && (
-                                        <Link
-                                            href={project.liveUrl}
-                                            target="_blank"
-                                            className="hover:text-white transition"
-                                        >
-                                            <Globe className="h-5 w-5" />
-                                        </Link>
+                                        <Tooltip>
+                                            <TooltipTrigger asChild>
+                                                <Link
+                                                    href={project.liveUrl}
+                                                    target="_blank"
+                                                    className="hover:text-foreground transition"
+                                                >
+                                                    <Globe className="h-5 w-5" />
+                                                </Link>
+                                            </TooltipTrigger>
+                                            <TooltipContent>
+                                                <p>Live Demo</p>
+                                            </TooltipContent>
+                                        </Tooltip>
                                     )}
 
                                     {project.githubUrl && (
-                                        <Link
-                                            href={project.githubUrl}
-                                            target="_blank"
-                                            className="hover:text-white transition"
-                                        >
-                                            <Github className="h-5 w-5" />
-                                        </Link>
+                                        <Tooltip>
+                                            <TooltipTrigger asChild>
+                                                <Link
+                                                    href={project.githubUrl}
+                                                    target="_blank"
+                                                    className="hover:text-foreground transition"
+                                                >
+                                                    <Github className="h-5 w-5" />
+                                                </Link>
+                                            </TooltipTrigger>
+                                            <TooltipContent>
+                                                <p>Github Repo</p>
+                                            </TooltipContent>
+                                        </Tooltip>
                                     )}
                                 </div>
                             </div>
                         </CardHeader>
 
-                        <CardContent className="flex flex-col gap-2 md:gap-3">
+                        <CardContent className="flex flex-col gap-2">
 
                             {/* DESCRIPTION */}
                             <p className="text-muted-foreground text-xs md:text-sm leading-relaxed">
@@ -97,7 +112,7 @@ const Page = () => {
                                 {project.tags.map((tag, id) => (
                                     <Tooltip key={id}>
                                         <TooltipTrigger asChild>
-                                            <Badge className="bg-transparent p-1 cursor-help">
+                                            <Badge className="bg-transparent p-1">
                                                 <span className="text-md">{tag.logo}</span>
                                             </Badge>
                                         </TooltipTrigger>
@@ -111,12 +126,13 @@ const Page = () => {
 
 
                             {/* FOOTER */}
-                            <div className="flex flex-row justify-between items-center py-4">
+                            <div className="flex flex-row justify-between items-center pb-4">
                                 <Badge
                                     variant="secondary"
-                                    className="bg-green-600/20 dark:text-green-500 text-foreground rounded-md px-3 py-1 text-xs"
+                                    className={cn("text-foreground/80 rounded-md px-2 py-1 text-xs", project.status === "Building" ? "bg-red-600/20" : "bg-green-600/20")}
                                 >
-                                    ● All Systems Operational
+                                    <span className={cn("text-xs animate-pulse", project.status === "Building" ? "text-red-600" : "text-green-600")}>●</span>
+                                    {project.status === "Building" ? "Building" : "All Systems Operational"}
                                 </Badge>
 
                                 <Link href={`/projects/${project.id}`} className="text-muted-foreground text-sm hover:underline cursor-pointer">

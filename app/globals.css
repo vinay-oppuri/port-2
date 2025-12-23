@@ -67,7 +67,7 @@
   --destructive: oklch(0.577 0.245 27.325);
   --border: oklch(0.922 0 0);
   --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
+  --ring: oklch(0.835 0.400 227.1);
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
   --chart-3: oklch(0.398 0.07 227.392);
@@ -106,7 +106,7 @@
   --destructive: oklch(0.704 0.191 22.216);
   --border: oklch(95% 0 0 / 0.1);
   --input: oklch(95% 0 0 / 0.15);
-  --ring: oklch(50% 0 0);
+  --ring: oklch(0.968 0.211 109.769);
   --chart-1: oklch(0.488 0.243 264.376);
   --chart-2: oklch(0.696 0.17 162.48);
   --chart-3: oklch(0.769 0.188 70.08);
@@ -184,6 +184,20 @@
 
 .shadow-inner-strong {
   @apply shadow-inner shadow-foreground/5 border border-foreground/5;
+}
+
+.project-bg {
+  @apply bg-linear-to-br from-pink-500 via-purple-500 to-indigo-500;
+}
+
+/* Alternate 1: Ocean Breeze (Cool & Tech) */
+.project-bg-ocean {
+  @apply bg-linear-to-br from-cyan-500 via-blue-600 to-indigo-600;
+}
+
+/* Alternate 2: Sunset Glow (Warm & Vibrant) */
+.project-bg-sunset {
+  @apply bg-linear-to-br from-orange-400 via-rose-500 to-purple-600;
 }
 
 :root {
