@@ -1,5 +1,6 @@
 import { SendIcon } from "lucide-react";
 import {
+  SiDrizzle,
   SiExpress,
   SiGithub,
   SiGoogledocs,
@@ -13,6 +14,7 @@ import {
   SiShadcnui,
   SiTailwindcss,
   SiTrpc,
+  SiTurborepo,
   SiTypescript,
   SiX
 } from "react-icons/si";
@@ -107,31 +109,36 @@ export const socialLinks = [
 
 export const ProjectsData = [
   {
-    id: "ai-agent-meetings",
-    title: "AI-Agent Meetings",
-    description:
-      "MeetAI lets users create AI agents to schedule meetings, generate post-meeting summaries, and answer follow-up questions once meetings are completed.",
+    id: "resanlys",
+    title: "Resanlys",
+    description: "Resanlys is an AI platform that analyzes resumes against job descriptions to score match, highlight gaps, and suggest improvements.",
     features: [
-      "Create custom AI agents for meeting management",
-      "Automated meeting scheduling and coordination",
-      "Generate comprehensive post-meeting summaries",
-      "Interactive Q&A with meeting context"
+      "Upload resumes and parse them into structured, machine-readable data",
+      "Analyze job descriptions to extract required skills, tools, and experience",
+      "AI-powered resume ↔ job description matching with percentage score",
+      "Identify missing keywords and underrepresented skills",
+      "Suggest bullet-point and section-level resume improvements",
+      "Generate ATS-friendly LaTeX resumes and export as PDF"
     ],
-    motivation: "I built this to solve the problem of fragmented meeting information and the time-consuming nature of scheduling and follow-ups. I wanted to leverage AI to make meetings more productive and less administrative.",
+    motivation:
+      "I built resanlys to solve the common problem of resumes being rejected by ATS systems despite strong candidate profiles. The goal was to create a transparent, explainable AI system that helps users understand how well their resume matches a role and what concrete changes can improve their chances.",
     tags: [
       { name: "Next.js", logo: <SiNextdotjs className="h-5 w-5 text-foreground" /> },
-      { name: "Typescript", logo: <SiTypescript className="h-5 w-5 text-[#3178C6]" /> },
+      { name: "TypeScript", logo: <SiTypescript className="h-5 w-5 text-[#3178C6]" /> },
       { name: "Tailwind CSS", logo: <SiTailwindcss className="h-5 w-5 text-[#38BDF8]" /> },
       { name: "tRPC", logo: <SiTrpc className="h-5 w-5 text-[#0D9488]" /> },
-      { name: "GeminiAI", logo: <SiGooglegemini className="h-5 w-5 text-[#4285F4]" /> },
+      { name: "Drizzle ORM", logo: <SiDrizzle className="h-5 w-5 text-foreground" /> },
+      { name: "NeonDB", logo: <SiPostgresql className="h-5 w-5 text-[#336791]" /> },
+      { name: "Gemini AI", logo: <SiGooglegemini className="h-5 w-5 text-[#4285F4]" /> },
+      { name: "Turborepo", logo: <SiTurborepo className="h-5 w-5 text-foreground" /> },
+      // { name: "Inngest", logo: <SiInngest className="h-5 w-5 text-foreground" /> },
       { name: "Shadcn UI", logo: <SiShadcnui className="h-5 w-5 text-foreground" /> },
     ],
-    imageUrl: "/projects/ai-agent.png",
-    liveUrl: "https://agents-meet-ai.vercel.app/",
-    githubUrl: "https://github.com/vinay-oppuri/genai",
+    imageUrl: "/projects/resanlys.png",
+    liveUrl: "https://resanlys.vinayweb.in/",
+    githubUrl: "https://github.com/vinay-oppuri/resanlys",
     status: "Building"
   },
-
   {
     id: "inzite",
     title: "Inzite",
@@ -154,8 +161,33 @@ export const ProjectsData = [
       { name: "Shadcn UI", logo: <SiShadcnui className="h-5 w-5 text-foreground" /> },
     ],
     imageUrl: "/projects/inzite.png",
-    liveUrl: "https://inzite.vercel.app/",
+    liveUrl: "https://inzite.vinayweb.in/",
     githubUrl: "https://github.com/vinay-oppuri/inzite",
+    status: "Building"
+  },
+  {
+    id: "ai-agent-meetings",
+    title: "AI-Agent Meetings",
+    description:
+      "MeetAI lets users create AI agents to schedule meetings, generate post-meeting summaries, and answer follow-up questions once meetings are completed.",
+    features: [
+      "Create custom AI agents for meeting management",
+      "Automated meeting scheduling and coordination",
+      "Generate comprehensive post-meeting summaries",
+      "Interactive Q&A with meeting context"
+    ],
+    motivation: "I built this to solve the problem of fragmented meeting information and the time-consuming nature of scheduling and follow-ups. I wanted to leverage AI to make meetings more productive and less administrative.",
+    tags: [
+      { name: "Next.js", logo: <SiNextdotjs className="h-5 w-5 text-foreground" /> },
+      { name: "Typescript", logo: <SiTypescript className="h-5 w-5 text-[#3178C6]" /> },
+      { name: "Tailwind CSS", logo: <SiTailwindcss className="h-5 w-5 text-[#38BDF8]" /> },
+      { name: "tRPC", logo: <SiTrpc className="h-5 w-5 text-[#0D9488]" /> },
+      { name: "GeminiAI", logo: <SiGooglegemini className="h-5 w-5 text-[#4285F4]" /> },
+      { name: "Shadcn UI", logo: <SiShadcnui className="h-5 w-5 text-foreground" /> },
+    ],
+    imageUrl: "/projects/ai-agent.png",
+    liveUrl: "https://meet.vinayweb.in/",
+    githubUrl: "https://github.com/vinay-oppuri/genai",
     status: "Building"
   },
 ];

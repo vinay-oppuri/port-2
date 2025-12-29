@@ -122,10 +122,10 @@ const ProjectsPage = () => {
               <div className="flex flex-row justify-between items-center pb-4">
                 <Badge
                   variant="secondary"
-                  className={cn("text-foreground/80 rounded-md px-2 py-1 text-xs", project.status === "Building" ? "bg-red-600/20" : "bg-green-600/20")}
+                  className={cn("flex items-center justify-center gap-1 text-foreground/80 rounded-md px-2 py-1 text-xs", project.status === "Building" ? "bg-red-600/20" : "bg-green-600/20")}
                 >
-                  <span className={cn("text-xs animate-pulse", project.status === "Building" ? "text-red-600" : "text-green-600")}>●</span> 
-                  {project.status === "Building" ? "Building" : "All Systems Operational"}
+                  <div className={cn("h-2 w-2 rounded-full text-xs animate-pulse", project.status === "Building" ? "bg-red-600" : "bg-green-600")}/>
+                  <div>{project.status === "Building" ? "Building" : "All Systems Operational"}</div>
                 </Badge>
 
                 <Link href={`/projects/${project.id}`} className="text-muted-foreground text-sm hover:underline cursor-pointer">
