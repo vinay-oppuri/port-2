@@ -30,7 +30,6 @@ const Page = () => {
           width={130}
           height={130}
           alt="Avatar"
-          placeholder="blur"
           className="rounded-full object-cover block dark:hidden"
         />
         <Image
@@ -38,7 +37,6 @@ const Page = () => {
           width={130}
           height={130}
           alt="Avatar"
-          placeholder="blur"
           className="rounded-full object-cover hidden dark:block"
         />
       </div>
