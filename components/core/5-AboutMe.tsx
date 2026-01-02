@@ -31,16 +31,19 @@ const AboutPage = () => {
 
         {/* Left: Avatar */}
         <div className="rounded-xl overflow-hidden h-40 w-40 md:h-60 md:w-150 relative">
+          {/* when i use theme === "dark" ? "/avatar-dark.png" : "/avatar-light.png" it doesn't load perfectly, sometimes it loads dark image when theme is light */}
           <Image
             src="/avatar-light.png"
             alt="Profile Avatar"
             fill
+            // placeholder="blur"
             className="rounded-lg object-cover w-full h-full dark:hidden"
           />
           <Image
             src="/avatar-dark.png"
             alt="Profile Avatar"
             fill
+            // placeholder="blur"
             className="rounded-lg object-cover w-full h-full hidden dark:block"
           />
         </div>

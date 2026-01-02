@@ -109,6 +109,35 @@ export const socialLinks = [
 
 export const ProjectsData = [
   {
+    id: "inzite",
+    title: "Inzite",
+    description: "AI-powered platform delivering actionable startup insights through market analysis, competitor intelligence, and interactive strategic reports.",
+    features: [
+      "Deep market analysis & trend forecasting",
+      "Interactive AI Chat Interface",
+      "Dynamic Strategic Reports with Motion UI",
+      "Competitor intelligence gathering",
+      "Technology stack evaluation",
+      "Data-driven startup insights"
+    ],
+    motivation: "I created Inzite to help entrepreneurs and investors make data-backed decisions. The goal was to aggregate complex market data into actionable insights, reducing the risk associated with early-stage startup ventures.",
+    tags: [
+      { name: "React", logo: <SiReact className="h-5 w-5 text-[#61DAFB]" /> },
+      { name: "Node.js", logo: <SiNodedotjs className="h-5 w-5 text-[#3C873A]" /> },
+      { name: "Next.js", logo: <SiNextdotjs className="h-5 w-5 text-foreground" /> },
+      { name: "Typescript", logo: <SiTypescript className="h-5 w-5 text-[#3178C6]" /> },
+      { name: "Tailwind CSS", logo: <SiTailwindcss className="h-5 w-5 text-[#38BDF8]" /> },
+      { name: "Drizzle ORM", logo: <SiDrizzle className="h-5 w-5 text-foreground" /> },
+      { name: "NeonDB", logo: <SiPostgresql className="h-5 w-5 text-[#336791]" /> },
+      { name: "GeminiAI", logo: <SiGooglegemini className="h-5 w-5 text-[#4285F4]" /> },
+      { name: "Shadcn UI", logo: <SiShadcnui className="h-5 w-5 text-foreground" /> },
+    ],
+    imageUrl: "/projects/inzite.png",
+    liveUrl: "https://inzite.vinayweb.in/",
+    githubUrl: "https://github.com/vinay-oppuri/inzite",
+    status: "All Systems Operational"
+  },
+  {
     id: "resanlys",
     title: "Resanlys",
     description: "Resanlys is an AI platform that analyzes resumes against job descriptions to score match, highlight gaps, and suggest improvements.",
@@ -137,32 +166,6 @@ export const ProjectsData = [
     imageUrl: "/projects/resanlys.png",
     liveUrl: "https://resanlys.vinayweb.in/",
     githubUrl: "https://github.com/vinay-oppuri/resanlys",
-    status: "Building"
-  },
-  {
-    id: "inzite",
-    title: "Inzite",
-    description:
-      "Inzite delivers actionable startup insights through market analysis, competitor intelligence, and technology evaluation to guide smarter business decisions.",
-    features: [
-      "Deep market analysis and trend forecasting",
-      "Competitor intelligence gathering",
-      "Technology stack evaluation and recommendations",
-      "Data-driven startup insights"
-    ],
-    motivation: "I created Inzite to help entrepreneurs and investors make data-backed decisions. The goal was to aggregate complex market data into actionable insights, reducing the risk associated with early-stage startup ventures.",
-    tags: [
-      { name: "React", logo: <SiReact className="h-5 w-5 text-[#61DAFB]" /> },
-      { name: "Node.js", logo: <SiNodedotjs className="h-5 w-5 text-[#3C873A]" /> },
-      { name: "Next.js", logo: <SiNextdotjs className="h-5 w-5 text-foreground" /> },
-      { name: "Typescript", logo: <SiTypescript className="h-5 w-5 text-[#3178C6]" /> },
-      { name: "Tailwind CSS", logo: <SiTailwindcss className="h-5 w-5 text-[#38BDF8]" /> },
-      { name: "GeminiAI", logo: <SiGooglegemini className="h-5 w-5 text-[#4285F4]" /> },
-      { name: "Shadcn UI", logo: <SiShadcnui className="h-5 w-5 text-foreground" /> },
-    ],
-    imageUrl: "/projects/inzite.png",
-    liveUrl: "https://inzite.vinayweb.in/",
-    githubUrl: "https://github.com/vinay-oppuri/inzite",
     status: "Building"
   },
   {

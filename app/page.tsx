@@ -21,16 +21,25 @@ const Page = () => {
   if (!mounted) return null;
 
   return (
-    <section className="flex flex-col items-start space-y-6 mx-auto mt-8 md:mt-16 w-full px-4 py-4 md:px-8">
+    <section className="flex flex-col items-start space-y-4 mx-auto mt-10 md:mt-18 w-full px-4 py-4 md:px-8">
 
       {/* Avatar */}
       <div className="w-24 h-24 sm:w-32 sm:h-32 rounded-full bg-foreground/10 p-1 flex items-center justify-center overflow-hidden">
         <Image
-          src={theme === "dark" ? "/avatar-dark.png" : "/avatar-light.png"}
+          src="/avatar-light.png"
           width={130}
           height={130}
           alt="Avatar"
-          className="rounded-full object-cover"
+          placeholder="blur"
+          className="rounded-full object-cover block dark:hidden"
+        />
+        <Image
+          src="/avatar-dark.png"
+          width={130}
+          height={130}
+          alt="Avatar"
+          placeholder="blur"
+          className="rounded-full object-cover hidden dark:block"
         />
       </div>
 
@@ -65,7 +74,7 @@ const Page = () => {
             asChild
             key={button.text}
             variant={button.variant === "outline" ? "outline" : "default"}
-            className="text-xs md:text-sm hover:-translate-y-1 transition-all duration-300"
+            className="h-9 md:h-10 text-xs md:text-sm hover:-translate-y-1 transition-all duration-300"
           >
             <Link href={button.href}>
               {button.icon} {button.text}
