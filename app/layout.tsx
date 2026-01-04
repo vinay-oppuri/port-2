@@ -18,9 +18,9 @@ export const metadata: Metadata = {
   title: "Vinay - Portfolio",
   description: "Full-Stack · Agentic AI",
   icons: {
-    icon: "/avatar-rounded.png",
-    shortcut: "/avatar-rounded.png",
-    apple: "/avatar-rounded.png",
+    icon: "/avatars/avatar-rounded.png",
+    shortcut: "/avatars/avatar-rounded.png",
+    apple: "/avatars/avatar-rounded.png",
   },
 };
 

@@ -21,19 +21,19 @@ const Page = () => {
   if (!mounted) return null;
 
   return (
-    <section className="flex flex-col items-start space-y-4 mx-auto mt-10 md:mt-18 w-full px-4 py-4 md:px-8">
+    <section className="flex flex-col items-start space-y-4 mx-auto mt-12 md:mt-24 w-full px-4 py-4 md:px-8">
 
       {/* Avatar */}
       <div className="w-24 h-24 sm:w-32 sm:h-32 rounded-full bg-foreground/10 p-1 flex items-center justify-center overflow-hidden">
         <Image
-          src="/avatar-light.png"
+          src="/avatars/avatar-light.png"
           width={130}
           height={130}
           alt="Avatar"
           className="rounded-full object-cover block dark:hidden"
         />
         <Image
-          src="/avatar-dark.png"
+          src="/avatars/avatar-dark.png"
           width={130}
           height={130}
           alt="Avatar"

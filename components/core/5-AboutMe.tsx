@@ -34,13 +34,13 @@ const AboutPage = () => {
           {/* when i use theme === "dark" ? "/avatar-dark.png" : "/avatar-light.png" it doesn't load perfectly, sometimes it loads dark image when theme is light */}
           {/* Hydration issues */}
           <Image
-            src="/avatar-light.png"
+            src="/avatars/avatar-light.png"
             alt="Profile Avatar"
             fill
             className="rounded-lg object-cover w-full h-full dark:hidden"
           />
           <Image
-            src="/avatar-dark.png"
+            src="/avatars/avatar-dark.png"
             alt="Profile Avatar"
             fill
             className="rounded-lg object-cover w-full h-full hidden dark:block"

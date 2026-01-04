@@ -36,13 +36,13 @@ export const Header = () => {
         <Link href="/">
           <div className="relative w-9 h-9 sm:w-10 sm:h-10">
             <Image
-              src="/avatar-light.png"
+              src="/avatars/avatar-light.png"
               alt={heroConfig.name}
               fill
               className="rounded-full object-cover transition-transform hover:scale-105 dark:hidden"
             />
             <Image
-              src="/avatar-dark.png"
+              src="/avatars/avatar-dark.png"
               alt={heroConfig.name}
               fill
               className="rounded-full object-cover transition-transform hover:scale-105 hidden dark:block"

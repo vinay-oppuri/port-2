@@ -23,7 +23,7 @@ export const heroConfig = {
   name: "Vinay",
   fullName: "Oppuri Vinay Reddy",
   title: "A Full Stack Web Developer • Agentic AI Engineer",
-  avatar: "/avatar.png",
+  avatar: "/avatars/avatar-rounded.png",
 
   skills: [
     {
@@ -199,7 +199,7 @@ export const ProjectsData = [
 export const experiences = [
   {
     companyName: "IIIT Raichur Website",
-    logo: "/collegelogo.png",
+    logo: "/experience/collegelogo.png",
     status: "Working",
     role: "Full Stack Developer",
     timeline: "August 2025 – Present",
