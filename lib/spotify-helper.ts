@@ -1,8 +1,18 @@
 import { Buffer } from "buffer";
 
-const client_id = process.env.SPOTIFY_CLIENT_ID!;
-const client_secret = process.env.SPOTIFY_CLIENT_SECRET!;
-const refresh_token = process.env.SPOTIFY_REFRESH_TOKEN!;
+const client_id = process.env.SPOTIFY_CLIENT_ID;
+const client_secret = process.env.SPOTIFY_CLIENT_SECRET;
+const refresh_token = process.env.SPOTIFY_REFRESH_TOKEN;
+
+if (!client_id || !client_secret || !refresh_token) {
+  throw new Error("Missing Spotify environment variables: " +
+    [
+      !client_id && "SPOTIFY_CLIENT_ID",
+      !client_secret && "SPOTIFY_CLIENT_SECRET",
+      !refresh_token && "SPOTIFY_REFRESH_TOKEN"
+    ].filter(Boolean).join(", ")
+  );
+}
 
 const TOKEN_ENDPOINT = "https://accounts.spotify.com/api/token";
 const RECENT = "https://api.spotify.com/v1/me/player/recently-played?limit=1";
@@ -15,7 +25,10 @@ async function fetchWithRetry(url: string, options: RequestInit) {
   while (retries > 0) {
     try {
       const res = await fetch(url, options);
-      if (!res.ok) throw new Error(`Spotify API Error: ${res.status}`);
+      if (!res.ok) {
+        const text = await res.text();
+        throw new Error(`Spotify API Error: ${res.status} ${text}`);
+      }
       return res;
     } catch (error) {
       retries--;
@@ -35,7 +48,7 @@ export async function getAccessToken() {
     },
     body: new URLSearchParams({
       grant_type: "refresh_token",
-      refresh_token,
+      refresh_token: refresh_token!,
     }),
     cache: 'no-store',
   });
