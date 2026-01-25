@@ -1,7 +1,9 @@
 import { SendIcon } from "lucide-react";
 import {
+  SiBun,
   SiDrizzle,
   SiExpress,
+  SiFirebase,
   SiGithub,
   SiGoogledocs,
   SiGooglegemini,
@@ -25,21 +27,26 @@ export const heroConfig = {
   title: "A Full Stack Web Developer • Agentic AI Engineer",
   avatar: "/avatars/avatar-rounded.png",
 
-  skills: [
+  mainSkills: [
+    {
+      name: "Bun",
+      href: "https://bun.sh/",
+      component: <SiBun className="h-4 w-4 text-foreground" />,
+    },
     {
       name: "Next.js",
       href: "https://nextjs.org/",
       component: <SiNextdotjs className="h-4 w-4 text-foreground" />,
     },
     {
-      name: "React",
-      href: "https://react.dev/",
-      component: <SiReact className="h-4 w-4 text-[#61DAFB]" />,
-    },
-    {
       name: "Typescript",
       href: "https://www.typescriptlang.org/",
       component: <SiTypescript className="h-4 w-4 text-[#3178C6]" />,
+    },
+    {
+      name: "Tailwind CSS",
+      href: "https://tailwindcss.com/",
+      component: <SiTailwindcss className="h-4 w-4 text-[#38BDF8]" />,
     },
     {
       name: "PostgreSQL",
@@ -58,10 +65,75 @@ export const heroConfig = {
     },
   ],
 
+  skills: {
+    frontend: [
+      {
+        name: "Next.js",
+        href: "https://nextjs.org/",
+        component: <SiNextdotjs className="h-4 w-4 text-foreground" />,
+      },
+      {
+        name: "React",
+        href: "https://react.dev/",
+        component: <SiReact className="h-4 w-4 text-[#61DAFB]" />,
+      },
+      {
+        name: "Typescript",
+        href: "https://www.typescriptlang.org/",
+        component: <SiTypescript className="h-4 w-4 text-[#3178C6]" />,
+      },
+      {
+        name: "Tailwind CSS",
+        href: "https://tailwindcss.com/",
+        component: <SiTailwindcss className="h-4 w-4 text-[#38BDF8]" />,
+      },
+    ],
+    backend: [
+      {
+        name: "Node.js",
+        href: "https://nodejs.org/",
+        component: <SiNodedotjs className="h-4 w-4 text-[#339933]" />,
+      },
+      {
+        name: "PostgreSQL",
+        href: "https://www.postgresql.org/",
+        component: <SiPostgresql className="h-4 w-4 text-[#336791]" />,
+      },
+      {
+        name: "MongoDB",
+        href: "https://www.mongodb.com/",
+        component: <SiMongodb className="h-4 w-4 text-[#47A248]" />,
+      },
+      {
+        name: "Express.js",
+        href: "https://expressjs.com/",
+        component: <SiExpress className="h-4 w-4 text-foreground" />,
+      },
+      {
+        name: "tRPC",
+        href: "https://trpc.io/",
+        component: <SiTrpc className="h-4 w-4 text-[#0D9488]" />,
+      },
+      {
+        name: "Better Auth",
+        href: "https://better-auth.com/",
+        component: <SiShadcnui className="h-4 w-4 text-[#9333EA]" />,
+      },
+    ],
+    ai: [
+      {
+        name: "Gemini",
+        href: "https://deepmind.google/technologies/gemini/",
+        component: <SiGooglegemini className="h-4 w-4 text-[#8E75B2]" />,
+      },
+    ],
+  },
+
   description: {
     template:
       "I build interactive web apps using Next.js, React, Bun, Typescript and PostgreSQL. With a focus on UI design. Enthusiastic about Three.js, driven by a keen eye for design.",
-    about: "",
+    about:
+      "I am a Full Stack Developer and Agentic AI Engineer focused on building scalable web apps and intelligent systems. My expertise spans the modern JavaScript ecosystem Next.js, React, Node.js, TypeScript paired with PostgreSQL and MongoDB. I am enthusiastic about AI agents automating workflows and enhancing productivity, while also enjoying new technologies and UI/UX design.",
   },
 
   buttons: [
@@ -210,7 +282,7 @@ export const experiences = [
       { name: "React", logo: <SiReact className="h-4 w-4 text-[#61DAFB]" /> },
       { name: "TypeScript", logo: <SiTypescript className="h-4 w-4 text-[#3178C6]" /> },
       { name: "Node.js", logo: <SiNodedotjs className="h-5 w-5 text-[#3C873A]" /> },
-      { name: "MongoDB", logo: <SiMongodb className="h-5 w-5 text-[#47A248]" /> },
+      { name: "Firebase", logo: <SiFirebase className="h-5 w-5 text-[#FF6B35]" /> },
     ],
     responsibilities: [
       "Built and optimized the entire college website with modern full-stack technologies.",

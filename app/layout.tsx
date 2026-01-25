@@ -17,10 +17,34 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: "Vinay - Portfolio",
   description: "Full-Stack · Agentic AI",
+  keywords: ["Full Stack", "React", "Next.js", "AI", "Agentic AI", "Web Development", "Portfolio"],
+  authors: [{ name: "Vinay Oppuri", url: "https://vinayweb.in" }],
+  metadataBase: new URL("https://vinayweb.in"),
   icons: {
     icon: "/avatars/avatar-rounded.png",
     shortcut: "/avatars/avatar-rounded.png",
     apple: "/avatars/avatar-rounded.png",
+  },
+  openGraph: {
+    title: "Vinay - Portfolio",
+    description: "Full-Stack · Agentic AI Engineer exploring the future of web and AI.",
+    url: "https://vinayweb.in",
+    siteName: "Vinay Oppuri Portfolio",
+    images: [
+      {
+        url: "/avatars/avatar-rounded.png", // Ideally, use a dedicated OG image here
+        width: 800,
+        height: 600,
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Vinay - Portfolio",
+    description: "Full-Stack · Agentic AI",
+    images: ["/avatars/avatar-rounded.png"], // Ideally, use a dedicated OG image here
   },
 };
 

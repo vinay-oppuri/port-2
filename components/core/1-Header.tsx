@@ -61,7 +61,7 @@ export const Header = () => {
       {/* Right: Theme Toggle + Mobile Menu Button */}
       <div className="flex items-center space-x-3 ">
         {/* Theme Toggle */}
-        <Link href='www.github.com/vinay-oppuri'>
+        <Link href='https://github.com/vinay-oppuri' target="_blank">
           <Button variant='outline' className="text-foreground/80">
             <span className="text-xs">Github</span> <FaGithub />
           </Button>

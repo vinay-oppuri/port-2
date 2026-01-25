@@ -49,7 +49,7 @@ const Page = () => {
       {/* DESCRIPTION */}
       <p className="text-sm sm:text-base text-muted-foreground leading-relaxed flex flex-wrap gap-2">
         I build interactive web apps using
-        {heroConfig.skills.map((skill, i) => (
+        {heroConfig.mainSkills.map((skill, i) => (
           <Link
             key={i}
             href={skill.href}

@@ -30,9 +30,7 @@ const AboutPage = () => {
       <div className="flex flex-col md:flex-row items-start gap-8 md:gap-10">
 
         {/* Left: Avatar */}
-        <div className="rounded-xl overflow-hidden h-40 w-40 md:h-60 md:w-150 relative">
-          {/* when i use theme === "dark" ? "/avatar-dark.png" : "/avatar-light.png" it doesn't load perfectly, sometimes it loads dark image when theme is light */}
-          {/* Hydration issues */}
+        <div className="rounded-xl overflow-hidden h-40 w-40 md:h-60 md:w-60 aspect-square relative shrink-0">
           <Image
             src="/avatars/avatar-light.png"
             alt="Profile Avatar"
@@ -59,20 +57,27 @@ const AboutPage = () => {
               "I'm a Full Stack developer who loves building digital products, solving real-world problems, and experimenting with modern tech stacks."}
           </p>
 
-          {/* Skills Section */}
-          <div className="flex flex-col gap-2 mt-4">
-            <p className="font-semibold text-foreground">Skills</p>
+        </div>
+      </div>
 
-            <div className="flex flex-wrap gap-2 sm:gap-3">
-              {skills.map((skill, index) => (
-                <Badge key={index} variant='secondary' className="border border-dashed border-muted-foreground/40 rounded-sm px-2 py-1 gap-1">
-                  <span>{skill.component}</span>
-                  <span>{skill.name}</span>
-                </Badge>
-              ))}
+      {/* Skills Section */}
+      <div className="flex flex-col gap-2 mt-4">
+        <p className="font-semibold text-foreground">Skills</p>
+
+        <div className="flex flex-col gap-4">
+          {(Object.entries(skills) as [string, typeof skills.frontend][]).map(([category, items]) => (
+            <div key={category} className="flex flex-col gap-2">
+              <h3 className="text-xs uppercase tracking-widest text-muted-foreground font-medium">{category}</h3>
+              <div className="flex flex-wrap gap-2 sm:gap-3">
+                {items.map((skill, index) => (
+                  <Badge key={index} variant='secondary' className="border border-dashed border-muted-foreground/40 rounded-sm px-2 py-1 gap-1">
+                    <span>{skill.component}</span>
+                    <span>{skill.name}</span>
+                  </Badge>
+                ))}
+              </div>
             </div>
-          </div>
-
+          ))}
         </div>
       </div>
     </section>
