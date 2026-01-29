@@ -13,9 +13,10 @@ const ContactDialog = () => {
                 <Link href="/contact">
                     <Button
                         size="lg"
-                        className="w-60 md:w-35 px-6 text-xs sm:text-sm font-semibold tracking-tight"
+                        className="w-60 md:w-35 px-6 text-xs sm:text-sm font-semibold tracking-tight group"
                     >
                         Contact Form
+                        <span className="group-hover:translate-x-1 transition-transform duration-300">→</span>
                     </Button>
                 </Link>
 
@@ -36,9 +37,10 @@ const ContactDialog = () => {
                     <Button
                         size="lg"
                         variant="outline"
-                        className="w-60 md:w-35 px-6 text-xs sm:text-sm font-semibold tracking-tight"
+                        className="w-60 md:w-35 px-6 text-xs sm:text-sm font-semibold tracking-tight group hover:bg-primary/5 hover:text-primary hover:border-primary/20 transition-all duration-300"
                     >
                         Email Me
+                        <span className="group-hover:translate-x-1 transition-transform duration-300">→</span>
                     </Button>
                 </a>
 

@@ -10,6 +10,12 @@ import { Button } from "@/components/ui/button";
 import { FaGithub } from "react-icons/fa";
 import { circleBlurTopRightCSS, injectAnimationStyles } from "@/lib/theme-animation";
 
+const navLinks = [
+  { name: "Work", href: "/experience" },
+  { name: "Blogs", href: "/blogs" },
+  { name: "Projects", href: "/projects" },
+]
+
 export const Header = () => {
   const { theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
@@ -52,9 +58,12 @@ export const Header = () => {
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex space-x-6 text-foreground text-sm font-medium">
-          <Link href="/experience">Work</Link>
-          <Link href="/blogs">Blogs</Link>
-          <Link href="/projects">Projects</Link>
+          {navLinks.map((link, idx) => (
+            <Link href={link.href} key={idx} className="group relative">
+              {link.name}
+              <span className="absolute -bottom-1 left-0 w-0 h-[1.5px] bg-foreground/80 transition-all duration-300 group-hover:w-full"></span>
+            </Link>
+          ))}
         </nav>
       </div>
 

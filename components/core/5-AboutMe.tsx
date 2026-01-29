@@ -35,13 +35,13 @@ const AboutPage = () => {
             src="/avatars/avatar-light.png"
             alt="Profile Avatar"
             fill
-            className="rounded-lg object-cover w-full h-full dark:hidden"
+            className="rounded-lg object-cover w-full h-full dark:hidden hover:scale-105 transition-transform duration-500"
           />
           <Image
             src="/avatars/avatar-dark.png"
             alt="Profile Avatar"
             fill
-            className="rounded-lg object-cover w-full h-full hidden dark:block"
+            className="rounded-lg object-cover w-full h-full not-dark:hidden hover:scale-105 transition-transform duration-500"
           />
         </div>
 
