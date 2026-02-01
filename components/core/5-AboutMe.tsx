@@ -5,6 +5,7 @@ import { heroConfig } from "@/lib/hero.config";
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 import { Badge } from "../ui/badge";
+import { AvatarLogo } from "../common/AvatarLogo";
 
 const AboutPage = () => {
   const skills = heroConfig.skills;
@@ -31,18 +32,7 @@ const AboutPage = () => {
 
         {/* Left: Avatar */}
         <div className="rounded-xl overflow-hidden h-40 w-40 md:h-60 md:w-60 aspect-square relative shrink-0">
-          <Image
-            src="/avatars/avatar-light.png"
-            alt="Profile Avatar"
-            fill
-            className="rounded-lg object-cover w-full h-full dark:hidden hover:scale-105 transition-transform duration-500"
-          />
-          <Image
-            src="/avatars/avatar-dark.png"
-            alt="Profile Avatar"
-            fill
-            className="rounded-lg object-cover w-full h-full not-dark:hidden hover:scale-105 transition-transform duration-500"
-          />
+          <AvatarLogo className="w-full h-full text-sky-300 dark:text-orange-400 transition-colors duration-300" />
         </div>
 
         {/* Right: Info */}

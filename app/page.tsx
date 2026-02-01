@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { heroConfig } from "@/lib/hero.config";
 import { Button } from "@/components/ui/button";
@@ -12,6 +11,7 @@ import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 import GitHubActivity from "@/components/core/6-GithubActivity";
 import ContactDialog from "@/components/core/7-Contact";
+import { AvatarLogo } from "@/components/common/AvatarLogo";
 
 const Page = () => {
   const [mounted, setMounted] = useState(false);
@@ -25,20 +25,7 @@ const Page = () => {
 
       {/* Avatar */}
       <div className="w-24 h-24 sm:w-32 sm:h-32 rounded-full bg-foreground/10 p-1 flex items-center justify-center overflow-hidden">
-        <Image
-          src="/avatars/avatar-light.png"
-          width={130}
-          height={130}
-          alt="Avatar"
-          className="rounded-full object-cover block dark:hidden"
-        />
-        <Image
-          src="/avatars/avatar-dark.png"
-          width={130}
-          height={130}
-          alt="Avatar"
-          className="rounded-full object-cover hidden dark:block"
-        />
+        <AvatarLogo className="w-full h-full rounded-full text-sky-300 dark:text-orange-400 transition-colors duration-300" />
       </div>
 
       {/* Heading */}

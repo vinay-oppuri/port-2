@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import Image from "next/image";
+import { AvatarLogo } from "../common/AvatarLogo";
 import Link from "next/link";
 import { heroConfig } from "@/lib/hero.config";
 import { Moon, Sun, Menu, X } from "lucide-react";
@@ -40,19 +40,8 @@ export const Header = () => {
       <div className="flex items-center space-x-3 sm:space-x-4">
         {/* Avatar */}
         <Link href="/">
-          <div className="relative w-9 h-9 sm:w-10 sm:h-10">
-            <Image
-              src="/avatars/avatar-light.png"
-              alt={heroConfig.name}
-              fill
-              className="rounded-full object-cover transition-transform hover:scale-105 dark:hidden"
-            />
-            <Image
-              src="/avatars/avatar-dark.png"
-              alt={heroConfig.name}
-              fill
-              className="rounded-full object-cover transition-transform hover:scale-105 hidden dark:block"
-            />
+          <div className="relative w-9 h-9 sm:w-10 sm:h-10 rounded-full hover:scale-105 transition-transform">
+            <AvatarLogo className="w-full h-full rounded-full text-sky-300 dark:text-orange-400 transition-colors duration-300" />
           </div>
         </Link>
 
