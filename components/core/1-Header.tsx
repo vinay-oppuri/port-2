@@ -3,14 +3,13 @@
 import { useState, useEffect } from "react";
 import { AvatarLogo } from "../common/AvatarLogo";
 import Link from "next/link";
-import { heroConfig } from "@/lib/hero.config";
 import { Moon, Sun, Menu, X } from "lucide-react";
 import { useTheme } from "next-themes";
 import { Button } from "@/components/ui/button";
 import { FaGithub } from "react-icons/fa";
 import { circleBlurTopRightCSS, injectAnimationStyles } from "@/lib/theme-animation";
 
-const navLinks = [
+export const navLinks = [
   { name: "Work", href: "/experience" },
   { name: "Blogs", href: "/blogs" },
   { name: "Projects", href: "/projects" },
@@ -41,7 +40,7 @@ export const Header = () => {
         {/* Avatar */}
         <Link href="/">
           <div className="relative w-9 h-9 sm:w-10 sm:h-10 rounded-full hover:scale-105 transition-transform">
-            <AvatarLogo className="w-full h-full rounded-full text-sky-300 dark:text-orange-400 transition-colors duration-300" />
+            <AvatarLogo className="w-full h-full rounded-full text-ring" />
           </div>
         </Link>
 

@@ -25,7 +25,7 @@ const Page = () => {
 
       {/* Avatar */}
       <div className="w-24 h-24 sm:w-32 sm:h-32 rounded-full bg-foreground/10 p-1 flex items-center justify-center overflow-hidden">
-        <AvatarLogo className="w-full h-full rounded-full text-sky-300 dark:text-orange-400 transition-colors duration-300" />
+        <AvatarLogo className="w-full h-full rounded-full text-ring" />
       </div>
 
       {/* Heading */}

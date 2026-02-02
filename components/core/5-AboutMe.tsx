@@ -32,7 +32,7 @@ const AboutPage = () => {
 
         {/* Left: Avatar */}
         <div className="rounded-xl overflow-hidden h-40 w-40 md:h-60 md:w-60 aspect-square relative shrink-0">
-          <AvatarLogo className="w-full h-full text-sky-300 dark:text-orange-400 transition-colors duration-300" />
+          <AvatarLogo className="w-full h-full text-sky-300 dark:text-orange-400 hover:scale-103 transition-transform duration-300" />
         </div>
 
         {/* Right: Info */}

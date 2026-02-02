@@ -36,10 +36,22 @@ const Page = () => {
                 {projects.map((project) => (
                     <Card
                         key={project.title}
-                        className="overflow-hidden bg-white/5 border border-white/5 hover:border-foreground/10 hover:shadow-xl hover:shadow-foreground/5 hover:-translate-y-1 transition-all duration-300 rounded-lg p-0"
+                        className="overflow-hidden bg-white/5 border border-white/5 hover:border-white/10 hover:shadow-2xl hover:shadow-indigo-500/20 hover:-translate-y-1 transition-all duration-500 rounded-lg p-0 group"
                     >
                         {/* IMAGE */}
                         <div className="relative h-48 md:h-48 w-full project-bg-ocean overflow-hidden group">
+                            <div className="absolute top-2 left-2 z-20">
+                                <Badge
+                                    variant="secondary"
+                                    className={cn("flex items-center gap-2 text-foreground/90 rounded-md px-2 py-1 text-[10px] border border-white/10 bg-black/40 backdrop-blur-md shadow-sm", project.status === "Building" ? "text-red-100" : "text-emerald-100")}
+                                >
+                                    <span className="relative flex h-1.5 w-1.5">
+                                        <span className={cn("animate-ping absolute inline-flex h-full w-full rounded-full opacity-75", project.status === "Building" ? "bg-red-400" : "bg-emerald-400")}></span>
+                                        <span className={cn("relative inline-flex rounded-full h-1.5 w-1.5", project.status === "Building" ? "bg-red-500" : "bg-emerald-500")}></span>
+                                    </span>
+                                    <span className="font-semibold tracking-wide uppercase">{project.status === "Building" ? "Building" : "Operational"}</span>
+                                </Badge>
+                            </div>
                             <Image
                                 src={project.imageUrl}
                                 alt={project.title}
@@ -52,19 +64,19 @@ const Page = () => {
                         {/* CONTENT */}
                         <CardHeader >
                             <div className="flex flex-row justify-between items-center gap-2">
-                                <CardTitle className="text-base sm:text-xl text-foreground">
+                                <CardTitle className="text-base sm:text-xl text-foreground group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-linear-to-r group-hover:from-white group-hover:to-zinc-400 transition-all duration-300">
                                     {project.title}
                                 </CardTitle>
 
                                 {/* ICONS */}
-                                <div className="flex gap-3 text-muted-foreground">
+                                <div className="flex gap-3 text-muted-foreground/80">
                                     {project.liveUrl && (
                                         <Tooltip>
                                             <TooltipTrigger asChild>
                                                 <Link
                                                     href={project.liveUrl}
                                                     target="_blank"
-                                                    className="hover:text-foreground transition"
+                                                    className="hover:text-foreground transition-all duration-300 hover:scale-110 active:scale-95"
                                                 >
                                                     <Globe className="h-5 w-5" />
                                                 </Link>
@@ -81,7 +93,7 @@ const Page = () => {
                                                 <Link
                                                     href={project.githubUrl}
                                                     target="_blank"
-                                                    className="hover:text-foreground transition"
+                                                    className="hover:text-foreground transition-all duration-300 hover:scale-110 active:scale-95"
                                                 >
                                                     <Github className="h-5 w-5" />
                                                 </Link>
@@ -126,18 +138,13 @@ const Page = () => {
 
 
                             {/* FOOTER */}
-                            <div className="flex flex-row justify-between items-center pb-4">
-                                <Badge
-                                    variant="secondary"
-                                    className={cn("text-foreground/80 rounded-md px-2 py-1 text-xs", project.status === "Building" ? "bg-red-600/20" : "bg-green-600/20")}
-                                >
-                                    <span className={cn("text-xs animate-pulse", project.status === "Building" ? "text-red-600" : "text-green-600")}>●</span>
-                                    {project.status === "Building" ? "Building" : "All Systems Operational"}
-                                </Badge>
-
-                                <Link href={`/projects/${project.id}`} className="text-muted-foreground text-sm hover:underline cursor-pointer">
-                                    <span className="hidden md:flex">View Details →</span>
-                                    <span className="flex md:hidden">Details →</span>
+                            <div className="flex flex-row justify-end items-center pb-4 pt-2">
+                                <Link href={`/projects/${project.id}`} className="group/link flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors duration-300">
+                                    <span className="relative">
+                                        View Details
+                                        <span className="absolute -bottom-1 left-0 w-0 h-px bg-foreground transition-all duration-300 group-hover/link:w-full"></span>
+                                    </span>
+                                    <span className="group-hover/link:translate-x-1 transition-transform duration-300">→</span>
                                 </Link>
                             </div>
 
