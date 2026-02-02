@@ -18,7 +18,7 @@ const Footer = () => {
   if (!mounted) return null
 
   return (
-    <footer className="w-full relative overflow-hidden md:py-4 py-2 mb-10 md:mb-0 bg-background">
+    <footer className="w-full relative overflow-hidden md:py-4 py-2 mb-0 bg-background">
       {/* Pre-footer large text */}
       <div className="h-70 flex items-center justify-center md:py-6 py-0 mb-0">
         <TextHoverEffect text="ViNAY" />
@@ -89,7 +89,7 @@ const Footer = () => {
         </div>
 
         {/* Bottom Bar */}
-        <div className="w-full border-t border-foreground/10 py-8 flex flex-col md:flex-row justify-between items-center gap-4">
+        <div className="hidden sm:flex w-full border-t border-foreground/10 py-8 flex-col md:flex-row justify-between items-center gap-4">
           <div className="w-full md:w-auto text-xs text-muted-foreground font-mono text-center md:text-left">
                 // PUBLISHED_BY_VINAY_OPPURI
           </div>
