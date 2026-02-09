@@ -3,31 +3,73 @@
 import { useEffect, useState } from "react";
 import { TextHoverEffect } from "../ui/text-hover-effect";
 import Link from "next/link";
-import { ArrowRight, Hexagon } from "lucide-react";
-import { FaGithub, FaLinkedin, FaTwitter, FaDiscord, FaWhatsapp } from "react-icons/fa";
+import { ArrowRight, Loader2, SendIcon } from "lucide-react";
 import { AvatarLogo } from "../common/AvatarLogo";
 import { Input } from "../ui/input";
+import { Textarea } from "../ui/textarea";
 import { socialLinks } from "@/lib/hero.config";
 import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
-import { navLinks } from "./1-Header";
+import { Button } from "../ui/button";
+import { toast } from "sonner";
 
 const Footer = () => {
   const [mounted, setMounted] = useState(false)
+  const [formData, setFormData] = useState({
+    name: "",
+    feedback: ""
+  })
+  const [loading, setLoading] = useState(false)
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+  }
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!formData.name.trim() || !formData.feedback.trim()) {
+      toast.error("Please fill in all fields");
+      return;
+    }
+
+    setLoading(true);
+
+    try {
+      const response = await fetch('/api/feedback', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        toast.success('Feedback sent successfully!');
+        setFormData({ name: "", feedback: "" });
+      } else {
+        toast.error('Failed to send feedback.');
+      }
+    } catch (error) {
+      console.error('Error sending feedback:', error);
+      toast.error('An error occurred.');
+    } finally {
+      setLoading(false);
+    }
+  }
 
   useEffect(() => setMounted(true), [])
   if (!mounted) return null
 
   return (
-    <footer className="w-full relative overflow-hidden md:py-4 py-2 mb-0 bg-background">
+    <footer className="w-full relative overflow-hidden px-2 md:py-4 py-2 mb-0 bg-background">
       {/* Pre-footer large text */}
       <div className="h-70 flex items-center justify-center md:py-6 py-0 mb-0">
         <TextHoverEffect text="ViNAY" />
       </div>
 
-      <div className="w-full flex flex-col items-center justify-center mx-auto px-2 md:px-6 border-t border-foreground/10 pt-8 md:pt-16">
-        <div className="w-full flex flex-col md:flex-row items-center justify-between gap-12 mb-16">
-          {/* Brand & Newsletter - Spans 5 columns */}
-          <div className="w-full md:w-auto space-y-6 text-center md:text-left flex flex-col items-center md:items-start">
+      <div className="w-full mx-auto px-4 md:px-8 border-t border-foreground/10 pt-8 md:pt-16">
+        <div className="flex flex-col md:flex-row justify-between items-start gap-12 mb-16 max-w-7xl mx-auto">
+          {/* Left Side: Brand & Description */}
+          <div className="flex flex-col gap-4 max-w-md text-center md:text-left mx-auto md:mx-0">
             <div className="flex items-center gap-2 justify-center md:justify-start">
               <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-primary">
                 <AvatarLogo className="w-full h-full rounded-full text-ring" />
@@ -35,66 +77,48 @@ const Footer = () => {
               <span className="text-xl font-bold tracking-wider text-foreground">ViNAY OPPURI</span>
             </div>
 
-            <p className="text-muted-foreground max-w-sm">
+            <p className="text-muted-foreground">
               I&apos;m a software engineer who loves building cool stuff, passionate about technology and always looking for new challenges.
             </p>
-
-            <div className="w-[80%] relative max-w-sm mt-4">
-              <div className="flex items-center justify-center relative">
-                <Input
-                  type="email"
-                  placeholder="Enter your feedback..."
-                  className="w-full rounded-lg py-3 px-4 pr-12 transition-all placeholder:text-muted-foreground/50 text-foreground"
-                />
-                <button className="absolute right-1 top-1 h-6 w-6 my-autonnnn bg-primary text-primary-foreground rounded-md flex items-center justify-center hover:opacity-90 transition-opacity">
-                  <ArrowRight size={14} />
-                </button>
-              </div>
-            </div>
           </div>
 
-          {/* Links Sections - Spans 7 columns */}
-          <div className="w-full md:w-auto flex items-center justify-center md:justify-end gap-12 md:gap-8">
-
-            {/* Company Column */}
-            <div className="space-y-4">
-              <h4 className="text-sm font-semibold tracking-wider text-foreground/80 uppercase">Navigate</h4>
-              <ul className="space-y-2">
-                {navLinks.map((item) => (
-                  <li key={item.name}>
-                    <Link href={item.href} className="text-muted-foreground hover:text-primary transition-colors text-sm flex items-center gap-2 group">
-                      <span className="w-1.5 h-1.5 rounded-full bg-primary/40 group-hover:bg-primary transition-colors"></span>
-                      {item.name}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            {/* Connect Column */}
-            <div className="space-y-4">
-              <h4 className="text-sm font-semibold tracking-wider text-foreground/80 uppercase">Connect</h4>
-              <ul className="space-y-2">
-                {socialLinks.map((link) => (
-                  <li key={link.name}>
-                    <Link href={link.href} className="text-muted-foreground hover:text-primary transition-colors text-sm flex items-center gap-2 group">
-                      <span className="w-1.5 h-1.5 rounded-full bg-primary/40 group-hover:bg-primary transition-colors"></span>
-                      {link.name}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
+          {/* Right Side: Feedback Form */}
+          <form className="space-y-4 w-full max-w-sm mx-auto md:mx-0" onSubmit={handleSubmit}>
+            <Input
+              type="text"
+              name="name"
+              placeholder="Enter your name..."
+              value={formData.name}
+              onChange={handleChange}
+              className="bg-background/50 placeholder:text-muted-foreground/50 text-foreground" 
+              required
+            />
+            <Textarea
+              name="feedback"
+              value={formData.feedback}
+              onChange={handleChange}
+              placeholder="Enter your feedback..."
+              className="w-full rounded-lg py-3 px-4 min-h-[100px] resize-none transition-all placeholder:text-muted-foreground/50 text-foreground bg-background/50"
+              required
+            />
+            <Button type="submit" disabled={loading} className="w-full">
+              {loading ? (
+                <Loader2 className="w-4 h-4 animate-spin mr-2" />
+              ) : (
+                <SendIcon className="w-4 h-4 mr-2" />
+              )}
+              {loading ? "Sending..." : "Send Feedback"}
+            </Button>
+          </form>
         </div>
 
         {/* Bottom Bar */}
-        <div className="hidden sm:flex w-full border-t border-foreground/10 py-8 flex-col md:flex-row justify-between items-center gap-4">
-          <div className="w-full md:w-auto text-xs text-muted-foreground font-mono text-center md:text-left">
-                // PUBLISHED_BY_VINAY_OPPURI
-          </div>
+        <div className="w-full hidden border-t border-foreground/10 py-8 md:flex flex-col-reverse md:flex-row justify-between items-center gap-6 md:gap-4 max-w-7xl mx-auto">
+          <Link href="https://linktr.ee/vinayoppuri" target="_blank" rel="noopener noreferrer" className="text-xs text-muted-foreground font-mono text-center md:text-left hover:text-foreground transition-colors">
+                // DEVELOPED_BY_VINAY_OPPURI
+          </Link>
 
-          <div className="w-full md:w-auto flex items-center justify-center md:justify-end gap-2">
+          <div className="flex flex-wrap items-center justify-center md:justify-end gap-2">
             {socialLinks.map((link) => (
               <Tooltip key={link.name}>
                 <TooltipTrigger asChild>
@@ -102,7 +126,7 @@ const Footer = () => {
                     href={link.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-7 h-7 flex items-center justify-center"
+                    className="w-8 h-8 flex items-center justify-center rounded-full hover:bg-foreground/5 transition-colors"
                   >
                     {link.icon}
                   </Link>
@@ -113,7 +137,7 @@ const Footer = () => {
               </Tooltip>
             ))}
 
-            <div className="h-4 w-px bg-foreground/10 mx-2"></div>
+            <div className="hidden md:block h-4 w-px bg-foreground/10 mx-2"></div>
 
             {/* Status Indicator */}
             <div className="flex items-center gap-2 bg-secondary/30 px-3 py-1.5 rounded-full border border-foreground/5">

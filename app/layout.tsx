@@ -7,6 +7,7 @@ import { SocialLinks } from "@/components/common/social-links";
 import { Header } from "@/components/core/1-Header";
 import Footer from "@/components/core/8-Footer";
 import { ScrollToTop } from "@/components/ui/scroll-to-top";
+import { Toaster } from "sonner";
 
 
 const inter = Inter({
@@ -69,6 +70,7 @@ export default function RootLayout({
           {children}
           <Footer />
           <ScrollToTop />
+          <Toaster richColors position="top-right" />
         </ThemeProvider>
       </body>
     </html>

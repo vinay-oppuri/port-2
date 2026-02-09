@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { SendIcon } from "lucide-react";
 import { useEffect, useState } from "react";
 import LoadingScreen from "@/components/common/loading-state";
+import { toast } from "sonner";
 
 export default function ContactPage() {
   const [mounted, setMounted] = useState(false)
@@ -39,14 +40,14 @@ export default function ContactPage() {
       });
 
       if (response.ok) {
-        alert('Message sent successfully!');
+        toast.success('Message sent successfully!');
         setFormData({ name: "", phone: "", email: "", message: "" });
       } else {
-        alert('Failed to send message.');
+        toast.error('Failed to send message.');
       }
     } catch (error) {
       console.error('Error sending message:', error);
-      alert('An error occurred.');
+      toast.error('An error occurred.');
     } finally {
       setLoading(false);
     }
