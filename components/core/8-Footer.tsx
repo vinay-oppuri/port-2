@@ -98,7 +98,7 @@ const Footer = () => {
               value={formData.feedback}
               onChange={handleChange}
               placeholder="Enter your feedback..."
-              className="w-full rounded-lg py-3 px-4 min-h-[100px] resize-none transition-all placeholder:text-muted-foreground/50 text-foreground bg-background/50"
+              className="w-full rounded-lg py-3 px-4 min-h-16 resize-none transition-all placeholder:text-muted-foreground/50 text-foreground bg-background/50"
               required
             />
             <Button type="submit" disabled={loading} className="w-full">
