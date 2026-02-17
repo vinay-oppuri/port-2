@@ -285,11 +285,8 @@ export const experiences = [
       { name: "Firebase", logo: <SiFirebase className="h-5 w-5 text-[#FF6B35]" /> },
     ],
     responsibilities: [
-      "Built and optimized the entire college website with modern full-stack technologies.",
-      "Implemented dynamic dashboards, authentication, and admin features.",
-      "Improved performance, accessibility, and UI/UX for students & faculty.",
-      "Integrated secure API endpoints and optimized backend workflows.",
+      // "Updated data regarding PhD students applications and results on the website.",
+      // "Improved UI of results are out division for PhD students.",
     ],
   },
-  // add more entries here...
 ];
