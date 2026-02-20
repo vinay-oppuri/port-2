@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { heroConfig } from "@/lib/hero.config";
 import { Button } from "@/components/ui/button";
-import SpotifyNowPlaying from "@/components/core/2-Spotify";
 import ExperienceCard from "@/components/core/3-Experience";
 import ProjectsPage from "@/components/core/4-Projects";
 import AboutPage from "@/components/core/5-AboutMe";
@@ -12,6 +11,7 @@ import { useEffect, useState } from "react";
 import GitHubActivity from "@/components/core/6-GithubActivity";
 import ContactDialog from "@/components/core/7-Contact";
 import { AvatarLogo } from "@/components/common/AvatarLogo";
+import SpotifyLastPlayed from "@/components/core/2-Spotify";
 
 const Page = () => {
   const [mounted, setMounted] = useState(false);
@@ -71,7 +71,7 @@ const Page = () => {
 
       {/* Sections */}
       <div className="w-full flex flex-col pt-6 gap-6">
-        <SpotifyNowPlaying />
+        <SpotifyLastPlayed />
         <ExperienceCard />
         <ProjectsPage />
         <AboutPage />

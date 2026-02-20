@@ -16,7 +16,6 @@ if (!client_id || !client_secret || !refresh_token) {
 
 const TOKEN_ENDPOINT = "https://accounts.spotify.com/api/token";
 const RECENT = "https://api.spotify.com/v1/me/player/recently-played?limit=1";
-const NOW_PLAYING = "https://api.spotify.com/v1/me/player/currently-playing";
 
 const basic = Buffer.from(`${client_id}:${client_secret}`).toString("base64");
 
@@ -60,15 +59,6 @@ export async function getAccessToken() {
 export async function getRecentlyPlayed() {
   const token = await getAccessToken();
   const res = await fetchWithRetry(RECENT, {
-    headers: { Authorization: `Bearer ${token}` },
-  });
-
-  return { status: res.status, data: await res.json() };
-}
-
-export async function getNowPlaying() {
-  const token = await getAccessToken();
-  const res = await fetchWithRetry(NOW_PLAYING, {
     headers: { Authorization: `Bearer ${token}` },
   });
 

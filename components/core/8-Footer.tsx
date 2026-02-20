@@ -67,30 +67,30 @@ const Footer = () => {
       </div>
 
       <div className="w-full mx-auto px-4 md:px-8 border-t border-foreground/10 pt-8 md:pt-16">
-        <div className="flex flex-col md:flex-row justify-between items-start gap-12 mb-16 max-w-7xl mx-auto">
+        <div className="flex flex-col md:flex-row justify-between items-start sm:gap-6 gap-12 mb-16 max-w-7xl mx-auto">
           {/* Left Side: Brand & Description */}
           <div className="flex flex-col gap-4 max-w-md text-center md:text-left mx-auto md:mx-0">
             <div className="flex items-center gap-2 justify-center md:justify-start">
               <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-primary">
                 <AvatarLogo className="w-full h-full rounded-full text-ring" />
               </div>
-              <span className="text-xl font-bold tracking-wider text-foreground">ViNAY OPPURI</span>
+              <span className="text-lg md:text-xl font-bold tracking-wider text-foreground">ViNAY OPPURI</span>
             </div>
 
-            <p className="text-muted-foreground">
+            <p className="text-xs md:text-base text-muted-foreground">
               I&apos;m a software engineer who loves building cool stuff, passionate about technology and always looking for new challenges.
             </p>
           </div>
 
           {/* Right Side: Feedback Form */}
-          <form className="space-y-4 w-full max-w-sm mx-auto md:mx-0" onSubmit={handleSubmit}>
+          <form className="space-y-4 w-[90%] md:w-full max-w-sm mx-auto md:mx-0" onSubmit={handleSubmit}>
             <Input
               type="text"
               name="name"
               placeholder="Enter your name..."
               value={formData.name}
               onChange={handleChange}
-              className="bg-background/50 placeholder:text-muted-foreground/50 text-foreground" 
+              className="bg-background/50 placeholder:text-muted-foreground/50 text-foreground text-xs md:text-base" 
               required
             />
             <Textarea
@@ -98,10 +98,10 @@ const Footer = () => {
               value={formData.feedback}
               onChange={handleChange}
               placeholder="Enter your feedback..."
-              className="w-full rounded-lg py-3 px-4 min-h-16 resize-none transition-all placeholder:text-muted-foreground/50 text-foreground bg-background/50"
+              className="w-full rounded-lg py-3 px-4 min-h-16 resize-none transition-all placeholder:text-muted-foreground/50 text-foreground bg-background/50 text-xs md:text-base"
               required
             />
-            <Button type="submit" disabled={loading} className="w-full">
+            <Button type="submit" disabled={loading} className="w-full text-xs md:text-base">
               {loading ? (
                 <Loader2 className="w-4 h-4 animate-spin mr-2" />
               ) : (
