@@ -1,22 +1,9 @@
-"use client";
-
-import Image from "next/image";
 import { heroConfig } from "@/lib/hero.config";
-import { useTheme } from "next-themes";
-import { useEffect, useState } from "react";
 import { Badge } from "../ui/badge";
 import { AvatarLogo } from "../common/AvatarLogo";
 
 const AboutPage = () => {
   const skills = heroConfig.skills;
-  const [mounted, setMounted] = useState(false);
-  const { theme } = useTheme();
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  if (!mounted) return null;
 
   return (
     <section className="flex flex-col gap-8 sm:gap-10 w-full px-2 md:px-0 py-4">
@@ -24,7 +11,7 @@ const AboutPage = () => {
       {/* Heading */}
       <div className="flex flex-col gap-1">
         <p className="text-sm text-muted-foreground">About</p>
-        <h1 className="text-2xl font-bold text-foreground">Me</h1>
+        <h2 className="text-2xl font-bold text-foreground">Me</h2>
       </div>
 
       {/* Main About Section */}

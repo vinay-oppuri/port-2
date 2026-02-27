@@ -15,6 +15,28 @@ export const navLinks = [
   { name: "Projects", href: "/projects" },
 ]
 
+const HeaderSkeleton = () => (
+  <header
+    aria-hidden="true"
+    className="sticky top-0 z-50 flex justify-between items-center backdrop-blur-lg sm:px-6 border-b border-foreground/5 px-4 py-4 animate-pulse"
+  >
+    <div className="flex items-center space-x-3 sm:space-x-4">
+      <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-foreground/10" />
+      <div className="hidden md:flex items-center space-x-4">
+        <div className="h-3 w-10 rounded bg-foreground/10" />
+        <div className="h-3 w-12 rounded bg-foreground/10" />
+        <div className="h-3 w-14 rounded bg-foreground/10" />
+      </div>
+    </div>
+
+    <div className="flex items-center space-x-3">
+      <div className="h-9 w-22 rounded-md bg-foreground/10" />
+      <div className="h-9 w-9 rounded-md bg-foreground/10" />
+      <div className="md:hidden h-5 w-5 rounded bg-foreground/10" />
+    </div>
+  </header>
+);
+
 export const Header = () => {
   const { theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
@@ -30,7 +52,7 @@ export const Header = () => {
 
 
   useEffect(() => setMounted(true), [])
-  if (!mounted) return null;
+  if (!mounted) return <HeaderSkeleton />;
 
   return (
     <header className="sticky top-0 z-50 flex justify-between items-center backdrop-blur-lg sm:px-6 border-b border-foreground/5 px-4 py-4">

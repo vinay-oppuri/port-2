@@ -4,12 +4,10 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { SendIcon } from "lucide-react";
-import { useEffect, useState } from "react";
-import LoadingScreen from "@/components/common/loading-state";
+import { useState } from "react";
 import { toast } from "sonner";
 
 export default function ContactPage() {
-  const [mounted, setMounted] = useState(false)
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
@@ -17,9 +15,6 @@ export default function ContactPage() {
     message: ""
   })
   const [loading, setLoading] = useState(false)
-
-  useEffect(() => setMounted(true), [])
-  if (!mounted) return <LoadingScreen />
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;

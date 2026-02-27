@@ -1,0 +1,98 @@
+import Image from "next/image";
+import { Badge } from "@/components/ui/badge";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
+import { experiences } from "@/lib/hero.config";
+
+type ExperienceItem = (typeof experiences)[number];
+
+interface ExperienceListProps {
+  items: ExperienceItem[];
+}
+
+export function ExperienceList({ items }: ExperienceListProps) {
+  return (
+    <Accordion defaultValue="exp-0" type="single" collapsible className="space-y-6">
+      {items.map((exp, idx) => (
+        <AccordionItem
+          key={idx}
+          value={`exp-${idx}`}
+          className="border-b-0 px-2 md:px-4"
+        >
+          <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 w-full font-semibold">
+            <div className="flex items-start gap-4 w-full">
+              <Image
+                src={exp.logo}
+                width={58}
+                height={58}
+                alt={`${exp.companyName} logo`}
+                className="bg-foreground/5 h-18 md:h-13 w-20 md:w-14 rounded-md p-2 shrink-0"
+              />
+
+              <div className="flex flex-col gap-1.5 md:gap-0">
+                <AccordionTrigger className="no-arrow p-0 hover:no-underline flex flex-wrap items-center gap-2 text-left">
+                  <h3 className="font-bold text-md md:text-lg text-foreground/90">
+                    {exp.companyName}
+                  </h3>
+
+                  {exp.status && (
+                    <Badge className="flex items-center gap-1 bg-green-600/20 text-[9px] md:text-xs text-foreground/80 rounded-sm px-1 py-0.5">
+                      <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
+                      {exp.status}
+                    </Badge>
+                  )}
+                </AccordionTrigger>
+
+                <p className="text-xs md:text-sm font-serif text-muted-foreground">
+                  {exp.role}
+                </p>
+              </div>
+            </div>
+
+            <div className="text-sm sm:text-right text-muted-foreground font-normal whitespace-nowrap">
+              <p>{exp.timeline}</p>
+              <p>{exp.location}</p>
+            </div>
+          </div>
+
+          <AccordionContent className="mt-6 space-y-6">
+            <div>
+              <h4 className="text-base font-semibold text-foreground/90 mb-2">
+                Technologies & Tools
+              </h4>
+
+              <div className="flex flex-wrap gap-2">
+                {exp.technologies.map((tech, i) => (
+                  <Badge
+                    key={i}
+                    variant="secondary"
+                    className="flex gap-2 items-center text-xs md:text-md font-semibold border border-dashed border-muted-foreground/40 px-3 py-1 rounded-md"
+                  >
+                    {tech.logo} {tech.name}
+                  </Badge>
+                ))}
+              </div>
+            </div>
+
+            {exp.responsibilities.length > 0 && (
+              <div>
+                <ul className="space-y-2 text-sm leading-relaxed text-muted-foreground">
+                  {exp.responsibilities.map((res, i) => (
+                    <li key={i} className="flex text-sm md:text-base gap-2">
+                      <span>▪</span>
+                      {res}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+          </AccordionContent>
+        </AccordionItem>
+      ))}
+    </Accordion>
+  );
+}

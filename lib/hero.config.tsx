@@ -162,7 +162,7 @@ export const socialLinks = [
   },
   {
     name: "LinkedIn",
-    href: "https://www.linkedin.com/in/yourusername/",
+    href: "https://www.linkedin.com/in/vinay-oppuri/",
     icon: <SiLinkedin className="text-[#0A66C2]" />,
   },
   {
