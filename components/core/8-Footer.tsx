@@ -90,7 +90,7 @@ const Footer = () => {
               placeholder="Enter your name..."
               value={formData.name}
               onChange={handleChange}
-              className="bg-background/50 placeholder:text-muted-foreground/50 text-foreground text-xs md:text-base" 
+              className="bg-background/50 placeholder:text-muted-foreground/50 text-foreground text-xs md:text-base"
               required
             />
             <Textarea

@@ -19,7 +19,7 @@ export function ProjectCards({ projects }: ProjectCardsProps) {
       {projects.map((project) => (
         <Card
           key={project.title}
-          className="overflow-hidden bg-white/5 border border-white/5 hover:border-white/10 hover:shadow-2xl hover:shadow-indigo-500/20 hover:-translate-y-1 transition-all duration-500 rounded-lg p-0 group"
+          className="overflow-hidden bg-white/5 border border-white/5 hover:border-white/10 hover:shadow-2xl hover:shadow-ring/20 hover:-translate-y-1 transition-all duration-500 rounded-lg p-0 group"
         >
           <div className="relative h-48 md:h-48 w-full project-bg-ocean overflow-hidden group">
             <div className="absolute top-2 left-2 z-20">

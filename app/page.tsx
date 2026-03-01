@@ -16,12 +16,12 @@ const Page = () => {
         <AvatarLogo className="w-full h-full rounded-full text-ring" />
       </div>
 
-      <h1 className="text-2xl sm:text-3xl font-bold leading-tight text-foreground">
+      <h1 className="text-2xl sm:text-3xl min-[1920px]:text-5xl font-bold leading-tight text-foreground">
         Hi, I&apos;m {heroConfig.name} -{" "}
         <span className="text-muted-foreground">{heroConfig.title}</span>
       </h1>
 
-      <p className="text-sm sm:text-base text-muted-foreground leading-relaxed flex flex-wrap gap-2">
+      <p className="text-sm sm:text-base min-[1920px]:text-lg text-muted-foreground leading-relaxed flex flex-wrap gap-2">
         I build interactive web apps using
         {heroConfig.mainSkills.map((skill, i) => (
           <Link
