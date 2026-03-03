@@ -1,51 +1,86 @@
 // "use client"
 
-import Link from "next/link";
-import { Button } from "../ui/button";
+import { Mail, MapPin, Phone, Linkedin } from "lucide-react";
+import { socialLinks } from "@/lib/hero.config";
 
 const ContactDialog = () => {
+    const emailToUse = "oppurivinay25@gmail.com";
+    const linkedInLink = socialLinks.find(link => link.name.toLowerCase() === "linkedin");
+
     return (
-        <section className="w-full max-w-3xl mx-auto flex flex-col items-center text-center gap-5 rounded-2xl border border-border bg-linear-to-b from-background/80 to-background/40 backdrop-blur px-4 sm:px-6 md:px-10 py-6 sm:py-8 md:py-12 mt-10">
-            <p className="text-xs sm:text-sm md:text-base text-muted-foreground">
-                Hey, you scrolled this far — let&apos;s talk.
-            </p>
-            <div className="flex flex-col sm:flex-row items-center gap-4">
-                <Link href="/contact">
-                    <Button
-                        size="lg"
-                        className="w-60 md:w-35 px-6 text-xs sm:text-sm font-semibold tracking-tight group"
-                    >
-                        Contact Form
-                        <span className="group-hover:translate-x-1 transition-transform duration-300">→</span>
-                    </Button>
-                </Link>
+        <section className="flex flex-col gap-8 sm:gap-10 w-full px-2 md:px-0 py-4">
 
-
-                <div className="flex items-center gap-2 text-muted-foreground">
-                    <span className="h-px w-6 bg-border" />
-                    <span className="text-xs sm:text-sm uppercase tracking-widest">
-                        or
-                    </span>
-                    <span className="h-px w-6 bg-border" />
-                </div>
-
-                <a
-                    href="https://mail.google.com/mail/?view=cm&fs=1&to=oppurivinay25@gmail.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    <Button
-                        size="lg"
-                        variant="outline"
-                        className="w-60 md:w-35 px-6 text-xs sm:text-sm font-semibold tracking-tight group hover:bg-primary/5 hover:text-primary hover:border-primary/20 transition-all duration-300"
-                    >
-                        Email Me
-                        <span className="group-hover:translate-x-1 transition-transform duration-300">→</span>
-                    </Button>
-                </a>
-
+            {/* Header */}
+            <div className="flex flex-col gap-1">
+                <p className="text-sm text-muted-foreground">Contact</p>
+                <h2 className="text-2xl font-bold text-foreground">Me</h2>
             </div>
-        </section>
+
+            <div className="w-full flex flex-col items-start gap-8">
+
+                <p className="text-muted-foreground leading-relaxed text-sm sm:text-base max-w-2xl">
+                    Whether you have a specific project in mind, need technical consulting, or just want to connect, I&apos;m always open to discussing new opportunities.
+                </p>
+
+                <div className="flex flex-col gap-4 sm:gap-6 w-full">
+
+                    {/* Email */}
+                    <div className="flex items-center gap-4 sm:gap-5 group cursor-pointer w-full">
+                        <div className="w-12 h-12 sm:w-14 sm:h-14 shrink-0 flex items-center justify-center rounded-xl sm:rounded-2xl border border-white/10 bg-primary/5 text-muted-foreground transition-all duration-300 group-hover:border-ring/20 group-hover:text-ring group-hover:bg-ring/10">
+                            <Mail className="w-5 h-5 sm:w-6 sm:h-6" strokeWidth={1.5} />
+                        </div>
+                        <div className="flex flex-col overflow-hidden">
+                            <span className="text-xs sm:text-sm font-medium text-muted-foreground mb-1 leading-none transition-colors group-hover:text-ring">Email</span>
+                            <a href={`mailto:${emailToUse}`} className="text-sm sm:text-base font-bold text-foreground transition-colors group-hover:text-ring truncate">
+                                {emailToUse}
+                            </a>
+                        </div>
+                    </div>
+
+                    {/* LinkedIn */}
+                    {linkedInLink && (
+                        <div className="flex items-center gap-4 sm:gap-5 group cursor-pointer w-full">
+                            <div className="w-12 h-12 sm:w-14 sm:h-14 shrink-0 flex items-center justify-center rounded-xl sm:rounded-2xl border border-white/10 bg-primary/5 text-muted-foreground transition-all duration-300 group-hover:border-ring/20 group-hover:text-ring group-hover:bg-ring/10">
+                                <Linkedin className="w-5 h-5 sm:w-6 sm:h-6" strokeWidth={1.5} />
+                            </div>
+                            <div className="flex flex-col overflow-hidden">
+                                <span className="text-xs sm:text-sm font-medium text-muted-foreground mb-1 leading-none transition-colors group-hover:text-ring">LinkedIn</span>
+                                <a href={linkedInLink.href} target="_blank" rel="noopener noreferrer" className="text-sm sm:text-base font-bold text-foreground transition-colors group-hover:text-ring truncate">
+                                    Vinay Oppuri
+                                </a>
+                            </div>
+                        </div>
+                    )}
+
+                    {/* Location */}
+                    <div className="flex items-center gap-4 sm:gap-5 group cursor-pointer w-full">
+                        <div className="w-12 h-12 sm:w-14 sm:h-14 shrink-0 flex items-center justify-center rounded-xl sm:rounded-2xl border border-white/10 bg-primary/5 text-muted-foreground transition-all duration-300 group-hover:border-ring/20 group-hover:text-ring group-hover:bg-ring/10">
+                            <MapPin className="w-5 h-5 sm:w-6 sm:h-6" strokeWidth={1.5} />
+                        </div>
+                        <div className="flex flex-col overflow-hidden">
+                            <span className="text-xs sm:text-sm font-medium text-muted-foreground mb-1 leading-none transition-colors group-hover:text-ring">Location</span>
+                            <span className="text-sm sm:text-base font-bold text-foreground transition-colors group-hover:text-ring truncate">
+                                Hyderabad, India
+                            </span>
+                        </div>
+                    </div>
+
+                    {/* Phone */}
+                    <div className="flex items-center gap-4 sm:gap-5 group cursor-pointer w-full">
+                        <div className="w-12 h-12 sm:w-14 sm:h-14 shrink-0 flex items-center justify-center rounded-xl sm:rounded-2xl border border-white/10 bg-primary/5 text-muted-foreground transition-all duration-300 group-hover:border-ring/20 group-hover:text-ring group-hover:bg-ring/10">
+                            <Phone className="w-5 h-5 sm:w-6 sm:h-6" strokeWidth={1.5} />
+                        </div>
+                        <div className="flex flex-col overflow-hidden">
+                            <span className="text-xs sm:text-sm font-medium text-muted-foreground mb-1 leading-none transition-colors group-hover:text-ring">Phone</span>
+                            <a href="tel:+917569972659" className="text-sm sm:text-base font-bold text-foreground transition-colors group-hover:text-ring truncate">
+                                +91 75699 72659
+                            </a>
+                        </div>
+                    </div>
+
+                </div >
+            </div >
+        </section >
     );
 };
 
