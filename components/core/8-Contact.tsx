@@ -25,8 +25,8 @@ const ContactDialog = () => {
                 <div className="flex flex-col gap-4 sm:gap-6 w-full">
 
                     {/* Email */}
-                    <div className="flex items-center gap-4 sm:gap-5 group cursor-pointer w-full">
-                        <div className="w-12 h-12 sm:w-14 sm:h-14 shrink-0 flex items-center justify-center rounded-xl sm:rounded-2xl border border-white/10 bg-primary/5 text-muted-foreground transition-all duration-300 group-hover:border-ring/20 group-hover:text-ring group-hover:bg-ring/10">
+                    <div className="flex items-center gap-4 sm:gap-5 py-1.5 group cursor-pointer w-full">
+                        <div className="w-12 h-12 sm:w-14 sm:h-14 shrink-0 flex items-center justify-center rounded-xl sm:rounded-xl border btn-inner-shadow bg-primary/5 text-muted-foreground transition-all duration-300 group-hover:border-ring/20 group-hover:text-ring group-hover:bg-ring/10">
                             <Mail className="w-5 h-5 sm:w-6 sm:h-6" strokeWidth={1.5} />
                         </div>
                         <div className="flex flex-col overflow-hidden">
@@ -39,8 +39,8 @@ const ContactDialog = () => {
 
                     {/* LinkedIn */}
                     {linkedInLink && (
-                        <div className="flex items-center gap-4 sm:gap-5 group cursor-pointer w-full">
-                            <div className="w-12 h-12 sm:w-14 sm:h-14 shrink-0 flex items-center justify-center rounded-xl sm:rounded-2xl border border-white/10 bg-primary/5 text-muted-foreground transition-all duration-300 group-hover:border-ring/20 group-hover:text-ring group-hover:bg-ring/10">
+                        <div className="flex items-center gap-4 sm:gap-5 py-1.5 group cursor-pointer w-full">
+                            <div className="w-12 h-12 sm:w-14 sm:h-14 shrink-0 flex items-center justify-center rounded-xl sm:rounded-xl border btn-inner-shadow bg-primary/5 text-muted-foreground transition-all duration-300 group-hover:border-ring/20 group-hover:text-ring group-hover:bg-ring/10">
                                 <Linkedin className="w-5 h-5 sm:w-6 sm:h-6" strokeWidth={1.5} />
                             </div>
                             <div className="flex flex-col overflow-hidden">
@@ -53,8 +53,8 @@ const ContactDialog = () => {
                     )}
 
                     {/* Location */}
-                    <div className="flex items-center gap-4 sm:gap-5 group cursor-pointer w-full">
-                        <div className="w-12 h-12 sm:w-14 sm:h-14 shrink-0 flex items-center justify-center rounded-xl sm:rounded-2xl border border-white/10 bg-primary/5 text-muted-foreground transition-all duration-300 group-hover:border-ring/20 group-hover:text-ring group-hover:bg-ring/10">
+                    <div className="flex items-center gap-4 sm:gap-5 py-1.5 group cursor-pointer w-full">
+                        <div className="w-12 h-12 sm:w-14 sm:h-14 shrink-0 flex items-center justify-center rounded-xl sm:rounded-xl border btn-inner-shadow bg-primary/5 text-muted-foreground transition-all duration-300 group-hover:border-ring/20 group-hover:text-ring group-hover:bg-ring/10">
                             <MapPin className="w-5 h-5 sm:w-6 sm:h-6" strokeWidth={1.5} />
                         </div>
                         <div className="flex flex-col overflow-hidden">
@@ -66,8 +66,8 @@ const ContactDialog = () => {
                     </div>
 
                     {/* Phone */}
-                    <div className="flex items-center gap-4 sm:gap-5 group cursor-pointer w-full">
-                        <div className="w-12 h-12 sm:w-14 sm:h-14 shrink-0 flex items-center justify-center rounded-xl sm:rounded-2xl border border-white/10 bg-primary/5 text-muted-foreground transition-all duration-300 group-hover:border-ring/20 group-hover:text-ring group-hover:bg-ring/10">
+                    <div className="flex items-center gap-4 sm:gap-5 py-1.5 group cursor-pointer w-full">
+                        <div className="w-12 h-12 sm:w-14 sm:h-14 shrink-0 flex items-center justify-center rounded-xl sm:rounded-xl border btn-inner-shadow bg-primary/5 text-muted-foreground transition-all duration-300 group-hover:border-ring/20 group-hover:text-ring group-hover:bg-ring/10">
                             <Phone className="w-5 h-5 sm:w-6 sm:h-6" strokeWidth={1.5} />
                         </div>
                         <div className="flex flex-col overflow-hidden">

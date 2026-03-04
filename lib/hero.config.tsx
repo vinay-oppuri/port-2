@@ -24,7 +24,7 @@ import {
 export const heroConfig = {
   name: "Vinay",
   fullName: "Oppuri Vinay Reddy",
-  title: "A Full Stack Web Developer • Agentic AI Engineer",
+  title: "A Full Stack Web Developer • AI Engineer",
   avatar: "/avatars/avatar-rounded.png",
 
   mainSkills: [
@@ -131,9 +131,9 @@ export const heroConfig = {
 
   description: {
     template:
-      "I build interactive web apps using Next.js, React, Bun, Typescript and PostgreSQL. With a focus on UI design. Enthusiastic about Three.js, driven by a keen eye for design.",
+      "I build interactive web apps using Next.js, React, Bun, Typescript and PostgreSQL. With a focus on UI design. Enthusiastic about AI agents, driven by a keen eye for design.",
     about:
-      "I am a Full Stack Developer and Agentic AI Engineer focused on building scalable web apps and intelligent systems. My expertise spans the modern JavaScript ecosystem Next.js, React, Node.js, TypeScript paired with PostgreSQL and MongoDB. I am enthusiastic about AI agents automating workflows and enhancing productivity, while also enjoying new technologies and UI/UX design.",
+      "Full Stack & AI Engineer building scalable web apps and intelligent systems with Next.js, React, Node.js, TypeScript, PostgreSQL, and MongoDB.",
   },
 
   buttons: [
@@ -285,8 +285,9 @@ export const experiences = [
       { name: "Firebase", logo: <SiFirebase className="h-5 w-5 text-[#FF6B35]" /> },
     ],
     responsibilities: [
-      // "Updated data regarding PhD students applications and results on the website.",
-      // "Improved UI of results are out division for PhD students.",
+      "Updated data regarding PhD students applications and results on the website.",
+      "Improved UI of results are out division for PhD students.",
+      "Built a new Training and Placement Cell website for IIIT Raichur."
     ],
   },
 ];

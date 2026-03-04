@@ -19,7 +19,7 @@ export function ProjectCards({ projects }: ProjectCardsProps) {
       {projects.map((project) => (
         <Card
           key={project.title}
-          className="overflow-hidden bg-white/5 border border-white/5 hover:border-white/10 hover:shadow-2xl hover:shadow-ring/20 hover:-translate-y-1 transition-all duration-500 rounded-lg p-0 group"
+          className="overflow-hidden bg-foreground/3 shadow-inner-strong! hover:shadow-2xl hover:shadow-ring/10 hover:-translate-y-1 transition-all duration-500 rounded-lg p-0 group"
         >
           <div className="relative h-48 md:h-48 w-full project-bg-ocean overflow-hidden group">
             <div className="absolute top-2 left-2 z-20">
@@ -60,7 +60,7 @@ export function ProjectCards({ projects }: ProjectCardsProps) {
 
           <CardHeader>
             <div className="flex flex-row justify-between items-center gap-2">
-              <CardTitle className="text-base sm:text-xl text-foreground group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-linear-to-r group-hover:from-white group-hover:to-zinc-400 transition-all duration-300">
+              <CardTitle className="text-base sm:text-xl text-foreground transition-all duration-300">
                 {project.title}
               </CardTitle>
 

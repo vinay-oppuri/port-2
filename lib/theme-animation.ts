@@ -14,27 +14,31 @@ export const injectAnimationStyles = (css: string) => {
 };
 
 export const circleBlurTopRightCSS = `
-  /* Smooth timing */
+  /* Performant timing */
   ::view-transition-old(root),
   ::view-transition-new(root) {
-    animation-duration: 0.75s;
-    animation-timing-function: ease-out;
+    animation-duration: 0.6s;
+    animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
   }
 
-  /* Old page stays fully visible → prevents flick flash */
+  /* Old page stays fully visible */
   ::view-transition-old(root) {
-    mask: none;
+    animation: none;
+    z-index: -1;
   }
 
-  /* New page gets circle-blur reveal */
+  /* New page gets hardware-accelerated clip-path reveal */
   ::view-transition-new(root) {
-    mask: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'><defs><filter id='b'><feGaussianBlur stdDeviation='2'/></filter></defs><circle cx='40' cy='0' r='18' fill='white' filter='url(%23b)'/></svg>")
-      top right / 0 no-repeat;
-    animation-name: circleRevealBlur;
+    animation-name: circleReveal;
+    z-index: 1;
   }
 
-  @keyframes circleRevealBlur {
-    from { mask-size: 0; }
-    to   { mask-size: 300vmax; }
+  @keyframes circleReveal {
+    from {
+      clip-path: circle(0% at top right);
+    }
+    to {
+      clip-path: circle(150% at top right);
+    }
   }
 `;

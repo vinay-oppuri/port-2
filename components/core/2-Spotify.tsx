@@ -12,7 +12,7 @@ const SpotifySkeleton = () => (
     </div>
     <div
       aria-hidden="true"
-      className="flex w-full bg-foreground/5 shadow-inner-strong rounded-lg p-4 flex-col gap-6 min-h-16 animate-pulse"
+      className="flex w-full bg-foreground/5 border border-foreground/10 shadow-inner-strong rounded-lg p-4 flex-col gap-6 min-h-16 animate-pulse"
     >
       <div className="flex items-center gap-4">
         <div className="w-12 h-12 rounded-md bg-foreground/15" />
@@ -36,7 +36,7 @@ export default function SpotifyLastPlayed() {
       <div className="flex text-muted-foreground text-sm font-semibold items-center gap-2 -mb-3">
         <SiSpotify size={22} color="#1DB954" /> Last Played
       </div>
-      <div className="flex w-full bg-foreground/5 shadow-inner-strong rounded-lg p-4 flex-col gap-6 min-h-16">
+      <div className="flex w-full bg-foreground/3 border border-foreground/5 hover:border-foreground/10 transition-colors shadow-inner-strong rounded-lg p-4 flex-col gap-6 min-h-16">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-4">
             <div className="relative group">

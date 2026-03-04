@@ -1,60 +1,56 @@
 import { heroConfig } from "@/lib/hero.config";
-import { Badge } from "../ui/badge";
 import { AvatarLogo } from "../common/AvatarLogo";
 
 const AboutPage = () => {
-  const skills = heroConfig.skills;
+  // Aggregate a flat list of skills for the minimal icon row
+  const allSkills = [
+    ...heroConfig.skills.frontend,
+    ...heroConfig.skills.backend,
+  ];
+
+  // Deduplicate by name to have a clean, unique row of icons
+  const uniqueSkills = Array.from(new Map(allSkills.map((item) => [item.name, item])).values());
 
   return (
-    <section className="flex flex-col gap-8 sm:gap-10 w-full px-2 md:px-0 py-4">
+    <section className="flex flex-col w-full px-2 md:px-0 py-4">
 
       {/* Heading */}
-      <div className="flex flex-col gap-1">
+      <div className="flex flex-col gap-1 mb-6">
         <p className="text-sm text-muted-foreground">About</p>
         <h2 className="text-2xl font-bold text-foreground">Me</h2>
       </div>
 
       {/* Main About Section */}
-      <div className="flex flex-col md:flex-row items-start gap-8 md:gap-10">
+      <div className="flex flex-col md:flex-row items-start gap-6 md:gap-8">
 
         {/* Left: Avatar */}
-        <div className="rounded-xl overflow-hidden h-40 w-40 md:h-60 md:w-60 aspect-square relative shrink-0">
-          <AvatarLogo className="w-full h-full text-sky-300 dark:text-orange-400 hover:scale-103 transition-transform duration-300" />
+        <div className="rounded-lg overflow-hidden h-40 w-40 md:h-52 md:w-52 aspect-square relative shrink-0">
+          <AvatarLogo className="w-full h-full text-ring/85 dark:text-ring scale-105 transition-transform duration-300" />
         </div>
 
         {/* Right: Info */}
-        <div className="flex flex-col gap-4 max-w-2xl text-left">
+        <div className="flex flex-col gap-6 max-w-xl text-left pt-1 md:pt-2">
 
-          <h2 className="text-xl sm:text-2xl font-semibold flex items-center gap-2">
+          <h2 className="text-xl md:text-2xl font-semibold text-foreground">
             {heroConfig.fullName}
           </h2>
 
-          <p className="text-muted-foreground leading-relaxed text-sm sm:text-base">
-            {heroConfig.description.about ||
-              "I'm a Full Stack developer who loves building digital products, solving real-world problems, and experimenting with modern tech stacks."}
+          <p className="text-muted-foreground leading-relaxed text-sm">
+            {heroConfig.description.about}
           </p>
 
-        </div>
-      </div>
-
-      {/* Skills Section */}
-      <div className="flex flex-col gap-2 mt-4">
-        <p className="font-semibold text-foreground">Skills</p>
-
-        <div className="flex flex-col gap-4">
-          {(Object.entries(skills) as [string, typeof skills.frontend][]).map(([category, items]) => (
-            <div key={category} className="flex flex-col gap-2">
-              <h3 className="text-xs uppercase tracking-widest text-muted-foreground font-medium">{category}</h3>
-              <div className="flex flex-wrap gap-2 sm:gap-3">
-                {items.map((skill, index) => (
-                  <Badge key={index} variant='secondary' className="border border-dashed border-muted-foreground/40 rounded-sm px-2 py-1 gap-1">
-                    <span>{skill.component}</span>
-                    <span>{skill.name}</span>
-                  </Badge>
-                ))}
-              </div>
+          {/* Minimal Skills Row */}
+          <div className="flex flex-col gap-2 mt-2">
+            <p className="text-sm font-semibold text-muted-foreground">Skills</p>
+            <div className="flex flex-wrap gap-3 items-center text-foreground/80 [&_svg]:size-5 md:[&_svg]:size-6">
+              {uniqueSkills.map((skill, index) => (
+                <div key={index} title={skill.name} className="hover:text-foreground transition-colors cursor-pointer hover:-translate-y-0.5 transform duration-200">
+                  {skill.component}
+                </div>
+              ))}
             </div>
-          ))}
+          </div>
+
         </div>
       </div>
     </section>

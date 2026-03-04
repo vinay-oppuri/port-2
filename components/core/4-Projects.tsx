@@ -18,7 +18,7 @@ const ProjectsPage = () => {
       <ProjectCards projects={projects} />
       <div className="w-full flex justify-center my-4">
         <Link href="/projects">
-          <Button variant='outline' className="text-xs md:text-sm text-primary/80 font-normal group hover:bg-primary/5 hover:text-primary transition-all duration-300 border-white/10 hover:border-primary/20">
+          <Button variant='outline' className="text-xs md:text-sm text-foreground/80 font-normal group hover:bg-foreground/5 hover:text-foreground transition-all duration-300 border-foreground/10 hover:border-foreground/20">
             Show all projects
             <span className="ml-2 group-hover:translate-x-1 transition-transform duration-300">→</span>
           </Button>

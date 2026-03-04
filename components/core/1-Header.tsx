@@ -18,7 +18,7 @@ export const navLinks = [
 const HeaderSkeleton = () => (
   <header
     aria-hidden="true"
-    className="sticky top-0 z-50 flex justify-between items-center backdrop-blur-lg sm:px-6 border-b border-foreground/5 px-4 py-4 animate-pulse"
+    className="sticky top-0 z-50 flex justify-between items-center backdrop-blur-lg sm:px-6 px-4 py-4 animate-pulse"
   >
     <div className="flex items-center space-x-3 sm:space-x-4">
       <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-foreground/10" />
@@ -55,23 +55,23 @@ export const Header = () => {
   if (!mounted) return <HeaderSkeleton />;
 
   return (
-    <header className="sticky top-0 z-50 flex justify-between items-center backdrop-blur-lg sm:px-6 border-b border-foreground/5 px-4 py-4">
+    <header className="sticky top-0 z-50 flex justify-between items-center backdrop-blur-lg sm:px-6 px-4 py-4">
 
       {/* Left: Avatar + Desktop Nav */}
       <div className="flex items-center space-x-3 sm:space-x-4">
         {/* Avatar */}
         <Link href="/">
           <div className="relative w-9 h-9 sm:w-10 sm:h-10 rounded-full hover:scale-105 transition-transform">
-            <AvatarLogo className="w-full h-full rounded-full text-ring" />
+            <AvatarLogo className="w-full h-full rounded-full text-ring/85 dark:text-ring" />
           </div>
         </Link>
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex space-x-6 text-foreground text-sm font-medium">
           {navLinks.map((link, idx) => (
-            <Link href={link.href} key={idx} className="group relative">
+            <Link href={link.href} key={idx} className="group relative opacity-80 hover:opacity-100 transition-opacity duration-300">
               {link.name}
-              <span className="absolute -bottom-1 left-0 w-0 h-[1.5px] bg-foreground/80 transition-all duration-300 group-hover:w-full"></span>
+              <span className="absolute -bottom-1 left-0 w-0 h-[1.5px] bg-foreground transition-all duration-300 group-hover:w-full"></span>
             </Link>
           ))}
         </nav>

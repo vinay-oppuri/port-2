@@ -4,8 +4,8 @@ import { Button } from "@/components/ui/button";
 import ExperienceCard from "@/components/core/3-Experience";
 import ProjectsPage from "@/components/core/4-Projects";
 import AboutPage from "@/components/core/5-AboutMe";
-import GitHubActivity from "@/components/core/6-GithubActivity";
-import ContactDialog from "@/components/core/7-Contact";
+import GitHubActivity from "@/components/core/7-GithubActivity";
+import ContactDialog from "@/components/core/8-Contact";
 import { AvatarLogo } from "@/components/common/AvatarLogo";
 import SpotifyLastPlayed from "@/components/core/2-Spotify";
 
@@ -13,11 +13,11 @@ const Page = () => {
   return (
     <section className="flex flex-col items-start space-y-4 mx-auto mt-12 md:mt-24 w-full px-4 py-4 md:px-8">
       <div className="w-24 h-24 sm:w-32 sm:h-32 rounded-full bg-foreground/10 p-1 flex items-center justify-center overflow-hidden">
-        <AvatarLogo className="w-full h-full rounded-full text-ring" />
+        <AvatarLogo className="w-full h-full rounded-full text-ring/85 dark:text-ring" />
       </div>
 
       <h1 className="text-2xl sm:text-3xl min-[1920px]:text-5xl font-bold leading-tight text-foreground">
-        Hi, I&apos;m {heroConfig.name} -{" "}
+        Hi, I&apos;m {heroConfig.name} - {" "}
         <span className="text-muted-foreground">{heroConfig.title}</span>
       </h1>
 
@@ -29,7 +29,7 @@ const Page = () => {
             href={skill.href}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center justify-center px-2 py-1 bg-foreground/10 border border-dashed border-foreground/20 shadow-inner shadow-foreground/5 rounded-sm text-xs font-medium text-foreground gap-1"
+            className="flex items-center justify-center px-2 py-1 bg-foreground/10 border border-dashed border-foreground/20 skill-inner-shadow rounded-sm text-xs font-medium text-foreground gap-1"
           >
             {skill.component}
             {skill.name}

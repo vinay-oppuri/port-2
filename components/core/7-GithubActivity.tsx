@@ -28,7 +28,7 @@ export default function GitHubActivity() {
       </header>
 
       {/* Calendar */}
-      <div className="px-4 py-6 -mx-2 overflow-x-auto rounded-lg flex justify-center shadow-inner-strong">
+      <div className="px-4 py-6 overflow-x-auto rounded-lg flex justify-center border border-foreground/10 shadow-inner-strong">
         <GitHubCalendar
           username="vinay-oppuri"
           blockSize={9}
@@ -42,6 +42,6 @@ export default function GitHubActivity() {
       <p className="mt-6 text-center text-xs text-muted-foreground">
         Contributions are based on UTC time.
       </p>
-    </div>
+    </div >
   );
 }

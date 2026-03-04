@@ -40,7 +40,7 @@ export const ScrollToTop = () => {
                 className="
                     rounded-full w-12 h-12
                     bg-background/80 backdrop-blur-md 
-                    shadow-inner-strong
+                    btn-inner-shadow
                     text-foreground 
                     hover:scale-110 hover:shadow-xl hover:bg-background
                     transition-all duration-300
