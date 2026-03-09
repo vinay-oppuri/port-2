@@ -81,11 +81,11 @@ export const Header = () => {
       <div className="flex items-center space-x-3 ">
         {/* Theme Toggle */}
         <Link href='https://github.com/vinay-oppuri' target="_blank">
-          <Button variant='outline' className="text-foreground/80">
-            <span className="text-xs">Github</span> <FaGithub />
+          <Button variant='outline' className="text-foreground/75">
+            <span className="text-sm">Github</span> <FaGithub />
           </Button>
         </Link>
-        <Button variant="outline" size="icon" onClick={toggleTheme}>
+        <Button variant="outline" size="icon" className="text-foreground/75" onClick={toggleTheme}>
           {theme == 'dark' ? <Sun /> : <Moon />}
         </Button>
 

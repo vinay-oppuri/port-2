@@ -157,7 +157,7 @@ export const heroConfig = {
 export const socialLinks = [
   {
     name: "X",
-    href: "https://x.com/yourusername",
+    href: "https://x.com/vinayoppuri",
     icon: <SiX className="text-foreground" />,
   },
   {
@@ -285,9 +285,9 @@ export const experiences = [
       { name: "Firebase", logo: <SiFirebase className="h-5 w-5 text-[#FF6B35]" /> },
     ],
     responsibilities: [
+      "Built a new Training and Placement Cell website for IIIT Raichur.",
       "Updated data regarding PhD students applications and results on the website.",
       "Improved UI of results are out division for PhD students.",
-      "Built a new Training and Placement Cell website for IIIT Raichur."
     ],
   },
 ];
