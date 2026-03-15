@@ -61,11 +61,6 @@ const Footer = () => {
 
   return (
     <footer className="w-full relative overflow-hidden px-2 md:py-4 py-2 mb-0 bg-background">
-      {/* Pre-footer large text */}
-      <div className="h-70 flex items-center justify-center md:py-6 py-0 mb-0">
-        <TextHoverEffect text="ViNAY" />
-      </div>
-
       <div className="w-full mx-auto px-4 md:px-8 border-t border-foreground/10 pt-8 md:pt-16">
         <div className="flex flex-col md:flex-row justify-between items-start sm:gap-6 gap-12 mb-16 max-w-7xl mx-auto">
           {/* Left Side: Brand & Description */}
@@ -138,6 +133,10 @@ const Footer = () => {
             ))}
           </div>
         </div>
+      </div>
+
+      <div className="h-70 flex items-center justify-center md:py-6 py-0 mb-0">
+        <TextHoverEffect text="ViNAY" />
       </div>
     </footer>
   );
