@@ -7,7 +7,6 @@ import AboutPage from "@/components/core/5-AboutMe";
 import GitHubActivity from "@/components/core/7-GithubActivity";
 import ContactDialog from "@/components/core/8-Contact";
 import { AvatarLogo } from "@/components/common/AvatarLogo";
-import SpotifyLastPlayed from "@/components/core/2-Spotify";
 
 const Page = () => {
   return (
@@ -45,7 +44,7 @@ const Page = () => {
             asChild
             key={button.text}
             variant={button.variant === "outline" ? "outline" : "default"}
-            className="h-9 md:h-10 text-xs md:text-sm hover:-translate-y-1 transition-all duration-300"
+            className="h-9 md:h-10 text-xs md:text-sm hover:-translate-y-1 transition-all! duration-300"
           >
             <Link href={button.href}>
               {button.icon} {button.text}
@@ -55,7 +54,6 @@ const Page = () => {
       </div>
 
       <div className="w-full flex flex-col pt-6 gap-6">
-        <SpotifyLastPlayed />
         <ExperienceCard />
         <ProjectsPage />
         <AboutPage />
