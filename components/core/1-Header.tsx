@@ -1,18 +1,19 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { AvatarLogo } from "../common/AvatarLogo";
 import Link from "next/link";
 import { Moon, Sun, Menu, X } from "lucide-react";
 import { useTheme } from "next-themes";
 import { Button } from "@/components/ui/button";
 import { FaGithub } from "react-icons/fa";
 import { circleBlurTopRightCSS, injectAnimationStyles } from "@/lib/theme-animation";
+import Logo from "../common/Logo";
 
 export const navLinks = [
   { name: "Work", href: "/experience" },
   { name: "Blogs", href: "/blogs" },
   { name: "Projects", href: "/projects" },
+  // {name: "Contact", href: "/contact"}
 ]
 
 const HeaderSkeleton = () => (
@@ -56,38 +57,47 @@ export const Header = () => {
 
   return (
     <header className="sticky top-0 z-50 flex justify-between items-center backdrop-blur-lg sm:px-6 px-4 py-4">
-
-      {/* Left: Avatar + Desktop Nav */}
-      <div className="flex items-center space-x-3 sm:space-x-4">
-        {/* Avatar */}
-        <Link href="/">
+      <div className="flex items-center space-x-3 sm:space-x-8">
+        <Link href="/" className="flex items-center gap-0 group">
           <div className="relative w-9 h-9 sm:w-10 sm:h-10 rounded-full hover:scale-105 transition-transform">
-            <AvatarLogo className="w-full h-full rounded-full text-ring/85 dark:text-ring" />
+            <Logo className="w-full h-full rounded-full text-foreground" />
           </div>
+          <span className="ml-3 text-[18px] font-thin text-foreground/15 mx-2 leading-none select-none">
+            /
+          </span>
+          <span className="text-[11px] uppercase tracking-[0.07em] text-foreground/25 font-normal leading-none mt-0.5">
+            portfolio
+          </span>
         </Link>
-
-        {/* Desktop Navigation */}
-        <nav className="hidden md:flex space-x-6 text-foreground text-sm font-medium">
-          {navLinks.map((link, idx) => (
-            <Link href={link.href} key={idx} className="group relative opacity-80 hover:opacity-100 transition-opacity duration-300">
-              {link.name}
-              <span className="absolute -bottom-1 left-0 w-0 h-[1.5px] bg-foreground transition-all duration-300 group-hover:w-full"></span>
-            </Link>
-          ))}
-        </nav>
       </div>
+
+      <nav className="hidden md:flex items-center space-x-6 text-foreground text-sm font-medium">
+        {navLinks.map((link, idx) => (
+          <Link href={link.href} key={idx} className="group relative opacity-80 hover:opacity-100 transition-opacity duration-300">
+            {link.name}
+            <span className="absolute -bottom-1 left-0 w-0 h-[1.5px] bg-foreground transition-all duration-300 group-hover:w-full"></span>
+          </Link>
+        ))}
+      </nav>
 
       {/* Right: Theme Toggle + Mobile Menu Button */}
       <div className="flex items-center space-x-3 ">
+
         {/* Theme Toggle */}
-        <Link href='https://github.com/vinay-oppuri' target="_blank">
-          <Button variant='outline' className="text-foreground/75">
-            <span className="text-sm">Github</span> <FaGithub />
+        <div className="flex items-center gap-1 border border-foreground/5 rounded-full p-1 bg-background/50 backdrop-blur-lg shadow-sm">
+          <Button variant="ghost" size="sm" className="rounded-full gap-2 px-3 h-8 text-foreground/80 hover:text-foreground hover:bg-foreground/5 transition-all" asChild>
+            <Link href='https://github.com/vinay-oppuri' target="_blank" className="flex items-center gap-2">
+              <span className="text-xs font-medium">Github</span>
+              <FaGithub size={16} />
+            </Link>
           </Button>
-        </Link>
-        <Button variant="outline" size="icon" className="text-foreground/75" onClick={toggleTheme}>
-          {theme == 'dark' ? <Sun /> : <Moon />}
-        </Button>
+
+          <div className="w-px h-4 bg-foreground/15" />
+
+          <Button variant="ghost" size="icon" className="h-8 w-8 rounded-full text-foreground/80 hover:text-foreground hover:bg-foreground/5 transition-all" onClick={toggleTheme}>
+            {theme === 'dark' ? <Sun size={16} /> : <Moon size={16} />}
+          </Button>
+        </div>
 
         {/* Mobile Menu Toggle */}
         <button
