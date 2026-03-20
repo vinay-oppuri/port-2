@@ -85,7 +85,7 @@ const Footer = () => {
               placeholder="Enter your name..."
               value={formData.name}
               onChange={handleChange}
-              className="bg-background/50 placeholder:text-muted-foreground/50 text-foreground text-xs md:text-base"
+              className="bg-foreground/3! rounded-sm placeholder:text-muted-foreground/50 text-foreground text-xs md:text-base border border-white/5"
               required
             />
             <Textarea
@@ -93,7 +93,7 @@ const Footer = () => {
               value={formData.feedback}
               onChange={handleChange}
               placeholder="Enter your feedback..."
-              className="w-full rounded-lg py-3 px-4 min-h-16 resize-none transition-all placeholder:text-muted-foreground/50 text-foreground bg-background/50 text-xs md:text-base"
+              className="w-full bg-foreground/3! rounded-sm py-3 px-4 min-h-16 resize-none transition-all placeholder:text-muted-foreground/50 text-foreground text-xs md:text-base border border-white/5"
               required
             />
             <Button type="submit" disabled={loading} className="w-full text-xs md:text-base">

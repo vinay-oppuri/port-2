@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { Moon, Sun, Menu, X } from "lucide-react";
+import { Moon, Sun, X, MenuIcon } from "lucide-react";
 import { useTheme } from "next-themes";
 import { Button } from "@/components/ui/button";
 import { FaGithub } from "react-icons/fa";
@@ -19,21 +19,31 @@ export const navLinks = [
 const HeaderSkeleton = () => (
   <header
     aria-hidden="true"
-    className="sticky top-0 z-50 flex justify-between items-center backdrop-blur-lg sm:px-6 px-4 py-4 animate-pulse"
+    className="sticky top-0 z-50 w-full backdrop-blur-lg py-4 animate-pulse"
   >
-    <div className="flex items-center space-x-3 sm:space-x-4">
-      <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-foreground/10" />
-      <div className="hidden md:flex items-center space-x-4">
+    <div className="max-w-3xl mx-auto w-full flex justify-between items-center px-2 md:px-0">
+      <div className="flex items-center space-x-3 sm:space-x-8">
+        <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-foreground/10" />
+        <div className="flex items-center gap-1.5 mt-0.5">
+          <div className="h-3 w-2 rounded bg-foreground/10" />
+          <div className="h-2.5 w-12 rounded bg-foreground/10" />
+        </div>
+      </div>
+
+      <div className="hidden md:flex items-center space-x-6">
         <div className="h-3 w-10 rounded bg-foreground/10" />
         <div className="h-3 w-12 rounded bg-foreground/10" />
         <div className="h-3 w-14 rounded bg-foreground/10" />
       </div>
-    </div>
 
-    <div className="flex items-center space-x-3">
-      <div className="h-9 w-22 rounded-md bg-foreground/10" />
-      <div className="h-9 w-9 rounded-md bg-foreground/10" />
-      <div className="md:hidden h-5 w-5 rounded bg-foreground/10" />
+      <div className="flex items-center space-x-3">
+        <div className="flex items-center gap-1 border border-foreground/5 rounded-full p-1 bg-background/50">
+          <div className="h-6 w-14 rounded-full bg-foreground/10" />
+          <div className="w-px h-4 bg-foreground/15" />
+          <div className="h-6 w-6 rounded-full bg-foreground/10" />
+        </div>
+        <div className="md:hidden h-5 w-5 rounded bg-foreground/10" />
+      </div>
     </div>
   </header>
 );
@@ -56,7 +66,7 @@ export const Header = () => {
   if (!mounted) return <HeaderSkeleton />;
 
   return (
-    <header className="sticky top-0 z-50 flex justify-between items-center backdrop-blur-lg sm:px-6 px-4 py-4">
+    <header className="sticky top-0 z-50 w-full flex justify-between items-center backdrop-blur-lg sm:px-100 px-4 py-4">
       <div className="flex items-center space-x-3 sm:space-x-8">
         <Link href="/" className="flex items-center gap-0 group">
           <div className="relative w-9 h-9 sm:w-10 sm:h-10 rounded-full hover:scale-105 transition-transform">
@@ -101,10 +111,10 @@ export const Header = () => {
 
         {/* Mobile Menu Toggle */}
         <button
-          className="md:hidden rounded-lg text-foreground/80 hover:bg-muted transition-colors"
+          className="md:hidden rounded-lg text-foreground/80 hover:bg-muted transition-colors p-1"
           onClick={() => setMenuOpen(!menuOpen)}
         >
-          {menuOpen ? <X size='18' /> : <Menu size='18' />}
+          {menuOpen ? <X size='18' /> : <MenuIcon size='18' />}
         </button>
       </div>
 

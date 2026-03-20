@@ -28,7 +28,7 @@ export const metadata: Metadata = {
     siteName: "Vinay Oppuri Portfolio",
     images: [
       {
-        url: "/avatars/logo.png", // Ideally, use a dedicated OG image here
+        url: "/avatars/logo.png",
         width: 800,
         height: 600,
       },
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Vinay - Portfolio",
     description: "Full-Stack · Agentic AI",
-    images: ["/avatars/logo.png"], // Ideally, use a dedicated OG image here
+    images: ["/avatars/logo.png"],
   },
 };
 
@@ -52,7 +52,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${inter.variable} antialiased min-h-screen mx-auto max-w-3xl min-[1920px]:max-w-5xl flex flex-col`}
+        className={`${inter.variable} antialiased min-h-screen w-full overflow-x-hidden mx-auto flex flex-col items-center`}
       >
         <ThemeProvider
           attribute="class"
@@ -62,8 +62,10 @@ export default function RootLayout({
         >
           <SocialLinks />
           <Header />
-          {children}
-          <Footer />
+          <div className="w-full px-2 md:px-0 max-w-3xl mx-auto">
+            {children}
+            <Footer />
+          </div>
           <ScrollToTop />
           <Toaster richColors position="top-right" />
         </ThemeProvider>

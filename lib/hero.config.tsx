@@ -1,4 +1,4 @@
-import { SendIcon } from "lucide-react";
+import { Code2, MapPin, Mail, SendIcon } from "lucide-react";
 import {
   SiBun,
   SiDrizzle,
@@ -24,8 +24,12 @@ import {
 export const heroConfig = {
   name: "Vinay",
   fullName: "Oppuri Vinay Reddy",
-  title: "A Full Stack Web Developer • AI Engineer",
+  title: ["A Full Stack Web Developer", "AI Engineer"],
   avatar: "/avatars/avatar-rounded.png",
+  info: [{name: "Full Stack Developer", logo: <Code2 className="w-4 h-4" /> },
+        {name: "Hyderabad, India", logo: <MapPin className="w-4 h-4" />},
+        {name: "oppurivinay25@gmail.com", logo: <Mail className="w-4 h-4" />},
+  ],
 
   mainSkills: [
     {
