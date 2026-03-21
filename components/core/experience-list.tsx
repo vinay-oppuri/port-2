@@ -6,7 +6,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { experiences } from "@/lib/hero.config";
+import { experiences } from "@/data";
 
 type ExperienceItem = (typeof experiences)[number];
 

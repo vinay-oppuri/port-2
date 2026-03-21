@@ -4,7 +4,7 @@ import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 import { Globe, Github } from "lucide-react";
-import { ProjectsData } from "@/lib/hero.config";
+import { ProjectsData } from "@/data";
 import { cn } from "@/lib/utils";
 
 type ProjectItem = (typeof ProjectsData)[number];

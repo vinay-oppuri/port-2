@@ -1,16 +1,16 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { cloneElement, isValidElement, useEffect, useState } from "react";
 import { TextHoverEffect } from "../ui/text-hover-effect";
 import Link from "next/link";
-import { ArrowRight, Loader2, SendIcon } from "lucide-react";
-import { AvatarLogo } from "../common/AvatarLogo";
+import { Loader2, MessageSquare, SendIcon } from "lucide-react";
 import { Input } from "../ui/input";
 import { Textarea } from "../ui/textarea";
-import { socialLinks } from "@/lib/hero.config";
+import { socialLinks } from "@/data";
 import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
 import { Button } from "../ui/button";
 import { toast } from "sonner";
+import { ResponsiveDialog } from "../responsive-dialog";
 
 const Footer = () => {
   const [mounted, setMounted] = useState(false)
@@ -19,6 +19,16 @@ const Footer = () => {
     feedback: ""
   })
   const [loading, setLoading] = useState(false)
+  const [isFeedbackDialogOpen, setIsFeedbackDialogOpen] = useState(false)
+
+  const renderMonochromeIcon = (icon: React.ReactNode) => {
+    if (!isValidElement(icon)) return icon;
+
+    return cloneElement(
+      icon as React.ReactElement<{ className?: string }>,
+      { className: "w-4 h-4 text-foreground/70!" }
+    );
+  }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -45,6 +55,7 @@ const Footer = () => {
       if (response.ok) {
         toast.success('Feedback sent successfully!');
         setFormData({ name: "", feedback: "" });
+        setIsFeedbackDialogOpen(false);
       } else {
         toast.error('Failed to send feedback.');
       }
@@ -61,24 +72,14 @@ const Footer = () => {
 
   return (
     <footer className="w-full relative overflow-hidden px-2 md:py-4 py-2 mb-0 bg-background">
-      <div className="w-full mx-auto px-4 md:px-8 border-t border-foreground/10 pt-8 md:pt-16">
-        <div className="flex flex-col md:flex-row justify-between items-start sm:gap-6 gap-12 mb-16 max-w-7xl mx-auto">
-          {/* Left Side: Brand & Description */}
-          <div className="flex flex-col gap-4 max-w-md text-center md:text-left mx-auto md:mx-0">
-            <div className="flex items-center gap-2 justify-center md:justify-start">
-              <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-primary">
-                <AvatarLogo className="w-full h-full rounded-full text-ring" />
-              </div>
-              <span className="text-lg md:text-xl font-bold tracking-wider text-foreground">ViNAY OPPURI</span>
-            </div>
-
-            <p className="text-xs md:text-base text-muted-foreground">
-              I&apos;m a software engineer who loves building cool stuff, passionate about technology and always looking for new challenges.
-            </p>
-          </div>
-
-          {/* Right Side: Feedback Form */}
-          <form className="space-y-4 w-[90%] md:w-full max-w-sm mx-auto md:mx-0" onSubmit={handleSubmit}>
+      <div className="w-full mx-auto px-4 md:px-8 border-foreground/10">
+        <ResponsiveDialog
+          title="Share Feedback"
+          description="Tell me what you liked and what could be improved."
+          open={isFeedbackDialogOpen}
+          onOpenChange={setIsFeedbackDialogOpen}
+        >
+          <form className="space-y-4" onSubmit={handleSubmit}>
             <Input
               type="text"
               name="name"
@@ -93,7 +94,7 @@ const Footer = () => {
               value={formData.feedback}
               onChange={handleChange}
               placeholder="Enter your feedback..."
-              className="w-full bg-foreground/3! rounded-sm py-3 px-4 min-h-16 resize-none transition-all placeholder:text-muted-foreground/50 text-foreground text-xs md:text-base border border-white/5"
+              className="w-full bg-foreground/3! rounded-sm py-3 px-4 min-h-24 resize-none transition-all placeholder:text-muted-foreground/50 text-foreground text-xs md:text-base border border-white/5"
               required
             />
             <Button type="submit" disabled={loading} className="w-full text-xs md:text-base">
@@ -105,15 +106,25 @@ const Footer = () => {
               {loading ? "Sending..." : "Send Feedback"}
             </Button>
           </form>
-        </div>
+        </ResponsiveDialog>
 
-        {/* Bottom Bar */}
-        <div className="w-full hidden border-t border-foreground/10 py-8 md:flex flex-col-reverse md:flex-row justify-between items-center gap-6 md:gap-4 max-w-7xl mx-auto">
+
+        <div className="w-full border-t border-foreground/10 py-8 flex flex-col-reverse md:flex-row justify-between items-center gap-6 md:gap-4 max-w-7xl mx-auto">
           <Link href="https://linktr.ee/vinayoppuri" target="_blank" rel="noopener noreferrer" className="text-xs text-muted-foreground font-mono text-center md:text-left hover:text-foreground transition-colors">
-                // DEVELOPED_BY_VINAY_OPPURI
+            {"// DEVELOPED_BY_VINAY_OPPURI"}
           </Link>
 
           <div className="flex flex-wrap items-center justify-center md:justify-end gap-2">
+            <Button
+              type="button"
+              variant="outline"
+              size="sm"
+              className="h-9 rounded-full px-5! text-xs text-foreground/80 border-foreground/20 hover:border-foreground/40"
+              onClick={() => setIsFeedbackDialogOpen(true)}
+            >
+              <MessageSquare className="w-3.5 h-3.5 mr-1.5" />
+              Feedback
+            </Button>
             {socialLinks.map((link) => (
               <Tooltip key={link.name}>
                 <TooltipTrigger asChild>
@@ -121,9 +132,9 @@ const Footer = () => {
                     href={link.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-8 h-8 flex items-center justify-center rounded-full hover:bg-foreground/5 transition-colors"
+                    className="w-8 h-8 flex items-center justify-center rounded-full hover:text-foreground hover:bg-foreground/5 transition-colors"
                   >
-                    {link.icon}
+                    {renderMonochromeIcon(link.icon)}
                   </Link>
                 </TooltipTrigger>
                 <TooltipContent side="top">

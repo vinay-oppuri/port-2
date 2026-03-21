@@ -1,6 +1,6 @@
 "use client";
 
-import { heroConfig } from "@/lib/hero.config";
+import { heroConfig } from "@/data";
 
 export default function SkillsSection() {
     const { skills } = heroConfig;

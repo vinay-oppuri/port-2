@@ -1,6 +1,6 @@
 
 import { ExperienceList } from "@/components/core/experience-list";
-import { experiences } from "@/lib/hero.config";
+import { experiences } from "@/data";
 
 const Page = () => {
   return (

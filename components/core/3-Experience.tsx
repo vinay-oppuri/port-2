@@ -1,5 +1,5 @@
 
-import { experiences } from "@/lib/hero.config";
+import { experiences } from "@/data";
 import { Button } from "../ui/button";
 import Link from "next/link";
 import { ExperienceList } from "./experience-list";

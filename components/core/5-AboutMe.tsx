@@ -1,4 +1,4 @@
-import { heroConfig } from "@/lib/hero.config";
+import { heroConfig } from "@/data";
 import { AvatarLogo } from "../common/AvatarLogo";
 
 const AboutPage = () => {

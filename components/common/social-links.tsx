@@ -1,8 +1,8 @@
 "use client"
 
 import Link from "next/link";
-import { socialLinks } from "@/lib/hero.config";
-import { useEffect, useState } from "react";
+import { socialLinks } from "@/data";
+import { useSyncExternalStore } from "react";
 
 import {
   Tooltip,
@@ -11,8 +11,11 @@ import {
 } from "@/components/ui/tooltip";
 
 export const SocialLinks = () => {
-  const [mounted, setMounted] = useState(false)
-  useEffect(() => setMounted(true), [])
+  const mounted = useSyncExternalStore(
+    () => () => {},
+    () => true,
+    () => false
+  );
 
   if (!mounted) return null
 

@@ -3,10 +3,12 @@
 import { useState } from "react";
 import { Mail, Calendar, ArrowUpRight, Loader2, CheckCircle2 } from "lucide-react";
 import { FaXTwitter } from "react-icons/fa6"; // Standard React icon for X
-import { socialLinks } from "@/lib/hero.config";
+import { socialLinks } from "@/data";
 import { toast } from "sonner";
 import { Input } from "../ui/input";
 import { Textarea } from "../ui/textarea";
+import { Button } from "../ui/button";
+import Link from "next/link";
 
 export const ContactDialog = () => {
     const emailToUse = "oppurivinay25@gmail.com";
@@ -65,12 +67,12 @@ export const ContactDialog = () => {
     return (
         <section className="flex flex-col gap-6 w-full px-2 md:px-0 py-8">
             {/* Super Heading / Metadata overlay */}
-            <div className="flex flex-col gap-1 mb-6">
-                <p className="text-sm text-muted-foreground">Let's</p>
+            <div className="flex flex-col gap-1 mb-2">
+                <p className="text-sm text-muted-foreground">Let&apos;s</p>
                 <h2 className="text-2xl font-bold text-foreground">Connect</h2>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full mt-2">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full">
 
                 {/* Left Card: Get in Touch */}
                 <div className="p-4 sm:p-6 flex flex-col justify-between clay">
@@ -124,6 +126,11 @@ export const ContactDialog = () => {
                                     <ArrowUpRight className="w-4 h-4 text-muted-foreground/40 group-hover:text-foreground group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
                                 </a>
                             )}
+                            <Link href="/contact" className="flex md:hidden w-full items-center justify-center">
+                                <Button className="w-full">
+                                    Send a message
+                                </Button>
+                            </Link>
                         </div>
                     </div>
 
@@ -134,7 +141,7 @@ export const ContactDialog = () => {
                 </div>
 
                 {/* Right Card: Send a Message Form */}
-                <div className="p-4 sm:p-6 flex flex-col justify-between clay">
+                <div className="hidden md:flex flex-col justify-between p-4 sm:p-6 clay">
                     <div className="flex flex-col gap-2">
                         <h2 className="text-lg md:text-xl font-bold text-foreground">Send a Message</h2>
                         <p className="text-muted-foreground text-sm leading-relaxed max-w-sm">

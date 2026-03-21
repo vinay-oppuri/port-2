@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { heroConfig } from "@/lib/hero.config";
+import { heroConfig } from "@/data";
 import { Button } from "@/components/ui/button";
 import ExperienceCard from "@/components/core/3-Experience";
 import ProjectsPage from "@/components/core/4-Projects";
@@ -10,7 +10,7 @@ import GitHubActivity from "@/components/core/7-GithubActivity";
 import ContactDialog from "@/components/core/8-Contact";
 import { AvatarLogo } from "@/components/common/AvatarLogo";
 import { useState, useEffect } from "react";
-import { FileText, SendIcon } from "lucide-react";
+import { SendIcon } from "lucide-react";
 import { SiGoogledocs } from "react-icons/si";
 
 const Page = () => {

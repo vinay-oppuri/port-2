@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useSyncExternalStore } from "react";
 import Link from "next/link";
 import { Moon, Sun, X, MenuIcon } from "lucide-react";
 import { useTheme } from "next-themes";
@@ -48,8 +48,12 @@ const HeaderSkeleton = () => (
 
 export const Header = () => {
   const { theme, setTheme } = useTheme();
-  const [mounted, setMounted] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const mounted = useSyncExternalStore(
+    () => () => {},
+    () => true,
+    () => false
+  );
 
   const toggleTheme = () => {
     document.startViewTransition?.(() => {
@@ -59,8 +63,6 @@ export const Header = () => {
     injectAnimationStyles(circleBlurTopRightCSS);
   };
 
-
-  useEffect(() => setMounted(true), [])
   if (!mounted) return <HeaderSkeleton />;
 
   return (

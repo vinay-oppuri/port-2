@@ -1,4 +1,4 @@
-import { ProjectsData } from "@/lib/hero.config";
+import { ProjectsData } from "@/data";
 import { ProjectCards } from "@/components/core/project-cards";
 
 const Page = () => {

@@ -1,6 +1,6 @@
 
 import Link from "next/link";
-import { ProjectsData } from "@/lib/hero.config";
+import { ProjectsData } from "@/data";
 import { Button } from "../ui/button";
 import { ProjectCards } from "./project-cards";
 
