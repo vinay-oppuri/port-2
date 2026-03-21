@@ -19,31 +19,29 @@ export const navLinks = [
 const HeaderSkeleton = () => (
   <header
     aria-hidden="true"
-    className="sticky top-0 z-50 w-full backdrop-blur-lg py-4 animate-pulse"
+    className="sticky top-0 z-50 w-full max-w-3xl mx-auto flex justify-between items-center backdrop-blur-lg px-2 md:px-4 py-4 animate-pulse"
   >
-    <div className="max-w-3xl mx-auto w-full flex justify-between items-center px-2 md:px-0">
-      <div className="flex items-center space-x-3 sm:space-x-8">
-        <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-foreground/10" />
-        <div className="flex items-center gap-1.5 mt-0.5">
-          <div className="h-3 w-2 rounded bg-foreground/10" />
-          <div className="h-2.5 w-12 rounded bg-foreground/10" />
-        </div>
+    <div className="flex items-center space-x-3 sm:space-x-8">
+      <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-foreground/10" />
+      <div className="flex items-center gap-1.5 mt-0.5">
+        <div className="h-3 w-2 rounded bg-foreground/10" />
+        <div className="h-2.5 w-12 rounded bg-foreground/10" />
       </div>
+    </div>
 
-      <div className="hidden md:flex items-center space-x-6">
-        <div className="h-3 w-10 rounded bg-foreground/10" />
-        <div className="h-3 w-12 rounded bg-foreground/10" />
-        <div className="h-3 w-14 rounded bg-foreground/10" />
-      </div>
+    <div className="hidden md:flex items-center space-x-6">
+      <div className="h-3 w-10 rounded bg-foreground/10" />
+      <div className="h-3 w-12 rounded bg-foreground/10" />
+      <div className="h-3 w-14 rounded bg-foreground/10" />
+    </div>
 
-      <div className="flex items-center space-x-3">
-        <div className="flex items-center gap-1 border border-foreground/5 rounded-full p-1 bg-background/50">
-          <div className="h-6 w-14 rounded-full bg-foreground/10" />
-          <div className="w-px h-4 bg-foreground/15" />
-          <div className="h-6 w-6 rounded-full bg-foreground/10" />
-        </div>
-        <div className="md:hidden h-5 w-5 rounded bg-foreground/10" />
+    <div className="flex items-center space-x-3">
+      <div className="flex items-center gap-1 rounded-full p-1 clay">
+        <div className="h-6 w-14 rounded-full bg-foreground/10" />
+        <div className="w-px h-4 bg-foreground/15" />
+        <div className="h-6 w-6 rounded-full bg-foreground/10" />
       </div>
+      <div className="md:hidden h-5 w-5 rounded bg-foreground/10" />
     </div>
   </header>
 );
@@ -94,8 +92,8 @@ export const Header = () => {
       <div className="flex items-center space-x-3 ">
 
         {/* Theme Toggle */}
-        <div className="flex items-center gap-1 border border-foreground/5 rounded-full p-1 bg-background/50 backdrop-blur-lg shadow-sm">
-          <Button variant="ghost" size="sm" className="rounded-full gap-2 px-3 h-8 text-foreground/80 hover:text-foreground hover:bg-foreground/5 transition-all" asChild>
+        <div className="flex items-center gap-1 p-1 clay rounded-full!">
+          <Button variant="ghost" size="sm" className="rounded-full gap-2 px-3 h-8 text-foreground/80 hover:text-foreground hover:bg-foreground/5 transition-all clay-interactive" asChild>
             <Link href='https://github.com/vinay-oppuri' target="_blank" className="flex items-center gap-2">
               <span className="text-xs font-medium">Github</span>
               <FaGithub size={16} />
@@ -104,7 +102,7 @@ export const Header = () => {
 
           <div className="w-px h-4 bg-foreground/15" />
 
-          <Button variant="ghost" size="icon" className="h-8 w-8 rounded-full text-foreground/80 hover:text-foreground hover:bg-foreground/5 transition-all" onClick={toggleTheme}>
+          <Button variant="ghost" size="icon" className="h-8 w-8 rounded-full text-foreground/80 hover:text-foreground hover:bg-foreground/5 transition-all clay-interactive" onClick={toggleTheme}>
             {theme === 'dark' ? <Sun size={16} /> : <Moon size={16} />}
           </Button>
         </div>

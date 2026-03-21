@@ -24,7 +24,7 @@ export const SocialLinks = () => {
         md:left-0 md:bottom-auto md:top-1/2 md:-translate-y-1/2 md:translate-x-0
         flex md:flex-col items-center 
         gap-4 shadow-inner shadow-foreground/5
-        bg-foreground/3 backdrop-blur-lg 
+        bg-foreground/2 backdrop-blur-lg 
         px-4 md:px-4 py-2 md:py-6
         rounded-t-2xl md:rounded-r-2xl md:rounded-none
       "

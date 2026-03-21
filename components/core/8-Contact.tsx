@@ -73,7 +73,7 @@ export const ContactDialog = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full mt-2">
 
                 {/* Left Card: Get in Touch */}
-                <div className="bg-foreground/3 border border-white/5 rounded-lg p-4 sm:p-6 flex flex-col justify-between shadow-2xl">
+                <div className="p-4 sm:p-6 flex flex-col justify-between clay">
                     <div className="flex flex-col gap-2">
                         <h2 className="text-lg md:text-xl font-bold text-foreground">Get in Touch</h2>
                         <p className="text-muted-foreground text-sm leading-relaxed max-w-sm">
@@ -82,7 +82,7 @@ export const ContactDialog = () => {
 
                         <div className="flex flex-col gap-3 mt-4">
                             {/* Schedule Call */}
-                            <a href="https://calendly.com/" target="_blank" rel="noopener noreferrer" className="flex items-center justify-between p-3 bg-foreground/1 hover:bg-foreground/3 border border-white/5 rounded-lg group transition-all duration-300">
+                            <a href="https://calendly.com/" target="_blank" rel="noopener noreferrer" className="flex items-center justify-between p-3 clay rounded-xl group transition-all duration-300 clay-interactive">
                                 <div className="flex items-center gap-1">
                                     <div className="p-2.5 transition-colors text-muted-foreground group-hover:text-foreground">
                                         <Calendar className="w-5 h-5 shrink-0" />
@@ -96,7 +96,7 @@ export const ContactDialog = () => {
                             </a>
 
                             {/* Email */}
-                            <a href={`mailto:${emailToUse}`} className="flex items-center justify-between p-3 bg-foreground/1 hover:bg-foreground/3 border border-white/5 rounded-lg group transition-all duration-300">
+                            <a href={`mailto:${emailToUse}`} className="flex items-center justify-between p-3 clay rounded-xl group transition-all duration-300 clay-interactive">
                                 <div className="flex items-center gap-1">
                                     <div className="p-2.5 transition-colors text-muted-foreground group-hover:text-foreground">
                                         <Mail className="w-5 h-5 shrink-0" />
@@ -111,7 +111,7 @@ export const ContactDialog = () => {
 
                             {/* X / Twitter */}
                             {xLink && (
-                                <a href={xLink.href} target="_blank" rel="noopener noreferrer" className="flex items-center justify-between p-3 bg-foreground/1 hover:bg-foreground/3 border border-white/5 rounded-lg group transition-all duration-300">
+                                <a href={xLink.href} target="_blank" rel="noopener noreferrer" className="flex items-center justify-between p-3 clay rounded-xl group transition-all duration-300 clay-interactive">
                                     <div className="flex items-center gap-1">
                                         <div className="p-2.5 transition-colors text-muted-foreground group-hover:text-foreground">
                                             <FaXTwitter className="w-5 h-5 shrink-0" />
@@ -134,7 +134,7 @@ export const ContactDialog = () => {
                 </div>
 
                 {/* Right Card: Send a Message Form */}
-                <div className="bg-foreground/3 border border-white/5 rounded-lg p-4 sm:p-6 shadow-2xl flex flex-col justify-between">
+                <div className="p-4 sm:p-6 flex flex-col justify-between clay">
                     <div className="flex flex-col gap-2">
                         <h2 className="text-lg md:text-xl font-bold text-foreground">Send a Message</h2>
                         <p className="text-muted-foreground text-sm leading-relaxed max-w-sm">

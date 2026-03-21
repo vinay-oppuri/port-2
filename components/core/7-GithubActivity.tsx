@@ -28,7 +28,7 @@ export default function GitHubActivity() {
       </header>
 
       {/* Calendar */}
-      <div className="px-4 py-6 overflow-x-auto rounded-lg flex justify-center border border-foreground/10 shadow-inner-strong">
+      <div className="px-4 py-6 overflow-x-auto flex justify-center clay">
         <GitHubCalendar
           username="vinay-oppuri"
           blockSize={9}

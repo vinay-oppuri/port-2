@@ -24,7 +24,7 @@ const AboutPage = () => {
       <div className="flex flex-col md:flex-row items-start gap-6 md:gap-8">
 
         {/* Left: Avatar */}
-        <div className="rounded-lg overflow-hidden h-40 w-40 md:h-52 md:w-52 aspect-square relative shrink-0">
+        <div className="rounded-2xl overflow-hidden h-40 w-40 md:h-52 md:w-52 aspect-square relative shrink-0 clay">
           <AvatarLogo className="w-full h-full text-ring/85 dark:text-ring scale-105 transition-transform duration-300" />
         </div>
 
@@ -44,7 +44,7 @@ const AboutPage = () => {
             <p className="text-sm font-semibold text-muted-foreground">Skills</p>
             <div className="flex flex-wrap gap-3 items-center text-foreground/80 [&_svg]:size-5 md:[&_svg]:size-6">
               {uniqueSkills.map((skill, index) => (
-                <div key={index} title={skill.name} className="hover:text-foreground transition-colors cursor-pointer hover:-translate-y-0.5 transform duration-200">
+                <div key={index} title={skill.name} className="clay p-2 rounded-xl hover:text-foreground transition-colors cursor-pointer hover:-translate-y-1 hover:scale-105 transform duration-200 clay-interactive">
                   {skill.component}
                 </div>
               ))}

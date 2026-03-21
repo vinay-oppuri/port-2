@@ -10,6 +10,8 @@ import GitHubActivity from "@/components/core/7-GithubActivity";
 import ContactDialog from "@/components/core/8-Contact";
 import { AvatarLogo } from "@/components/common/AvatarLogo";
 import { useState, useEffect } from "react";
+import { FileText, SendIcon } from "lucide-react";
+import { SiGoogledocs } from "react-icons/si";
 
 const Page = () => {
   const [index, setIndex] = useState(0);
@@ -24,8 +26,8 @@ const Page = () => {
 
   return (
     <section className="flex flex-col items-start space-y-4 mx-auto mt-12 md:mt-24 w-full px-4 py-4 md:px-8">
-      <div className="flex items-center justify-center gap-6">
-        <AvatarLogo className="w-20 h-20 sm:w-24 sm:h-24 rounded-full text-ring/85 dark:text-ring" />
+      <div className="flex items-center justify-center gap-3 md:gap-6">
+        <AvatarLogo className="w-18 h-full sm:w-24 rounded-full text-ring/85 dark:text-ring" />
         <div className="flex flex-col gap-1">
           <h1 className="text-2xl sm:text-3xl font-bold leading-tight text-foreground">
             Hi, I&apos;m {heroConfig.name}
@@ -37,14 +39,14 @@ const Page = () => {
             >
               {heroConfig.title[index]}
             </span>
-          </div>
+        </div>
         </div>
       </div>
 
-      <div className="flex flex-col gap-3 my-4">
+      <div className="flex flex-col gap-2 my-4">
         {heroConfig.info.map((info, i) => (
           <div key={i} className="flex items-center gap-3 text-foreground/85">
-            <div className="flex items-center justify-center w-9 h-9 bg-foreground/2! border border-white/5 rounded-lg text-foreground/60 shadow-sm">
+            <div className="flex items-center justify-center w-9 h-9 clay text-foreground/60">
               {info.logo}
             </div>
             <span className="text-xs sm:text-sm">{info.name}</span>
@@ -52,7 +54,7 @@ const Page = () => {
         ))}
       </div>
 
-      <p className="text-sm sm:text-base min-[1920px]:text-lg text-muted-foreground leading-relaxed flex flex-wrap gap-2">
+      <p className="text-sm sm:text-base min-[1920px]:text-lg text-muted-foreground leading-relaxed flex flex-wrap mt-4 gap-2">
         I build interactive web apps using
         {heroConfig.mainSkills.map((skill, i) => (
           <Link
@@ -60,7 +62,7 @@ const Page = () => {
             href={skill.href}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center justify-center px-1.5 py-0.5 bg-foreground/10 border border-dashed border-foreground/20 skill-inner-shadow rounded-sm text-xs font-medium text-foreground gap-1"
+            className="flex items-center justify-center px-2 py-1 clay-badge text-xs font-medium text-foreground gap-1.5 clay-interactive"
           >
             {skill.component}
             {skill.name}
@@ -71,18 +73,24 @@ const Page = () => {
       </p>
 
       <div className="w-full flex flex-row justify-start gap-3 md:p-0 mt-2">
-        {heroConfig.buttons.map((button) => (
-          <Button
-            asChild
-            key={button.text}
-            variant={button.variant === "outline" ? "outline" : "default"}
-            className="h-9 md:h-10 text-xs md:text-sm hover:-translate-y-1 transition-all! duration-300"
-          >
-            <Link href={button.href}>
-              {button.icon} {button.text}
-            </Link>
-          </Button>
-        ))}
+        <Button
+          asChild
+          variant="outline"
+          className="h-9 md:h-10 text-xs md:text-sm clay hover:-translate-y-1 transition-all duration-300"
+        >
+          <Link href='/resume'>
+            <SiGoogledocs /> Resume / CV
+          </Link>
+        </Button>
+        <Button
+          asChild
+          variant="default"
+          className="h-9 md:h-10 text-xs md:text-sm clay bg-foreground! shadow-none! hover:-translate-y-1 transition-all duration-300"
+        >
+          <Link href='/contact'>
+            <SendIcon /> Get in touch
+          </Link>
+        </Button>
       </div>
 
       <div className="w-full flex flex-col pt-6 gap-6">

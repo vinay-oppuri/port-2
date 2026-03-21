@@ -70,7 +70,7 @@ export function ExperienceList({ items }: ExperienceListProps) {
                   <Badge
                     key={i}
                     variant="secondary"
-                    className="flex gap-2 items-center text-xs md:text-md font-semibold border border-dashed border-muted-foreground/40 px-3 py-1 rounded-md"
+                    className="flex gap-2 items-center text-xs md:text-md font-semibold clay-badge px-3 py-1"
                   >
                     {tech.logo} {tech.name}
                   </Badge>
