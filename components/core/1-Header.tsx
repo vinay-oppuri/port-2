@@ -23,7 +23,7 @@ const HeaderSkeleton = () => (
   >
     <div className="flex items-center space-x-3 sm:space-x-8">
       <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-foreground/10" />
-      <div className="flex items-center gap-1.5 mt-0.5">
+      <div className="hidden md:flex items-center gap-1.5 mt-0.5">
         <div className="h-3 w-2 rounded bg-foreground/10" />
         <div className="h-2.5 w-12 rounded bg-foreground/10" />
       </div>
@@ -70,10 +70,10 @@ export const Header = () => {
           <div className="relative w-9 h-9 sm:w-10 sm:h-10 rounded-full hover:scale-105 transition-transform">
             <Logo className="w-full h-full rounded-full text-foreground" />
           </div>
-          <span className="ml-3 text-[18px] font-thin text-foreground/15 mx-2 leading-none select-none">
+          <span className="hidden md:block ml-3 text-[18px] font-thin text-foreground/15 mx-2 leading-none select-none">
             /
           </span>
-          <span className="text-[11px] uppercase tracking-[0.07em] text-foreground/25 font-normal leading-none mt-0.5">
+          <span className="hidden md:block text-[11px] uppercase tracking-[0.07em] text-foreground/25 font-normal leading-none mt-0.5">
             portfolio
           </span>
         </Link>
