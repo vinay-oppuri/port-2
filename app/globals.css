@@ -113,7 +113,7 @@
   --destructive: oklch(0.704 0.191 22.216);
   --border: oklch(95% 0 0 / 0.1);
   --input: oklch(95% 0 0 / 0.15);
-  --ring: oklch(0.88 0.18 100);
+  --ring: oklch(100% 0 0 / 0.8);
   --chart-1: oklch(0.488 0.243 264.376);
   --chart-2: oklch(0.696 0.17 162.48);
   --chart-3: oklch(0.769 0.188 70.08);
@@ -418,9 +418,9 @@ html {
 
 .clay-interactive:hover {
   box-shadow:
-    inset 6px 6px 12px rgba(255, 255, 255, 1),
-    inset -6px -6px 12px rgba(0, 0, 0, 0.06),
-    8px 8px 16px rgba(0, 0, 0, 0.05);
+    inset 4px 4px 8px rgba(255, 255, 255, 1),
+    inset -4px -4px 8px rgba(0, 0, 0, 0.06),
+    6px 6px 12px rgba(0, 0, 0, 0.05);
 }
 
 .dark .clay-interactive:hover {
@@ -463,4 +463,4 @@ html {
 }
 
 /* --- Skeuomorphism Design System --- */
-/* Deleted obsolete skeuomorphism rulesets */
+/* Deleted obsolete skeuomorphism rulesets */

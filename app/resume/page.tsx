@@ -15,7 +15,7 @@ const Page = () => {
       <div className="max-w-5xl mx-auto">
         <Tabs defaultValue="fullstack" className="w-full space-y-6">
           <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
-            <TabsList className="grid w-full sm:w-[400px] grid-cols-2">
+            <TabsList className="grid w-full sm:w-[400px] grid-cols-2 clay">
               <TabsTrigger value="fullstack">Full Stack Engineer</TabsTrigger>
               <TabsTrigger value="ai">AI Engineer</TabsTrigger>
             </TabsList>

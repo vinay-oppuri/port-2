@@ -35,7 +35,7 @@ const Page = () => {
           <div className="h-5 overflow-hidden relative inline-flex items-center py-2">
             <span
               key={index}
-              className="text-muted-foreground text-xs md:text-base font-medium animate-in slide-in-from-bottom-2 duration-300 fill-mode-both"
+              className="text-muted-foreground text-sm md:text-base font-medium animate-in slide-in-from-bottom-2 duration-300 fill-mode-both"
             >
               {heroConfig.title[index]}
             </span>
@@ -45,11 +45,11 @@ const Page = () => {
 
       <div className="flex flex-col gap-2 my-4">
         {heroConfig.info.map((info, i) => (
-          <div key={i} className="flex items-center gap-3 text-foreground/85">
-            <div className="flex items-center justify-center w-9 h-9 clay text-foreground/60">
+          <div key={i} className="flex items-center gap-3 text-muted-foreground leading-relaxed ">
+            <div className="flex items-center justify-center w-9 h-9 clay">
               {info.logo}
             </div>
-            <span className="text-xs sm:text-sm">{info.name}</span>
+            <span className="text-sm md:text-base font-semibold">{info.name}</span>
           </div>
         ))}
       </div>

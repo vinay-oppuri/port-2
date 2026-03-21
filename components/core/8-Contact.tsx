@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Mail, Calendar, ArrowUpRight, Loader2, CheckCircle2 } from "lucide-react";
+import { Mail, Calendar, ArrowUpRight, Loader2, CheckCircle2, SendIcon } from "lucide-react";
 import { FaXTwitter } from "react-icons/fa6"; // Standard React icon for X
 import { socialLinks } from "@/data";
 import { toast } from "sonner";
@@ -127,8 +127,8 @@ export const ContactDialog = () => {
                                 </a>
                             )}
                             <Link href="/contact" className="flex md:hidden w-full items-center justify-center">
-                                <Button className="w-full">
-                                    Send a message
+                                <Button className="w-full h-10">
+                                    Send a message <SendIcon className="w-4 h-4 ml-2" />
                                 </Button>
                             </Link>
                         </div>
