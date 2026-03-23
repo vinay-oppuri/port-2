@@ -9,36 +9,32 @@ import AboutPage from "@/components/core/5-AboutMe";
 import GitHubActivity from "@/components/core/7-GithubActivity";
 import ContactDialog from "@/components/core/8-Contact";
 import { AvatarLogo } from "@/components/common/AvatarLogo";
-import { useState, useEffect } from "react";
+import RotatingText from "@/components/react-bits/RotatingText";
 import { SendIcon } from "lucide-react";
 import { SiGoogledocs } from "react-icons/si";
 
 const Page = () => {
-  const [index, setIndex] = useState(0);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setIndex((prev) => (prev + 1) % heroConfig.title.length);
-    }, 3000);
-
-    return () => clearInterval(interval);
-  }, []);
-
   return (
     <section className="flex flex-col items-start space-y-4 mx-auto mt-12 md:mt-24 w-full px-4 py-4 md:px-8">
       <div className="flex items-center justify-center gap-3 md:gap-6">
         <AvatarLogo className="w-18 h-full sm:w-24 rounded-full text-ring/85 dark:text-ring" />
-        <div className="flex flex-col gap-1">
+        <div className="flex flex-col gap-1 md:gap-2">
           <h1 className="text-2xl sm:text-3xl font-bold leading-tight text-foreground">
             Hi, I&apos;m {heroConfig.name}
           </h1>
           <div className="h-5 overflow-hidden relative inline-flex items-center py-2">
-            <span
-              key={index}
-              className="text-muted-foreground text-sm md:text-base font-medium animate-in slide-in-from-bottom-2 duration-300 fill-mode-both"
-            >
-              {heroConfig.title[index]}
-            </span>
+            <RotatingText
+              texts={["AI Engineer", "Full Stack Developer"]}
+              mainClassName="text-muted-foreground text-base md:text-lg font-medium"
+              staggerFrom="last"
+              initial={{ y: "100%" }}
+              animate={{ y: 0 }}
+              exit={{ y: "-120%" }}
+              staggerDuration={0.025}
+              splitLevelClassName="overflow-hidden pb-0.5 sm:pb-1 md:pb-1"
+              transition={{ type: "spring", damping: 30, stiffness: 400 }}
+              rotationInterval={3000}
+            />
         </div>
         </div>
       </div>

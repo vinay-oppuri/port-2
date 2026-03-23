@@ -109,7 +109,7 @@ const Footer = () => {
 
       <div className="w-full border-t border-foreground/10 py-6 mb-6 px-4 md:px-8 flex flex-wrap md:flex-nowrap justify-between items-center gap-y-6 md:gap-x-6 max-w-7xl mx-auto">
         <Link href="https://linktr.ee/vinayoppuri" target="_blank" rel="noopener noreferrer" className="order-1 md:order-1 md:mr-auto text-xs text-muted-foreground font-mono text-left hover:text-foreground transition-colors">
-          {"// DEVELOPED_BY_VINAY_OPPURI"}
+          {"// DEVELOPED_BY_VINAY"}
         </Link>
 
         <div className="order-3 md:order-2 w-full md:w-auto flex justify-center md:justify-end">
