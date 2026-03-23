@@ -72,82 +72,78 @@ const Footer = () => {
 
   return (
     <footer className="w-full relative overflow-hidden px-2 md:py-4 py-2 mb-0 bg-background">
-      <div className="w-full mx-auto px-4 md:px-8 border-foreground/10">
-        <ResponsiveDialog
-          title="Share Feedback"
-          description="Tell me what you liked and what could be improved."
-          open={isFeedbackDialogOpen}
-          onOpenChange={setIsFeedbackDialogOpen}
-        >
-          <form className="space-y-4" onSubmit={handleSubmit}>
-            <Input
-              type="text"
-              name="name"
-              placeholder="Enter your name..."
-              value={formData.name}
-              onChange={handleChange}
-              className="bg-foreground/3! rounded-sm placeholder:text-muted-foreground/50 text-foreground text-xs md:text-base border border-white/5"
-              required
-            />
-            <Textarea
-              name="feedback"
-              value={formData.feedback}
-              onChange={handleChange}
-              placeholder="Enter your feedback..."
-              className="w-full bg-foreground/3! rounded-sm py-3 px-4 min-h-24 resize-none transition-all placeholder:text-muted-foreground/50 text-foreground text-xs md:text-base border border-white/5"
-              required
-            />
-            <Button type="submit" disabled={loading} className="w-full text-xs md:text-base">
-              {loading ? (
-                <Loader2 className="w-4 h-4 animate-spin mr-2" />
-              ) : (
-                <SendIcon className="w-4 h-4 mr-2" />
-              )}
-              {loading ? "Sending..." : "Send Feedback"}
-            </Button>
-          </form>
-        </ResponsiveDialog>
+      <ResponsiveDialog
+        title="Share Feedback"
+        description="Tell me what you liked and what could be improved."
+        open={isFeedbackDialogOpen}
+        onOpenChange={setIsFeedbackDialogOpen}
+      >
+        <form className="space-y-4" onSubmit={handleSubmit}>
+          <Input
+            type="text"
+            name="name"
+            placeholder="Enter your name..."
+            value={formData.name}
+            onChange={handleChange}
+            className="bg-foreground/3! rounded-sm placeholder:text-muted-foreground/50 text-foreground text-xs md:text-base border border-white/5"
+            required
+          />
+          <Textarea
+            name="feedback"
+            value={formData.feedback}
+            onChange={handleChange}
+            placeholder="Enter your feedback..."
+            className="w-full bg-foreground/3! rounded-sm py-3 px-4 min-h-24 resize-none transition-all placeholder:text-muted-foreground/50 text-foreground text-xs md:text-base border border-white/5"
+            required
+          />
+          <Button type="submit" disabled={loading} className="w-full text-xs md:text-base">
+            {loading ? (
+              <Loader2 className="w-4 h-4 animate-spin mr-2" />
+            ) : (
+              <SendIcon className="w-4 h-4 mr-2" />
+            )}
+            {loading ? "Sending..." : "Send Feedback"}
+          </Button>
+        </form>
+      </ResponsiveDialog>
 
+      <div className="w-full border-t border-foreground/10 py-6 mb-6 px-4 md:px-8 flex flex-wrap md:flex-nowrap justify-between items-center gap-y-6 md:gap-x-6 max-w-7xl mx-auto">
+        <Link href="https://linktr.ee/vinayoppuri" target="_blank" rel="noopener noreferrer" className="order-1 md:order-1 md:mr-auto text-xs text-muted-foreground font-mono text-left hover:text-foreground transition-colors">
+          {"// DEVELOPED_BY_VINAY_OPPURI"}
+        </Link>
 
-        <div className="w-full border-t border-foreground/10 py-8 flex flex-col-reverse md:flex-row justify-between items-center gap-6 md:gap-4 max-w-7xl mx-auto">
-          <Link href="https://linktr.ee/vinayoppuri" target="_blank" rel="noopener noreferrer" className="text-xs text-muted-foreground font-mono text-center md:text-left hover:text-foreground transition-colors">
-            {"// DEVELOPED_BY_VINAY_OPPURI"}
-          </Link>
-
-          <div className="flex flex-wrap items-center justify-center md:justify-end gap-2">
-            <Button
-              type="button"
-              variant="outline"
-              size="sm"
-              className="h-9 rounded-full px-5! text-xs text-foreground/80 border-foreground/20 hover:border-foreground/40"
-              onClick={() => setIsFeedbackDialogOpen(true)}
-            >
-              <MessageSquare className="w-3.5 h-3.5 mr-1.5" />
-              Feedback
-            </Button>
-            {socialLinks.map((link) => (
-              <Tooltip key={link.name}>
-                <TooltipTrigger asChild>
-                  <Link
-                    href={link.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-8 h-8 flex items-center justify-center rounded-full hover:text-foreground hover:bg-foreground/5 transition-colors"
-                  >
-                    {renderMonochromeIcon(link.icon)}
-                  </Link>
-                </TooltipTrigger>
-                <TooltipContent side="top">
-                  <p>{link.name}</p>
-                </TooltipContent>
-              </Tooltip>
-            ))}
-          </div>
+        <div className="order-3 md:order-2 w-full md:w-auto flex justify-center md:justify-end">
+          <Button
+            type="button"
+            variant="outline"
+            size="sm"
+            className="w-full md:w-auto h-11 md:h-9 rounded-full px-5! text-xs text-foreground/80 border-foreground/20 hover:border-foreground/40"
+            onClick={() => setIsFeedbackDialogOpen(true)}
+          >
+            <MessageSquare className="w-3.5 h-3.5 mr-1.5" />
+            Feedback
+          </Button>
         </div>
-      </div>
 
-      <div className="h-70 flex items-center justify-center md:py-6 py-0 mb-0">
-        <TextHoverEffect text="ViNAY" />
+        <div className="order-2 md:order-3 flex items-center gap-2">
+          {socialLinks.map((link) => (
+            <Tooltip key={link.name}>
+              <TooltipTrigger asChild>
+                <Link
+                  href={link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-8 h-8 flex items-center justify-center rounded-full hover:text-foreground hover:bg-foreground/5 transition-colors"
+                >
+                  {renderMonochromeIcon(link.icon)}
+                </Link>
+              </TooltipTrigger>
+              <TooltipContent side="top">
+                <p>{link.name}</p>
+              </TooltipContent>
+            </Tooltip>
+          ))}
+        </div>
       </div>
     </footer>
   );
