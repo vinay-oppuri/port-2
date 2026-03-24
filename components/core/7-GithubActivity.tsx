@@ -11,7 +11,7 @@ export default function GitHubActivity() {
     <div className="w-full">
 
       {/* Header */}
-      <header className="mb-6 flex items-center justify-between">
+      <header className="py-6 flex items-center justify-between">
         <div className="flex flex-col gap-1">
           <p className="text-sm text-muted-foreground">Featured</p>
           <h2 className="text-2xl font-bold text-foreground">GitHub Activity</h2>

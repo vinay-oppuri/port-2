@@ -12,6 +12,7 @@ import { AvatarLogo } from "@/components/common/AvatarLogo";
 import RotatingText from "@/components/react-bits/RotatingText";
 import { SendIcon } from "lucide-react";
 import { SiGoogledocs } from "react-icons/si";
+import SkillsSection from "@/components/core/6-Skills";
 
 const Page = () => {
   return (
@@ -93,6 +94,7 @@ const Page = () => {
         <ExperienceCard />
         <ProjectsPage />
         <AboutPage />
+        <SkillsSection />
         <GitHubActivity />
         <ContactDialog />
       </div>

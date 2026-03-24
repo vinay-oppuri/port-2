@@ -16,8 +16,8 @@ const Page = () => {
         <Tabs defaultValue="fullstack" className="w-full space-y-6">
           <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
             <TabsList className="grid w-full sm:w-[400px] grid-cols-2 clay">
-              <TabsTrigger value="fullstack">Full Stack Engineer</TabsTrigger>
-              <TabsTrigger value="ai">AI Engineer</TabsTrigger>
+              <TabsTrigger value="fullstack" className="data-[state=active]:bg-foreground! data-[state=active]:text-background!">Full Stack Engineer</TabsTrigger>
+              <TabsTrigger value="ai" className="data-[state=active]:bg-foreground! data-[state=active]:text-background!">AI Engineer</TabsTrigger>
             </TabsList>
 
             {/* The download buttons are configured depending on which tab is active using Next.js nested state, but for a pure client-render bypass we can keep them inside TabsContent or just render 2 distinct TabsContents with their own headers */}
