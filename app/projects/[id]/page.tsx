@@ -22,7 +22,7 @@ const ProjectDetailsPage = async ({ params }: ProjectDetailsPageProps) => {
   return (
     <div className="container mx-auto flex flex-col gap-4 px-4 py-8 md:py-12">
       <Link href="/projects">
-        <Button variant="secondary" className="text-foreground/80 mb-4">
+        <Button className="mb-4 clay!">
           <ArrowLeft className="h-4 w-4" />
           Back to Projects
         </Button>
@@ -40,15 +40,15 @@ const ProjectDetailsPage = async ({ params }: ProjectDetailsPageProps) => {
         </div>
 
         <div className="space-y-4">
-          <h1 className="text-3xl md:text-4xl font-bold">{project.title}</h1>
-          <p className="text-lg text-muted-foreground leading-relaxed">
+          <h1 className="text-xl md:text-3xl font-bold">{project.title}</h1>
+          <p className="text-sm md:text-base text-muted-foreground leading-relaxed">
             {project.description}
           </p>
 
           <div className="flex flex-wrap gap-4 pt-2">
             {project.liveUrl && (
               <Link href={project.liveUrl} target="_blank" rel="noopener noreferrer">
-                <Button className="gap-2">
+                <Button className="gap-2 clay!">
                   <ExternalLink className="h-4 w-4" />
                   Live Demo
                 </Button>
@@ -56,7 +56,7 @@ const ProjectDetailsPage = async ({ params }: ProjectDetailsPageProps) => {
             )}
             {project.githubUrl && (
               <Link href={project.githubUrl} target="_blank" rel="noopener noreferrer">
-                <Button variant="outline" className="gap-2">
+                <Button variant="outline" className="gap-2 clay!">
                   <Github className="h-4 w-4" />
                   GitHub Repo
                 </Button>
@@ -69,8 +69,8 @@ const ProjectDetailsPage = async ({ params }: ProjectDetailsPageProps) => {
           <div className="space-y-8">
             {project.features && (
               <section className="space-y-4">
-                <h2 className="text-2xl font-semibold">What users can do</h2>
-                <ul className="list-disc list-inside space-y-2 text-muted-foreground">
+                <h2 className="text-lg md:text-xl font-semibold">What users can do</h2>
+                <ul className="list-disc list-inside space-y-2 text-muted-foreground text-sm md:text-base">
                   {project.features.map((feature, index) => (
                     <li key={index}>{feature}</li>
                   ))}
@@ -80,8 +80,8 @@ const ProjectDetailsPage = async ({ params }: ProjectDetailsPageProps) => {
 
             {project.motivation && (
               <section className="space-y-4">
-                <h2 className="text-2xl font-semibold">Why I built this</h2>
-                <p className="text-muted-foreground leading-relaxed">
+                <h2 className="text-lg md:text-xl font-semibold">Why I built this</h2>
+                <p className="text-muted-foreground leading-relaxed text-sm md:text-base">
                   {project.motivation}
                 </p>
               </section>
@@ -94,12 +94,7 @@ const ProjectDetailsPage = async ({ params }: ProjectDetailsPageProps) => {
               {project.tags.map((tag, index) => (
                 <Tooltip key={index}>
                   <TooltipTrigger asChild>
-                    <Badge
-                      variant="secondary"
-                      className="p-2 hover:bg-secondary/80 transition-colors"
-                    >
-                      <span className="text-lg">{tag.logo}</span>
-                    </Badge>
+                    <span className="text-lg p-0.5">{tag.logo}</span>
                   </TooltipTrigger>
                   <TooltipContent>
                     <p>{tag.name}</p>
@@ -112,7 +107,7 @@ const ProjectDetailsPage = async ({ params }: ProjectDetailsPageProps) => {
 
         <div className="pt-8 border-t flex justify-center">
           <Link href="/projects">
-            <Button variant="outline" size="lg">
+            <Button className="clay!">
               View All Projects
             </Button>
           </Link>

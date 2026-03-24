@@ -3,10 +3,10 @@ import { Button } from "@/components/ui/button";
 
 const Page = () => {
   return (
-    <section className="w-full min-h-[60vh] mx-auto px-4 md:px-8 py-6 md:py-12">
+    <section className="flex flex-col gap-6 w-full px-4 py-4 md:px-8">
       <div className="flex flex-col items-center text-center border-b border-foreground/10 gap-3 md:gap-6 mt-6 md:mt-12 mb-8 pb-8 px-4">
-        <h1 className="text-3xl md:text-5xl font-bold">Blogs</h1>
-        <p className="text-md md:text-xl text-muted-foreground font-semibold max-w-2xl">
+        <h1 className="text-2xl md:text-4xl font-bold">Blogs</h1>
+        <p className="text-sm md:text-lg text-muted-foreground font-semibold max-w-2xl">
           Technical notes, build breakdowns, and lessons from shipping products.
         </p>
       </div>

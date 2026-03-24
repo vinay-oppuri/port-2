@@ -68,7 +68,16 @@ export const Header = () => {
   return (
     <header className="sticky top-0 z-50 w-full flex justify-between items-center backdrop-blur-lg sm:px-100 px-4 py-4">
       <div className="flex items-center space-x-3 sm:space-x-8">
-        <Link href="/" className="flex items-center gap-0 group">
+        <Link 
+          href="/" 
+          className="flex items-center gap-0 group"
+          onClick={(e) => {
+            if (window.location.pathname === "/") {
+              e.preventDefault();
+              window.scrollTo({ top: 0, behavior: "smooth" });
+            }
+          }}
+        >
           <div className="relative w-9 h-9 sm:w-10 sm:h-10 rounded-full hover:scale-105 transition-transform">
             <Logo className="w-full h-full rounded-full text-foreground" />
           </div>
