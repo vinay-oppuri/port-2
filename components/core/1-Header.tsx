@@ -19,7 +19,7 @@ export const navLinks = [
 const HeaderSkeleton = () => (
   <header
     aria-hidden="true"
-    className="sticky top-0 z-50 w-full max-w-3xl mx-auto flex justify-between items-center backdrop-blur-lg px-2 md:px-4 py-4 animate-pulse"
+    className="sticky top-0 z-50 w-full max-w-3xl mx-auto flex justify-between items-center backdrop-blur-lg px-4 py-4 animate-pulse"
   >
     <div className="flex items-center space-x-3 sm:space-x-8">
       <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-foreground/10" />
@@ -50,7 +50,7 @@ export const Header = () => {
   const { theme, setTheme } = useTheme();
   const [menuOpen, setMenuOpen] = useState(false);
   const mounted = useSyncExternalStore(
-    () => () => {},
+    () => () => { },
     () => true,
     () => false
   );
@@ -66,10 +66,10 @@ export const Header = () => {
   if (!mounted) return <HeaderSkeleton />;
 
   return (
-    <header className="sticky top-0 z-50 w-full flex justify-between items-center backdrop-blur-lg sm:px-100 px-4 py-4">
+    <header className="sticky top-0 z-50 w-full max-w-3xl mx-auto flex justify-between items-center backdrop-blur-lg px-4 py-4">
       <div className="flex items-center space-x-3 sm:space-x-8">
-        <Link 
-          href="/" 
+        <Link
+          href="/"
           className="flex items-center gap-0 group"
           onClick={(e) => {
             if (window.location.pathname === "/") {
@@ -127,31 +127,20 @@ export const Header = () => {
         </button>
       </div>
 
-      {/* Mobile Navigation Menu (Simple Dropdown) */}
+      {/* Mobile Navigation Menu (Sleek Floating Card) */}
       {menuOpen && (
-        <div className="absolute top-full left-0 w-full bg-background/95 backdrop-blur-md border-b border-foreground/5 rounded-b-lg shadow-lg md:hidden animate-in slide-in-from-top-5 fade-in duration-200">
-          <nav className="flex flex-col p-4 space-y-1">
-            <Link
-              href="/experience"
-              onClick={() => setMenuOpen(false)}
-              className="p-3 rounded-md hover:bg-muted transition-colors text-foreground font-medium text-sm"
-            >
-              Work
-            </Link>
-            <Link
-              href="/blogs"
-              onClick={() => setMenuOpen(false)}
-              className="p-3 rounded-md hover:bg-muted transition-colors text-foreground font-medium text-sm"
-            >
-              Blogs
-            </Link>
-            <Link
-              href="/projects"
-              onClick={() => setMenuOpen(false)}
-              className="p-3 rounded-md hover:bg-muted transition-colors text-foreground font-medium text-sm"
-            >
-              Projects
-            </Link>
+        <div className="absolute top-[calc(100%+0.25rem)] inset-x-4 bg-background! clay border border-foreground/5 rounded-2xl shadow-2xl p-1.5 md:hidden animate-in zoom-in-95 fade-in duration-200 origin-top-right">
+          <nav className="flex flex-col gap-1">
+            {navLinks.map((link) => (
+              <Link
+                key={link.name}
+                href={link.href}
+                onClick={() => setMenuOpen(false)}
+                className="px-4 py-3 rounded-xl text-foreground/80 hover:text-foreground hover:bg-foreground/5 transition-all font-medium text-[15px] flex items-center justify-between group"
+              >
+                {link.name}
+              </Link>
+            ))}
           </nav>
         </div>
       )}

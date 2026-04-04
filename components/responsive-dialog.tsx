@@ -1,6 +1,5 @@
 "use client"
 
-
 import { cn } from "@/lib/utils"
 import { useIsMobile } from "@/hooks/use-mobile"
 
@@ -42,7 +41,7 @@ export const ResponsiveDialog = ({
   if (isMobile) {
     return (
       <Drawer open={open} onOpenChange={onOpenChange}>
-        <DrawerContent className="rounded-t-2xl border-t bg-background shadow-lg px-4">
+        <DrawerContent className="rounded-t-2xl border-t bg-background shadow-lg">
           <DrawerHeader className="pb-2 pt-4 px-4 border-b">
             <DrawerTitle className="text-base font-semibold">{title}</DrawerTitle>
             <DrawerDescription className="text-sm text-muted-foreground">
