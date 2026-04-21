@@ -13,12 +13,22 @@ import RotatingText from "@/components/react-bits/RotatingText";
 import { SendIcon } from "lucide-react";
 import { SiGoogledocs } from "react-icons/si";
 import SkillsSection from "@/components/core/6-Skills";
+import Image from "next/image";
 
 const Page = () => {
   return (
     <section className="flex flex-col items-start space-y-4 mx-auto mt-12 md:mt-24 w-full px-4 py-4 md:px-8">
       <div className="flex items-center justify-center gap-3 md:gap-6">
-        <AvatarLogo className="w-18 h-full sm:w-24 rounded-full text-ring/85 dark:text-ring" />
+        {/* <AvatarLogo className="w-18 h-full sm:w-24 rounded-full text-ring/85 dark:text-ring" /> */}
+        <div className="w-[100px] h-[100px] rounded-full overflow-hidden shrink-0 ring-2 ring-border">
+          <Image
+            src="/avatars/profile.jpeg"
+            alt="Avatar"
+            width={100}
+            height={100}
+            className="w-full h-full object-cover scale-[1.4] object-[center_25%]"
+          />
+        </div>
         <div className="flex flex-col gap-1 md:gap-2">
           <h1 className="text-2xl sm:text-3xl font-bold leading-tight text-foreground">
             Hi, I&apos;m {heroConfig.name}
@@ -36,7 +46,7 @@ const Page = () => {
               transition={{ type: "spring", damping: 30, stiffness: 400 }}
               rotationInterval={3000}
             />
-        </div>
+          </div>
         </div>
       </div>
 
