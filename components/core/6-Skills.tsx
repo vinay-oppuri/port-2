@@ -76,16 +76,7 @@ const fullStackSections: SkillGroupData[] = [
       { name: "MongoDB",    icon: ic(SiMongodb,    "w-4 h-4 text-[#47A248]") },
     ],
   },
-  {
-    label: "DevOps & Tools",
-    icon: <Layers className="w-3.5 h-3.5" />,
-    skills: [
-      { name: "Git",        icon: ic(SiGit,        "w-4 h-4 text-[#F05032]") },
-      { name: "Docker",     icon: ic(SiDocker,     "w-4 h-4 text-[#2496ED]") },
-      { name: "Linux",      icon: ic(SiLinux,      "w-4 h-4 text-foreground") },
-      { name: "Kubernetes", icon: ic(SiKubernetes, "w-4 h-4 text-[#326CE5]") },
-    ],
-  },
+
 ];
 
 // ─── AI ────────────────────────────────────────────────────────────────────────
@@ -112,15 +103,7 @@ const aiSections: SkillGroupData[] = [
       { name: "Gemini API", icon: ic(SiGooglegemini, "w-4 h-4 text-[#8E75B2]") },
     ],
   },
-  {
-    label: "MLOps",
-    icon: <Cpu className="w-3.5 h-3.5" />,
-    skills: [
-      { name: "MLOps",      icon: ic(Cpu,        "w-4 h-4 text-[#0EA5E9]") },
-      { name: "Docker",     icon: ic(SiDocker,   "w-4 h-4 text-[#2496ED]") },
-      { name: "Kubernetes", icon: ic(SiKubernetes,"w-4 h-4 text-[#326CE5]") },
-    ],
-  },
+
 ];
 
 // ─── SkillChip ─────────────────────────────────────────────────────────────────
