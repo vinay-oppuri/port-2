@@ -1,5 +1,11 @@
 import { heroConfig } from "@/data";
 import { AvatarLogo } from "../common/AvatarLogo";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 const AboutPage = () => {
   // Aggregate a flat list of skills for the minimal icon row
@@ -42,13 +48,22 @@ const AboutPage = () => {
           {/* Minimal Skills Row */}
           <div className="flex flex-col gap-2 mt-2">
             <p className="text-sm font-semibold text-muted-foreground">Skills</p>
-            <div className="flex flex-wrap gap-3 items-center text-foreground/80 [&_svg]:size-5 md:[&_svg]:size-6">
-              {uniqueSkills.map((skill, index) => (
-                <div key={index} title={skill.name} className="rounded-xl hover:text-foreground transition-colors cursor-pointer hover:-translate-y-1 hover:scale-105 transform duration-200 clay-interactive">
-                  {skill.component}
-                </div>
-              ))}
-            </div>
+            <TooltipProvider delayDuration={200}>
+              <div className="flex flex-wrap gap-3 items-center text-foreground/80 [&_svg]:size-5 md:[&_svg]:size-6">
+                {uniqueSkills.map((skill, index) => (
+                  <Tooltip key={index}>
+                    <TooltipTrigger asChild>
+                      <div className="rounded-xl hover:text-foreground transition-colors cursor-pointer hover:-translate-y-1 hover:scale-105 transform duration-200 clay-interactive">
+                        {skill.component}
+                      </div>
+                    </TooltipTrigger>
+                    <TooltipContent>
+                      <p>{skill.name}</p>
+                    </TooltipContent>
+                  </Tooltip>
+                ))}
+              </div>
+            </TooltipProvider>
           </div>
 
         </div>
