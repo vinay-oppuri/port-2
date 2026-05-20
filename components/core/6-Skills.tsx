@@ -13,30 +13,20 @@ import {
   SiTrpc,
   SiShadcnui,
   SiPython,
-  SiTensorflow,
-  SiScikitlearn,
   SiDocker,
   SiGit,
   SiLinux,
   SiJavascript,
-  SiGooglegemini,
-  SiJupyter,
   SiKubernetes,
 } from "react-icons/si";
 import {
-  Brain,
-  GitMerge,
-  Cpu,
-  Zap,
-  Network,
-  FlaskConical,
   Database,
   Layers,
   ServerCog,
   Globe,
-  Code2,
+  Droplet,
+  Zap,
 } from "lucide-react";
-import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 
 type SkillItem = { name: string; icon: React.ReactNode };
 type SkillGroupData = { label: string; icon: React.ReactNode; skills: SkillItem[] };
@@ -74,6 +64,8 @@ const fullStackSections: SkillGroupData[] = [
     skills: [
       { name: "PostgreSQL", icon: ic(SiPostgresql, "w-4 h-4 text-[#336791]") },
       { name: "MongoDB",    icon: ic(SiMongodb,    "w-4 h-4 text-[#47A248]") },
+      { name: "NeonDB",     icon: ic(Database,     "w-4 h-4 text-[#00E599]") },
+      { name: "DrizzleORM", icon: ic(Droplet,      "w-4 h-4 text-[#C5F74F]") },
     ],
   },
   {
@@ -84,41 +76,7 @@ const fullStackSections: SkillGroupData[] = [
       { name: "Docker",     icon: ic(SiDocker,     "w-4 h-4 text-[#2496ED]") },
       { name: "Linux",      icon: ic(SiLinux,      "w-4 h-4 text-foreground") },
       { name: "Kubernetes", icon: ic(SiKubernetes, "w-4 h-4 text-[#326CE5]") },
-    ],
-  },
-];
-
-// ─── AI ────────────────────────────────────────────────────────────────────────
-const aiSections: SkillGroupData[] = [
-  {
-    label: "Frameworks",
-    icon: <Code2 className="w-3.5 h-3.5" />,
-    skills: [
-      { name: "FastAPI",      icon: ic(Zap,           "w-4 h-4 text-[#009688]") },
-      { name: "TensorFlow",   icon: ic(SiTensorflow,  "w-4 h-4 text-[#FF6F00]") },
-      { name: "Scikit-learn", icon: ic(SiScikitlearn, "w-4 h-4 text-[#F7931E]") },
-      { name: "Transformers", icon: ic(Brain,         "w-4 h-4 text-[#9333EA]") },
-      { name: "Hugging Face", icon: ic(FlaskConical,  "w-4 h-4 text-[#FFD21E]") },
-      { name: "Jupyter",      icon: ic(SiJupyter,     "w-4 h-4 text-[#F37626]") },
-    ],
-  },
-  {
-    label: "LLM & Agents",
-    icon: <Brain className="w-3.5 h-3.5" />,
-    skills: [
-      { name: "LangChain",  icon: ic(Network,        "w-4 h-4 text-foreground") },
-      { name: "LangGraph",  icon: ic(GitMerge,       "w-4 h-4 text-foreground") },
-      { name: "RAG",        icon: ic(Database,       "w-4 h-4 text-[#8B5CF6]") },
-      { name: "Gemini API", icon: ic(SiGooglegemini, "w-4 h-4 text-[#8E75B2]") },
-    ],
-  },
-  {
-    label: "MLOps",
-    icon: <Cpu className="w-3.5 h-3.5" />,
-    skills: [
-      { name: "MLOps",      icon: ic(Cpu,        "w-4 h-4 text-[#0EA5E9]") },
-      { name: "Docker",     icon: ic(SiDocker,   "w-4 h-4 text-[#2496ED]") },
-      { name: "Kubernetes", icon: ic(SiKubernetes,"w-4 h-4 text-[#326CE5]") },
+      { name: "Turborepo",  icon: ic(Zap,          "w-4 h-4 text-[#EF4444]") },
     ],
   },
 ];
@@ -154,17 +112,6 @@ function SkillGroup({ label, icon, skills }: SkillGroupData) {
   );
 }
 
-// ─── TabPanel ──────────────────────────────────────────────────────────────────
-function TabPanel({ sections }: { sections: SkillGroupData[] }) {
-  return (
-    <div className="clay rounded-2xl p-4 md:p-6 flex flex-col gap-5 md:gap-7">
-      {sections.map((s) => (
-        <SkillGroup key={s.label} {...s} />
-      ))}
-    </div>
-  );
-}
-
 // ─── Main ──────────────────────────────────────────────────────────────────────
 export default function SkillsSection() {
   return (
@@ -178,30 +125,14 @@ export default function SkillsSection() {
       {/* Summary line for HR */}
       <p className="text-sm text-muted-foreground leading-relaxed -mt-2">
         Proficient across the full product lifecycle — from building responsive UIs and scalable
-        APIs to training and deploying AI/ML systems in production.
+        APIs to deploying robust applications in production.
       </p>
 
-      {/* Tabs */}
-      <Tabs defaultValue="ai">
-        <TabsList className="mb-2 clay w-full sm:w-fit">
-          <TabsTrigger value="fullstack" className="data-[state=active]:bg-foreground/75! data-[state=active]:text-background! gap-1.5">
-            <Globe className="w-3.5 h-3.5" />
-            Full Stack
-          </TabsTrigger>
-          <TabsTrigger value="ai" className="data-[state=active]:bg-foreground/75! data-[state=active]:text-background! gap-1.5">
-            <Brain className="w-3.5 h-3.5" />
-            AI / ML
-          </TabsTrigger>
-        </TabsList>
-
-        <TabsContent value="fullstack">
-          <TabPanel sections={fullStackSections} />
-        </TabsContent>
-
-        <TabsContent value="ai">
-          <TabPanel sections={aiSections} />
-        </TabsContent>
-      </Tabs>
+      <div className="clay rounded-2xl p-4 md:p-6 flex flex-col gap-5 md:gap-7">
+        {fullStackSections.map((s) => (
+          <SkillGroup key={s.label} {...s} />
+        ))}
+      </div>
     </section>
   );
 }
