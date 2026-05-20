@@ -56,6 +56,7 @@ const fullStackSections: SkillGroupData[] = [
       { name: "tRPC",        icon: ic(SiTrpc,      "w-4 h-4 text-[#0D9488]") },
       { name: "Better Auth", icon: ic(SiShadcnui,  "w-4 h-4 text-[#9333EA]") },
       { name: "Python",      icon: ic(SiPython,    "w-4 h-4 text-[#3776AB]") },
+      { name: "DrizzleORM",  icon: ic(Droplet,     "w-4 h-4 text-[#C5F74F]") },
     ],
   },
   {
@@ -65,7 +66,6 @@ const fullStackSections: SkillGroupData[] = [
       { name: "PostgreSQL", icon: ic(SiPostgresql, "w-4 h-4 text-[#336791]") },
       { name: "MongoDB",    icon: ic(SiMongodb,    "w-4 h-4 text-[#47A248]") },
       { name: "NeonDB",     icon: ic(Database,     "w-4 h-4 text-[#00E599]") },
-      { name: "DrizzleORM", icon: ic(Droplet,      "w-4 h-4 text-[#C5F74F]") },
     ],
   },
   {

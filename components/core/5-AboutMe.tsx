@@ -43,8 +43,8 @@ const AboutPage = () => {
           {/* Minimal Skills Row */}
           <div className="flex flex-col gap-2 mt-2">
             <p className="text-sm font-semibold text-muted-foreground">Skills</p>
-            <div className="flex flex-wrap gap-3 items-center text-foreground/80 [&_svg]:size-5 md:[&_svg]:size-6">
-              <TooltipProvider>
+            <TooltipProvider delayDuration={200}>
+              <div className="flex flex-wrap gap-3 items-center text-foreground/80 [&_svg]:size-5 md:[&_svg]:size-6">
                 {uniqueSkills.map((skill, index) => (
                   <Tooltip key={index}>
                     <TooltipTrigger asChild>
@@ -57,8 +57,8 @@ const AboutPage = () => {
                     </TooltipContent>
                   </Tooltip>
                 ))}
-              </TooltipProvider>
-            </div>
+              </div>
+            </TooltipProvider>
           </div>
 
         </div>
