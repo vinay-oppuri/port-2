@@ -65,7 +65,7 @@ const Page = () => {
             {skill.name}
           </Link>
         ))}
-        . I focus on <b>UI</b> design, explore <b>Three.js</b>, and I&apos;m
+        . I focus on <b>UI</b> design, explore <b>ML/DL</b>, and I&apos;m
         passionate about <b>Agentic AI</b> systems.
       </p>
 

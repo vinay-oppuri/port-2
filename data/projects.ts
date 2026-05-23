@@ -2,6 +2,7 @@ import { createElement } from "react";
 import type { IconType } from "react-icons";
 import {
   SiDrizzle,
+  SiFastapi,
   SiGooglegemini,
   SiNextdotjs,
   SiNodedotjs,
@@ -22,6 +23,70 @@ const tag = (name: string, Icon: IconType, className: string) => ({
 });
 
 export const ProjectsData = [
+  {
+    id: "rescomail",
+    title: "Rescomail",
+    description:
+      "Rescomail is an AI platform that analyzes resumes against job descriptions to score match, highlight gaps, and suggest targeted improvements.",
+    features: [
+      "Upload resumes (PDF) and parse them into structured, machine-readable data",
+      "AI-powered resume-to-job description matching with an overall percentage score and category breakdowns",
+      "Identify matched and missing keywords against job requirements",
+      "Generate strengths, risks, and actionable rewrite suggestions per evidence gap",
+      "Persist and browse full ATS analysis history per resume",
+      "Email/password and Google OAuth authentication with password-reset flow",
+      "Organization-level multi-tenancy with per-org subscription and usage tracking",
+    ],
+    motivation:
+      "I built Rescomail to help candidates understand why their resumes get filtered out by ATS systems before a human ever reads them. The goal was an explainable, evidence-based scoring engine that surfaces concrete keyword gaps and rewrite opportunities — not just a pass/fail verdict.",
+    tags: [
+      tag("Next.js", SiNextdotjs, "h-5 w-5 text-foreground"),
+      tag("TypeScript", SiTypescript, "h-5 w-5 text-[#3178C6]"),
+      tag("Tailwind CSS", SiTailwindcss, "h-5 w-5 text-[#38BDF8]"),
+      tag("Drizzle ORM", SiDrizzle, "h-5 w-5 text-foreground"),
+      tag("NeonDB", SiPostgresql, "h-5 w-5 text-[#336791]"),
+      tag("Gemini AI", SiGooglegemini, "h-5 w-5 text-[#4285F4]"),
+      tag("Turborepo", SiTurborepo, "h-5 w-5 text-foreground"),
+      tag("Shadcn UI", SiShadcnui, "h-5 w-5 text-foreground"),
+      tag("FastAPI", SiFastapi, "h-5 w-5 text-[#009688]"),
+    ],
+    imageUrl: "/projects/rescomail.png",
+    liveUrl: "https://rescomail.vinayweb.in/",
+    githubUrl: "https://github.com/vinay-oppuri/rescomail",
+    status: "Building",
+  },
+  {
+    id: "mono",
+    title: "Mono",
+    description:
+      "Mono is an AI agent platform that lets users create custom AI assistants with unique personalities and instructions, then chat with them persistently — similar to building your own GPT.",
+    features: [
+      "Sign up with email/password, GitHub, or Google via Better Auth",
+      "Create and manage AI agents with custom names and instructions",
+      "Start and manage persistent chats with any agent",
+      "AI-powered replies using Gemini (gemini-2.5-flash) with conversation history",
+      "Persistent chat message history stored per session",
+      "Search and paginate agents and chats",
+      "Meetings module with status lifecycle (upcoming, active, completed, processing, cancelled)",
+      "Video calling integration via Stream Video SDK",
+    ],
+    motivation:
+      "I built Mono to explore how custom AI agents with distinct instructions can power different workflows in a single unified chat interface. The goal was to make it easy to spin up purpose-built assistants without any configuration overhead.",
+    tags: [
+      tag("Next.js", SiNextdotjs, "h-5 w-5 text-foreground"),
+      tag("TypeScript", SiTypescript, "h-5 w-5 text-[#3178C6]"),
+      tag("Tailwind CSS", SiTailwindcss, "h-5 w-5 text-[#38BDF8]"),
+      tag("tRPC", SiTrpc, "h-5 w-5 text-[#0D9488]"),
+      tag("Drizzle ORM", SiDrizzle, "h-5 w-5 text-foreground"),
+      tag("NeonDB", SiPostgresql, "h-5 w-5 text-[#336791]"),
+      tag("Gemini AI", SiGooglegemini, "h-5 w-5 text-[#4285F4]"),
+      tag("Shadcn UI", SiShadcnui, "h-5 w-5 text-foreground"),
+    ],
+    imageUrl: "/projects/mono.png",
+    liveUrl: "https://mono.vinayweb.in/",
+    githubUrl: "https://github.com/vinay-oppuri/mono",
+    status: "Operational",
+  },
   {
     id: "inzite",
     title: "Inzite",
@@ -83,31 +148,5 @@ export const ProjectsData = [
     liveUrl: "https://resanlys.vinayweb.in/",
     githubUrl: "https://github.com/vinay-oppuri/resanlys",
     status: "Building",
-  },
-  {
-    id: "ai-agent-meetings",
-    title: "AI-Agent Meetings",
-    description:
-      "MeetAI lets users create AI agents to schedule meetings, generate post-meeting summaries, and answer follow-up questions once meetings are completed.",
-    features: [
-      "Create custom AI agents for meeting management",
-      "Automated meeting scheduling and coordination",
-      "Generate comprehensive post-meeting summaries",
-      "Interactive Q&A with meeting context",
-    ],
-    motivation:
-      "I built this to solve fragmented meeting information and time-consuming scheduling plus follow-ups. I wanted to use AI to make meetings more productive and less administrative.",
-    tags: [
-      tag("Next.js", SiNextdotjs, "h-5 w-5 text-foreground"),
-      tag("Typescript", SiTypescript, "h-5 w-5 text-[#3178C6]"),
-      tag("Tailwind CSS", SiTailwindcss, "h-5 w-5 text-[#38BDF8]"),
-      tag("tRPC", SiTrpc, "h-5 w-5 text-[#0D9488]"),
-      tag("GeminiAI", SiGooglegemini, "h-5 w-5 text-[#4285F4]"),
-      tag("Shadcn UI", SiShadcnui, "h-5 w-5 text-foreground"),
-    ],
-    imageUrl: "/projects/ai-agent.png",
-    liveUrl: "https://meet.vinayweb.in/",
-    githubUrl: "https://github.com/vinay-oppuri/genai",
-    status: "Building",
-  },
+  }
 ];

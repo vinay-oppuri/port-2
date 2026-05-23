@@ -3,6 +3,7 @@ import { Code2, Mail, MapPin, type LucideIcon } from "lucide-react";
 import type { IconType } from "react-icons";
 import {
   SiBun,
+  SiDrizzle,
   SiExpress,
   SiGithub,
   SiGooglegemini,
@@ -10,6 +11,7 @@ import {
   SiMongodb,
   SiNextdotjs,
   SiNodedotjs,
+  SiPnpm,
   SiPostgresql,
   SiReact,
   SiShadcnui,
@@ -39,12 +41,12 @@ export const heroConfig = {
     { name: "oppurivinay25@gmail.com", logo: icon(Mail, "w-4 h-4") },
   ],
   mainSkills: [
-    skill("Bun", "https://bun.sh/", SiBun, "h-4 w-4 text-foreground"),
+    skill("pnpm", "https://pnpm.io/", SiPnpm, "h-4 w-4 text-foreground"),
     skill("Next.js", "https://nextjs.org/", SiNextdotjs, "h-4 w-4 text-foreground"),
     skill("Typescript", "https://www.typescriptlang.org/", SiTypescript, "h-4 w-4 text-[#3178C6]"),
     skill("Tailwind CSS", "https://tailwindcss.com/", SiTailwindcss, "h-4 w-4 text-[#38BDF8]"),
     skill("PostgreSQL", "https://www.postgresql.org/", SiPostgresql, "h-4 w-4 text-[#336791]"),
-    skill("tRPC", "https://trpc.io/", SiTrpc, "h-4 w-4 text-[#0D9488]"),
+    skill("DrizzleORM", "https://orm.drizzle.team/", SiDrizzle, "h-4 w-4 text-[#0D9488]"),
     skill("Better Auth", "https://better-auth.com/", SiShadcnui, "h-4 w-4 text-[#9333EA]"),
   ],
   skills: {
