@@ -1,5 +1,11 @@
 import { ProjectsData } from "@/data";
 import { ProjectCards } from "@/components/core/project-cards";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Projects",
+  description: "My projects and work across different technologies and domains.",
+};
 
 const Page = () => {
   return (

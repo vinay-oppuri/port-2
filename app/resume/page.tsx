@@ -1,6 +1,12 @@
 import { Button } from "@/components/ui/button";
 import { Download } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Resume",
+  description: "View or download my Full Stack and AI Engineer resumes.",
+};
 
 const Page = () => {
   return (

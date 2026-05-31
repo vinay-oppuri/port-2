@@ -1,5 +1,11 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Blogs",
+  description: "Technical notes, build breakdowns, and lessons from shipping products.",
+};
 
 const Page = () => {
   return (

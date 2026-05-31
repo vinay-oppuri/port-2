@@ -6,9 +6,42 @@ import { ArrowLeft, ExternalLink, Github } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { Metadata } from "next";
 
 interface ProjectDetailsPageProps {
   params: Promise<{ id: string }>;
+}
+
+export async function generateMetadata({ params }: ProjectDetailsPageProps): Promise<Metadata> {
+  const { id } = await params;
+  const project = ProjectsData.find((p) => p.id === id);
+
+  if (!project) {
+    return {
+      title: "Project Not Found",
+    };
+  }
+
+  return {
+    title: project.title,
+    description: project.description,
+    openGraph: {
+      title: project.title,
+      description: project.description,
+      images: [
+        {
+          url: project.imageUrl,
+          alt: project.title,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: project.title,
+      description: project.description,
+      images: [project.imageUrl],
+    },
+  };
 }
 
 const ProjectDetailsPage = async ({ params }: ProjectDetailsPageProps) => {

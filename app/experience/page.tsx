@@ -1,6 +1,12 @@
 
 import { ExperienceList } from "@/components/core/experience-list";
 import { experiences } from "@/data";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Work Experience",
+  description: "My work experience across different companies and roles.",
+};
 
 const Page = () => {
   return (
