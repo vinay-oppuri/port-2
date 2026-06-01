@@ -1,5 +1,5 @@
 import { ProjectsData } from "@/data";
-import { ProjectCards } from "@/components/core/project-cards";
+import { ProjectCards } from "@/components/home/project-cards";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {

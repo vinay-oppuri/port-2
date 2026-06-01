@@ -30,6 +30,8 @@ const skill = (name: string, href: string, Icon: AppIcon, className: string) => 
   component: icon(Icon, className),
 });
 
+export const siteEmail = "oppurivinay25@gmail.com";
+
 export const heroConfig = {
   name: "Vinay Oppuri",
   fullName: "Oppuri Vinay Reddy",

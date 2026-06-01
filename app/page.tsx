@@ -1,18 +1,16 @@
-"use client";
-
-import Link from "next/link";
+import Link from "@/components/ui/link";
 import { heroConfig, socialLinks } from "@/data";
 import { Button } from "@/components/ui/button";
-import ExperienceCard from "@/components/core/3-Experience";
-import ProjectsPage from "@/components/core/4-Projects";
-import AboutPage from "@/components/core/5-AboutMe";
-import GitHubActivity from "@/components/core/7-GithubActivity";
-import ContactDialog from "@/components/core/8-Contact";
+import ExperienceCard from "@/components/home/experience-section";
+import ProjectsPage from "@/components/home/projects-section";
+import AboutPage from "@/components/home/about-section";
+import GitHubActivity from "@/components/home/github-activity";
+import ContactDialog from "@/components/contact/contact-section";
 import { AvatarLogo } from "@/components/common/AvatarLogo";
 import RotatingText from "@/components/react-bits/RotatingText";
 import { SendIcon } from "lucide-react";
 import { SiGoogledocs } from "react-icons/si";
-import SkillsSection from "@/components/core/6-Skills";
+import SkillsSection from "@/components/home/skills-section";
 
 const Page = () => {
   return (

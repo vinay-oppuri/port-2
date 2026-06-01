@@ -1,6 +1,6 @@
 "use client"
 
-import Link from "next/link";
+import Link from "@/components/ui/link";
 import { socialLinks } from "@/data";
 import { useSyncExternalStore } from "react";
 
