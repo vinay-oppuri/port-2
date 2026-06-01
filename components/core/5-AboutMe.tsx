@@ -17,7 +17,7 @@ const AboutPage = () => {
 
       {/* Heading */}
       <div className="flex flex-col gap-1 mb-6">
-        <p className="text-sm text-muted-foreground">About</p>
+        <p className="text-sm text-muted-foreground font-mono">About</p>
         <h2 className="text-2xl font-bold text-foreground">Me</h2>
       </div>
 

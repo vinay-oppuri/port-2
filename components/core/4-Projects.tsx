@@ -11,7 +11,7 @@ const ProjectsPage = () => {
     <section className="flex flex-col gap-6 w-full px-2 md:px-0 py-4">
       {/* Header */}
       <div className="flex flex-col gap-1">
-        <p className="text-sm text-muted-foreground">Featured</p>
+        <p className="text-sm text-muted-foreground font-mono">Featured</p>
         <h2 className="text-2xl font-bold text-foreground">Projects</h2>
       </div>
 

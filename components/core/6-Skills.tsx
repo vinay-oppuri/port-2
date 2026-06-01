@@ -135,7 +135,7 @@ export default function SkillsSection() {
     <section className="w-full flex flex-col gap-6 mt-6">
       {/* Heading */}
       <div className="flex flex-col gap-1">
-        <p className="text-sm text-muted-foreground">Technical</p>
+        <p className="text-sm text-muted-foreground font-mono">Technical</p>
         <h2 className="text-2xl font-bold text-foreground">Skills</h2>
       </div>
 

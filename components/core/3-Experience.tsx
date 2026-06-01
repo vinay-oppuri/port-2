@@ -9,7 +9,7 @@ const ExperienceAccordion = () => {
 
   return (
     <div className="w-full mx-auto px-2 md:px-0 py-4">
-      <p className="text-sm text-muted-foreground">Featured</p>
+      <p className="text-sm text-muted-foreground font-mono">Featured</p>
       <h2 className="text-2xl font-semibold mb-8">Experience</h2>
       <ExperienceList items={topExperiences} />
 

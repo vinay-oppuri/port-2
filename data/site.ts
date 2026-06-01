@@ -1,8 +1,7 @@
 import { createElement } from "react";
-import { Code2, Mail, MapPin, type LucideIcon } from "lucide-react";
+import { Code2, Mail, MapPin, User, type LucideIcon } from "lucide-react";
 import type { IconType } from "react-icons";
 import {
-  SiBun,
   SiDrizzle,
   SiExpress,
   SiGithub,
@@ -32,13 +31,13 @@ const skill = (name: string, href: string, Icon: AppIcon, className: string) => 
 });
 
 export const heroConfig = {
-  name: "Vinay",
+  name: "Vinay Oppuri",
   fullName: "Oppuri Vinay Reddy",
   title: ["A Full Stack Web Developer", "AI Engineer"],
   info: [
-    { name: "Full Stack Developer", logo: icon(Code2, "w-4 h-4") },
     { name: "Hyderabad, India", logo: icon(MapPin, "w-4 h-4") },
     { name: "oppurivinay25@gmail.com", logo: icon(Mail, "w-4 h-4") },
+    {name: "He/Him", logo: icon(User, "w-4 h-4")}
   ],
   mainSkills: [
     skill("pnpm", "https://pnpm.io/", SiPnpm, "h-4 w-4 text-foreground"),
