@@ -27,6 +27,7 @@ import {
   CommandSeparator,
 } from "@/components/ui/command"
 import { socialLinks } from "@/data/site"
+import Logo from "./common/Logo"
 
 export function SearchCommand() {
   const [open, setOpen] = React.useState(false)
@@ -51,18 +52,18 @@ export function SearchCommand() {
 
   return (
     <>
-      <Button 
-        variant="ghost" 
-        size="sm" 
+      <Button
+        variant="ghost"
+        size="sm"
         className="rounded-full gap-2 px-3 h-8 text-foreground/80 hover:text-foreground hover:bg-foreground/5 transition-all clay-interactive"
         onClick={() => setOpen(true)}
       >
         <span className="text-xs font-medium inline-block">Search</span>
         <Search size={16} />
       </Button>
-      <CommandDialog open={open} onOpenChange={setOpen}>
-        <CommandInput placeholder="Type a command or search..." />
-        <CommandList className="font-mono tracking-tighter">
+      <CommandDialog open={open} onOpenChange={setOpen} className="border-border/80!">
+        <CommandInput className="ml-2!" placeholder="Type a command or search..." />
+        <CommandList className="font-mono tracking-tighter bg-background border border-border/60 p-1 mx-2 md:mx-3 my-1 md:my-2 rounded-xl! [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
           <CommandEmpty>No results found.</CommandEmpty>
           <CommandGroup heading="Navigation">
             <CommandItem onSelect={() => runCommand(() => router.push("/"))}>
@@ -115,6 +116,15 @@ export function SearchCommand() {
             </CommandItem>
           </CommandGroup>
         </CommandList>
+        <div className="flex items-center justify-between w-full px-4 pb-4 pt-2">
+          <Logo className="w-7 h-7 text-foreground" />
+          <div className="flex items-center gap-2 text-muted-foreground text-xs font-medium">
+            <kbd className="inline-flex select-none items-center justify-center rounded border bg-muted px-1.5 py-0.5 font-mono text-xs font-medium text-foreground">
+              ↵
+            </kbd>
+            <span>to page</span>
+          </div>
+        </div>
       </CommandDialog>
     </>
   )

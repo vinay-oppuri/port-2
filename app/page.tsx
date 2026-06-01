@@ -88,12 +88,12 @@ const Page = () => {
       </div>
 
       <div className="w-full flex flex-col pt-6 gap-6">
-        <ExperienceCard />
-        <ProjectsPage />
-        <AboutPage />
-        <SkillsSection />
-        <GitHubActivity />
-        <ContactDialog />
+        <div id="experience"><ExperienceCard /></div>
+        <div id="projects"><ProjectsPage /></div>
+        <div id="about"><AboutPage /></div>
+        <div id="skills"><SkillsSection /></div>
+        <div id="github"><GitHubActivity /></div>
+        <div id="contact"><ContactDialog /></div>
       </div>
     </section>
   );
