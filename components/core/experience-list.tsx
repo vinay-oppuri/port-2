@@ -40,14 +40,13 @@ export function ExperienceList({ items }: ExperienceListProps) {
                   </h3>
 
                   {exp.status && (
-                    <Badge className="flex items-center gap-1 bg-green-600/20 text-[9px] md:text-xs text-foreground/80 rounded-sm px-1 py-0.5">
-                      <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
-                      {exp.status}
+                    <Badge className="h-4 w-4 flex items-center bg-green-600/20 text-foreground/80 rounded-full">
+                      <span className="absolute z-50 w-2 h-2 rounded-full bg-green-500 animate-pulse" />
                     </Badge>
                   )}
                 </AccordionTrigger>
 
-                <p className="text-xs md:text-sm font-serif text-muted-foreground">
+                <p className="text-xs md:text-sm font-mono text-muted-foreground">
                   {exp.role}
                 </p>
               </div>

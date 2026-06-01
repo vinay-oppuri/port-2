@@ -13,7 +13,7 @@ const AboutPage = () => {
   const uniqueSkills = Array.from(new Map(allSkills.map((item) => [item.name, item])).values());
 
   return (
-    <section className="flex flex-col w-full px-2 md:px-0 py-4">
+    <section className="flex flex-col w-full px-0 py-4">
 
       {/* Heading */}
       <div className="flex flex-col gap-1 mb-6">

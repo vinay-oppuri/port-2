@@ -345,7 +345,7 @@ html {
 .dark .clay-card {
   @apply bg-background/20;
   box-shadow:
-    inset 4px 4px 8px rgba(255, 255, 255, 0.1),
+    inset 4px 4px 16px rgba(255, 255, 255, 0.05),
     inset -4px -4px 8px rgba(0, 0, 0, 0.35),
     4px 4px 20px rgba(0, -0, 0, 0.2);
 }

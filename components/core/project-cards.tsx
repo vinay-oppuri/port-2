@@ -3,7 +3,7 @@ import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
-import { Globe, Github } from "lucide-react";
+import { Globe, Github, ChevronRightIcon } from "lucide-react";
 import { ProjectsData } from "@/data";
 import { cn } from "@/lib/utils";
 
@@ -19,7 +19,7 @@ export function ProjectCards({ projects }: ProjectCardsProps) {
       {projects.map((project) => (
         <Card
           key={project.title}
-          className="overflow-hidden p-0 group clay-card clay-interactive"
+          className="overflow-hidden p-0 pb-6 group clay-card clay-interactive border-none!"
         >
           <div className="relative h-48 md:h-48 w-full project-bg-ocean overflow-hidden group">
             <div className="absolute top-2 left-2 z-20">
@@ -49,6 +49,18 @@ export function ProjectCards({ projects }: ProjectCardsProps) {
                 </span>
               </Badge>
             </div>
+
+            <div className="absolute top-2 right-2 z-20">
+              <Link
+                href={`/projects/${project.id}`}
+                className="flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors duration-300"
+              >
+                <span className="text-foreground/90 rounded-md p-1 border border-white/10 bg-black/40 backdrop-blur-md shadow-sm">
+                  <ChevronRightIcon className="w-4 h-4" />
+                </span>
+              </Link>
+            </div>
+
             <Image
               src={project.imageUrl}
               alt={project.title}
@@ -106,7 +118,7 @@ export function ProjectCards({ projects }: ProjectCardsProps) {
             </div>
           </CardHeader>
 
-          <CardContent className="flex flex-col gap-2">
+          <CardContent className="flex flex-col gap-4">
             <p className="text-muted-foreground text-xs md:text-sm leading-relaxed">
               {project.description}
             </p>
@@ -116,33 +128,34 @@ export function ProjectCards({ projects }: ProjectCardsProps) {
                 Technologies
               </p>
 
-              {project.tags.map((tag, id) => (
-                <Tooltip key={id}>
-                  <TooltipTrigger asChild>
-                    <Badge className="bg-transparent p-1">
-                      <span className="text-md">{tag.logo}</span>
-                    </Badge>
-                  </TooltipTrigger>
-                  <TooltipContent>
-                    <p>{tag.name}</p>
-                  </TooltipContent>
-                </Tooltip>
-              ))}
-            </div>
-
-            <div className="flex flex-row justify-end items-center pb-4 pt-2">
-              <Link
-                href={`/projects/${project.id}`}
-                className="group/link flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors duration-300"
-              >
-                <span className="relative">
-                  View Details
-                  <span className="absolute -bottom-1 left-0 w-0 h-px bg-foreground transition-all duration-300 group-hover/link:w-full" />
-                </span>
-                <span className="group-hover/link:translate-x-1 transition-transform duration-300">
-                  →
-                </span>
-              </Link>
+              <div className="flex flex-wrap items-center gap-1">
+                {project.tags.slice(0, 6).map((tag, id) => (
+                  <Tooltip key={id}>
+                    <TooltipTrigger asChild>
+                      <Badge className="bg-transparent p-1">
+                        <span className="text-md">{tag.logo}</span>
+                      </Badge>
+                    </TooltipTrigger>
+                    <TooltipContent>
+                      <p>{tag.name}</p>
+                    </TooltipContent>
+                  </Tooltip>
+                ))}
+                {project.tags.length > 6 && (
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <Link href={`/projects/${project.id}`}>
+                        <Badge className="bg-transparent text-foreground p-1">
+                          <span className="text-xs font-medium px-1">+{project.tags.length - 6}</span>
+                        </Badge>
+                      </Link>
+                    </TooltipTrigger>
+                    <TooltipContent>
+                      <p>View all technologies</p>
+                    </TooltipContent>
+                  </Tooltip>
+                )}
+              </div>
             </div>
           </CardContent>
         </Card>

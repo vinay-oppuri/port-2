@@ -65,7 +65,7 @@ export const ContactDialog = () => {
     }
 
     return (
-        <section className="flex flex-col gap-6 w-full px-2 md:px-0 py-8">
+        <section className="flex flex-col gap-6 w-full px-0 py-8">
             {/* Super Heading / Metadata overlay */}
             <div className="flex flex-col gap-1 mb-2">
                 <p className="text-sm text-muted-foreground">Let&apos;s</p>

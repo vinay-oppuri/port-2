@@ -8,7 +8,7 @@ const ProjectsPage = () => {
   const projects = ProjectsData.slice(0, 2)
 
   return (
-    <section className="flex flex-col gap-6 w-full px-2 md:px-0 py-4">
+    <section className="flex flex-col gap-6 w-full px-0 py-4">
       {/* Header */}
       <div className="flex flex-col gap-1">
         <p className="text-sm text-muted-foreground font-mono">Featured</p>
