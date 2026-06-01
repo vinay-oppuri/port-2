@@ -53,7 +53,7 @@ export const ProjectsData = [
     imageUrl: "/projects/rescomail.png",
     liveUrl: "https://rescomail.vinayweb.in/",
     githubUrl: "https://github.com/vinay-oppuri/rescomail",
-    status: "Building",
+    status: "building",
   },
   {
     id: "mono",
@@ -85,7 +85,7 @@ export const ProjectsData = [
     imageUrl: "/projects/mono.png",
     liveUrl: "https://mono.vinayweb.in/",
     githubUrl: "https://github.com/vinay-oppuri/mono",
-    status: "Operational",
+    status: "operational",
   },
   {
     id: "inzite",
@@ -116,7 +116,7 @@ export const ProjectsData = [
     imageUrl: "/projects/inzite.png",
     liveUrl: "https://inzite.vinayweb.in/",
     githubUrl: "https://github.com/vinay-oppuri/inzite",
-    status: "All Systems Operational",
+    status: "operational",
   },
   {
     id: "resanlys",
@@ -147,6 +147,6 @@ export const ProjectsData = [
     imageUrl: "/projects/resanlys.png",
     liveUrl: "https://resanlys.vinayweb.in/",
     githubUrl: "https://github.com/vinay-oppuri/resanlys",
-    status: "Building",
+    status: "building",
   }
 ];

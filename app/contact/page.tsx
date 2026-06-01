@@ -7,6 +7,10 @@ import { SendIcon } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
 
+type ApiResponse = {
+  message?: string;
+};
+
 export default function ContactPage() {
   const [formData, setFormData] = useState({
     name: "",
@@ -34,11 +38,13 @@ export default function ContactPage() {
         body: JSON.stringify(formData),
       });
 
+      const result = (await response.json().catch(() => ({}))) as ApiResponse;
+
       if (response.ok) {
-        toast.success('Message sent successfully!');
+        toast.success(result.message ?? 'Message sent successfully!');
         setFormData({ name: "", phone: "", email: "", message: "" });
       } else {
-        toast.error('Failed to send message.');
+        toast.error(result.message ?? 'Failed to send message.');
       }
     } catch (error) {
       console.error('Error sending message:', error);
@@ -68,51 +74,64 @@ export default function ContactPage() {
         <form className="space-y-6" onSubmit={handleSubmit}>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
             <div className="flex flex-col gap-2">
-              <label className="text-sm font-semibold text-foreground">Name *</label>
+              <label htmlFor="contact-name" className="text-sm font-semibold text-foreground">Name *</label>
               <Input
+                id="contact-name"
                 name="name"
                 value={formData.name}
                 onChange={handleChange}
                 placeholder="Your full name"
                 className="px-4 py-5 bg-background border-border text-sm md:text-base"
+                autoComplete="name"
+                minLength={2}
+                maxLength={80}
                 required
               />
             </div>
 
             <div className="flex flex-col gap-2">
-              <label className="text-sm font-semibold text-foreground">Phone *</label>
+              <label htmlFor="contact-phone" className="text-sm font-semibold text-foreground">Phone *</label>
               <Input
+                id="contact-phone"
                 name="phone"
                 value={formData.phone}
                 onChange={handleChange}
                 placeholder="+1 (123) xxx-xxxx"
                 className="px-4 py-5 bg-background border-border text-sm md:text-base"
+                autoComplete="tel"
+                maxLength={30}
                 required
               />
             </div>
           </div>
 
           <div className="flex flex-col gap-2">
-            <label className="text-sm font-semibold text-foreground">Email *</label>
+            <label htmlFor="contact-email" className="text-sm font-semibold text-foreground">Email *</label>
             <Input
+              id="contact-email"
               name="email"
               type="email"
               value={formData.email}
               onChange={handleChange}
               placeholder="your.email@example.com"
               className="px-4 py-5 bg-background border-border text-sm md:text-base"
+              autoComplete="email"
+              maxLength={254}
               required
             />
           </div>
 
           <div className="flex flex-col gap-2">
-            <label className="text-sm font-semibold text-foreground">Message *</label>
+            <label htmlFor="contact-message" className="text-sm font-semibold text-foreground">Message *</label>
             <Textarea
+              id="contact-message"
               name="message"
               value={formData.message}
               onChange={handleChange}
               placeholder="Tell me about your project or just say hello..."
               className="min-h-40 px-4 py-5 bg-background border-border text-sm md:text-base"
+              minLength={10}
+              maxLength={2000}
               required
             />
           </div>

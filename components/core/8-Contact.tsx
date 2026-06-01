@@ -10,8 +10,13 @@ import { Textarea } from "../ui/textarea";
 import { Button } from "../ui/button";
 import Link from "next/link";
 
+type ApiResponse = {
+    message?: string;
+};
+
 export const ContactDialog = () => {
     const emailToUse = "oppurivinay25@gmail.com";
+    const scheduleHref = `mailto:${emailToUse}?subject=${encodeURIComponent("Schedule a strategy call")}`;
     const xLink = socialLinks.find(link => link.name.toLowerCase() === "x" || link.name.toLowerCase() === "twitter");
 
     const [loading, setLoading] = useState(false);
@@ -48,13 +53,14 @@ export const ContactDialog = () => {
                 }),
             });
 
+            const result = (await response.json().catch(() => ({}))) as ApiResponse;
+
             if (response.ok) {
-                toast.success('Message sent successfully!');
+                toast.success(result.message ?? 'Message sent successfully!');
                 setSubmitted(true);
                 setFormData({ name: "", email: "", message: "" });
             } else {
-                const errData = await response.json();
-                toast.error(errData.error?.message || 'Failed to send message.');
+                toast.error(result.message ?? 'Failed to send message.');
             }
         } catch (error) {
             console.error('Error sending message:', error);
@@ -84,7 +90,7 @@ export const ContactDialog = () => {
 
                         <div className="flex flex-col gap-3 mt-4">
                             {/* Schedule Call */}
-                            <a href="https://calendly.com/" target="_blank" rel="noopener noreferrer" className="flex items-center justify-between p-3 clay rounded-xl group transition-all duration-300 clay-interactive">
+                            <a href={scheduleHref} className="flex items-center justify-between p-3 clay rounded-xl group transition-all duration-300 clay-interactive">
                                 <div className="flex items-center gap-1">
                                     <div className="p-2.5 transition-colors text-muted-foreground group-hover:text-foreground">
                                         <Calendar className="w-5 h-5 shrink-0" />
@@ -161,36 +167,49 @@ export const ContactDialog = () => {
                             <form className="flex flex-col gap-4 mt-4" onSubmit={handleSubmit}>
                                 <div className="flex flex-col gap-1.5">
                                     <Input
+                                        id="quick-contact-name"
                                         type="text"
                                         name="name"
                                         placeholder="Full Name"
                                         value={formData.name}
                                         onChange={handleChange}
                                         className="w-full rounded-sm bg-foreground/1! border border-white/5 hover:border-white/10 focus:border-white/20 py-3 px-4 text-sm text-foreground placeholder:text-muted-foreground/30 focus:outline-none transition-all"
+                                        aria-label="Full name"
+                                        autoComplete="name"
+                                        minLength={2}
+                                        maxLength={80}
                                         required
                                     />
                                 </div>
 
                                 <div className="flex flex-col gap-1.5">
                                     <Input
+                                        id="quick-contact-email"
                                         type="email"
                                         name="email"
                                         placeholder="Email Address"
                                         value={formData.email}
                                         onChange={handleChange}
                                         className="w-full rounded-sm bg-foreground/1! border border-white/5 hover:border-white/10 focus:border-white/20 py-3 px-4 text-sm text-foreground placeholder:text-muted-foreground/30 focus:outline-none transition-all"
+                                        aria-label="Email address"
+                                        autoComplete="email"
+                                        maxLength={254}
                                         required
                                     />
                                 </div>
 
                                 <div className="flex flex-col gap-1.5">
                                     <Textarea
+                                        id="quick-contact-message"
                                         name="message"
                                         rows={4}
                                         placeholder="Your Message"
                                         value={formData.message}
                                         onChange={handleChange}
                                         className="w-full min-h-30 rounded-sm bg-foreground/1! border border-white/5 hover:border-white/10 focus:border-white/20 py-3 px-4 text-sm text-foreground placeholder:text-muted-foreground/30 resize-none focus:outline-none transition-all"
+                                        aria-label="Message"
+                                        minLength={10}
+                                        maxLength={2000}
                                         required
                                     />
                                 </div>

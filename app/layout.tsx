@@ -105,7 +105,7 @@ export default function RootLayout({
           />
           <SocialLinks />
           <Header />
-          <div className="w-full px-2 md:px-0 max-w-3xl mx-auto">
+          <div className="w-full px-2 md:px-0 max-w-[800px] mx-auto">
             {children}
             <Footer />
           </div>

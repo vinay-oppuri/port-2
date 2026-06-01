@@ -1,36 +1,52 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Vinay Portfolio
 
-## Getting Started
+Production-ready developer portfolio built with Next.js App Router, React 19, TypeScript, Tailwind CSS 4, shadcn/Radix UI primitives, Resend, and Zod.
 
-First, run the development server:
+## Scripts
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm run lint
+npm run typecheck
+npm run build
+npm run start
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Environment
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Create a local `.env` file with:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+RESEND_API_KEY=your_resend_api_key
+```
 
-## Learn More
+The API routes validate this value at runtime before sending email. Missing or invalid server email configuration returns a generic client error and logs details only on the server.
 
-To learn more about Next.js, take a look at the following resources:
+## Package Manager
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+This project uses npm only. `package-lock.json` is the source of truth, and `bun.lock` was removed to avoid dependency drift.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Routes
 
-## Deploy on Vercel
+- `/` - portfolio landing page
+- `/projects` - all projects
+- `/projects/[id]` - project details
+- `/experience` - work experience
+- `/resume` - current resume PDF
+- `/contact` - full contact form
+- `/blogs` - placeholder blog route
+- `/api/send` - contact email endpoint
+- `/api/feedback` - feedback email endpoint
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Production Checks
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Before deploying, run:
+
+```bash
+npm run lint
+npm run typecheck
+npm audit
+npm run build
+```
+
+See [docs/production-audit.md](docs/production-audit.md) for the latest codebase audit, risk assessment, implementation roadmap, and file-by-file change log.

@@ -27,25 +27,25 @@ export function ProjectCards({ projects }: ProjectCardsProps) {
                 variant="secondary"
                 className={cn(
                   "flex items-center gap-2 text-foreground/90 rounded-md px-2 py-1 text-[10px] border border-white/10 bg-black/40 backdrop-blur-md shadow-sm",
-                  project.status === "Building" ? "text-red-100" : "text-emerald-100"
+                  project.status === "building" ? "text-red-100" : "text-emerald-100"
                 )}
               >
                 <span className="relative flex h-1.5 w-1.5">
                   <span
                     className={cn(
                       "animate-ping absolute inline-flex h-full w-full rounded-full opacity-75",
-                      project.status === "Building" ? "bg-red-400" : "bg-emerald-400"
+                      project.status === "building" ? "bg-red-400" : "bg-emerald-400"
                     )}
                   />
                   <span
                     className={cn(
                       "relative inline-flex rounded-full h-1.5 w-1.5",
-                      project.status === "Building" ? "bg-red-500" : "bg-emerald-500"
+                      project.status === "building" ? "bg-red-500" : "bg-emerald-500"
                     )}
                   />
                 </span>
                 <span className="font-semibold tracking-wide uppercase">
-                  {project.status === "Building" ? "Building" : "Operational"}
+                  {project.status === "building" ? "Building" : "Operational"}
                 </span>
               </Badge>
             </div>

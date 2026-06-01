@@ -9,17 +9,17 @@ export interface NowPlayingData {
     source?: "current" | "recent";
   }
 
-type ContributionDay = {
+export type ContributionDay = {
   contributionCount: number;
   date: string;
   color: string;
 };
 
-type ContributionWeek = {
+export type ContributionWeek = {
   contributionDays: ContributionDay[];
 };
 
-type ContributionCalendar = {
+export type ContributionCalendar = {
   totalContributions: number;
   colors: string[];
   weeks: ContributionWeek[];

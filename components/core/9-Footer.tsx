@@ -1,7 +1,6 @@
 "use client";
 
 import { cloneElement, isValidElement, useEffect, useState } from "react";
-import { TextHoverEffect } from "../ui/text-hover-effect";
 import Link from "next/link";
 import { Loader2, MessageSquare, SendIcon } from "lucide-react";
 import { Input } from "../ui/input";
@@ -11,6 +10,10 @@ import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
 import { Button } from "../ui/button";
 import { toast } from "sonner";
 import { ResponsiveDialog } from "../responsive-dialog";
+
+type ApiResponse = {
+  message?: string;
+};
 
 const Footer = () => {
   const [mounted, setMounted] = useState(false)
@@ -52,12 +55,14 @@ const Footer = () => {
         body: JSON.stringify(formData),
       });
 
+      const result = (await response.json().catch(() => ({}))) as ApiResponse;
+
       if (response.ok) {
-        toast.success('Feedback sent successfully!');
+        toast.success(result.message ?? 'Feedback sent successfully!');
         setFormData({ name: "", feedback: "" });
         setIsFeedbackDialogOpen(false);
       } else {
-        toast.error('Failed to send feedback.');
+        toast.error(result.message ?? 'Failed to send feedback.');
       }
     } catch (error) {
       console.error('Error sending feedback:', error);
@@ -80,20 +85,29 @@ const Footer = () => {
       >
         <form className="space-y-4" onSubmit={handleSubmit}>
           <Input
+            id="feedback-name"
             type="text"
             name="name"
             placeholder="Enter your name..."
             value={formData.name}
             onChange={handleChange}
             className="bg-foreground/3! rounded-sm placeholder:text-muted-foreground/50 text-foreground text-xs md:text-base border border-white/5"
+            aria-label="Name"
+            autoComplete="name"
+            minLength={2}
+            maxLength={80}
             required
           />
           <Textarea
+            id="feedback-message"
             name="feedback"
             value={formData.feedback}
             onChange={handleChange}
             placeholder="Enter your feedback..."
             className="w-full bg-foreground/3! rounded-sm py-3 px-4 min-h-24 resize-none transition-all placeholder:text-muted-foreground/50 text-foreground text-xs md:text-base border border-white/5"
+            aria-label="Feedback"
+            minLength={10}
+            maxLength={2000}
             required
           />
           <Button type="submit" disabled={loading} className="w-full text-xs md:text-base">

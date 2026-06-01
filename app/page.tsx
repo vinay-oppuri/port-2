@@ -1,93 +1,90 @@
-"use client";
-
 import Link from "next/link";
-import { heroConfig } from "@/data";
+import { heroConfig, socialLinks } from "@/data";
+// import { AvatarLogo } from "@/components/common/AvatarLogo";
 import { Button } from "@/components/ui/button";
 import ExperienceCard from "@/components/core/3-Experience";
 import ProjectsPage from "@/components/core/4-Projects";
 import AboutPage from "@/components/core/5-AboutMe";
 import GitHubActivity from "@/components/core/7-GithubActivity";
 import ContactDialog from "@/components/core/8-Contact";
-import { AvatarLogo } from "@/components/common/AvatarLogo";
-import RotatingText from "@/components/react-bits/RotatingText";
 import { SendIcon } from "lucide-react";
 import { SiGoogledocs } from "react-icons/si";
 import SkillsSection from "@/components/core/6-Skills";
 
 const Page = () => {
   return (
-    <section className="flex flex-col items-start space-y-4 mx-auto mt-12 md:mt-24 w-full px-4 py-4 md:px-8">
-      <div className="flex items-center justify-center gap-3 md:gap-6">
-        <AvatarLogo className="w-18 h-full sm:w-24 rounded-full text-ring/85 dark:text-ring" />
-        <div className="flex flex-col gap-1 md:gap-2">
-          <h1 className="text-2xl sm:text-3xl font-bold leading-tight text-foreground">
-            Hi, I&apos;m {heroConfig.name}
-          </h1>
-          <div className="h-5 overflow-hidden relative inline-flex items-center py-2">
-            <RotatingText
-              texts={["AI Engineer", "Full Stack Developer"]}
-              mainClassName="text-muted-foreground text-base md:text-lg font-medium"
-              staggerFrom="last"
-              initial={{ y: "100%" }}
-              animate={{ y: 0 }}
-              exit={{ y: "-120%" }}
-              staggerDuration={0.025}
-              splitLevelClassName="overflow-hidden pb-0.5 sm:pb-1 md:pb-1"
-              transition={{ type: "spring", damping: 30, stiffness: 400 }}
-              rotationInterval={3000}
-            />
+    <section className="flex flex-col items-start space-y-4 mx-auto mt-12 w-full px-4 py-4 md:px-8">
+      <div className="flex items-center gap-4">
+        <div className="w-14 h-14 sm:w-18 sm:h-18 bg-muted/30 rounded-xl overflow-hidden shrink-0 flex items-center justify-center border border-border/50">
+          {/* <AvatarLogo className="w-full h-full text-foreground/90 p-2" /> */}
         </div>
+        <div className="flex flex-col gap-2">
+          <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-foreground">
+            {heroConfig.name}
+          </h1>
+          <p className="text-sm sm:text-base text-muted-foreground font-medium">
+            AI Engineer
+          </p>
         </div>
       </div>
 
-      <div className="flex flex-col gap-2 my-4">
+      <div className="flex items-center gap-8 mt-6 mb-2">
         {heroConfig.info.map((info, i) => (
-          <div key={i} className="flex items-center gap-3 text-muted-foreground leading-relaxed ">
-            <div className="flex items-center justify-center w-9 h-9 clay">
-              {info.logo}
+          <div key={i} className={`flex flex-col gap-1.5 ${info.title === "pronouns" && "hidden md:flex"}`}>
+            <span className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground/80">
+              {info.title}
+            </span>
+            <div className="flex items-center gap-2 text-xs md:text-sm text-foreground font-medium">
+              <span className="text-muted-foreground">{info.logo}</span>
+              <Link 
+                href={info.title === "email" ? `mailto:${info.name}` : '#'}
+                className={`${info.title === "email" ? "hover:underline" : "" }` }
+              >
+                {info.name}
+              </Link>
             </div>
-            <span className="text-sm md:text-base font-semibold">{info.name}</span>
           </div>
         ))}
       </div>
 
-      <p className="text-sm sm:text-base min-[1920px]:text-lg text-muted-foreground leading-relaxed flex flex-wrap mt-4 gap-2">
-        I build interactive web apps using
-        {heroConfig.mainSkills.map((skill, i) => (
+      <div className="mt-6 text-sm sm:text-base text-foreground/80 leading-relaxed max-w-2xl">
+        <span>{heroConfig.description.about}</span>
+        <span>
+          {" "}Currently working with{" "}
+          {heroConfig.mainSkills.map((skill, i) => {
+            const isLast = i === heroConfig.mainSkills.length - 1;
+            const isSecondLast = i === heroConfig.mainSkills.length - 2;
+            return (
+              <span key={i}>
+                <Link
+                  href={skill.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-semibold text-foreground hover:underline transition-colors"
+                >
+                  {skill.name}
+                </Link>
+                {!isLast && (isSecondLast ? ", and " : ", ")}
+                {isLast && "."}
+              </span>
+            );
+          })}
+        </span>
+      </div>
+
+      <div className="flex items-center gap-5 mt-6 mb-4">
+        {socialLinks.map((link, i) => (
           <Link
             key={i}
-            href={skill.href}
+            href={link.href}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center justify-center px-2 py-1 clay-badge text-xs font-medium text-foreground gap-1.5 clay-interactive"
+            className="text-muted-foreground hover:text-foreground transition-colors duration-200"
           >
-            {skill.component}
-            {skill.name}
+            <span className="[&>svg]:w-[18px] [&>svg]:h-[18px] [&>svg]:text-muted-foreground">{link.icon}</span>
+            <span className="sr-only">{link.name}</span>
           </Link>
         ))}
-        . I focus on <b>UI</b> design, explore <b>ML/DL</b>, and I&apos;m
-        passionate about <b>Agentic AI</b> systems.
-      </p>
-
-      <div className="w-full flex flex-row justify-start gap-3 md:p-0 mt-2">
-        <Button
-          asChild
-          variant="outline"
-          className="h-9 md:h-10 text-xs md:text-sm clay hover:-translate-y-1 transition-all duration-300"
-        >
-          <Link href='/resume'>
-            <SiGoogledocs /> Resume / CV
-          </Link>
-        </Button>
-        <Button
-          asChild
-          variant="default"
-          className="h-9 md:h-10 text-xs md:text-sm clay bg-foreground! shadow-none! hover:-translate-y-1 transition-all duration-300"
-        >
-          <Link href='/contact'>
-            <SendIcon /> Get in touch
-          </Link>
-        </Button>
       </div>
 
       <div className="w-full flex flex-col pt-6 gap-6">

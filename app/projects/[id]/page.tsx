@@ -1,5 +1,4 @@
 import { ProjectsData } from "@/data";
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 import { ArrowLeft, ExternalLink, Github } from "lucide-react";

@@ -1,5 +1,4 @@
 import { heroConfig } from "@/data";
-import { AvatarLogo } from "../common/AvatarLogo";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 
 const AboutPage = () => {
@@ -23,13 +22,6 @@ const AboutPage = () => {
 
       {/* Main About Section */}
       <div className="flex flex-col md:flex-row items-start gap-6 md:gap-8">
-
-        {/* Left: Avatar */}
-        <div className="rounded-2xl overflow-hidden h-40 w-40 md:h-52 md:w-52 aspect-square relative shrink-0 clay">
-          <AvatarLogo className="w-full h-full text-ring/85 dark:text-ring scale-105 transition-transform duration-300" />
-        </div>
-
-        {/* Right: Info */}
         <div className="flex flex-col gap-6 max-w-xl text-left pt-1 md:pt-2">
 
           <h2 className="text-xl md:text-2xl font-semibold text-foreground">
