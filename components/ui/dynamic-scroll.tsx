@@ -4,8 +4,6 @@ import { cn } from "@/lib/utils";
 import {
   AnimatePresence,
   motion,
-  MotionConfig,
-  type Transition,
 } from "motion/react";
 import { useEffect, useRef, useState, type RefObject } from "react";
 import { TbChevronUp } from "react-icons/tb";
@@ -22,7 +20,6 @@ interface Props {
   setValue?: (v: TOC_INTERFACE) => void;
   data: TOC_INTERFACE[];
   ref?: RefObject<HTMLElement | null>;
-  transition?: Transition;
   className?: string;
   lPrefix?: string;
 }
@@ -34,15 +31,36 @@ const DynamicScrollIslandTOC = ({
   ref,
   className,
   lPrefix,
-  transition = { type: "spring", duration: 0.5, bounce: 0.1 },
 }: Props) => {
   const [open, setOpen] = useState(false);
   const [internalValue, setInternalValue] = useState<TOC_INTERFACE>(data[0]);
   const selectedValue = _v ?? internalValue;
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleOutsideClick = (event: MouseEvent | TouchEvent) => {
+      if (
+        containerRef.current &&
+        !containerRef.current.contains(event.target as Node)
+      ) {
+        setOpen(false);
+      }
+    };
+
+    if (open) {
+      document.addEventListener("mousedown", handleOutsideClick);
+      document.addEventListener("touchstart", handleOutsideClick);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleOutsideClick);
+      document.removeEventListener("touchstart", handleOutsideClick);
+    };
+  }, [open]);
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") return setOpen(false);
+      if (event.key === "Escape") setOpen(false);
     };
 
     window.addEventListener("keydown", handleKeyDown);
@@ -62,24 +80,8 @@ const DynamicScrollIslandTOC = ({
   const items = <Items {...p} />;
 
   return (
-    <MotionConfig transition={transition}>
-      <AnimatePresence initial={false}>
-        {open && (
-          <motion.div
-            role="button"
-            aria-label="Close"
-            onClick={() => {
-              setOpen(false);
-            }}
-            className="bg-d-bg/10 fixed inset-0 z-50"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-          />
-        )}
-      </AnimatePresence>
-
       <div
+        ref={containerRef}
         className={cn(
           "relative z-51 cursor-pointer select-none",
           "[--height-opened:150px] [--width-opened:350px] [--width:220px]",
@@ -100,21 +102,28 @@ const DynamicScrollIslandTOC = ({
             "relative cursor-pointer overflow-hidden outline-hidden!",
             "bg-black dark:bg-[#121212] clay-island",
             open
-              ? "flex flex-col justify-center p-5 pb-14 min-h-(--height-opened) w-[min(350px,calc(100vw-32px))]"
+              ? "flex flex-col justify-center px-3 py-4 pb-14 min-h-(--height-opened) w-xs md:w-sm"
               : "flex items-center h-11 px-1.5 w-[min(220px,calc(100vw-32px))]"
           )}
         >
           {open && (
-            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.1 }}>
-              {items}
-            </motion.div>
+            <>
+              <div className="flex px-4">
+                <div className="text-xs text-muted-foreground font-semibold uppercase tracking-wide pb-3">table of contents</div>
+              </div>
+              <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.1 }}>
+                {items}
+              </motion.div>
+              <div className="flex items-center justify-center px-4 pt-3">
+                <div className="w-full h-px mx-auto bg-white/5" />
+              </div>
+            </>
           )}
           <motion.div layout className={open ? "absolute bottom-3 right-3 left-3" : "w-full"}>
             {txt}
           </motion.div>
         </motion.div>
       </div>
-    </MotionConfig>
   );
 };
 
@@ -130,12 +139,15 @@ function Items({ setValue, data, value }: Props & { value?: TOC_INTERFACE }) {
         return (
           <button
             key={i.name}
-            onClick={() => setValue?.(i)}
+            onClick={(e) => {
+              e.stopPropagation();
+              setValue?.(i);
+            }}
             aria-label={i.name}
             className={cn(
-              "cursor-pointer flex items-center justify-between text-left rounded-full px-3 py-2 w-full",
+              "cursor-pointer flex items-center justify-between text-left rounded-lg px-2 py-2 w-full",
               isActive
-                ? "bg-white/5 border border-white/5 shadow-sm"
+                ? "bg-white/10 border border-white/3 shadow-sm"
                 : "hover:bg-white/5"
             )}
           >
