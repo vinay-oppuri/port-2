@@ -1,24 +1,24 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useRouter, usePathname } from "next/navigation";
 import DynamicScrollIslandTOC, { TOC_INTERFACE } from "@/components/ui/dynamic-scroll";
 
 const data: TOC_INTERFACE[] = [
-  { name: "Hero", value: "hero" },
-  { name: "Experience", value: "experience" },
-  { name: "Projects", value: "projects" },
-  { name: "About", value: "about" },
-  { name: "Skills", value: "skills" },
-  { name: "GitHub Activity", value: "github" },
-  { name: "Contact", value: "contact" },
-  { name: "Resume", value: "/resume" },
+  { name: "Home", value: "hero", info: "Start your journey here" },
+  { name: "Experience", value: "experience", info: "My professional background" },
+  { name: "Projects", value: "projects", info: "Things I've built" },
+  { name: "About", value: "about", info: "A little about myself" },
+  { name: "Skills", value: "skills", info: "Technologies I use" },
+  { name: "GitHub Activity", value: "github", info: "My open source contributions" },
+  { name: "Contact", value: "contact", info: "Let's get in touch" },
 ];
 
 export const DDScroll = () => {
   const [currentValue, setCurrentValue] = useState<TOC_INTERFACE>(data[0]);
   const router = useRouter();
   const pathname = usePathname();
+  const isScrolling = useRef(false);
 
   useEffect(() => {
     // If we're not on the main page, set the value to the current path if it exists in data
@@ -30,6 +30,8 @@ export const DDScroll = () => {
 
     const observer = new IntersectionObserver(
       (entries) => {
+        if (isScrolling.current) return;
+
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             const id = entry.target.id;
@@ -61,6 +63,12 @@ export const DDScroll = () => {
 
   const handleSelect = (item: TOC_INTERFACE) => {
     setCurrentValue(item);
+    isScrolling.current = true;
+    
+    setTimeout(() => {
+      isScrolling.current = false;
+    }, 1200);
+
     if (item.value) {
       if (item.value.startsWith("/")) {
         router.push(item.value);

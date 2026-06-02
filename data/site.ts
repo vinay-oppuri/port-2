@@ -77,18 +77,18 @@ export const heroConfig = {
 
 export const socialLinks = [
   {
-    name: "X",
+    name: "X (Twitter)",
     href: "https://x.com/vinayoppuri",
-    icon: icon(SiX, "text-foreground"),
+    icon: icon(SiX, "text-muted-foreground hover:text-background!"),
   },
-  {
+   {
     name: "LinkedIn",
     href: "https://www.linkedin.com/in/vinay-oppuri/",
-    icon: icon(SiLinkedin, "text-[#0A66C2]"),
+    icon: icon(SiLinkedin, "text-muted-foreground hover:text-background!"),
   },
   {
     name: "Github",
     href: "https://github.com/vinay-oppuri",
-    icon: icon(SiGithub, "text-foreground"),
+    icon: icon(SiGithub, "text-muted-foreground hover:text-background!"),
   },
 ];

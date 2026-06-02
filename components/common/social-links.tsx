@@ -12,7 +12,7 @@ import {
 
 export const SocialLinks = () => {
   const mounted = useSyncExternalStore(
-    () => () => {},
+    () => () => { },
     () => true,
     () => false
   );
@@ -22,14 +22,11 @@ export const SocialLinks = () => {
   return (
     <div
       className="
-        fixed z-50
-        bottom-0 left-1/2 -translate-x-1/2 
-        md:left-0 md:bottom-auto md:top-1/2 md:-translate-y-1/2 md:translate-x-0
-        flex md:flex-col items-center 
+        fixed z-50 hidden md:flex flex-col items-center
+        left-0 bottom-auto top-1/2 -translate-y-1/2 translate-x-0
         gap-4 shadow-inner shadow-foreground/5
         bg-foreground/2 backdrop-blur-lg 
-        px-4 md:px-4 py-2 md:py-6
-        rounded-t-2xl md:rounded-r-2xl md:rounded-none
+        px-4 py-6 rounded-r-2xl
       "
     >
       {socialLinks.map((link) => (
@@ -39,13 +36,13 @@ export const SocialLinks = () => {
               href={link.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-7 h-7 flex items-center justify-center"
+              className="w-7 h-7 flex items-center justify-center rounded-full hover:bg-foreground!"
             >
               {link.icon}
             </Link>
           </TooltipTrigger>
           <TooltipContent side="right">
-            <p>{link.name}</p>
+            <p className="font-semibold">{link.name}</p>
           </TooltipContent>
         </Tooltip>
       ))}

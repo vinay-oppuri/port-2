@@ -1,5 +1,6 @@
 "use client";
 
+import { clickSound } from "@/hooks/use-sound";
 import { cn } from "@/lib/utils";
 import {
   AnimatePresence,
@@ -15,9 +16,17 @@ import {
 import { useEffect, useState } from "react";
 import { TbChevronUp, TbX } from "react-icons/tb";
 
+
+const playClick = () => {
+  if (clickSound) {
+    clickSound.play();
+  }
+};
+
 export interface TOC_INTERFACE {
   name: string;
   value?: string;
+  info?: string;
 }
 
 interface Props {
@@ -44,33 +53,13 @@ const DynamicScrollIslandTOC = ({
 }: Props) => {
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState(_v);
-  const sp = useMotionValue(0);
+  const { scrollYProgress: sp } = useScroll(ref ? { container: ref } : undefined);
 
   useEffect(() => {
-    const c = ref?.current || window;
-
-    const updateScrollProgress = () => {
-      const scrollTop = c === window ? window.scrollY : c.scrollTop;
-      const scrollHeight =
-        c === window ? document.body.scrollHeight : c.scrollHeight;
-      const clientHeight = c === window ? window.innerHeight : c.clientHeight;
-
-      const progress = scrollTop / (scrollHeight - clientHeight) || 0;
-
-      if (scrollHeight === clientHeight) sp.set(1);
-      sp.set(progress);
-    };
-
-    c.addEventListener("scroll", updateScrollProgress);
-
-    const resizeObserver = new ResizeObserver(updateScrollProgress);
-    resizeObserver.observe(c === window ? document.body : c.firstChild);
-
-    return () => {
-      c.removeEventListener("scroll", updateScrollProgress);
-      resizeObserver.disconnect();
-    };
-  }, [ref?.current]);
+    if (_v !== undefined) {
+      setValue(_v);
+    }
+  }, [_v]);
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
@@ -82,13 +71,13 @@ const DynamicScrollIslandTOC = ({
   }, []);
 
   function handleSelect(value: TOC_INTERFACE) {
+    playClick();
     setValue(value);
     _setValue?.(value);
   }
 
   const p = { data, open, value, setValue: handleSelect, ref, lPrefix };
   const txt = <Text sp={sp} {...p} />;
-  const prog = <Progress sp={sp} {...p} />;
   const items = <Items {...p} />;
 
   return (
@@ -98,11 +87,14 @@ const DynamicScrollIslandTOC = ({
           <motion.div
             role="button"
             aria-label="Close"
-            onClick={() => setOpen(false)}
-            className="bg-d-bg/10 fixed inset-0 z-50 backdrop-blur-xs"
-            initial={{ opacity: 0, backdropFilter: "blur(0px)" }}
-            animate={{ opacity: 1, backdropFilter: "blur(4px)" }}
-            exit={{ opacity: 0, backdropFilter: "blur(0px)" }}
+            onClick={() => {
+              playClick();
+              setOpen(false);
+            }}
+            className="bg-d-bg/10 fixed inset-0 z-50"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
           />
         )}
       </AnimatePresence>
@@ -111,20 +103,24 @@ const DynamicScrollIslandTOC = ({
         className={cn(
           "relative z-51 cursor-pointer select-none",
           "[--height-opened:150px] [--width-opened:350px] [--width:220px]",
-          "text-white/80",
+          "text-white dark:text-foreground/80",
           className,
         )}
       >
+        {/* closed div  */}
         <motion.div
           role="button"
           aria-label="Open"
           tabIndex={0}
-          onClick={() => setOpen((prev) => !prev)}
+          onClick={() => {
+            playClick();
+            setOpen((prev) => !prev);
+          }}
           layoutId={`${lPrefix}-${cKey}`}
           style={{ borderRadius: 24 }}
           className={cn(
             "relative flex h-10 cursor-pointer items-center overflow-hidden px-1 outline-hidden!",
-            "min-w-(--width) bg-black",
+            "min-w-[200px] bg-black dark:bg-[#121212] clay-island",
           )}
         >
           <div className="absolute top-0 left-1/2 h-full w-[calc(var(--width-opened)-50px)] -translate-x-1/2">
@@ -136,7 +132,6 @@ const DynamicScrollIslandTOC = ({
           </div>
 
           <div className="w-full">{txt}</div>
-          <div className="absolte top-0 right-0 bottom-0">{prog}</div>
         </motion.div>
 
         <div className="absolute bottom-0 left-1/2 -translate-x-1/2">
@@ -146,11 +141,14 @@ const DynamicScrollIslandTOC = ({
                 role="button"
                 aria-label="Close"
                 tabIndex={0}
-                onClick={() => setOpen((prev) => !prev)}
+                onClick={() => {
+                  playClick();
+                  setOpen((prev) => !prev);
+                }}
                 layoutId={`${lPrefix}-${cKey}`}
                 className={cn(
                   "cursor-pointer justify-center overflow-hidden p-5 pb-14",
-                  "min-h-(--height-opened) w-(--width-opened) bg-black",
+                  "min-h-(--height-opened) w-(--width-opened) bg-black dark:bg-[#121212] clay-island",
                 )}
                 style={{ borderRadius: 24 }}
               >
@@ -158,7 +156,6 @@ const DynamicScrollIslandTOC = ({
                   {items}
                 </motion.div>
                 <div className="absolute bottom-3 right-3 left-3">{txt}</div>
-                <div className="absolute bottom-3 right-3">{prog}</div>
               </motion.div>
             )}
           </AnimatePresence>
@@ -170,54 +167,42 @@ const DynamicScrollIslandTOC = ({
 
 export default DynamicScrollIslandTOC;
 
-function Progress({
-  value,
-  setValue,
-  ref,
-  sp,
-  lPrefix,
-}: Props & { sp: MotionValue }) {
-  const [p, setP] = useState(0);
-  const { scrollYProgress } = useScroll({ container: ref });
 
-  useEffect(() => {
-    setP(Math.round(sp.get() * 100));
-    const unsubscribe = sp.on("change", (v) => setP(Math.round(v * 100)));
 
-    return () => unsubscribe();
-  }, [ref, scrollYProgress]);
-
+function Items({ setValue, data, value }: Props & { value?: TOC_INTERFACE }) {
   return (
-    <motion.button
-      layoutId={`${lPrefix}-toc-progress-x`}
-      onClick={(e) => {
-        if (value?.value === null) return;
-        e.stopPropagation();
-        setValue?.({ name: "All" });
-      }}
-      className={cn(
-        "relative flex h-8 w-14 items-center justify-center overflow-hidden rounded-full text-sm font-bold",
-        "bg-white/10 transition-colors hover:bg-white/15",
-      )}
-    >
-      {value?.value ? <TbX /> : `${p}%`}
-    </motion.button>
-  );
-}
-
-function Items({ setValue, data }: Props) {
-  return (
-    <div className="group grid transition-opacity">
-      {data.map((i) => (
-        <button
-          key={i.name}
-          onClick={() => setValue?.(i)}
-          aria-label={i.name}
-          className="cursor-pointer text-left font-semibold transition-all group-hover:opacity-40 hover:opacity-100!"
-        >
-          {i.name}
-        </button>
-      ))}
+    <div className="group flex flex-col gap-1.5 transition-opacity">
+      {data.map((i) => {
+        const isActive = value?.name === i.name;
+        return (
+          <button
+            key={i.name}
+            onClick={() => setValue?.(i)}
+            aria-label={i.name}
+            className={cn(
+              "cursor-pointer flex items-center justify-between text-left rounded-md px-3 py-2 w-full",
+              isActive
+                ? "bg-white/5 border border-white/5 shadow-sm"
+                : "hover:bg-white/5"
+            )}
+          >
+            <span className={cn(
+              "font-semibold text-sm whitespace-nowrap",
+              isActive ? "text-white" : "text-muted-foreground"
+            )}>
+              {i.name}
+            </span>
+            {i.info && (
+              <span className={cn(
+                "text-xs text-right ml-4",
+                isActive ? "text-white/70" : "text-muted-foreground/60"
+              )}>
+                {i.info}
+              </span>
+            )}
+          </button>
+        );
+      })}
     </div>
   );
 }
@@ -233,8 +218,45 @@ function Text({
   const sVal = useSpring(val, { visualDuration: 0.1, bounce: 0 });
 
   return (
-    <div className="flex items-center gap-3">
-      <motion.div layoutId={`${lPrefix}-toc-svg-progress`}>
+    <div className="flex items-center justify-between gap-3">
+      <div className="flex items-center gap-2 px-3">
+        <motion.div
+          layoutId={`${lPrefix}-toc-dot`}
+          layout="position"
+          className="h-2 w-2 bg-white rounded-full shadow-[0_0_8px_rgba(255,255,255,0.7)]" />
+        <motion.div
+          layout="position"
+          layoutId={`${lPrefix}-toc-text-container`}
+          className="relative overflow-hidden flex items-center"
+        >
+          <AnimatePresence mode="popLayout" initial={false}>
+            <motion.p
+              key={value?.name || "Contents"}
+              initial={{ y: 20, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              exit={{ y: -20, opacity: 0 }}
+              transition={{ duration: 0.3, type: "spring", bounce: 0 }}
+              className="font-bold text-sm tracking-wide whitespace-nowrap"
+            >
+              {value?.name || "Contents"}
+            </motion.p>
+          </AnimatePresence>
+        </motion.div>
+      </div>
+
+      <motion.div
+        layoutId={`${lPrefix}-toc-svg-progress`}
+        className="flex items-center justify-center gap-2"
+      >
+        <motion.div className="mt-0.5 text-white/80">
+          <motion.div
+            layout="position"
+            layoutId={`${lPrefix}-toc-chevron`}
+            animate={{ rotate: open ? 0 : 180 }}
+          >
+            <TbChevronUp strokeWidth={2.5} className="h-4 w-4" />
+          </motion.div>
+        </motion.div>
         <svg
           width="32"
           height="32"
@@ -247,7 +269,7 @@ function Text({
             cy="12"
             r="10"
             className="stroke-white/20"
-            strokeWidth="4"
+            strokeWidth="3"
             fill="none"
           />
           <motion.circle
@@ -255,7 +277,7 @@ function Text({
             cy="12"
             r="10"
             className="stroke-white/80"
-            strokeWidth="4"
+            strokeWidth="3"
             fill="none"
             strokeDasharray={circum}
             strokeDashoffset={sVal}
@@ -264,24 +286,6 @@ function Text({
           />
         </svg>
       </motion.div>
-      <div className="flex items-center gap-2">
-        <motion.p
-          layout="position"
-          layoutId={`${lPrefix}-toc-text`}
-          className="font-bold"
-        >
-          {value?.name}
-        </motion.p>
-        <motion.div className="mt-0.5 text-white/80">
-          <motion.div
-            layout="position"
-            layoutId={`${lPrefix}-toc-chevron`}
-            animate={{ rotate: open ? 0 : 180 }}
-          >
-            <TbChevronUp strokeWidth={4} />
-          </motion.div>
-        </motion.div>
-      </div>
     </div>
   );
 }

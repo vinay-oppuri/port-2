@@ -61,9 +61,9 @@ export function SearchCommand() {
         <span className="text-xs font-medium inline-block">Search</span>
         <Search size={16} />
       </Button>
-      <CommandDialog open={open} onOpenChange={setOpen} className="border-border/80!">
-        <CommandInput className="ml-2!" placeholder="Type a command or search..." />
-        <CommandList className="font-mono tracking-tighter bg-background border border-border/60 p-1 mx-2 md:mx-3 my-1 md:my-2 rounded-xl! [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+      <CommandDialog open={open} onOpenChange={setOpen} className="sm:max-w-80! md:max-w-100! border-none! bg-transparent! clay-card">
+        <CommandInput className="pl-2! border-none! outline-none! ring-0!" placeholder="Type a command or search..." />
+        <CommandList className="font-mono tracking-tighter p-1 rounded-xl! border-none! [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
           <CommandEmpty>No results found.</CommandEmpty>
           <CommandGroup heading="Navigation">
             <CommandItem onSelect={() => runCommand(() => router.push("/"))}>

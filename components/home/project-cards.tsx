@@ -55,7 +55,7 @@ export function ProjectCards({ projects }: ProjectCardsProps) {
                 href={`/projects/${project.id}`}
                 className="flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors duration-300"
               >
-                <span className="text-foreground/90 rounded-md p-1 border border-white/10 bg-black/40 backdrop-blur-md shadow-sm">
+                <span className="text-white/90 rounded-md p-1 border border-white/10 bg-black/40 backdrop-blur-md shadow-sm">
                   <ChevronRightIcon className="w-4 h-4" />
                 </span>
               </Link>

@@ -13,7 +13,7 @@ import { playClickSound } from "@/hooks/use-sound";
 
 export const ContactDialog = () => {
     const emailToUse = siteEmail;
-    const xLink = socialLinks.find(link => link.name.toLowerCase() === "x" || link.name.toLowerCase() === "twitter");
+    const xLink = socialLinks[0]
 
     const [loading, setLoading] = useState(false);
     const [submitted, setSubmitted] = useState(false);
@@ -69,7 +69,7 @@ export const ContactDialog = () => {
         <section className="flex flex-col gap-6 w-full px-0 py-8">
             {/* Super Heading / Metadata overlay */}
             <div className="flex flex-col gap-1 mb-2">
-                <p className="text-sm text-muted-foreground">Let&apos;s</p>
+                <p className="text-sm text-muted-foreground font-mono">Let&apos;s</p>
                 <h2 className="text-2xl font-bold text-foreground">Connect</h2>
             </div>
 

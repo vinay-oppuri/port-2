@@ -7,7 +7,7 @@ import { SocialLinks } from "@/components/common/social-links";
 import { Header } from "@/components/layout/header";
 import Footer from "@/components/layout/footer";
 import { ScrollToTop } from "@/components/ui/scroll-to-top";
-// import { DDScroll } from "@/components/common/dd-scroll";
+import { DDScroll } from "@/components/common/dd-scroll";
 import { Toaster } from "sonner";
 
 
@@ -120,7 +120,7 @@ export default function RootLayout({
             {children}
             <Footer />
           </div>
-          {/* <DDScroll /> */}
+          <DDScroll />
           <ScrollToTop />
           <Toaster richColors position="top-right" />
         </ThemeProvider>
