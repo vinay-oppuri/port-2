@@ -81,7 +81,6 @@ const fullStackSections: SkillGroupData[] = [
       { name: "Git",        icon: ic(SiGit,        "w-4 h-4 text-[#F05032]") },
       { name: "Docker",     icon: ic(SiDocker,     "w-4 h-4 text-[#2496ED]") },
       { name: "Linux",      icon: ic(SiLinux,      "w-4 h-4 text-foreground") },
-      { name: "Kubernetes", icon: ic(SiKubernetes, "w-4 h-4 text-[#326CE5]") },
       { name: "Turborepo",  icon: ic(Zap,          "w-4 h-4 text-[#EF4444]") },
       { name: "CI/CD",      icon: ic(GitMerge,     "w-4 h-4 text-[#22C55E]") },
     ],
@@ -99,7 +98,7 @@ const fullStackSections: SkillGroupData[] = [
 // ─── SkillChip ─────────────────────────────────────────────────────────────────
 function SkillChip({ name, icon }: SkillItem) {
   return (
-    <div className="clay clay-interactive flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl cursor-default group hover:-translate-y-0.5 hover:scale-[1.03] transition-all duration-200">
+    <div className="skill-chip flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl cursor-default group">
       <span className="opacity-70 group-hover:opacity-100 transition-opacity duration-200 shrink-0">
         {icon}
       </span>

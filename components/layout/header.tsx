@@ -7,6 +7,7 @@ import { useTheme } from "next-themes";
 import { Button } from "@/components/ui/button";
 import Logo from "../common/Logo";
 import { SearchCommand } from "../search-command";
+import { playClickSound } from "@/hooks/use-sound";
 
 export const navLinks = [
   { name: "Work", href: "/experience" },
@@ -52,6 +53,7 @@ export const Header = () => {
   );
 
   const toggleTheme = () => {
+    playClickSound();
     setTheme(theme === "dark" ? "light" : "dark");
   };
 

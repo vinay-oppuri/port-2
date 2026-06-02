@@ -8,6 +8,7 @@ import {
   DialogDescription,
   DialogHeader,
   DialogContent,
+  DialogTrigger,
   DialogTitle,
 } from "./ui/dialog"
 
@@ -17,6 +18,7 @@ import {
   DrawerDescription,
   DrawerHeader,
   DrawerTitle,
+  DrawerTrigger,
 } from "./ui/drawer"
 
 interface ResponsiveDialogProps {
@@ -25,6 +27,7 @@ interface ResponsiveDialogProps {
   children: React.ReactNode
   open: boolean
   onOpenChange: (open: boolean) => void
+  trigger?: React.ReactNode
   className?: string
 }
 
@@ -34,6 +37,7 @@ export const ResponsiveDialog = ({
   children,
   open,
   onOpenChange,
+  trigger,
   className
 }: ResponsiveDialogProps) => {
   const isMobile = useIsMobile()
@@ -41,6 +45,7 @@ export const ResponsiveDialog = ({
   if (isMobile) {
     return (
       <Drawer open={open} onOpenChange={onOpenChange}>
+        {trigger && <DrawerTrigger asChild>{trigger}</DrawerTrigger>}
         <DrawerContent className="rounded-t-2xl border-t bg-background shadow-lg">
           <DrawerHeader className="pb-2 pt-4 px-4 border-b">
             <DrawerTitle className="text-base font-semibold">{title}</DrawerTitle>
@@ -58,6 +63,7 @@ export const ResponsiveDialog = ({
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
+      {trigger && <DialogTrigger asChild>{trigger}</DialogTrigger>}
       <DialogContent className={cn("max-w-sm! rounded-2xl shadow-xl", className)}>
         <DialogHeader>
           <DialogTitle className="text-lg font-semibold">{title}</DialogTitle>

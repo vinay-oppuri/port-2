@@ -1,25 +1,23 @@
 "use client";
 
-import { cloneElement, isValidElement, useEffect, useState } from "react";
-import { TextHoverEffect } from "../ui/text-hover-effect";
+import { cloneElement, isValidElement } from "react";
 import Link from "@/components/ui/link";
-import { Loader2, MessageSquare, SendIcon } from "lucide-react";
-import { Input } from "../ui/input";
-import { Textarea } from "../ui/textarea";
-import { socialLinks } from "@/data";
+import { heroConfig, siteEmail, socialLinks } from "@/data";
 import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
-import { Button } from "../ui/button";
-import { toast } from "sonner";
-import { ResponsiveDialog } from "../responsive-dialog";
+import { FeedbackDialog } from "./feedback-dialog";
+import { Mail, MapPin } from "lucide-react";
+
+const footerLinks = [
+  { name: "Home", href: "/" },
+  { name: "Work", href: "/experience" },
+  { name: "Projects", href: "/projects" },
+  { name: "Blogs", href: "/blogs" },
+  { name: "Resume", href: "/resume" },
+  { name: "Contact", href: "/contact" },
+];
 
 const Footer = () => {
-  const [mounted, setMounted] = useState(false)
-  const [formData, setFormData] = useState({
-    name: "",
-    feedback: ""
-  })
-  const [loading, setLoading] = useState(false)
-  const [isFeedbackDialogOpen, setIsFeedbackDialogOpen] = useState(false)
+  const currentYear = new Date().getFullYear();
 
   const renderMonochromeIcon = (icon: React.ReactNode) => {
     if (!isValidElement(icon)) return icon;
@@ -30,119 +28,88 @@ const Footer = () => {
     );
   }
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
-  }
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!formData.name.trim() || !formData.feedback.trim()) {
-      toast.error("Please fill in all fields");
-      return;
-    }
-
-    setLoading(true);
-
-    try {
-      const response = await fetch('/api/feedback', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      });
-
-      if (response.ok) {
-        toast.success('Feedback sent successfully!');
-        setFormData({ name: "", feedback: "" });
-        setIsFeedbackDialogOpen(false);
-      } else {
-        toast.error('Failed to send feedback.');
-      }
-    } catch (error) {
-      console.error('Error sending feedback:', error);
-      toast.error('An error occurred.');
-    } finally {
-      setLoading(false);
-    }
-  }
-
-  useEffect(() => setMounted(true), [])
-  if (!mounted) return null
-
   return (
-    <footer className="w-full relative overflow-hidden px-2 md:py-4 py-2 mb-0 bg-background">
-      <ResponsiveDialog
-        title="Share Feedback"
-        description="Tell me what you liked and what could be improved."
-        open={isFeedbackDialogOpen}
-        onOpenChange={setIsFeedbackDialogOpen}
-      >
-        <form className="space-y-4" onSubmit={handleSubmit}>
-          <Input
-            type="text"
-            name="name"
-            placeholder="Enter your name..."
-            value={formData.name}
-            onChange={handleChange}
-            className="bg-foreground/3! rounded-sm placeholder:text-muted-foreground/50 text-foreground text-xs md:text-base border border-white/5"
-            required
-          />
-          <Textarea
-            name="feedback"
-            value={formData.feedback}
-            onChange={handleChange}
-            placeholder="Enter your feedback..."
-            className="w-full bg-foreground/3! rounded-sm py-3 px-4 min-h-24 resize-none transition-all placeholder:text-muted-foreground/50 text-foreground text-xs md:text-base border border-white/5"
-            required
-          />
-          <Button type="submit" disabled={loading} className="w-full text-xs md:text-base">
-            {loading ? (
-              <Loader2 className="w-4 h-4 animate-spin mr-2" />
-            ) : (
-              <SendIcon className="w-4 h-4 mr-2" />
-            )}
-            {loading ? "Sending..." : "Send Feedback"}
-          </Button>
-        </form>
-      </ResponsiveDialog>
+    <footer className="w-full bg-background px-2 pb-18 md:pb-24 pt-10">
+      <div className="border-t border-foreground/10 pt-8">
+        <div className="grid gap-8 md:grid-cols-[1.35fr_1fr]">
+          <div className="space-y-4">
+            <div className="space-y-2">
+              <Link
+                href="/"
+                className="inline-flex text-sm font-semibold text-foreground transition-colors hover:text-foreground/80"
+              >
+                {heroConfig.name}
+              </Link>
+              <p className="max-w-md text-sm leading-6 text-muted-foreground">
+                {heroConfig.description.about}
+              </p>
+            </div>
 
-      <div className="w-full border-t border-foreground/10 py-6 mb-6 px-4 md:px-8 flex flex-wrap md:flex-nowrap justify-between items-center gap-y-6 md:gap-x-6 max-w-7xl mx-auto">
-        <Link href="https://linktr.ee/vinayoppuri" target="_blank" rel="noopener noreferrer" className="order-1 md:order-1 md:mr-auto text-xs text-muted-foreground font-mono text-left hover:text-foreground transition-colors">
-          {"// DEVELOPED_BY_VINAY"}
-        </Link>
+            <div className="flex flex-col gap-2 text-sm text-muted-foreground">
+              <Link
+                href={`mailto:${siteEmail}`}
+                className="inline-flex w-fit items-center gap-2 transition-colors hover:text-foreground"
+              >
+                <Mail className="h-4 w-4" />
+                {siteEmail}
+              </Link>
+              <p className="inline-flex items-center gap-2">
+                <MapPin className="h-4 w-4" />
+                Hyderabad, India
+              </p>
+            </div>
+          </div>
 
-        <div className="order-3 md:order-2 w-full md:w-auto flex justify-center md:justify-end">
-          <Button
-            type="button"
-            variant="outline"
-            size="sm"
-            className="w-full md:w-auto h-11 md:h-9 rounded-full px-5! text-xs text-foreground/80 border-foreground/20 hover:border-foreground/40"
-            onClick={() => setIsFeedbackDialogOpen(true)}
-          >
-            <MessageSquare className="w-3.5 h-3.5 mr-1.5" />
-            Feedback
-          </Button>
+          <div className="grid grid-cols-2 gap-6 sm:grid-cols-[1fr_auto]">
+            <nav aria-label="Footer navigation" className="space-y-3">
+              <p className="text-xs font-medium uppercase tracking-[0.08em] text-foreground/50">
+                Navigate
+              </p>
+              <div className="grid gap-2">
+                {footerLinks.map((link) => (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    className="w-fit text-sm text-muted-foreground transition-colors hover:text-foreground"
+                  >
+                    {link.name}
+                  </Link>
+                ))}
+              </div>
+            </nav>
+
+            <div className="space-y-3">
+              <p className="text-xs font-medium uppercase tracking-[0.08em] text-foreground/50">
+                Connect
+              </p>
+              <div className="flex items-center gap-2">
+                {socialLinks.map((link) => (
+                  <Tooltip key={link.name}>
+                    <TooltipTrigger asChild>
+                      <Link
+                        href={link.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label={link.name}
+                        className="flex h-9 w-9 items-center justify-center rounded-full  text-muted-foreground transition-colors hover:border-foreground/20 hover:bg-foreground/5 hover:text-foreground"
+                      >
+                        {renderMonochromeIcon(link.icon)}
+                      </Link>
+                    </TooltipTrigger>
+                    <TooltipContent side="top">
+                      <p>{link.name}</p>
+                    </TooltipContent>
+                  </Tooltip>
+                ))}
+              </div>
+              <FeedbackDialog />
+            </div>
+          </div>
         </div>
 
-        <div className="order-2 md:order-3 flex items-center gap-2">
-          {socialLinks.map((link) => (
-            <Tooltip key={link.name}>
-              <TooltipTrigger asChild>
-                <Link
-                  href={link.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-8 h-8 flex items-center justify-center rounded-full hover:text-foreground hover:bg-foreground/5 transition-colors"
-                >
-                  {renderMonochromeIcon(link.icon)}
-                </Link>
-              </TooltipTrigger>
-              <TooltipContent side="top">
-                <p>{link.name}</p>
-              </TooltipContent>
-            </Tooltip>
-          ))}
+        <div className="mt-8 flex flex-col gap-2 border-t border-foreground/10 pt-4 text-xs text-muted-foreground sm:flex-row sm:items-center sm:justify-between">
+          <p>&copy; {currentYear} {heroConfig.name}. All rights reserved.</p>
+          <p className="font-mono text-foreground/40">Available for selected full-stack and AI projects.</p>
         </div>
       </div>
     </footer>

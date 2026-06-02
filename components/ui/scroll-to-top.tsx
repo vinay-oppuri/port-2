@@ -1,19 +1,12 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ArrowUp } from "lucide-react";
 import { Button } from "./button";
 
 export const ScrollToTop = () => {
     const [isVisible, setIsVisible] = useState(false);
-
-    const toggleVisibility = () => {
-        if (window.scrollY > 300) {
-            setIsVisible(true);
-        } else {
-            setIsVisible(false);
-        }
-    };
+    const isVisibleRef = useRef(false);
 
     const scrollToTop = () => {
         window.scrollTo({
@@ -23,15 +16,30 @@ export const ScrollToTop = () => {
     };
 
     useEffect(() => {
-        window.addEventListener("scroll", toggleVisibility);
+        let raf = 0;
+        const toggleVisibility = () => {
+            raf = 0;
+            const nextVisible = window.scrollY > 300;
+            if (nextVisible !== isVisibleRef.current) {
+                isVisibleRef.current = nextVisible;
+                setIsVisible(nextVisible);
+            }
+        };
+        const scheduleToggle = () => {
+            if (!raf) raf = window.requestAnimationFrame(toggleVisibility);
+        };
+
+        toggleVisibility();
+        window.addEventListener("scroll", scheduleToggle, { passive: true });
         return () => {
-            window.removeEventListener("scroll", toggleVisibility);
+            if (raf) window.cancelAnimationFrame(raf);
+            window.removeEventListener("scroll", scheduleToggle);
         };
     }, []);
 
     return (
         <div
-            className={`fixed bottom-8 right-8 z-50 transition-all duration-500 ease-in-out ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10 pointer-events-none"
+            className={`fixed bottom-24 md:bottom-8 right-4 md:right-8 z-50 transition-all duration-500 ease-in-out ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10 pointer-events-none"
                 }`}
         >
             <Button

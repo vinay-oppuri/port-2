@@ -1,27 +1,15 @@
 "use client";
 
-import { clickSound } from "@/hooks/use-sound";
 import { cn } from "@/lib/utils";
 import {
   AnimatePresence,
   motion,
   MotionConfig,
-  MotionValue,
-  Transition,
-  useMotionValue,
-  useScroll,
-  useSpring,
-  useTransform,
+  type Transition,
 } from "motion/react";
-import { useEffect, useState } from "react";
-import { TbChevronUp, TbX } from "react-icons/tb";
+import { useEffect, useRef, useState, type RefObject } from "react";
+import { TbChevronUp } from "react-icons/tb";
 
-
-const playClick = () => {
-  if (clickSound) {
-    clickSound.play();
-  }
-};
 
 export interface TOC_INTERFACE {
   name: string;
@@ -33,14 +21,11 @@ interface Props {
   value?: TOC_INTERFACE;
   setValue?: (v: TOC_INTERFACE) => void;
   data: TOC_INTERFACE[];
-  ref?: any;
+  ref?: RefObject<HTMLElement | null>;
   transition?: Transition;
   className?: string;
   lPrefix?: string;
 }
-
-const cKey = "toc-wrapper";
-const iKey = "toc-items";
 
 const DynamicScrollIslandTOC = ({
   data,
@@ -52,14 +37,8 @@ const DynamicScrollIslandTOC = ({
   transition = { type: "spring", duration: 0.5, bounce: 0.1 },
 }: Props) => {
   const [open, setOpen] = useState(false);
-  const [value, setValue] = useState(_v);
-  const { scrollYProgress: sp } = useScroll(ref ? { container: ref } : undefined);
-
-  useEffect(() => {
-    if (_v !== undefined) {
-      setValue(_v);
-    }
-  }, [_v]);
+  const [internalValue, setInternalValue] = useState<TOC_INTERFACE>(data[0]);
+  const selectedValue = _v ?? internalValue;
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
@@ -71,13 +50,15 @@ const DynamicScrollIslandTOC = ({
   }, []);
 
   function handleSelect(value: TOC_INTERFACE) {
-    playClick();
-    setValue(value);
+    if (_v === undefined) {
+      setInternalValue(value);
+    }
+    setOpen(false);
     _setValue?.(value);
   }
 
-  const p = { data, open, value, setValue: handleSelect, ref, lPrefix };
-  const txt = <Text sp={sp} {...p} />;
+  const p = { data, open, value: selectedValue, setValue: handleSelect, ref, lPrefix };
+  const txt = <Text {...p} />;
   const items = <Items {...p} />;
 
   return (
@@ -88,7 +69,6 @@ const DynamicScrollIslandTOC = ({
             role="button"
             aria-label="Close"
             onClick={() => {
-              playClick();
               setOpen(false);
             }}
             className="bg-d-bg/10 fixed inset-0 z-50"
@@ -113,16 +93,15 @@ const DynamicScrollIslandTOC = ({
           aria-label={open ? "Close" : "Open"}
           tabIndex={0}
           onClick={() => {
-            playClick();
             setOpen((prev) => !prev);
           }}
-          style={{ borderRadius: 24, willChange: "transform, width, height", WebkitTransform: "translateZ(0)" }}
+          style={{ borderRadius: 24, willChange: open ? "width, height" : "transform" }}
           className={cn(
             "relative cursor-pointer overflow-hidden outline-hidden!",
             "bg-black dark:bg-[#121212] clay-island",
             open
-              ? "flex flex-col justify-center p-5 pb-14 min-h-(--height-opened) w-(--width-opened)"
-              : "flex items-center h-11 px-1.5 min-w-[200px]"
+              ? "flex flex-col justify-center p-5 pb-14 min-h-(--height-opened) w-[min(350px,calc(100vw-32px))]"
+              : "flex items-center h-11 px-1.5 w-[min(220px,calc(100vw-32px))]"
           )}
         >
           {open && (
@@ -184,11 +163,46 @@ function Items({ setValue, data, value }: Props & { value?: TOC_INTERFACE }) {
 function Text({
   open,
   value,
-  sp,
-}: Props & { open: boolean; sp: MotionValue }) {
+  ref,
+}: Props & { open: boolean }) {
   const circum = 2 * Math.PI * 10 - 0.5;
-  const val = useTransform(sp, [0, 1], [circum, 0]);
-  const sVal = useSpring(val, { visualDuration: 0.1, bounce: 0 });
+  const progressCircleRef = useRef<SVGCircleElement>(null);
+
+  useEffect(() => {
+    let raf = 0;
+    const scrollContainer = ref?.current as HTMLElement | undefined;
+
+    const updateProgress = () => {
+      raf = 0;
+      const scrollTop = scrollContainer
+        ? scrollContainer.scrollTop
+        : window.scrollY || document.documentElement.scrollTop;
+      const scrollable = scrollContainer
+        ? scrollContainer.scrollHeight - scrollContainer.clientHeight
+        : document.documentElement.scrollHeight - window.innerHeight;
+      const progress = scrollable > 0 ? Math.min(1, Math.max(0, scrollTop / scrollable)) : 0;
+
+      progressCircleRef.current?.style.setProperty(
+        "stroke-dashoffset",
+        `${circum * (1 - progress)}`
+      );
+    };
+
+    const scheduleUpdate = () => {
+      if (!raf) raf = window.requestAnimationFrame(updateProgress);
+    };
+
+    updateProgress();
+    const target: HTMLElement | Window = scrollContainer ?? window;
+    target.addEventListener("scroll", scheduleUpdate, { passive: true });
+    window.addEventListener("resize", scheduleUpdate);
+
+    return () => {
+      if (raf) window.cancelAnimationFrame(raf);
+      target.removeEventListener("scroll", scheduleUpdate);
+      window.removeEventListener("resize", scheduleUpdate);
+    };
+  }, [circum, ref]);
 
   return (
     <div className="flex items-center justify-between gap-3">
@@ -246,7 +260,8 @@ function Text({
             strokeWidth="3"
             fill="none"
           />
-          <motion.circle
+          <circle
+            ref={progressCircleRef}
             cx="12"
             cy="12"
             r="10"
@@ -254,7 +269,7 @@ function Text({
             strokeWidth="3"
             fill="none"
             strokeDasharray={circum}
-            strokeDashoffset={sVal}
+            strokeDashoffset={circum}
             strokeLinecap="round"
             transform="rotate(-90 12 12)"
           />

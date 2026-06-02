@@ -21,10 +21,7 @@ export const DDScroll = () => {
   const isScrolling = useRef(false);
 
   useEffect(() => {
-    // If we're not on the main page, set the value to the current path if it exists in data
     if (pathname !== "/") {
-      const match = data.find((d) => d.value === pathname);
-      if (match) setCurrentValue(match);
       return;
     }
 
@@ -37,7 +34,9 @@ export const DDScroll = () => {
             const id = entry.target.id;
             const matchingData = data.find((d) => d.value === id);
             if (matchingData) {
-              setCurrentValue(matchingData);
+              setCurrentValue((prev) =>
+                prev.name === matchingData.name ? prev : matchingData
+              );
             }
           }
         });

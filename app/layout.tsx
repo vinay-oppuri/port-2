@@ -121,7 +121,7 @@ export default function RootLayout({
             <Footer />
           </div>
           {/* Bottom Blur */}
-          <div className="fixed bottom-0 w-full h-28 pointer-events-none z-40 bg-background/40 backdrop-blur-md mask-[linear-gradient(to_top,black_20%,transparent_100%)]" />
+          <div className="fixed bottom-0 w-full h-20 md:h-28 pointer-events-none z-40 bg-background/60 md:bg-background/40 md:backdrop-blur-md mask-[linear-gradient(to_top,black_20%,transparent_100%)]" />
           <DDScroll />
           <ScrollToTop />
           <Toaster richColors position="top-right" />

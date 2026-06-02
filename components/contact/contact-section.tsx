@@ -9,7 +9,6 @@ import { Input } from "../ui/input";
 import { Textarea } from "../ui/textarea";
 import { Button } from "../ui/button";
 import Link from "@/components/ui/link";
-import { playClickSound } from "@/hooks/use-sound";
 
 export const ContactDialog = () => {
     const emailToUse = siteEmail;
@@ -85,7 +84,7 @@ export const ContactDialog = () => {
 
                         <div className="flex flex-col gap-3 mt-4">
                             {/* Schedule Call */}
-                            <a href="https://calendly.com/" target="_blank" rel="noopener noreferrer" onClick={() => playClickSound()} className="flex items-center justify-between p-3 clay rounded-xl group transition-all duration-300 clay-interactive">
+                            <a href="https://calendly.com/" target="_blank" rel="noopener noreferrer" className="flex items-center justify-between p-3 clay rounded-xl group transition-all duration-300 clay-interactive">
                                 <div className="flex items-center gap-1">
                                     <div className="p-2.5 transition-colors text-muted-foreground group-hover:text-foreground">
                                         <Calendar className="w-5 h-5 shrink-0" />
@@ -99,7 +98,7 @@ export const ContactDialog = () => {
                             </a>
 
                             {/* Email */}
-                            <a href={`mailto:${emailToUse}`} onClick={() => playClickSound()} className="flex items-center justify-between p-3 clay rounded-xl group transition-all duration-300 clay-interactive">
+                            <a href={`mailto:${emailToUse}`} className="flex items-center justify-between p-3 clay rounded-xl group transition-all duration-300 clay-interactive">
                                 <div className="flex items-center gap-1">
                                     <div className="p-2.5 transition-colors text-muted-foreground group-hover:text-foreground">
                                         <Mail className="w-5 h-5 shrink-0" />
@@ -114,7 +113,7 @@ export const ContactDialog = () => {
 
                             {/* X / Twitter */}
                             {xLink && (
-                                <a href={xLink.href} target="_blank" rel="noopener noreferrer" onClick={() => playClickSound()} className="flex items-center justify-between p-3 clay rounded-xl group transition-all duration-300 clay-interactive">
+                                <a href={xLink.href} target="_blank" rel="noopener noreferrer" className="flex items-center justify-between p-3 clay rounded-xl group transition-all duration-300 clay-interactive">
                                     <div className="flex items-center gap-1">
                                         <div className="p-2.5 transition-colors text-muted-foreground group-hover:text-foreground">
                                             <FaXTwitter className="w-5 h-5 shrink-0" />
@@ -154,7 +153,7 @@ export const ContactDialog = () => {
                                 <CheckCircle2 className="w-12 h-12 text-emerald-500 animate-in zoom-in-50 duration-300" />
                                 <h3 className="text-lg font-bold text-foreground">Message Sent!</h3>
                                 <p className="text-xs text-muted-foreground">Thank you for reaching out.</p>
-                                <button onClick={() => { playClickSound(); setSubmitted(false); }} className="text-xs underline text-foreground/60 hover:text-foreground mt-2">
+                                <button onClick={() => setSubmitted(false)} className="text-xs underline text-foreground/60 hover:text-foreground mt-2">
                                     Send another
                                 </button>
                             </div>
