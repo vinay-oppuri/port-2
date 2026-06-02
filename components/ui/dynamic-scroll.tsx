@@ -122,7 +122,7 @@ const DynamicScrollIslandTOC = ({
             "bg-black dark:bg-[#121212] clay-island",
             open
               ? "flex flex-col justify-center p-5 pb-14 min-h-(--height-opened) w-(--width-opened)"
-              : "flex items-center h-10 px-1 min-w-[200px]"
+              : "flex items-center h-11 px-1.5 min-w-[200px]"
           )}
         >
           {open && (
@@ -154,21 +154,21 @@ function Items({ setValue, data, value }: Props & { value?: TOC_INTERFACE }) {
             onClick={() => setValue?.(i)}
             aria-label={i.name}
             className={cn(
-              "cursor-pointer flex items-center justify-between text-left rounded-md px-3 py-2 w-full",
+              "cursor-pointer flex items-center justify-between text-left rounded-full px-3 py-2 w-full",
               isActive
                 ? "bg-white/5 border border-white/5 shadow-sm"
                 : "hover:bg-white/5"
             )}
           >
             <span className={cn(
-              "font-semibold text-sm whitespace-nowrap",
+              "font-semibold text-sm whitespace-nowrap px-2",
               isActive ? "text-white" : "text-muted-foreground"
             )}>
               {i.name}
             </span>
             {i.info && (
               <span className={cn(
-                "text-xs text-right ml-4",
+                "text-xs text-right px-2",
                 isActive ? "text-white/70" : "text-muted-foreground/60"
               )}>
                 {i.info}
@@ -185,7 +185,6 @@ function Text({
   open,
   value,
   sp,
-  lPrefix,
 }: Props & { open: boolean; sp: MotionValue }) {
   const circum = 2 * Math.PI * 10 - 0.5;
   const val = useTransform(sp, [0, 1], [circum, 0]);
@@ -212,7 +211,7 @@ function Text({
               animate={{ y: 0, opacity: 1 }}
               exit={{ y: -20, opacity: 0 }}
               transition={{ duration: 0.3, type: "spring", bounce: 0 }}
-              className="font-bold text-sm tracking-wide whitespace-nowrap"
+              className="font-bold text-xs md:text-sm justify-center tracking-wide whitespace-nowrap"
             >
               {value?.name || "Contents"}
             </motion.p>

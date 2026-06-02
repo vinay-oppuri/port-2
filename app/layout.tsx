@@ -120,6 +120,8 @@ export default function RootLayout({
             {children}
             <Footer />
           </div>
+          {/* Bottom Blur */}
+          <div className="fixed bottom-0 w-full h-28 pointer-events-none z-40 bg-background/40 backdrop-blur-md mask-[linear-gradient(to_top,black_20%,transparent_100%)]" />
           <DDScroll />
           <ScrollToTop />
           <Toaster richColors position="top-right" />
