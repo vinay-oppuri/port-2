@@ -107,59 +107,33 @@ const DynamicScrollIslandTOC = ({
           className,
         )}
       >
-        {/* closed div  */}
         <motion.div
+          layout
           role="button"
-          aria-label="Open"
+          aria-label={open ? "Close" : "Open"}
           tabIndex={0}
           onClick={() => {
             playClick();
             setOpen((prev) => !prev);
           }}
-          layoutId={`${lPrefix}-${cKey}`}
-          style={{ borderRadius: 24 }}
+          style={{ borderRadius: 24, willChange: "transform, width, height", WebkitTransform: "translateZ(0)" }}
           className={cn(
-            "relative flex h-10 cursor-pointer items-center overflow-hidden px-1 outline-hidden!",
-            "min-w-[200px] bg-black dark:bg-[#121212] clay-island",
+            "relative cursor-pointer overflow-hidden outline-hidden!",
+            "bg-black dark:bg-[#121212] clay-island",
+            open
+              ? "flex flex-col justify-center p-5 pb-14 min-h-(--height-opened) w-(--width-opened)"
+              : "flex items-center h-10 px-1 min-w-[200px]"
           )}
         >
-          <div className="absolute top-0 left-1/2 h-full w-[calc(var(--width-opened)-50px)] -translate-x-1/2">
-            <motion.div
-              layoutId={`${lPrefix}-${iKey}`}
-              layout="position"
-              className="h-full w-full"
-            />
-          </div>
-
-          <div className="w-full">{txt}</div>
+          {open && (
+            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.1 }}>
+              {items}
+            </motion.div>
+          )}
+          <motion.div layout className={open ? "absolute bottom-3 right-3 left-3" : "w-full"}>
+            {txt}
+          </motion.div>
         </motion.div>
-
-        <div className="absolute bottom-0 left-1/2 -translate-x-1/2">
-          <AnimatePresence mode="popLayout" initial={false}>
-            {open && (
-              <motion.div
-                role="button"
-                aria-label="Close"
-                tabIndex={0}
-                onClick={() => {
-                  playClick();
-                  setOpen((prev) => !prev);
-                }}
-                layoutId={`${lPrefix}-${cKey}`}
-                className={cn(
-                  "cursor-pointer justify-center overflow-hidden p-5 pb-14",
-                  "min-h-(--height-opened) w-(--width-opened) bg-black dark:bg-[#121212] clay-island",
-                )}
-                style={{ borderRadius: 24 }}
-              >
-                <motion.div layoutId={`${lPrefix}-${iKey}`} layout="position">
-                  {items}
-                </motion.div>
-                <div className="absolute bottom-3 right-3 left-3">{txt}</div>
-              </motion.div>
-            )}
-          </AnimatePresence>
-        </div>
       </div>
     </MotionConfig>
   );
@@ -221,12 +195,14 @@ function Text({
     <div className="flex items-center justify-between gap-3">
       <div className="flex items-center gap-2 px-3">
         <motion.div
-          layoutId={`${lPrefix}-toc-dot`}
           layout="position"
-          className="h-2 w-2 bg-white rounded-full shadow-[0_0_8px_rgba(255,255,255,0.7)]" />
+          className="relative flex items-center justify-center h-2 w-2"
+        >
+          <div className="absolute inset-0 bg-white rounded-full blur-[3px] opacity-80" />
+          <div className="absolute inset-0 bg-white rounded-full" />
+        </motion.div>
         <motion.div
           layout="position"
-          layoutId={`${lPrefix}-toc-text-container`}
           className="relative overflow-hidden flex items-center"
         >
           <AnimatePresence mode="popLayout" initial={false}>
@@ -245,13 +221,12 @@ function Text({
       </div>
 
       <motion.div
-        layoutId={`${lPrefix}-toc-svg-progress`}
+        layout="position"
         className="flex items-center justify-center gap-2"
       >
         <motion.div className="mt-0.5 text-white/80">
           <motion.div
             layout="position"
-            layoutId={`${lPrefix}-toc-chevron`}
             animate={{ rotate: open ? 0 : 180 }}
           >
             <TbChevronUp strokeWidth={2.5} className="h-4 w-4" />
