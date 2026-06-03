@@ -20,7 +20,7 @@ export const experiences = [
   {
     companyName: "IIIT Raichur Website",
     logo: "/experience/collegelogo.png",
-    status: "Working",
+    status: "working",
     role: "Full Stack Developer",
     timeline: "August 2025 - Present",
     location: "India (Remote)",

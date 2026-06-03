@@ -1,11 +1,14 @@
-import Image from "next/image";
-import { Badge } from "@/components/ui/badge";
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 import { experiences } from "@/data";
 
 type ExperienceItem = (typeof experiences)[number];
@@ -16,80 +19,72 @@ interface ExperienceListProps {
 
 export function ExperienceList({ items }: ExperienceListProps) {
   return (
-    <Accordion defaultValue="exp-0" type="single" collapsible className="space-y-6">
+    <Accordion defaultValue="exp-0" type="single" collapsible className="flex flex-col pt-2 md:pt-4">
       {items.map((exp, idx) => (
         <AccordionItem
           key={idx}
           value={`exp-${idx}`}
-          className="border-b-0 px-2 md:px-4"
+          className="relative border-b-0 border-l group"
         >
-          <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 w-full font-semibold">
-            <div className="flex items-start gap-4 w-full">
-              <Image
-                src={exp.logo}
-                width={58}
-                height={58}
-                alt={`${exp.companyName} logo`}
-                className="bg-foreground/5 h-18 md:h-13 w-20 md:w-14 rounded-md p-2 shrink-0"
-              />
-
-              <div className="flex flex-col gap-1.5 md:gap-0">
-                <AccordionTrigger className="no-arrow p-0 hover:no-underline flex flex-wrap items-center gap-2 text-left">
-                  <h3 className="font-bold text-md md:text-lg text-foreground/90">
-                    {exp.companyName}
-                  </h3>
-
-                  {exp.status && (
-                    <Badge className="h-4 w-4 flex items-center bg-green-600/20 text-foreground/80 rounded-full">
-                      <span className="absolute z-50 w-2 h-2 rounded-full bg-green-500 animate-pulse" />
-                    </Badge>
-                  )}
-                </AccordionTrigger>
-
-                <p className="text-xs md:text-sm font-mono text-muted-foreground">
-                  {exp.role}
-                </p>
-              </div>
-            </div>
-
-            <div className="text-sm sm:text-right text-muted-foreground font-normal whitespace-nowrap">
-              <p>{exp.timeline}</p>
-              <p>{exp.location}</p>
-            </div>
+          <div className="h-4 w-4 rounded-full flex items-center justify-center shrink-0 absolute -left-2 -top-2">
+            {exp.status === "working" ? (
+              <div className="w-2 h-2 rounded-full bg-green-500 ring-4 ring-green-500/20" />
+            ) : (
+              <div className="w-2 h-2 rounded-full bg-muted-foreground/30 group-hover:bg-muted-foreground/50 transition-colors" />
+            )}
           </div>
 
-          <AccordionContent className="mt-6 space-y-6">
-            <div>
-              <h4 className="text-base font-semibold text-foreground/90 mb-2">
-                Technologies & Tools
-              </h4>
-
-              <div className="flex flex-wrap gap-2">
-                {exp.technologies.map((tech, i) => (
-                  <Badge
-                    key={i}
-                    variant="secondary"
-                    className="flex gap-2 items-center text-xs md:text-md font-semibold clay-badge px-3 py-1"
-                  >
-                    {tech.logo} {tech.name}
-                  </Badge>
-                ))}
+          {/* Content */}
+          <div className="pl-6 md:pl-8 pb-8 last:pb-0 relative -top-3">
+            <AccordionTrigger className="no-arrow p-0 hover:no-underline flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 md:gap-4 w-full text-left">
+              <div className="flex flex-col gap-1.5 md:gap-1">
+                <h3 className="flex items-center gap-2 font-semibold text-sm md:text-base text-foreground/90">
+                  <div className="font-semibold">{exp.role}</div>
+                  <div className="h-1 w-1 bg-foreground rounded-full" />
+                  <div className="text-xs text-muted-foreground font-sans">{exp.companyName}</div>
+                </h3>
+                <p className="text-xs md:text-sm text-muted-foreground">
+                  {exp.location}
+                </p>
               </div>
-            </div>
 
-            {exp.responsibilities.length > 0 && (
-              <div>
-                <ul className="space-y-2 text-sm leading-relaxed text-muted-foreground">
-                  {exp.responsibilities.map((res, i) => (
-                    <li key={i} className="flex text-sm md:text-base gap-2">
-                      <span>▪</span>
-                      {res}
-                    </li>
+              <div className="text-xs sm:text-sm sm:text-right text-muted-foreground font-normal whitespace-nowrap pt-1 sm:pt-0">
+                <p>{exp.timeline}</p>
+              </div>
+            </AccordionTrigger>
+
+            <AccordionContent className="mt-4 space-y-6">
+              {exp.responsibilities && exp.responsibilities.length > 0 && (
+                <div>
+                  <ul className="space-y-3 text-sm leading-relaxed text-muted-foreground">
+                    {exp.responsibilities.map((res, i) => (
+                      <li key={i} className="flex gap-2">
+                        <span className="select-none text-muted-foreground/50">·</span>
+                        <span>{res}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+
+              {exp.technologies && exp.technologies.length > 0 && (
+                <div className="flex flex-wrap gap-3 pt-2">
+                  {exp.technologies.map((tech, i) => (
+                    <Tooltip key={i} delayDuration={100}>
+                      <TooltipTrigger asChild>
+                        <div className="flex items-center justify-center transition-opacity hover:opacity-80 cursor-pointer">
+                          {tech.logo}
+                        </div>
+                      </TooltipTrigger>
+                      <TooltipContent sideOffset={5}>
+                        <p className="font-medium text-xs">{tech.name}</p>
+                      </TooltipContent>
+                    </Tooltip>
                   ))}
-                </ul>
-              </div>
-            )}
-          </AccordionContent>
+                </div>
+              )}
+            </AccordionContent>
+          </div>
         </AccordionItem>
       ))}
     </Accordion>

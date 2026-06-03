@@ -23,7 +23,7 @@ export default function GitHubActivity() {
           rel="noopener noreferrer"
           className="text-sm text-muted-foreground hover:text-primary flex items-center gap-1 transition-colors font-medium"
         >
-          View Profile <MoveRight className="w-4 h-4" />
+          <p className="md:block hidden">View Profile</p><MoveRight className="ml-2 w-4 h-4" />
         </a>
       </header>
 
@@ -35,7 +35,6 @@ export default function GitHubActivity() {
           blockMargin={3}
           fontSize={12}
           colorScheme={theme === "dark" ? "dark" : "light"}
-          year={new Date().getFullYear()}
         />
       </div>
 

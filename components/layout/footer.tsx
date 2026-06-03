@@ -5,15 +5,12 @@ import Link from "@/components/ui/link";
 import { heroConfig, siteEmail, socialLinks } from "@/data";
 import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
 import { FeedbackDialog } from "./feedback-dialog";
-import { Mail, MapPin } from "lucide-react";
 
 const footerLinks = [
   { name: "Home", href: "/" },
   { name: "Work", href: "/experience" },
   { name: "Projects", href: "/projects" },
-  { name: "Blogs", href: "/blogs" },
   { name: "Resume", href: "/resume" },
-  { name: "Contact", href: "/contact" },
 ];
 
 const Footer = () => {
@@ -29,60 +26,43 @@ const Footer = () => {
   }
 
   return (
-    <footer className="w-full bg-background px-2 pb-18 md:pb-24 pt-10">
-      <div className="border-t border-foreground/10 pt-8">
-        <div className="grid gap-8 md:grid-cols-[1.35fr_1fr]">
-          <div className="space-y-4">
-            <div className="space-y-2">
-              <Link
-                href="/"
-                className="inline-flex text-sm font-semibold text-foreground transition-colors hover:text-foreground/80"
-              >
-                {heroConfig.name}
-              </Link>
-              <p className="max-w-md text-sm leading-6 text-muted-foreground">
-                {heroConfig.description.about}
-              </p>
+    <footer className="w-full bg-background px-4 pb-18 md:pb-24 pt-10">
+      <div className="flex flex-col md:flex-row md:justify-between gap-8 border-t border-foreground/10 pt-8">
+        
+        {/* Top Mobile / Left Desktop */}
+        <div className="flex flex-row md:flex-col justify-between md:justify-start gap-4 md:gap-12 w-full md:w-auto">
+          
+          {/* Left Section: Navigate */}
+          <nav aria-label="Footer navigation" className="space-y-3">
+            <div className="uppercase font-mono text-xs text-muted-foreground font-medium tracking-wider">
+              Navigate
             </div>
+            <div className="grid grid-cols-2 gap-x-6 gap-y-3 md:flex md:flex-wrap md:items-center md:gap-6">
+              {footerLinks.map((link) => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className="w-fit text-sm text-muted-foreground transition-colors hover:text-foreground"
+                >
+                  {link.name}
+                </Link>
+              ))}
+            </div>
+          </nav>
 
-            <div className="flex flex-col gap-2 text-sm text-muted-foreground">
-              <Link
-                href={`mailto:${siteEmail}`}
-                className="inline-flex w-fit items-center gap-2 transition-colors hover:text-foreground"
-              >
-                <Mail className="h-4 w-4" />
-                {siteEmail}
-              </Link>
-              <p className="inline-flex items-center gap-2">
-                <MapPin className="h-4 w-4" />
-                Hyderabad, India
-              </p>
-            </div>
+          {/* Desktop Copyright (Hidden on Mobile) */}
+          <div className="hidden md:flex flex-col gap-1.5 text-xs font-mono text-foreground/40">
+            <p>&copy; {currentYear} {heroConfig.name}. All rights reserved.</p>
+            <p>Available for selected full-stack and AI projects.</p>
           </div>
 
-          <div className="grid grid-cols-2 gap-6 sm:grid-cols-[1fr_auto]">
-            <nav aria-label="Footer navigation" className="space-y-3">
-              <p className="text-xs font-medium uppercase tracking-[0.08em] text-foreground/50">
-                Navigate
-              </p>
-              <div className="grid gap-2">
-                {footerLinks.map((link) => (
-                  <Link
-                    key={link.href}
-                    href={link.href}
-                    className="w-fit text-sm text-muted-foreground transition-colors hover:text-foreground"
-                  >
-                    {link.name}
-                  </Link>
-                ))}
-              </div>
-            </nav>
-
+          {/* Mobile Right Section: Connect & Feedback (Hidden on Desktop, rendered here for mobile row layout) */}
+          <div className="flex md:hidden flex-col gap-4 items-end text-right shrink-0">
             <div className="space-y-3">
-              <p className="text-xs font-medium uppercase tracking-[0.08em] text-foreground/50">
+              <p className="text-xs font-medium uppercase font-mono tracking-wider text-foreground/50">
                 Connect
               </p>
-              <div className="flex items-center gap-2">
+              <div className="flex flex-wrap items-center gap-2 justify-end">
                 {socialLinks.map((link) => (
                   <Tooltip key={link.name}>
                     <TooltipTrigger asChild>
@@ -91,7 +71,7 @@ const Footer = () => {
                         target="_blank"
                         rel="noopener noreferrer"
                         aria-label={link.name}
-                        className="flex h-9 w-9 items-center justify-center rounded-full  text-muted-foreground transition-colors hover:border-foreground/20 hover:bg-foreground/5 hover:text-foreground"
+                        className="flex h-9 w-9 items-center justify-center rounded-full text-muted-foreground transition-colors hover:border-foreground/20 hover:bg-foreground/5 hover:text-foreground"
                       >
                         {renderMonochromeIcon(link.icon)}
                       </Link>
@@ -102,16 +82,49 @@ const Footer = () => {
                   </Tooltip>
                 ))}
               </div>
-              <FeedbackDialog />
             </div>
+            <FeedbackDialog />
           </div>
         </div>
 
-        <div className="mt-8 flex flex-col gap-2 border-t border-foreground/10 pt-4 text-xs text-muted-foreground sm:flex-row sm:items-center sm:justify-between">
-          <p>&copy; {currentYear} {heroConfig.name}. All rights reserved.</p>
-          <p className="font-mono text-foreground/40">Available for selected full-stack and AI projects.</p>
+        {/* Desktop Right Section: Connect & Feedback (Hidden on Mobile) */}
+        <div className="hidden md:flex flex-col gap-8 items-end text-right shrink-0">
+          <div className="space-y-3">
+            <p className="text-xs font-medium uppercase font-mono tracking-wider text-foreground/50">
+              Connect
+            </p>
+            <div className="flex flex-wrap items-center gap-2 justify-end">
+              {socialLinks.map((link) => (
+                <Tooltip key={`desktop-${link.name}`}>
+                  <TooltipTrigger asChild>
+                    <Link
+                      href={link.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={link.name}
+                      className="flex h-9 w-9 items-center justify-center rounded-full text-muted-foreground transition-colors hover:border-foreground/20 hover:bg-foreground/5 hover:text-foreground"
+                    >
+                      {renderMonochromeIcon(link.icon)}
+                    </Link>
+                  </TooltipTrigger>
+                  <TooltipContent side="top">
+                    <p>{link.name}</p>
+                  </TooltipContent>
+                </Tooltip>
+              ))}
+            </div>
+          </div>
+          <FeedbackDialog />
         </div>
+
       </div>
+
+      {/* Mobile Copyright (Hidden on Desktop) */}
+      <div className="flex md:hidden flex-col gap-1.5 text-xs font-mono text-foreground/40 mt-8">
+        <p>&copy; {currentYear} {heroConfig.name}. All rights reserved.</p>
+        <p>Available for selected full-stack and AI projects.</p>
+      </div>
+      
     </footer>
   );
 };

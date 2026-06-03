@@ -3,7 +3,6 @@ import { heroConfig, socialLinks } from "@/data";
 import { Button } from "@/components/ui/button";
 import ExperienceCard from "@/components/home/experience-section";
 import ProjectsPage from "@/components/home/projects-section";
-import AboutPage from "@/components/home/about-section";
 import GitHubActivity from "@/components/home/github-activity";
 import ContactDialog from "@/components/contact/contact-section";
 import { AvatarLogo } from "@/components/common/AvatarLogo";
@@ -11,7 +10,6 @@ import RotatingText from "@/components/react-bits/RotatingText";
 import { SendIcon } from "lucide-react";
 import { SiGoogledocs } from "react-icons/si";
 import SkillsSection from "@/components/home/skills-section";
-import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 
 const Page = () => {
   return (
@@ -106,7 +104,6 @@ const Page = () => {
       <section className="w-full flex flex-col gap-6 px-4 md:px-8 mx-auto pb-16">
         <div id="experience"><ExperienceCard /></div>
         <div id="projects"><ProjectsPage /></div>
-        <div id="about"><AboutPage /></div>
         <div id="skills"><SkillsSection /></div>
         <div id="github"><GitHubActivity /></div>
         <div id="contact"><ContactDialog /></div>

@@ -12,7 +12,7 @@ const ProjectsPage = () => {
       {/* Header */}
       <div className="flex flex-col gap-1">
         <p className="text-sm text-muted-foreground font-mono">Featured</p>
-        <h2 className="text-2xl font-bold text-foreground">Projects</h2>
+        <h2 className="text-2xl font-bold text-foreground upper">Projects</h2>
       </div>
 
       <ProjectCards projects={projects} />
