@@ -10,10 +10,12 @@ import RotatingText from "@/components/react-bits/RotatingText";
 import { SendIcon } from "lucide-react";
 import { SiGoogledocs } from "react-icons/si";
 import SkillsSection from "@/components/home/skills-section";
+import DDScroll from "@/components/common/dd-scroll";
 
 const Page = () => {
   return (
     <main className="w-full">
+      <DDScroll />
       <section id="hero" className="flex flex-col justify-center items-start space-y-4 mx-auto w-full min-h-screen px-4 py-12 md:px-8">
         <div className="flex items-center justify-center gap-3 md:gap-6 font-mono">
           <AvatarLogo className="w-16 h-full sm:w-20 rounded-lg text-ring/85 dark:text-ring" />

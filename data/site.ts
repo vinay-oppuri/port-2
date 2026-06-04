@@ -79,16 +79,16 @@ export const socialLinks = [
   {
     name: "X (Twitter)",
     href: "https://x.com/vinayoppuri",
-    icon: icon(SiX, "text-muted-foreground hover:text-background!"),
+    icon: icon(SiX, "text-muted-foreground group-hover:text-background!"),
   },
    {
     name: "LinkedIn",
     href: "https://www.linkedin.com/in/vinay-oppuri/",
-    icon: icon(SiLinkedin, "text-muted-foreground hover:text-background!"),
+    icon: icon(SiLinkedin, "text-muted-foreground group-hover:text-background!"),
   },
   {
     name: "Github",
     href: "https://github.com/vinay-oppuri",
-    icon: icon(SiGithub, "text-muted-foreground hover:text-background!"),
+    icon: icon(SiGithub, "text-muted-foreground group-hover:text-background!"),
   },
 ];

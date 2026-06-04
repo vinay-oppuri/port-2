@@ -62,7 +62,7 @@ export const DDScroll = () => {
   const handleSelect = (item: TOC_INTERFACE) => {
     setCurrentValue(item);
     isScrolling.current = true;
-    
+
     setTimeout(() => {
       isScrolling.current = false;
     }, 1200);
@@ -93,10 +93,10 @@ export const DDScroll = () => {
   return (
     <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50">
       <DynamicScrollIslandTOC
+        title="Section Navigation"
         data={data}
         value={currentValue}
         setValue={handleSelect}
-        lPrefix="dd-scroll"
       />
     </div>
   );

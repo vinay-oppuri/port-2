@@ -16,23 +16,26 @@ export interface TOC_INTERFACE {
 }
 
 interface Props {
+  title?: string;
   value?: TOC_INTERFACE;
   setValue?: (v: TOC_INTERFACE) => void;
   data: TOC_INTERFACE[];
   ref?: RefObject<HTMLElement | null>;
   className?: string;
-  lPrefix?: string;
 }
 
 const DynamicScrollIslandTOC = ({
+  title,
   data,
   value: _v,
   setValue: _setValue,
   ref,
   className,
-  lPrefix,
 }: Props) => {
   const [open, setOpen] = useState(false);
+  // isExpanded stays true until the exit animation fully completes,
+  // so the outer layout container doesn't collapse while content is mid-exit.
+  const [isExpanded, setIsExpanded] = useState(false);
   const [internalValue, setInternalValue] = useState<TOC_INTERFACE>(data[0]);
   const selectedValue = _v ?? internalValue;
   const containerRef = useRef<HTMLDivElement>(null);
@@ -75,55 +78,76 @@ const DynamicScrollIslandTOC = ({
     _setValue?.(value);
   }
 
-  const p = { data, open, value: selectedValue, setValue: handleSelect, ref, lPrefix };
+  function handleToggle() {
+    if (!open) {
+      setIsExpanded(true);  // expand layout immediately on open
+      setOpen(true);
+    } else {
+      setOpen(false);       // trigger exit animation; layout collapses in onExitComplete
+    }
+  }
+
+  const p = { data, open, value: selectedValue, setValue: handleSelect, ref };
   const txt = <Text {...p} />;
   const items = <Items {...p} />;
 
   return (
-      <div
-        ref={containerRef}
+    <div
+      ref={containerRef}
+      className={cn(
+        "relative z-51 cursor-pointer select-none",
+        "[--height-opened:150px] [--width-opened:350px] [--width:220px]",
+        "text-white dark:text-foreground/80",
+        className,
+      )}
+    >
+      <motion.div
+        layout
+        role="button"
+        aria-label={open ? "Close" : "Open"}
+        tabIndex={0}
+        onClick={handleToggle}
+        style={{ borderRadius: 24, willChange: isExpanded ? "width, height" : "transform" }}
         className={cn(
-          "relative z-51 cursor-pointer select-none",
-          "[--height-opened:150px] [--width-opened:350px] [--width:220px]",
-          "text-white dark:text-foreground/80",
-          className,
+          "relative cursor-pointer overflow-hidden outline-hidden!",
+          "bg-black dark:bg-[#121212] clay-island",
+          // Drive size from isExpanded, not open — so it only collapses after exit completes
+          isExpanded
+            ? "flex flex-col justify-center px-3 py-4 pb-14 min-h-(--height-opened) w-xs md:w-sm"
+            : "flex items-center h-11 px-1.5 w-[min(220px,calc(100vw-32px))]"
         )}
       >
-        <motion.div
-          layout
-          role="button"
-          aria-label={open ? "Close" : "Open"}
-          tabIndex={0}
-          onClick={() => {
-            setOpen((prev) => !prev);
-          }}
-          style={{ borderRadius: 24, willChange: open ? "width, height" : "transform" }}
-          className={cn(
-            "relative cursor-pointer overflow-hidden outline-hidden!",
-            "bg-black dark:bg-[#121212] clay-island",
-            open
-              ? "flex flex-col justify-center px-3 py-4 pb-14 min-h-(--height-opened) w-xs md:w-sm"
-              : "flex items-center h-11 px-1.5 w-[min(220px,calc(100vw-32px))]"
-          )}
+        {/* Expanded content: header + items */}
+        <AnimatePresence
+          onExitComplete={() => setIsExpanded(false)} // collapse layout only after exit animation done
         >
           {open && (
-            <>
+            <motion.div
+              key="toc-expanded"
+              initial={{ opacity: 0, y: -8 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -8 }}
+              transition={{ duration: 0.05, ease: "easeIn" }}
+            >
               <div className="flex px-4">
-                <div className="text-xs text-muted-foreground font-semibold uppercase tracking-wide pb-3">table of contents</div>
+                <div className="text-xs text-muted-foreground font-semibold uppercase tracking-wide pb-3">
+                  {title}
+                </div>
               </div>
-              <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.1 }}>
-                {items}
-              </motion.div>
+              {items}
               <div className="flex items-center justify-center px-4 pt-3">
                 <div className="w-full h-px mx-auto bg-white/5" />
               </div>
-            </>
+            </motion.div>
           )}
-          <motion.div layout className={open ? "absolute bottom-3 right-3 left-3" : "w-full"}>
-            {txt}
-          </motion.div>
+        </AnimatePresence>
+
+        {/* Pill bar — absolute when expanded, normal flow when collapsed */}
+        <motion.div layout className={isExpanded ? "absolute bottom-3 right-3 left-3" : "w-full"}>
+          {txt}
         </motion.div>
-      </div>
+      </motion.div>
+    </div>
   );
 };
 
@@ -134,40 +158,55 @@ export default DynamicScrollIslandTOC;
 function Items({ setValue, data, value }: Props & { value?: TOC_INTERFACE }) {
   return (
     <div className="group flex flex-col gap-1.5 transition-opacity">
-      {data.map((i) => {
-        const isActive = value?.name === i.name;
-        return (
-          <button
-            key={i.name}
-            onClick={(e) => {
-              e.stopPropagation();
-              setValue?.(i);
-            }}
-            aria-label={i.name}
-            className={cn(
-              "cursor-pointer flex items-center justify-between text-left rounded-lg px-2 py-2 w-full",
-              isActive
-                ? "bg-white/10 border border-white/3 shadow-sm"
-                : "hover:bg-white/5"
-            )}
-          >
-            <span className={cn(
-              "font-semibold text-sm whitespace-nowrap px-2",
-              isActive ? "text-white" : "text-muted-foreground"
-            )}>
-              {i.name}
-            </span>
-            {i.info && (
-              <span className={cn(
-                "text-xs text-right px-2",
-                isActive ? "text-white/70" : "text-muted-foreground/60"
-              )}>
-                {i.info}
-              </span>
-            )}
-          </button>
-        );
-      })}
+      <AnimatePresence initial={false}>
+        {data.map((i, idx) => {
+          const isActive = value?.name === i.name;
+          const label = i.name;
+
+          return (
+            <motion.div
+              key={i.name}
+              initial={{ opacity: 0, x: -10 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -10 }}
+              transition={{
+                duration: 0.18,
+                delay: idx * 0.04,
+                ease: "easeOut",
+              }}
+            >
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setValue?.(i);
+                }}
+                aria-label={label}
+                className={cn(
+                  "cursor-pointer flex items-center justify-between text-left rounded-lg px-2 py-2 w-full",
+                  isActive
+                    ? "bg-white/10 border border-white/3 shadow-sm"
+                    : "hover:bg-white/5"
+                )}
+              >
+                <span className={cn(
+                  "font-semibold text-sm whitespace-nowrap px-2",
+                  isActive ? "text-white" : "text-muted-foreground"
+                )}>
+                  {label}
+                </span>
+                {i.info && (
+                  <span className={cn(
+                    "text-xs text-right px-2",
+                    isActive ? "text-white/70" : "text-muted-foreground/60"
+                  )}>
+                    {i.info}
+                  </span>
+                )}
+              </button>
+            </motion.div>
+          );
+        })}
+      </AnimatePresence>
     </div>
   );
 }
@@ -176,7 +215,7 @@ function Text({
   open,
   value,
   ref,
-}: Props & { open: boolean }) {
+}: Props & { open: boolean; value?: TOC_INTERFACE }) {
   const circum = 2 * Math.PI * 10 - 0.5;
   const progressCircleRef = useRef<SVGCircleElement>(null);
 
@@ -253,6 +292,7 @@ function Text({
           <motion.div
             layout="position"
             animate={{ rotate: open ? 0 : 180 }}
+            transition={{ duration: 0.25, ease: "easeInOut" }}
           >
             <TbChevronUp strokeWidth={2.5} className="h-4 w-4" />
           </motion.div>
