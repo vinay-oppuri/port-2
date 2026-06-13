@@ -38,21 +38,16 @@ export const ScrollToTop = () => {
     }, []);
 
     return (
-        <div
-            className={`fixed bottom-24 md:bottom-8 right-4 md:right-8 z-50 transition-all duration-500 ease-in-out ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10 pointer-events-none"
-                }`}
-        >
+        <div className={`fixed bottom-24 md:bottom-8 right-4 md:right-8 z-50 transition-all duration-500 ease-in-out ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10 pointer-events-none"}`}>
             <Button
                 onClick={scrollToTop}
                 size="icon"
                 className="
                     rounded-full w-12 h-12
-                    bg-background/80 backdrop-blur-md 
-                    btn-inner-shadow
-                    text-foreground 
-                    hover:scale-110 hover:shadow-xl hover:bg-background
-                    transition-all duration-300
-                    group
+                    bg-black dark:bg-muted/80 backdrop-blur-md 
+                    btn-inner-shadow text-white 
+                    hover:scale-110 transition-all duration-300
+                    hover:bg-black group
                 "
                 aria-label="Scroll to top"
             >

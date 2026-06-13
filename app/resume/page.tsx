@@ -20,7 +20,7 @@ const Page = () => {
       <div className="max-w-5xl mx-auto space-y-6">
         <div className="flex justify-end">
           <a
-            href="/Full_Stack_Resume.pdf"
+            href="/Resume.pdf"
             download="VinayOppuri_Resume.pdf"
             target="_blank"
             rel="noopener noreferrer"
