@@ -34,7 +34,7 @@ const Page = () => {
 
         <div className="w-full h-[800px] border rounded-xl overflow-hidden shadow-sm bg-muted/10">
           <iframe
-            src="/Full_Stack_Resume.pdf#toolbar=0"
+            src="/Resume.pdf#toolbar=0"
             className="w-full h-full"
             title="Resume PDF"
           />
