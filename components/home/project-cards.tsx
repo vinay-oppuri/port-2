@@ -19,7 +19,7 @@ export function ProjectCards({ projects }: ProjectCardsProps) {
       {projects.map((project) => (
         <Card
           key={project.title}
-          className="overflow-hidden p-0 pb-6 group clay-card clay-interactive border-none!"
+          className="overflow-hidden p-0 pb-6 group clay-card clay-interactive"
         >
           <div className="relative h-48 md:h-48 w-full project-bg-ocean overflow-hidden group">
             <div className="absolute top-2 left-2 z-20">
