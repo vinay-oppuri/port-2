@@ -19,27 +19,31 @@ export const navLinks = [
 const HeaderSkeleton = () => (
   <header
     aria-hidden="true"
-    className="sticky top-0 z-50 w-full max-w-3xl mx-auto flex justify-between items-center backdrop-blur-lg px-4 py-4 animate-pulse"
+    className="sticky top-0 z-50 w-full max-w-3xl mx-auto flex flex-col backdrop-blur-lg animate-pulse"
   >
-    <div className="flex items-center space-x-3 sm:space-x-8">
-      <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-foreground/10" />
-      <div className="hidden md:flex items-center gap-1.5 mt-0.5">
-        <div className="h-3 w-2 rounded bg-foreground/10" />
-        <div className="h-2.5 w-12 rounded bg-foreground/10" />
+    <div className="flex justify-between items-center px-4 py-4 w-full font-mono tracking-tighter">
+      <div className="flex items-center space-x-3 sm:space-x-8">
+        <div className="flex items-center gap-0">
+          <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-foreground/10" />
+          <span className="hidden md:block ml-3 text-[18px] font-thin text-foreground/15 mx-2 leading-none select-none">
+            /
+          </span>
+          <div className="hidden md:block h-3 w-16 rounded bg-foreground/10 mt-0.5" />
+        </div>
       </div>
-    </div>
 
-    <div className="hidden md:flex items-center space-x-6">
-      <div className="h-3 w-10 rounded bg-foreground/10" />
-      <div className="h-3 w-12 rounded bg-foreground/10" />
-      <div className="h-3 w-14 rounded bg-foreground/10" />
-    </div>
+      <div className="hidden md:flex items-center space-x-6">
+        {navLinks.map((_, idx) => (
+          <div key={idx} className="h-3 w-12 rounded bg-foreground/10" />
+        ))}
+      </div>
 
-    <div className="flex items-center space-x-3">
-      <div className="flex items-center gap-1 rounded-full p-1 clay">
-        <div className="h-8 w-20 rounded-full bg-foreground/10" />
-        <div className="w-px h-4 bg-foreground/15" />
-        <div className="h-8 w-8 rounded-full bg-foreground/10" />
+      <div className="flex items-center space-x-3">
+        <div className="flex items-center gap-1 p-1 clay rounded-full!">
+          <div className="h-8 w-20 rounded-full bg-foreground/10" />
+          <div className="w-px h-4 bg-foreground/15" />
+          <div className="h-8 w-8 rounded-full bg-foreground/10" />
+        </div>
       </div>
     </div>
   </header>

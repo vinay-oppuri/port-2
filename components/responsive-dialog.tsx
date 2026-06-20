@@ -29,6 +29,7 @@ interface ResponsiveDialogProps {
   onOpenChange: (open: boolean) => void
   trigger?: React.ReactNode
   className?: string
+  hideHeader?: boolean
 }
 
 export const ResponsiveDialog = ({
@@ -38,22 +39,30 @@ export const ResponsiveDialog = ({
   open,
   onOpenChange,
   trigger,
-  className
+  className,
+  hideHeader
 }: ResponsiveDialogProps) => {
   const isMobile = useIsMobile()
 
   if (isMobile) {
     return (
-      <Drawer open={open} onOpenChange={onOpenChange}>
+      <Drawer open={open} onOpenChange={onOpenChange} direction="top">
         {trigger && <DrawerTrigger asChild>{trigger}</DrawerTrigger>}
-        <DrawerContent className="rounded-t-2xl border-t bg-background shadow-lg">
-          <DrawerHeader className="pb-2 pt-4 px-4 border-b">
-            <DrawerTitle className="text-base font-semibold">{title}</DrawerTitle>
-            <DrawerDescription className="text-sm text-muted-foreground">
-              {description}
-            </DrawerDescription>
-          </DrawerHeader>
-          <div className="px-4 py-4 overflow-y-auto max-h-[60vh]">
+        <DrawerContent className="rounded-b-2xl border-b bg-background shadow-lg">
+          {hideHeader ? (
+            <DrawerHeader className="sr-only">
+              <DrawerTitle>{title}</DrawerTitle>
+              <DrawerDescription>{description}</DrawerDescription>
+            </DrawerHeader>
+          ) : (
+            <DrawerHeader className="pb-2 pt-4 px-4 border-b">
+              <DrawerTitle className="text-base font-semibold">{title}</DrawerTitle>
+              <DrawerDescription className="text-sm text-muted-foreground">
+                {description}
+              </DrawerDescription>
+            </DrawerHeader>
+          )}
+          <div className={cn("px-4 py-4 overflow-y-auto max-h-[60vh]", hideHeader && "p-0 max-h-[85vh]")}>
             {children}
           </div>
         </DrawerContent>
@@ -65,13 +74,13 @@ export const ResponsiveDialog = ({
     <Dialog open={open} onOpenChange={onOpenChange}>
       {trigger && <DialogTrigger asChild>{trigger}</DialogTrigger>}
       <DialogContent className={cn("max-w-sm! rounded-2xl shadow-xl", className)}>
-        <DialogHeader>
+        <DialogHeader className={cn(hideHeader && "sr-only")}>
           <DialogTitle className="text-lg font-semibold">{title}</DialogTitle>
           <DialogDescription className="text-sm text-muted-foreground">
             {description}
           </DialogDescription>
         </DialogHeader>
-        <div className="py-2">{children}</div>
+        <div className={cn("py-2", hideHeader && "p-0")}>{children}</div>
       </DialogContent>
     </Dialog>
   )
