@@ -6,7 +6,7 @@ import ProjectsPage from "@/components/home/projects-section";
 import GitHubActivity from "@/components/home/github-activity";
 import ContactDialog from "@/components/contact/contact-section";
 import { AvatarLogo } from "@/components/common/AvatarLogo";
-import RotatingText from "@/components/react-bits/RotatingText";
+import { TextFlip } from "@/components/text-flip";
 import { SendIcon } from "lucide-react";
 import { SiGoogledocs } from "react-icons/si";
 import SkillsSection from "@/components/home/skills-section";
@@ -24,18 +24,14 @@ const Page = () => {
               {heroConfig.name}
             </h1>
             <div className="h-5 overflow-hidden relative inline-flex items-center py-2">
-              <RotatingText
-                texts={["AI Engineer", "Full Stack Developer"]}
-                mainClassName="text-muted-foreground text-sm md:text-base font-mono! tracking-tighter!"
-                staggerFrom="last"
-                initial={{ y: "100%" }}
-                animate={{ y: 0 }}
-                exit={{ y: "-120%" }}
-                staggerDuration={0.025}
-                splitLevelClassName="overflow-hidden pb-0.5 sm:pb-1 md:pb-1"
-                transition={{ type: "spring", damping: 30, stiffness: 400 }}
-                rotationInterval={3000}
-              />
+              <TextFlip
+                as="span"
+                className="text-muted-foreground text-sm md:text-base font-mono! tracking-tighter!"
+                interval={3}
+              >
+                <span>AI Engineer</span>
+                <span>Full Stack Developer</span>
+              </TextFlip>
             </div>
           </div>
         </div>
