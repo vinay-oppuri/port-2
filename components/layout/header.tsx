@@ -11,8 +11,9 @@ import { playClickSound } from "@/hooks/use-sound";
 
 export const navLinks = [
   { name: "Work", href: "/experience" },
-  { name: "Blogs", href: "/blogs" },
+  // { name: "Blogs", href: "/blogs" },
   { name: "Projects", href: "/projects" },
+  { name: "Components", href: "/components" },
 ]
 
 const HeaderSkeleton = () => (

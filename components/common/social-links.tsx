@@ -10,6 +10,27 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 
+export const SocialLinksSkeleton = () => {
+  return (
+    <div
+      className="
+        fixed z-50 hidden md:flex flex-col items-center
+        left-0 bottom-auto top-1/2 -translate-y-1/2 translate-x-0
+        gap-4 shadow-inner shadow-foreground/5
+        bg-foreground/2 backdrop-blur-lg 
+        px-4 py-6 rounded-r-2xl
+      "
+    >
+      {socialLinks.map((link) => (
+        <div
+          key={link.name}
+          className="w-7 h-7 rounded-full bg-foreground/10 animate-pulse"
+        />
+      ))}
+    </div>
+  );
+};
+
 export const SocialLinks = () => {
   const mounted = useSyncExternalStore(
     () => () => { },
@@ -17,7 +38,7 @@ export const SocialLinks = () => {
     () => false
   );
 
-  if (!mounted) return null
+  if (!mounted) return <SocialLinksSkeleton />
 
   return (
     <div

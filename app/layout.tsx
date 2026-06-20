@@ -88,7 +88,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${jetbrainsMono.variable} antialiased min-h-screen w-full overflow-x-hidden mx-auto flex flex-col items-center`}
+        className={`${jetbrainsMono.variable} ${inter.variable} ${geistSans.variable} antialiased min-h-screen w-full overflow-x-hidden mx-auto flex flex-col items-center`}
       >
         <ThemeProvider
           attribute="class"

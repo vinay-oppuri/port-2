@@ -13,7 +13,8 @@ import {
   PenToolIcon,
   Search,
   SunIcon,
-  MonitorIcon
+  MonitorIcon,
+  Layers as LayersIcon
 } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
@@ -77,6 +78,10 @@ export function SearchCommand() {
             <CommandItem onSelect={() => runCommand(() => router.push("/projects"))}>
               <CodeIcon className="mr-2 h-4 w-4" />
               <span>Projects</span>
+            </CommandItem>
+            <CommandItem onSelect={() => runCommand(() => router.push("/components"))}>
+              <LayersIcon className="mr-2 h-4 w-4" />
+              <span>Components</span>
             </CommandItem>
             <CommandItem onSelect={() => runCommand(() => router.push("/blogs"))}>
               <PenToolIcon className="mr-2 h-4 w-4" />
