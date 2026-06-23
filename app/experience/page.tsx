@@ -1,5 +1,5 @@
 
-import { ExperienceList } from "@/components/home/experience-list";
+import { ExperienceList } from "@/modules/home/components/experience-list";
 import { experiences } from "@/data";
 import { Metadata } from "next";
 

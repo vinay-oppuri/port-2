@@ -1,15 +1,15 @@
 import Link from "@/components/ui/link";
 import { heroConfig, socialLinks } from "@/data";
 import { Button } from "@/components/ui/button";
-import ExperienceCard from "@/components/home/experience-section";
-import ProjectsPage from "@/components/home/projects-section";
-import GitHubActivity from "@/components/home/github-activity";
-import ContactDialog from "@/components/contact/contact-section";
+import ExperienceCard from "@/modules/home/sections/experience-section";
+import ProjectsPage from "@/modules/home/sections/projects-section";
+import GitHubActivity from "@/modules/home/sections/github-activity-section";
+import ContactDialog from "@/modules/home/sections/contact-section";
 import { AvatarLogo } from "@/components/common/AvatarLogo";
-import { TextFlip } from "@/components/text-flip";
+import { TextFlip } from "@/components/ui/text-flip";
 import { SendIcon } from "lucide-react";
 import { SiGoogledocs } from "react-icons/si";
-import SkillsSection from "@/components/home/skills-section";
+import SkillsSection from "@/modules/home/sections/skills-section";
 import DDScroll from "@/components/common/dd-scroll";
 
 const Page = () => {

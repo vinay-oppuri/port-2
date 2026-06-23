@@ -5,9 +5,9 @@ import { Mail, Calendar, ArrowUpRight, Loader2, CheckCircle2, SendIcon } from "l
 import { FaXTwitter } from "react-icons/fa6"; // Standard React icon for X
 import { socialLinks, siteEmail } from "@/data";
 import { toast } from "sonner";
-import { Input } from "../ui/input";
-import { Textarea } from "../ui/textarea";
-import { Button } from "../ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Button } from "@/components/ui/button";
 import Link from "@/components/ui/link";
 
 export const ContactDialog = () => {

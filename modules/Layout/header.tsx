@@ -5,8 +5,8 @@ import Link from "@/components/ui/link";
 import { Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
 import { Button } from "@/components/ui/button";
-import Logo from "../common/Logo";
-import { SearchCommand } from "../search-command";
+import Logo from "@/components/common/Logo";
+import { SearchCommand } from "@/components/common/search";
 import { playClickSound } from "@/hooks/use-sound";
 
 export const navLinks = [

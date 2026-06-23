@@ -1,4 +1,4 @@
-import RandomBox from "@/components/random-box";
+import RandomBox from "@/modules/components/comps/random-box";
 
 export default function RandomBoxDemo() {
   return (

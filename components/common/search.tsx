@@ -28,8 +28,8 @@ import {
   CommandSeparator,
 } from "@/components/ui/command"
 import { socialLinks } from "@/data/site"
-import Logo from "./common/Logo"
-import { ResponsiveDialog } from "./responsive-dialog"
+import Logo from "../../components/common/Logo"
+import { ResponsiveDialog } from "@/components/ui/responsive-dialog"
 
 export function SearchCommand() {
   const [open, setOpen] = React.useState(false)

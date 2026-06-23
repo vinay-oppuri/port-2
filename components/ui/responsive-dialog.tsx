@@ -10,7 +10,7 @@ import {
   DialogContent,
   DialogTrigger,
   DialogTitle,
-} from "./ui/dialog"
+} from "./dialog"
 
 import {
   Drawer,
@@ -19,7 +19,7 @@ import {
   DrawerHeader,
   DrawerTitle,
   DrawerTrigger,
-} from "./ui/drawer"
+} from "./drawer"
 
 interface ResponsiveDialogProps {
   title: string

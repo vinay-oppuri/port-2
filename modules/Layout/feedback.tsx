@@ -3,10 +3,10 @@
 import { useState } from "react";
 import { Loader2, MessageSquare, SendIcon } from "lucide-react";
 import { toast } from "sonner";
-import { ResponsiveDialog } from "../responsive-dialog";
-import { Button } from "../ui/button";
-import { Input } from "../ui/input";
-import { Textarea } from "../ui/textarea";
+import { ResponsiveDialog } from "../../components/ui/responsive-dialog";
+import { Button } from "../../components/ui/button";
+import { Input } from "../../components/ui/input";
+import { Textarea } from "../../components/ui/textarea";
 
 export const FeedbackDialog = () => {
   const [formData, setFormData] = useState({

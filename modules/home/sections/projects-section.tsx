@@ -1,8 +1,8 @@
 
 import Link from "@/components/ui/link";
 import { ProjectsData } from "@/data";
-import { Button } from "../ui/button";
-import { ProjectCards } from "./project-cards";
+import { Button } from "../../../components/ui/button";
+import { ProjectCards } from "../components/project-cards";
 
 const ProjectsPage = () => {
   const projects = ProjectsData.slice(0, 2)

@@ -3,9 +3,9 @@ import { Source_Serif_4, JetBrains_Mono, Inter } from "next/font/google";
 import { ThemeProvider } from "next-themes";
 import "./globals.css";
 
-import { SocialLinks } from "@/components/common/social-links";
-import { Header } from "@/components/layout/header";
-import Footer from "@/components/layout/footer";
+import { SocialLinks } from "@/modules/Layout/social-links";
+import { Header } from "@/modules/Layout/header";
+import Footer from "@/modules/Layout/footer";
 import { ScrollToTop } from "@/components/ui/scroll-to-top";
 import { Toaster } from "sonner";
 

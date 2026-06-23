@@ -6,7 +6,7 @@ import { useRouter, usePathname } from "next/navigation";
 import { Layers, Home, ChevronLeft, ChevronRight, ArrowLeft } from "lucide-react";
 import DynamicScrollIslandTOC, { TOC_INTERFACE } from "@/components/ui/dynamic-scroll";
 import { cn } from "@/lib/utils";
-import { componentsData } from "@/components/components-data";
+import { componentsData } from "@/data/components-data";
 import {
   Select,
   SelectContent,
@@ -58,9 +58,9 @@ export default function ComponentsLayout({ children }: { children: React.ReactNo
   const currentValue = tocData.find((t) => t.value === activeId) || tocData[0];
 
   return (
-    <div className="flex flex-col w-full max-w-4xl mx-auto py-6 px-4 font-sans text-foreground">
+    <div className="flex flex-col w-full max-w-4xl mx-auto p-4 font-sans text-foreground">
       {pathname !== "/components" && (
-        <header className="flex justify-between items-center pb-4 mt-8 md:mt-24 mb-6 relative">
+        <header className="flex justify-between items-center pb-4 mt-8 md:mt-24 mb-0 relative">
           <Link
             href="/components"
             className={cn(
@@ -68,29 +68,29 @@ export default function ComponentsLayout({ children }: { children: React.ReactNo
               pathname === "/components" && "text-ring"
             )}
           >
-            <ArrowLeft className="mr-1 h-3 md:h-4 w-3 md:w-4"/> Back to Components
+            <ArrowLeft className="mr-1 h-3 md:h-4 w-3 md:w-4" /> Back to Components
           </Link>
 
           {/* Action Controls Container */}
-        <div className="flex items-center gap-3">
-          {/* Quick Jump Dropdown */}
-          <div className="hidden sm:block">
-            <Select value={activeId} onValueChange={(val) => router.push(`/components/${val}`)}>
-              <SelectTrigger className="h-8 w-[180px] text-xs! clay">
-                <SelectValue placeholder="Select Component" />
-              </SelectTrigger>
-              <SelectContent className="max-h-[300px] border-foreground/5!">
-                {componentsList.map((comp) => (
-                  <SelectItem key={comp.id} value={comp.id} className="text-xs cursor-pointer">
-                    {comp.name}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
-          </div>
+          <div className="flex items-center gap-3">
+            {/* Quick Jump Dropdown */}
+            <div className="hidden sm:block">
+              <Select value={activeId} onValueChange={(val) => router.push(`/components/${val}`)}>
+                <SelectTrigger className="h-8 w-[180px] text-xs! clay">
+                  <SelectValue placeholder="Select Component" />
+                </SelectTrigger>
+                <SelectContent className="max-h-[300px] border-foreground/5!">
+                  {componentsList.map((comp) => (
+                    <SelectItem key={comp.id} value={comp.id} className="text-xs cursor-pointer">
+                      {comp.name}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
 
-          {/* Prev & Next Navigation Buttons */}
-          <div className="flex items-center gap-1 p-1 clay bg-muted/40 border border-foreground/5 rounded-lg">
+            {/* Prev & Next Navigation Buttons */}
+            <div className="flex items-center gap-1 p-1 clay bg-muted/40 border border-foreground/5 rounded-lg">
               <button
                 onClick={handlePrev}
                 title="Previous Component"
@@ -113,8 +113,6 @@ export default function ComponentsLayout({ children }: { children: React.ReactNo
 
       {/* Navigation & Workspace Panels */}
       <div className="flex flex-col md:flex-row gap-8 w-full">
-
-        {/* Dynamic Nested Route Content */}
         <main className="flex-1 min-w-0">
           {children}
         </main>

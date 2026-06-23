@@ -1,9 +1,9 @@
-import { ComponentsShowcaseClient } from "@/components/components-showcase";
+import { ComponentsShowcaseClient } from "@/modules/components/components-showcase";
 import { notFound } from "next/navigation";
 import { promises as fs } from "fs";
 import path from "path";
-import { componentsData } from "@/components/components-data";
-import { DemoRegistry } from "@/components/demo-registry";
+import { componentsData } from "@/data/components-data";
+import { DemoRegistry } from "@/modules/components/demo-registry";
 
 const validIds = componentsData.map((c) => c.id);
 
@@ -35,16 +35,17 @@ export default async function Page({ params }: Props) {
   }
 
   let componentCode = `// ${id} code placeholder\n// Component file not found`;
+
   try {
-    const filePath = path.join(process.cwd(), "components", `${id}.tsx`);
-    componentCode = await fs.readFile(filePath, "utf8");
+    const componentPath = path.join(process.cwd(), "modules", "components", "comps", `${id}.tsx`);
+    componentCode = await fs.readFile(componentPath, "utf8");
   } catch (error) {
     // Fallback if the component file doesn't exist
   }
 
   let demoCode = `// Demo code placeholder\n// Demo file not found`;
   try {
-    const demoPath = path.join(process.cwd(), "components", "demos", `${id}-demo.tsx`);
+    const demoPath = path.join(process.cwd(), "modules", "components", "demos", `${id}-demo.tsx`);
     demoCode = await fs.readFile(demoPath, "utf8");
   } catch (error) {
     // Fallback if registry reading fails

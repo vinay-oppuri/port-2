@@ -25,7 +25,7 @@ const CharAnimation = ({ text, className }: CharAnimationProps) => {
                             repeat: Infinity,
                             repeatDelay: 2
                         }}
-                        className='inline-block tracking-tight font-serif'
+                        className='inline-block tracking-tight font-serif text-foreground'
                     >
                         {char}
                     </motion.span>

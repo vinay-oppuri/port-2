@@ -1,8 +1,8 @@
 
 import { experiences } from "@/data";
-import { Button } from "../ui/button";
+import { Button } from "../../../components/ui/button";
 import Link from "@/components/ui/link";
-import { ExperienceList } from "./experience-list";
+import { ExperienceList } from "../components/experience-list";
 
 const ExperienceAccordion = () => {
   const topExperiences = experiences.slice(0, 2);
