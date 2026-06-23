@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, JetBrains_Mono, Inter } from "next/font/google";
+import { Source_Serif_4, JetBrains_Mono, Inter } from "next/font/google";
 import { ThemeProvider } from "next-themes";
 import "./globals.css";
 
@@ -20,9 +20,10 @@ const inter = Inter({
   variable: "--font-inter",
 });
 
-const geistSans = Geist({
+const geistSans = Source_Serif_4({
   subsets: ["latin"],
-  variable: "--font-geist-sans",
+  weight: "variable",
+  variable: "--font-serif",
 });
 
 export const metadata: Metadata = {

@@ -49,7 +49,7 @@ export default function ContactPage() {
   }
 
   return (
-    <section className="w-full min-h-screen mx-auto px-6 md:px-10 py-4 md:py-8">
+    <section className="w-full min-h-screen mx-auto px-4 md:px-8 py-4 md:py-8">
 
       <div className="flex flex-col items-center text-center border-b gap-3 md:gap-6 mt-6 md:mt-12 mb-8 pb-8 px-4">
         <h1 className="text-2xl md:text-4xl font-bold">Contact</h1>

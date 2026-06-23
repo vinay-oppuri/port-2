@@ -1,14 +1,16 @@
 import { ComponentsShowcaseClient } from "@/components/components-showcase";
 import { notFound } from "next/navigation";
+import { promises as fs } from "fs";
+import path from "path";
+import { componentsData } from "@/components/components-data";
+import { DemoRegistry } from "@/components/demo-registry";
 
-const validIds = ["clay-tilt-card", "magnetic-button", "hover-reveal-text", "retro-terminal"];
+const validIds = componentsData.map((c) => c.id);
 
-const nameMap: Record<string, string> = {
-  "clay-tilt-card": "Clay Tilt Card",
-  "magnetic-button": "Magnetic Button",
-  "hover-reveal-text": "Hover Reveal Text",
-  "retro-terminal": "Retro Terminal",
-};
+const nameMap: Record<string, string> = componentsData.reduce((acc, curr) => {
+  acc[curr.id] = curr.name;
+  return acc;
+}, {} as Record<string, string>);
 
 type Props = {
   params: Promise<{ id: string }>;
@@ -32,5 +34,27 @@ export default async function Page({ params }: Props) {
     notFound();
   }
 
-  return <ComponentsShowcaseClient componentId={id} />;
+  let componentCode = `// ${id} code placeholder\n// Component file not found`;
+  try {
+    const filePath = path.join(process.cwd(), "components", `${id}.tsx`);
+    componentCode = await fs.readFile(filePath, "utf8");
+  } catch (error) {
+    // Fallback if the component file doesn't exist
+  }
+
+  let demoCode = `// Demo code placeholder\n// Demo file not found`;
+  try {
+    const demoPath = path.join(process.cwd(), "components", "demos", `${id}-demo.tsx`);
+    demoCode = await fs.readFile(demoPath, "utf8");
+  } catch (error) {
+    // Fallback if registry reading fails
+  }
+
+  const DemoComponent = DemoRegistry[id] || null;
+
+  return (
+    <ComponentsShowcaseClient componentId={id} componentCode={componentCode} demoCode={demoCode}>
+      {DemoComponent ? <DemoComponent /> : null}
+    </ComponentsShowcaseClient>
+  );
 }

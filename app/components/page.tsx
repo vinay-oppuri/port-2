@@ -1,4 +1,6 @@
 import { Metadata } from "next";
+import Link from "next/link";
+import { componentsData } from "@/components/components-data";
 
 export const metadata: Metadata = {
   title: "Components Library",
@@ -7,12 +9,25 @@ export const metadata: Metadata = {
 
 const Page = () => {
   return (
-    <div className="w-full flex flex-col items-center justify-center py-12 px-4 text-center">
-      <div className="p-10 flex flex-col items-center max-w-md w-full gap-6 hover:shadow-[0_20px_40px_rgba(0,0,0,0.06)] dark:hover:shadow-[0_25px_50px_rgba(0,0,0,0.3)] transition-all">
-        <h3 className="font-bold text-lg text-foreground font-mono tracking-tighter">Welcome to the Library</h3>
-        <p className="text-xs text-muted-foreground leading-relaxed font-mono tracking-tighter">
-          There are no components available at the moment, but they will be arriving soon. Please check back later!
-        </p>
+    <div className="w-full flex flex-col items-center py-12 px-4 text-center">
+      <div className="flex flex-col items-start max-w-4xl w-full gap-12">
+        <h2 className="text-3xl text-left font-bold font-mono tracking-tighter text-foreground mb-8">Components Library</h2>
+        
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full text-left">
+          {componentsData.map((component) => (
+            <Link key={component.id} href={`/components/${component.id}`}>
+              <div className="p-6 bg-muted/40 border border-foreground/5 rounded-xl hover:bg-muted/50 transition-colors hover:shadow-[0_10px_30px_rgba(0,0,0,0.05)] dark:hover:shadow-[0_15px_40px_rgba(0,0,0,0.2)] group cursor-pointer h-full flex flex-col">
+                <h3 className="font-bold text-lg text-foreground font-mono tracking-tighter mb-2 group-hover:text-primary transition-colors">
+                  {component.name}
+                </h3>
+                <p className="text-sm text-muted-foreground grow">
+                  {component.description}
+                </p>
+              </div>
+            </Link>
+          ))}
+        </div>
+
       </div>
     </div>
   );

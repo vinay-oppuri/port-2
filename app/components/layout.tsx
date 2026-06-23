@@ -3,16 +3,22 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { useRouter, usePathname } from "next/navigation";
-import { Layers, Home, ChevronLeft, ChevronRight } from "lucide-react";
+import { Layers, Home, ChevronLeft, ChevronRight, ArrowLeft } from "lucide-react";
 import DynamicScrollIslandTOC, { TOC_INTERFACE } from "@/components/ui/dynamic-scroll";
 import { cn } from "@/lib/utils";
+import { componentsData } from "@/components/components-data";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
-const componentsList = [
-  { id: "clay-tilt-card", name: "Clay Tilt Card"},
-  { id: "magnetic-button", name: "Magnetic Button"},
-  { id: "hover-reveal-text", name: "Hover Reveal Text"},
-  { id: "retro-terminal", name: "Retro Terminal"}
-];
+const componentsList = componentsData.map(comp => ({
+  id: comp.id,
+  name: comp.name
+}));
 
 const tocData: TOC_INTERFACE[] = componentsList.map((comp) => ({
   name: comp.name,
@@ -26,7 +32,6 @@ export default function ComponentsLayout({ children }: { children: React.ReactNo
   const activeId = pathname.split("/").pop() || "";
   const activeComponent = componentsList.find((c) => c.id === activeId);
   const activeIndex = componentsList.findIndex((c) => c.id === activeId);
-  const isSlugPage = componentsList.some((c) => c.id === activeId);
 
   const handlePrev = () => {
     let newIndex = activeIndex - 1;
@@ -54,72 +59,60 @@ export default function ComponentsLayout({ children }: { children: React.ReactNo
 
   return (
     <div className="flex flex-col w-full max-w-4xl mx-auto py-6 px-4 font-sans text-foreground">
-      
-      {/* Topbar Header */}
-      <header className="flex justify-between items-center border-b border-foreground/10 pb-4 mt-8 md:mt-24 mb-6 relative">
-        <Link
-          href="/components"
-          className={cn(
-            "text-base font-bold hover:opacity-85 transition-all flex items-center gap-1.5",
-            pathname === "/components" && "text-ring"
-          )}
-        >
-          <Home size={16} />
-          <span>Components Library</span>
-        </Link>
+      {pathname !== "/components" && (
+        <header className="flex justify-between items-center pb-4 mt-8 md:mt-24 mb-6 relative">
+          <Link
+            href="/components"
+            className={cn(
+              "text-sm md:text-base text-muted-foreground font-mono tracking-tighter hover:opacity-85 transition-all flex items-center gap-1.5",
+              pathname === "/components" && "text-ring"
+            )}
+          >
+            <ArrowLeft className="mr-1 h-3 md:h-4 w-3 md:w-4"/> Back to Components
+          </Link>
 
-        {/* Action Controls Container */}
-        <div className="flex items-center gap-2">
-          {/* Prev & Next Navigation Buttons */}
-          <div className="flex items-center gap-1 p-1 clay bg-foreground/5! border border-foreground/10 rounded-lg">
-            <button
-              onClick={handlePrev}
-              title="Previous Component"
-              className="p-1 rounded hover:bg-foreground/5 text-foreground/80 hover:text-foreground cursor-pointer transition-all flex items-center justify-center"
-            >
-              <ChevronLeft size={14} />
-            </button>
-            <div className="w-px h-3 bg-foreground/15" />
-            <button
-              onClick={handleNext}
-              title="Next Component"
-              className="p-1 rounded hover:bg-foreground/5 text-foreground/80 hover:text-foreground cursor-pointer transition-all flex items-center justify-center"
-            >
-              <ChevronRight size={14} />
-            </button>
+          {/* Action Controls Container */}
+        <div className="flex items-center gap-3">
+          {/* Quick Jump Dropdown */}
+          <div className="hidden sm:block">
+            <Select value={activeId} onValueChange={(val) => router.push(`/components/${val}`)}>
+              <SelectTrigger className="h-8 w-[180px] text-xs! clay">
+                <SelectValue placeholder="Select Component" />
+              </SelectTrigger>
+              <SelectContent className="max-h-[300px] border-foreground/5!">
+                {componentsList.map((comp) => (
+                  <SelectItem key={comp.id} value={comp.id} className="text-xs cursor-pointer">
+                    {comp.name}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
           </div>
-        </div>
-      </header>
+
+          {/* Prev & Next Navigation Buttons */}
+          <div className="flex items-center gap-1 p-1 clay bg-muted/40 border border-foreground/5 rounded-lg">
+              <button
+                onClick={handlePrev}
+                title="Previous Component"
+                className="p-1 rounded hover:bg-foreground/5 text-foreground/80 hover:text-foreground cursor-pointer transition-all flex items-center justify-center"
+              >
+                <ChevronLeft size={14} />
+              </button>
+              <div className="w-px h-3 bg-foreground/15" />
+              <button
+                onClick={handleNext}
+                title="Next Component"
+                className="p-1 rounded hover:bg-foreground/5 text-foreground/80 hover:text-foreground cursor-pointer transition-all flex items-center justify-center"
+              >
+                <ChevronRight size={14} />
+              </button>
+            </div>
+          </div>
+        </header>
+      )}
 
       {/* Navigation & Workspace Panels */}
       <div className="flex flex-col md:flex-row gap-8 w-full">
-        {/* Left Sidebar Links */}
-        {isSlugPage && (
-          <aside className="hidden fixed top-40 left-30 w-full md:w-56 md:flex flex-col gap-4 shrink-0">
-            <div className="text-xs uppercase text-muted-foreground font-bold tracking-wider px-2">
-              Components List
-            </div>
-            <nav className="flex md:flex-col flex-wrap gap-2">
-              {componentsList.map((comp) => {
-                const isActive = comp.id === activeId;
-                return (
-                  <Link
-                    key={comp.id}
-                    href={`/components/${comp.id}`}
-                    className={cn(
-                      "w-full text-left px-3 py-2 rounded-lg text-xs font-semibold transition-all duration-200 cursor-pointer flex items-center justify-between border",
-                      isActive
-                        ? "clay-badge bg-foreground/5! border-foreground/15 text-foreground"
-                        : "bg-transparent border-transparent hover:bg-foreground/5 text-foreground/75 hover:text-foreground"
-                    )}
-                  >
-                    <span>{comp.name}</span>
-                  </Link>
-                );
-              })}
-            </nav>
-          </aside>
-        )}
 
         {/* Dynamic Nested Route Content */}
         <main className="flex-1 min-w-0">
