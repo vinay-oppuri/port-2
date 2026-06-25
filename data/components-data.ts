@@ -59,4 +59,17 @@ export const componentsData: ShowcaseComponent[] = [
       { name: "className", type: "string", default: "-", description: "Optional CSS classes." }
     ]
   },
+  {
+    id: "iphone",
+    name: "iPhone",
+    description: "A realistic, CSS-only iPhone frame mockup to wrap and display your content.",
+    docs: "### Setup\nEnsure you have the `cn` utility configured.",
+    installation: "npx shadcn@latest add https://siddz.com/r/iphone.json",
+    usageImport: "import { Iphone } from \"@/components/ui/iphone\"",
+    usageCode: `<Iphone>\n  <div className="flex h-full items-center justify-center bg-violet-500 text-white">Screen Content</div>\n</Iphone>`,
+    props: [
+      { name: "className", type: "string", default: "-", description: "Optional CSS classes to apply to the device frame." },
+      { name: "children", type: "React.ReactNode", default: "-", description: "The content to display inside the device screen." }
+    ]
+  },
 ];
