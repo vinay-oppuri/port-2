@@ -69,7 +69,7 @@ export function SearchCommand() {
         title="Command Palette"
         description="Search for commands, pages, and actions."
         hideHeader
-        className="sm:max-w-80! md:max-w-100! border-none! bg-transparent! clay-card overflow-hidden"
+        className="sm:max-w-80! md:max-w-100! bg-background/80! backdrop-blur-xl border! border-foreground/5! overflow-hidden p-2!"
       >
         <Command className="border-none! bg-transparent!">
           <CommandInput className="pl-2! border-none! outline-none! ring-0!" placeholder="Type a command or search..." />
@@ -109,7 +109,7 @@ export function SearchCommand() {
             <CommandGroup heading="Socials">
               {socialLinks.map((link) => (
                 <CommandItem key={link.name} onSelect={() => runCommand(() => window.open(link.href, "_blank"))}>
-                  <div className="mr-2 flex items-center justify-center [&>svg]:w-4 [&>svg]:h-4">{link.icon}</div>
+                  <div className="mr-2 flex items-center justify-center [&>svg]:w-4 [&>svg]:h-4 text-xs">{link.icon}</div>
                   <span>{link.name}</span>
                 </CommandItem>
               ))}
