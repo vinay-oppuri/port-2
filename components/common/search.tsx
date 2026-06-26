@@ -69,7 +69,7 @@ export function SearchCommand() {
         title="Command Palette"
         description="Search for commands, pages, and actions."
         hideHeader
-        className="sm:max-w-80! md:max-w-100! bg-background/80! backdrop-blur-xl border! border-foreground/5! overflow-hidden p-2!"
+        className="sm:max-w-80! md:max-w-100! bg-background! border! border-foreground/5! overflow-hidden p-2!"
       >
         <Command className="border-none! bg-transparent!">
           <CommandInput className="pl-2! border-none! outline-none! ring-0!" placeholder="Type a command or search..." />

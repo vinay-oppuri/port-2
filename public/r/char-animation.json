@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "char-animation",
+  "type": "registry:ui",
+  "title": "Char Animation",
+  "description": "An animated character component that emphasizes text with a bold font weight transition.",
+  "dependencies": [
+    "motion"
+  ],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "components/ui/char-animation.tsx",
+      "type": "registry:ui",
+      "target": "components/ui/char-animation.tsx",
+      "content": "\"use client\";\r\n\r\nimport { cn } from '@/lib/utils'\r\nimport { motion } from 'motion/react'\r\n\r\ninterface CharAnimationProps {\r\n    text: string\r\n    className?: string\r\n}\r\n\r\nconst CharAnimation = ({ text, className }: CharAnimationProps) => {\r\n    const animate = () => {\r\n        const chars = [...text]\r\n        return (\r\n            <>\r\n                {chars.map((char, index) => (\r\n                    <motion.span\r\n                        key={index}\r\n                        initial={{fontWeight: 600}}\r\n                        animate={{fontWeight: [400, 800, 400]}}\r\n                        transition={{\r\n                            duration: 2,\r\n                            ease: \"easeInOut\",\r\n                            delay: index * 0.2,\r\n                            repeat: Infinity,\r\n                            repeatDelay: 2\r\n                        }}\r\n                        className='inline-block tracking-tight font-serif text-foreground'\r\n                    >\r\n                        {char}\r\n                    </motion.span>\r\n                ))}\r\n            </>\r\n        )\r\n    }\r\n    \r\n    return (\r\n        <motion.span\r\n            className={cn('inline-block text-white', className)}\r\n        >\r\n            {animate()}\r\n        </motion.span>\r\n    )\r\n}\r\nexport default CharAnimation;"
+    }
+  ]
+}

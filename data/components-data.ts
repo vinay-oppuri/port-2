@@ -22,8 +22,8 @@ export const componentsData: ShowcaseComponent[] = [
     name: "Char Animation",
     description: "An animated character component that emphasizes text with a bold font weight transition.",
     docs: "### Setup\nEnsure you have `motion/react` installed and the `cn` utility configured.",
-    installation: "npx shadcn@latest add https://siddz.com/r/char-animation.json",
-    usageImport: "import CharAnimation from \"@/components/char-animation\"",
+    installation: "pnpm dlx shadcn@latest add https://vinayweb.in/r/char-animation.json",
+    usageImport: "import CharAnimation from \"@/components/ui/char-animation\"",
     usageCode: `<CharAnimation text="Hello World!" className="text-4xl text-white font-sans" />`,
     props: [
       { name: "text", type: "string", default: "-", description: "The string of text to be animated character by character." },
@@ -35,8 +35,8 @@ export const componentsData: ShowcaseComponent[] = [
     name: "Random Box",
     description: "A simple interactive box that changes its background color when clicked, perfect for testing routing and live previews.",
     docs: "### Setup\nNo additional dependencies required.",
-    installation: "npx shadcn@latest add https://siddz.com/r/random-box.json",
-    usageImport: "import RandomBox from \"@/components/random-box\"",
+    installation: "pnpm dlx shadcn@latest add https://vinayweb.in/r/random-box.json",
+    usageImport: "import RandomBox from \"@/components/ui/random-box\"",
     usageCode: `<RandomBox className="my-custom-class" />`,
     props: [
       { name: "className", type: "string", default: "-", description: "Optional CSS classes to apply to the box." }
@@ -47,7 +47,7 @@ export const componentsData: ShowcaseComponent[] = [
     name: "Pill Scroll",
     description: "An animated floating scroll navigation menu that shows a table of contents and reading progress.",
     docs: "### Setup\nEnsure you have `motion/react`, `lucide-react`, and `react-icons` installed, and the `cn` utility configured.",
-    installation: "npx shadcn@latest add https://siddz.com/r/pill-scroll.json",
+    installation: "pnpm dlx shadcn@latest add https://vinayweb.in/r/pill-scroll.json",
     usageImport: "import PillScroll from \"@/components/ui/pill-scroll\"",
     usageCode: `<PillScroll title="On this page" data={tocData} />`,
     props: [
@@ -64,7 +64,7 @@ export const componentsData: ShowcaseComponent[] = [
     name: "iPhone",
     description: "A realistic, CSS-only iPhone frame mockup to wrap and display your content.",
     docs: "### Setup\nEnsure you have the `cn` utility configured.",
-    installation: "npx shadcn@latest add https://siddz.com/r/iphone.json",
+    installation: "pnpm dlx shadcn@latest add https://vinayweb.in/r/iphone.json",
     usageImport: "import { Iphone } from \"@/components/ui/iphone\"",
     usageCode: `<Iphone>\n  <div className="flex h-full items-center justify-center bg-violet-500 text-white">Screen Content</div>\n</Iphone>`,
     props: [

@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Mail, Calendar, ArrowUpRight, Loader2, CheckCircle2, SendIcon } from "lucide-react";
+import { Mail, ArrowUpRight, Loader2, CheckCircle2, SendIcon, Linkedin } from "lucide-react";
 import { FaXTwitter } from "react-icons/fa6"; // Standard React icon for X
 import { socialLinks, siteEmail } from "@/data";
 import { toast } from "sonner";
@@ -84,14 +84,14 @@ export const ContactDialog = () => {
 
                         <div className="flex flex-col gap-3 mt-4">
                             {/* Schedule Call */}
-                            <a href="https://calendly.com/" target="_blank" rel="noopener noreferrer" className="flex items-center justify-between p-3 clay rounded-xl group transition-all duration-300 clay-interactive">
+                            <a href="https://www.linkedin.com/in/vinay-oppuri/" target="_blank" rel="noopener noreferrer" className="flex items-center justify-between p-3 clay rounded-xl group transition-all duration-300 clay-interactive">
                                 <div className="flex items-center gap-1">
                                     <div className="p-2.5 transition-colors text-muted-foreground group-hover:text-foreground">
-                                        <Calendar className="w-5 h-5 shrink-0" />
+                                        <Linkedin className="w-5 h-5 shrink-0" />
                                     </div>
                                     <div className="flex flex-col overflow-hidden">
-                                        <span className="text-sm font-semibold text-muted-foreground">Schedule a free call</span>
-                                        <span className="text-xs text-muted-foreground/60 mt-0.5 truncate">30-minute strategy session</span>
+                                        <span className="text-sm font-semibold text-muted-foreground">Let's Connect</span>
+                                        <span className="text-xs text-muted-foreground/60 mt-0.5 truncate">Professional networking</span>
                                     </div>
                                 </div>
                                 <ArrowUpRight className="w-4 h-4 text-muted-foreground/40 group-hover:text-foreground group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />

@@ -5,6 +5,35 @@ import { Copy, Check } from "lucide-react";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { ShowcaseComponent } from "@/data/components-data";
 
+const packageManagers = [
+  {
+    id: "npm",
+    label: "npm",
+    command: (url: string) => `npx shadcn@latest add ${url}`,
+  },
+  {
+    id: "pnpm",
+    label: "pnpm",
+    command: (url: string) => `pnpm dlx shadcn@latest add ${url}`,
+  },
+  {
+    id: "yarn",
+    label: "yarn",
+    command: (url: string) => `yarn dlx shadcn@latest add ${url}`,
+  },
+  {
+    id: "bun",
+    label: "bun",
+    command: (url: string) => `bunx shadcn@latest add ${url}`,
+  },
+] as const;
+
+type PackageManager = (typeof packageManagers)[number]["id"];
+
+function getRegistryUrl(installation: string) {
+  return installation.match(/https?:\/\/\S+/)?.[0] ?? installation;
+}
+
 export function ShowcaseInstallation({
   component,
   componentCode,
@@ -13,8 +42,16 @@ export function ShowcaseInstallation({
   componentCode: string;
 }) {
   const [copiedInstall, setCopiedInstall] = useState(false);
+  const [packageManager, setPackageManager] =
+    useState<PackageManager>("pnpm");
 
   if (!component.installation) return null;
+
+  const registryUrl = getRegistryUrl(component.installation);
+  const activeCommand =
+    packageManagers.find((manager) => manager.id === packageManager)?.command(
+      registryUrl
+    ) ?? component.installation;
 
   const handleCopyInstall = (textToCopy: string) => {
     navigator.clipboard.writeText(textToCopy);
@@ -28,28 +65,41 @@ export function ShowcaseInstallation({
         Installation
       </h3>
 
-      <Tabs defaultValue="manual" className="w-full">
+      <Tabs defaultValue="cli" className="w-full">
         <TabsList className="h-9 mb-4 p-0.5 bg-muted/40! rounded-lg w-fit border-foreground/5!">
-          <TabsTrigger disabled value="cli" className="px-3 py-1 text-xs font-medium rounded-md transition-all data-[state=active]:bg-background! data-[state=active]:text-foreground! data-[state=active]:shadow-sm! text-muted-foreground! hover:text-foreground! border-none!">CLI</TabsTrigger>
+          <TabsTrigger value="cli" className="px-3 py-1 text-xs font-medium rounded-md transition-all data-[state=active]:bg-background! data-[state=active]:text-foreground! data-[state=active]:shadow-sm! text-muted-foreground! hover:text-foreground! border-none!">CLI</TabsTrigger>
           <TabsTrigger value="manual" className="px-3 py-1 text-xs font-medium rounded-md transition-all data-[state=active]:bg-background! data-[state=active]:text-foreground! data-[state=active]:shadow-sm! text-muted-foreground! hover:text-foreground! border-none!">Manual</TabsTrigger>
         </TabsList>
 
         <TabsContent value="cli" className="flex flex-col gap-3 mt-0 focus-visible:ring-0">
-          <p className="text-sm text-muted-foreground">Run the initialization command inside your workspace directory:</p>
+          <p className="text-sm text-muted-foreground">Run this command inside your workspace directory:</p>
 
-          <div className="flex items-center gap-1 rounded-lg w-fit bg-muted/40 p-1 mb-2">
-            <button className="px-3 py-1 text-xs font-medium bg-background shadow-sm rounded text-foreground font-mono">npm</button>
-            <button className="px-3 py-1 text-xs font-medium text-muted-foreground hover:text-foreground font-mono transition-colors">pnpm</button>
-            <button className="px-3 py-1 text-xs font-medium text-muted-foreground hover:text-foreground font-mono transition-colors">yarn</button>
-            <button className="px-3 py-1 text-xs font-medium text-muted-foreground hover:text-foreground font-mono transition-colors">bun</button>
+          <div className="flex w-fit items-center gap-1 rounded-lg bg-muted/40 p-1">
+            {packageManagers.map((manager) => (
+              <button
+                key={manager.id}
+                type="button"
+                onClick={() => setPackageManager(manager.id)}
+                className={[
+                  "rounded-md px-3 py-1 text-xs font-medium font-mono transition-colors",
+                  packageManager === manager.id
+                    ? "bg-background text-foreground shadow-sm"
+                    : "text-muted-foreground hover:text-foreground",
+                ].join(" ")}
+              >
+                {manager.label}
+              </button>
+            ))}
           </div>
 
-          <div className="relative rounded-2xl bg-muted/40 overflow-hidden flex items-center justify-between px-4 py-2 shadow-inner">
-            <code className="text-xs font-mono select-all text-foreground">{component.installation}</code>
+          <div className="relative flex items-center justify-between gap-3 overflow-hidden rounded-2xl bg-muted/40 px-4 py-2 shadow-inner">
+            <code className="min-w-0 overflow-x-auto whitespace-nowrap text-xs font-mono select-all text-foreground thin-scrollbar">
+              {activeCommand}
+            </code>
             <button
               aria-label="Copy installation command"
-              onClick={() => handleCopyInstall(component.installation!)}
-              className="p-2 hover:bg-background rounded-lg text-foreground transition-all active:scale-95"
+              onClick={() => handleCopyInstall(activeCommand)}
+              className="shrink-0 p-2 hover:bg-background rounded-lg text-foreground transition-all active:scale-95"
             >
               {copiedInstall ? <Check size={14} className="text-emerald-400" /> : <Copy size={14} />}
             </button>
