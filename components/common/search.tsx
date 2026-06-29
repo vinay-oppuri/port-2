@@ -69,7 +69,7 @@ export function SearchCommand() {
         title="Command Palette"
         description="Search for commands, pages, and actions."
         hideHeader
-        className="sm:max-w-80! md:max-w-100! bg-muted/40! border-none! backdrop-blur-2xl overflow-hidden p-2!"
+        className="sm:max-w-80! md:max-w-100! bg-muted/90! dark:bg-muted/40! border-none! backdrop-blur-2xl overflow-hidden p-2!"
       >
         <Command className="border-none! bg-transparent!">
           <CommandInput className="pl-2! border-none! outline-none! ring-0!" placeholder="Type a command or search..." />
@@ -130,7 +130,7 @@ export function SearchCommand() {
               </CommandItem>
             </CommandGroup>
           </CommandList>
-          <div className="hidden md:flex items-center justify-between w-full px-4 pb-4 pt-2">
+          <div className="hidden md:flex items-center justify-between w-full px-4 pt-2">
             <Logo className="w-7 h-7 text-foreground" />
             <div className="flex items-center gap-2 text-muted-foreground text-xs font-medium">
               <kbd className="inline-flex select-none items-center justify-center rounded border bg-muted px-1.5 py-0.5 font-mono text-xs font-medium text-foreground">

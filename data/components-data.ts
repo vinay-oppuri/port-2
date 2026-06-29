@@ -20,7 +20,7 @@ export const componentsData: ShowcaseComponent[] = [
   {
     id: "char-animation",
     name: "Char Animation",
-    description: "An animated character component that emphasizes text with a bold font weight transition.",
+    description: "An animated character component that emphasizes text with a bold font weight transition. Inspired from diabrowser.com",
     docs: "### Setup\nEnsure you have `motion/react` installed and the `cn` utility configured.",
     installation: "pnpm dlx shadcn@latest add https://vinayweb.in/r/char-animation.json",
     usageImport: "import CharAnimation from \"@/components/ui/char-animation\"",
@@ -33,7 +33,7 @@ export const componentsData: ShowcaseComponent[] = [
   {
     id: "pill-scroll",
     name: "Pill Scroll",
-    description: "An animated floating scroll navigation menu that shows a table of contents and reading progress.",
+    description: "An animated floating scroll navigation menu that shows a table of contents and reading progress. Inspired from daddy.design.",
     docs: "### Setup\nEnsure you have `motion/react`, `lucide-react`, and `react-icons` installed, and the `cn` utility configured.",
     installation: "pnpm dlx shadcn@latest add https://vinayweb.in/r/pill-scroll.json",
     usageImport: "import PillScroll from \"@/components/ui/pill-scroll\"",

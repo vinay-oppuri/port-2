@@ -24,7 +24,7 @@ export default function SkillsSection() {
           return (
             <div
               key={section.label}
-              className={`clay-card p-5 flex flex-col gap-4 border border-white/10 dark:border-white/5 bg-background/5 ${
+              className={`clay-card p-5 flex flex-col gap-4 border border-foreground/5! ${
                 isFullWidth ? "md:col-span-2" : ""
               }`}
             >
@@ -50,7 +50,7 @@ export default function SkillsSection() {
                 {section.skills.map((skill) => (
                   <div
                     key={skill.name}
-                    className="flex items-center gap-2.5 px-3 py-1.5 rounded-lg text-foreground/90 bg-muted/40 border border-foreground/5 cursor-default"
+                    className="flex items-center gap-2.5 px-3 py-1.5 rounded-md text-foreground/90 bg-muted/30 border border-foreground/5 cursor-default"
                   >
                     <div className="flex items-center justify-center shrink-0 w-4.5 h-4.5 [&_svg]:w-full! [&_svg]:h-full!">
                       {skill.icon}

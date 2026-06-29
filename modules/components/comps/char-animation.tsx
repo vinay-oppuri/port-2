@@ -16,8 +16,8 @@ const CharAnimation = ({ text, className }: CharAnimationProps) => {
                 {chars.map((char, index) => (
                     <motion.span
                         key={index}
-                        initial={{fontWeight: 600}}
-                        animate={{fontWeight: [400, 800, 400]}}
+                        initial={{ fontWeight: 600 }}
+                        animate={{ fontWeight: [400, 800, 400] }}
                         transition={{
                             duration: 2,
                             ease: "easeInOut",
@@ -33,7 +33,7 @@ const CharAnimation = ({ text, className }: CharAnimationProps) => {
             </>
         )
     }
-    
+
     return (
         <motion.span
             className={cn('inline-block text-white', className)}
