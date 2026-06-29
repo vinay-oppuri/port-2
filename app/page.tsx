@@ -68,7 +68,7 @@ const Page = () => {
           <Button
             asChild
             variant="outline"
-            className="h-9 md:h-10 text-xs md:text-sm clay hover:-translate-y-1 transition-all duration-300 font-mono tracking-tighter"
+            className="h-9 md:h-10 text-xs md:text-sm clay hover:-translate-y-1! transition-all! duration-300! font-mono tracking-tighter!"
           >
             <Link href='/resume'>
               <SiGoogledocs /> Resume / CV
@@ -77,7 +77,7 @@ const Page = () => {
           <Button
             asChild
             variant="default"
-            className="h-9 md:h-10 text-xs md:text-sm clay bg-foreground! shadow-none! hover:-translate-y-1 transition-all duration-300 font-mono tracking-tighter"
+            className="h-9 md:h-10 text-xs md:text-sm clay! bg-foreground! shadow-none! hover:-translate-y-1! transition-all! duration-300! font-mono tracking-tighter!"
           >
             <Link href='/contact'>
               <SendIcon /> Get in touch

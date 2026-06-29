@@ -33,9 +33,9 @@ export const experiences = [
       technology("Firebase", SiFirebase, "h-5 w-5 text-[#FF6B35]"),
     ],
     responsibilities: [
-      "Built a new Training and Placement Cell website for IIIT Raichur.",
-      "Updated data about PhD student applications and results on the website.",
-      "Improved the UI for the PhD results section.",
+      "Maintain and enhance multiple official web platforms under the iiitr.ac.in domain, contributing to their modernization with a scalable Next.js App Router architecture",
+      "Developed the Training & Placement Cell Portal (tnp-iiitr.vercel.app) using Next.js and Tailwind CSS",
+      "Architected reusable and scalable components, improving development efficiency and maintainability across projects."
     ],
   },
 ];

@@ -31,18 +31,6 @@ export const componentsData: ShowcaseComponent[] = [
     ]
   },
   {
-    id: "random-box",
-    name: "Random Box",
-    description: "A simple interactive box that changes its background color when clicked, perfect for testing routing and live previews.",
-    docs: "### Setup\nNo additional dependencies required.",
-    installation: "pnpm dlx shadcn@latest add https://vinayweb.in/r/random-box.json",
-    usageImport: "import RandomBox from \"@/components/ui/random-box\"",
-    usageCode: `<RandomBox className="my-custom-class" />`,
-    props: [
-      { name: "className", type: "string", default: "-", description: "Optional CSS classes to apply to the box." }
-    ]
-  },
-  {
     id: "pill-scroll",
     name: "Pill Scroll",
     description: "An animated floating scroll navigation menu that shows a table of contents and reading progress.",
