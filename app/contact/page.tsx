@@ -120,12 +120,12 @@ export default function ContactPage() {
           <Button
             type="submit"
             disabled={loading}
-            className="mt-4 flex items-center gap-2 text-xs md:text-sm">
+            className="relative mt-4 pl-8! w-40 flex gap-2 text-xs md:text-sm">
             {loading ? (
               <span>Sending...</span>
             ) : (
               <>
-                <SendIcon className="w-4 h-4" />
+                <div className="absolute left-0.5 p-2 bg-background text-foreground rounded-md"><SendIcon className="w-4 h-4" /></div>
                 Send Message
               </>
             )}

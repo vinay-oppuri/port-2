@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { Mail, ArrowUpRight, Loader2, CheckCircle2, SendIcon, Linkedin } from "lucide-react";
-import { FaXTwitter } from "react-icons/fa6"; // Standard React icon for X
+import { FaXTwitter } from "react-icons/fa6";
 import { socialLinks, siteEmail } from "@/data";
 import { toast } from "sonner";
 import { Input } from "@/components/ui/input";
@@ -198,14 +198,14 @@ export const ContactDialog = () => {
                                 <Button
                                     type="submit"
                                     disabled={loading}
-                                    className="w-full mt-2 flex items-center justify-center gap-2 py-3 px-4 bg-foreground text-background font-semibold rounded-lg hover:bg-foreground/90 active:scale-[0.98] transition-all disabled:opacity-50 text-sm"
+                                    className="relative w-full mt-2 flex items-center justify-center gap-2 py-3 px-4 bg-foreground text-background font-semibold rounded-lg hover:bg-foreground/90 active:scale-[0.98] transition-all disabled:opacity-50 text-sm"
                                 >
                                     {loading ? (
                                         <Loader2 className="w-4 h-4 animate-spin" />
                                     ) : (
                                         "Send Message"
                                     )}
-                                    {!loading && <ArrowUpRight className="w-4 h-4" />}
+                                    {!loading && <div className="absolute right-0.5 bg-background text-foreground rounded-md p-2"><ArrowUpRight className="w-4 h-4" /></div>}
                                 </Button>
                             </form>
                         )}

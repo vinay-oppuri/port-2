@@ -69,11 +69,11 @@ export function SearchCommand() {
         title="Command Palette"
         description="Search for commands, pages, and actions."
         hideHeader
-        className="sm:max-w-80! md:max-w-100! bg-background! border! border-foreground/5! overflow-hidden p-2!"
+        className="sm:max-w-80! md:max-w-100! bg-muted/40! border-none! backdrop-blur-2xl overflow-hidden p-2!"
       >
         <Command className="border-none! bg-transparent!">
           <CommandInput className="pl-2! border-none! outline-none! ring-0!" placeholder="Type a command or search..." />
-          <CommandList className="font-mono tracking-tighter p-1 rounded-xl! border-none! [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+          <CommandList className="bg-background font-mono tracking-tighter p-1 rounded-xl! border-none! [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] [&_[cmdk-item]]:cursor-pointer!">
             <CommandEmpty>No results found.</CommandEmpty>
             <CommandGroup heading="Navigation">
               <CommandItem onSelect={() => runCommand(() => router.push("/"))}>
