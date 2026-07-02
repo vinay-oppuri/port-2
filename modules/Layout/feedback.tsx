@@ -91,7 +91,7 @@ export const FeedbackDialog = () => {
         />
         <Button type="submit" disabled={loading} className="relative w-full mx-auto text-xs">
           {loading ? "Sending..." : "Send Feedback"}
-          {loading ? <SendIcon className="w-4 h-4 mr-2" /> : <div className="absolute right-0.5 bg-background text-foreground rounded-md p-2"><ArrowUpRight className="w-4 h-4" /></div>}
+          {loading ? <SendIcon className="w-4 h-4 mr-2" /> : <div className="absolute right-0.5 bg-background text-foreground rounded-sm p-2"><ArrowUpRight className="w-4 h-4" /></div>}
         </Button>
       </form>
     </ResponsiveDialog>

@@ -16,7 +16,7 @@ export const SocialLinksSkeleton = () => {
       className="
         fixed z-50 hidden md:flex flex-col items-center
         left-0 bottom-auto top-1/2 -translate-y-1/2 translate-x-0
-        gap-4 shadow-inner shadow-foreground/5
+        gap-4 shadow-foreground/5
         bg-foreground/2 backdrop-blur-lg 
         px-4 py-6 rounded-r-2xl
       "
@@ -45,7 +45,7 @@ export const SocialLinks = () => {
       className="
         fixed z-50 hidden md:flex flex-col items-center
         left-0 bottom-auto top-1/2 -translate-y-1/2 translate-x-0
-        gap-4 shadow-inner shadow-foreground/5
+        gap-4 shadow-foreground/5
         bg-foreground/2 backdrop-blur-lg 
         px-4 py-6 rounded-r-2xl
       "

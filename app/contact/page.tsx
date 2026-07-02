@@ -125,7 +125,7 @@ export default function ContactPage() {
               <span>Sending...</span>
             ) : (
               <>
-                <div className="absolute left-0.5 p-2 bg-background text-foreground rounded-md"><SendIcon className="w-4 h-4" /></div>
+                <div className="absolute left-0.5 p-2 bg-background text-foreground rounded-sm"><SendIcon className="w-4 h-4" /></div>
                 Send Message
               </>
             )}
