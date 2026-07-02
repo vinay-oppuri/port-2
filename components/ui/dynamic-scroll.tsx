@@ -110,7 +110,7 @@ const DynamicScrollIslandTOC = ({
         style={{ borderRadius: 24, willChange: isExpanded ? "width, height" : "transform" }}
         className={cn(
           "relative cursor-pointer overflow-hidden outline-hidden!",
-          "bg-black dark:bg-[#121212] clay-island",
+          "bg-black dark:bg-[#121212] border border-foreground/5",
           // Drive size from isExpanded, not open — so it only collapses after exit completes
           isExpanded
             ? "flex flex-col justify-center px-3 py-4 pb-14 min-h-(--height-opened) w-xs md:w-sm"

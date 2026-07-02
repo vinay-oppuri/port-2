@@ -45,13 +45,13 @@ export const ScrollToTop = () => {
                 className="
                     rounded-full w-12 h-12
                     bg-black dark:bg-muted/80 backdrop-blur-md 
-                    btn-inner-shadow text-white 
-                    hover:scale-110 transition-all duration-300
+                    text-white border border-foreground/5
+                    hover:scale-110! transition-all! duration-300!
                     hover:bg-black group
                 "
                 aria-label="Scroll to top"
             >
-                <ArrowUp className="h-5 w-5 transition-transform duration-300 group-hover:-translate-y-1" />
+                <ArrowUp className="h-5 w-5 transition-transform! duration-300! group-hover:-translate-y-1!" />
             </Button>
         </div>
     );

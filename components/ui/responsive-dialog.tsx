@@ -55,14 +55,14 @@ export const ResponsiveDialog = ({
               <DrawerDescription>{description}</DrawerDescription>
             </DrawerHeader>
           ) : (
-            <DrawerHeader className="pb-2 pt-4 px-4 border-b">
+            <DrawerHeader className="pb-2! pt-4! border-b">
               <DrawerTitle className="text-base font-semibold">{title}</DrawerTitle>
               <DrawerDescription className="text-sm text-muted-foreground">
                 {description}
               </DrawerDescription>
             </DrawerHeader>
           )}
-          <div className={cn("px-4 py-4 overflow-y-auto max-h-[60vh]", hideHeader && "p-0 max-h-[85vh]")}>
+          <div className={cn("p-4! overflow-y-auto max-h-[60vh]", hideHeader && "p-2! max-h-[85vh]")}>
             {children}
           </div>
         </DrawerContent>
@@ -73,14 +73,14 @@ export const ResponsiveDialog = ({
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       {trigger && <DialogTrigger asChild>{trigger}</DialogTrigger>}
-      <DialogContent className={cn("max-w-sm! rounded-2xl shadow-xl", className)}>
+      <DialogContent className={cn("max-w-sm! rounded-2xl shadow-xl p-4! pt-6!", className)}>
         <DialogHeader className={cn(hideHeader && "sr-only")}>
           <DialogTitle className="text-lg font-semibold">{title}</DialogTitle>
           <DialogDescription className="text-sm text-muted-foreground">
             {description}
           </DialogDescription>
         </DialogHeader>
-        <div className={cn("py-2", hideHeader && "p-0")}>{children}</div>
+        <div className={cn("p-0!", hideHeader && "p-0!")}>{children}</div>
       </DialogContent>
     </Dialog>
   )

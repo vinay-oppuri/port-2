@@ -9,7 +9,7 @@ const data: TOC_INTERFACE[] = [
   { name: "Experience", value: "experience", info: "My professional background" },
   { name: "Projects", value: "projects", info: "Things I've built" },
   { name: "Skills", value: "skills", info: "Technologies I use" },
-  { name: "GitHub Activity", value: "github", info: "My open source contributions" },
+  { name: "GitHub", value: "github", info: "My open source contributions" },
   { name: "Contact", value: "contact", info: "Let's get in touch" },
 ];
 

@@ -57,7 +57,7 @@ export function SearchCommand() {
       <Button
         variant="ghost"
         size="sm"
-        className="rounded-full gap-2 px-3 h-8 text-foreground/80 hover:text-foreground hover:bg-foreground/5 transition-all clay-interactive"
+        className="rounded-full gap-2 px-3 h-8 text-foreground/80 hover:text-foreground hover:bg-foreground/5 transition-all"
         onClick={() => setOpen(true)}
       >
         <span className="text-xs font-medium inline-block">Search</span>

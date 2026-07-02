@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Loader2, MessageSquare, SendIcon } from "lucide-react";
+import { ArrowUpRight, Loader2, MessageSquare, SendIcon } from "lucide-react";
 import { toast } from "sonner";
 import { ResponsiveDialog } from "../../components/ui/responsive-dialog";
 import { Button } from "../../components/ui/button";
@@ -63,11 +63,10 @@ export const FeedbackDialog = () => {
       trigger={
         <Button
           type="button"
-          variant="outline"
           size="sm"
-          className="w-auto h-11 md:h-9 rounded-full px-5! text-xs text-foreground/80 border-foreground/20 hover:border-foreground/40"
+          className="w-auto h-9! rounded-full px-5! text-xs bg-transparent! text-foreground/80 border! border-foreground/3! hover:border-foreground/40"
         >
-          <MessageSquare className="w-3.5 h-3.5 mr-1.5" />
+          <MessageSquare className="w-3.5 h-3.5 mr-1.5 fill-foreground/80" />
           Feedback
         </Button>
       }
@@ -79,7 +78,7 @@ export const FeedbackDialog = () => {
           placeholder="Enter your name..."
           value={formData.name}
           onChange={handleChange}
-          className="bg-foreground/3! rounded-sm placeholder:text-muted-foreground/50 text-foreground text-xs md:text-base border border-white/5"
+          className="bg-foreground/3! rounded-sm placeholder:text-muted-foreground/50 text-foreground text-xs md:text-base border border-white/5!"
           required
         />
         <Textarea
@@ -87,16 +86,12 @@ export const FeedbackDialog = () => {
           value={formData.feedback}
           onChange={handleChange}
           placeholder="Enter your feedback..."
-          className="w-full bg-foreground/3! rounded-sm py-3 px-4 min-h-24 resize-none transition-all placeholder:text-muted-foreground/50 text-foreground text-xs md:text-base border border-white/5"
+          className="w-full bg-foreground/3! rounded-sm py-3 px-4 min-h-38! resize-none transition-all placeholder:text-muted-foreground/50 text-foreground text-xs md:text-base border border-white/5"
           required
         />
-        <Button type="submit" disabled={loading} className="w-full text-xs md:text-base">
-          {loading ? (
-            <Loader2 className="w-4 h-4 animate-spin mr-2" />
-          ) : (
-            <SendIcon className="w-4 h-4 mr-2" />
-          )}
+        <Button type="submit" disabled={loading} className="relative w-full mx-auto text-xs">
           {loading ? "Sending..." : "Send Feedback"}
+          {loading ? <SendIcon className="w-4 h-4 mr-2" /> : <div className="absolute right-0.5 bg-background text-foreground rounded-md p-2"><ArrowUpRight className="w-4 h-4" /></div>}
         </Button>
       </form>
     </ResponsiveDialog>

@@ -11,7 +11,6 @@ import { playClickSound } from "@/hooks/use-sound";
 
 export const navLinks = [
   { name: "Work", href: "/experience" },
-  // { name: "Blogs", href: "/blogs" },
   { name: "Projects", href: "/projects" },
   { name: "Components", href: "/components" },
 ]
@@ -103,10 +102,10 @@ export const Header = () => {
         <div className="flex items-center space-x-3 ">
 
           {/* Theme Toggle */}
-          <div className="flex items-center gap-1 p-1 clay rounded-full!">
+          <div className="flex items-center gap-1 p-1 rounded-full! border border-foreground/5">
             <SearchCommand />
             <div className="w-px h-4 bg-foreground/15" />
-            <Button variant="ghost" size="icon" className="h-8 w-8 rounded-full text-foreground/80 hover:text-foreground hover:bg-foreground/5 transition-all clay-interactive" onClick={toggleTheme}>
+            <Button variant="ghost" size="icon" className="h-8 w-8 rounded-full text-foreground/80 hover:text-foreground hover:bg-foreground/5 transition-all" onClick={toggleTheme}>
               {theme === 'dark' ? <Sun size={16} /> : <Moon size={16} />}
             </Button>
           </div>

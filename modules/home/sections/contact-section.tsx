@@ -127,8 +127,11 @@ export const ContactDialog = () => {
                                 </a>
                             )}
                             <Link href="/contact" className="flex md:hidden w-full items-center justify-center">
-                                <Button className="w-full h-10">
-                                    Send a message <SendIcon className="w-4 h-4 ml-2" />
+                                <Button
+                                    className="relative w-full mt-2 flex items-center justify-center gap-2 py-3 px-4 bg-foreground text-background font-semibold rounded-lg text-sm"
+                                >
+                                    Send a Message
+                                    <div className="absolute right-0.5 bg-background text-foreground rounded-md p-2"><ArrowUpRight className="w-4 h-4" /></div>
                                 </Button>
                             </Link>
                         </div>
