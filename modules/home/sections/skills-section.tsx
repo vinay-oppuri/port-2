@@ -6,7 +6,8 @@ const sectionDescriptions: Record<string, string> = {
   "Backend": "Architecting secure APIs, background workers, and real-time syncing.",
   "Database": "Designing data models, caching layers, and querying structures.",
   "DevOps & Tools": "Containerization, CI/CD automation, and fast local workflows.",
-  "AI & LLM": "Integrating LangGraph agentic workflows and local/cloud LLMs."
+  "AI & LLM": "Integrating LangGraph agentic workflows and local/cloud LLMs.",
+  "Cloud Services": "Deploying scalable systems, object storage, and compute resources."
 };
 
 export default function SkillsSection() {
@@ -20,13 +21,10 @@ export default function SkillsSection() {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-2">
         {fullStackSections.map((section) => {
           const desc = sectionDescriptions[section.label] || "";
-          const isFullWidth = section.label === "AI & LLM";
           return (
             <div
               key={section.label}
-              className={`clay-card p-5 flex flex-col gap-4 border border-foreground/5! ${
-                isFullWidth ? "md:col-span-2" : ""
-              }`}
+              className="clay-card p-5 flex flex-col gap-4 border border-foreground/5!"
             >
               {/* Category Header */}
               <div className="flex items-center gap-2.5 pb-2 border-b border-border/30">

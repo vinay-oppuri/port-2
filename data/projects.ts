@@ -3,7 +3,9 @@ import type { IconType } from "react-icons";
 import {
   SiDrizzle,
   SiFastapi,
+  SiFramer,
   SiGooglegemini,
+  SiGreensock,
   SiHuggingface,
   SiNextdotjs,
   SiNodedotjs,
@@ -122,6 +124,36 @@ export const ProjectsData = [
     liveUrl: "https://inzite.vinayweb.in/",
     githubUrl: "https://github.com/vinay-oppuri/inzite",
     status: "All Systems Operational",
+  },
+  {
+    id: "japanxgtr",
+    title: "Japan x GT-R",
+    description:
+      "A cinematic, high-end editorial scrollytelling web experience celebrating the performance, heritage, and spirit of the Nissan GT-R across the diverse landscapes of Japan.",
+    features: [
+      "Custom cinematic preloader and introductory reveal animations powered by GSAP",
+      "GSAP-driven parallax hero header with custom viewport overlays and Ken Burns zooming effects",
+      "Staggered spec-sheet block detailing the VR38DETT twin-turbo V6 engine and drivetrain",
+      "Smooth, horizontal scrolling gallery showcasing 8 iconic Japanese locations where the GT-R belongs",
+      "Split-screen scrollytelling chapters exploring generations (Skyline R34 to R35) and Takumi craftsmanship",
+      "Fluid, 60fps scroll kinetics using Lenis scroll synchronized with GSAP ScrollTrigger",
+      "Context-aware custom cursor with state-driven spring scaling and dynamic badge reveals",
+      "Tactile magnetic button hover animations designed with custom spring physics via Motion",
+    ],
+    motivation:
+      "I built this project to push the boundaries of creative frontend engineering, blending advanced motion design with my passion for JDM car culture. The objective was to craft a premium editorial experience that captures the raw power and technical precision of the Nissan GT-R through flawless performance and fluid scrollytelling.",
+    tags: [
+      tag("Next.js", SiNextdotjs, "h-5 w-5 text-foreground"),
+      tag("TypeScript", SiTypescript, "h-5 w-5 text-[#3178C6]"),
+      tag("React", SiReact, "h-5 w-5 text-[#61DAFB]"),
+      tag("GSAP", SiGreensock, "h-5 w-5 text-[#88CE02]"),
+      tag("Motion", SiFramer, "h-5 w-5 text-foreground"),
+      tag("Tailwind CSS", SiTailwindcss, "h-5 w-5 text-[#38BDF8]"),
+    ],
+    imageUrl: "/projects/gtrxjapan.png",
+    liveUrl: "https://japan.vinayweb.in/",
+    githubUrl: "https://github.com/vinay-oppuri/gtr-x-japan",
+    status: "Operational",
   },
   {
     id: "resanlys",

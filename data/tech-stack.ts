@@ -15,9 +15,11 @@ import {
   SiGit,
   SiLinux,
   SiJavascript,
-  SiKubernetes,
   SiFastapi,
   SiRedis,
+  SiAmazonwebservices,
+  SiAmazons3,
+  SiAmazonec2,
 } from "react-icons/si";
 import {
   Database,
@@ -91,6 +93,14 @@ export const fullStackSections: SkillGroupData[] = [
     skills: [
       { name: "LangChain",  icon: ic(Brain,   "w-5 h-5 md:w-6 md:h-6 text-[#1C7C54]") },
       { name: "LangGraph",  icon: ic(Network, "w-5 h-5 md:w-6 md:h-6 text-[#F59E0B]") },
+    ],
+  },
+  {
+    label: "Cloud Services",
+    icon: ic(SiAmazonwebservices, "w-4 h-4 sm:w-5 sm:h-5 text-[#FF9900]"),
+    skills: [
+      { name: "AWS S3",  icon: ic(SiAmazons3,  "w-5 h-5 md:w-6 md:h-6 text-[#569A3F]") },
+      { name: "AWS EC2", icon: ic(SiAmazonec2, "w-5 h-5 md:w-6 md:h-6 text-[#FF9900]") },
     ],
   },
 ];
