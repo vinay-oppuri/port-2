@@ -1,5 +1,5 @@
 import Link from "@/components/ui/link";
-import { heroConfig, socialLinks } from "@/data";
+import { heroConfig, siteEmail, socialLinks } from "@/data";
 import { Button } from "@/components/ui/button";
 import ExperienceCard from "@/modules/home/sections/experience-section";
 import ProjectsPage from "@/modules/home/sections/projects-section";
@@ -37,14 +37,27 @@ const Page = () => {
         </div>
 
         <div className="flex flex-col gap-2 my-4">
-          {heroConfig.info.map((info, i) => (
-            <div key={i} className="flex items-center gap-3 text-muted-foreground leading-relaxed ">
-              <div className="flex items-center justify-center w-9 h-9 clay">
-                {info.logo}
+          {heroConfig.info.map((info, i) => {
+            const isEmail = info.name === siteEmail;
+
+            return (
+              <div key={i} className="flex items-center gap-3 text-muted-foreground leading-relaxed ">
+                <div className="flex items-center justify-center w-9 h-9 clay">
+                  {info.logo}
+                </div>
+                {isEmail ? (
+                  <Link
+                    href={`mailto:${info.name}`}
+                    className="text-sm md:text-base font-mono tracking-tighter hover:underline underline-offset-4"
+                  >
+                    {info.name}
+                  </Link>
+                ) : (
+                  <span className="text-sm md:text-base font-mono tracking-tighter">{info.name}</span>
+                )}
               </div>
-              <span className="text-sm md:text-base font-mono tracking-tighter">{info.name}</span>
-            </div>
-          ))}
+            );
+          })}
         </div>
 
         <p className="text-sm sm:text-base min-[1920px]:text-lg text-muted-foreground leading-relaxed flex flex-wrap font-mono tracking-tighter mt-4 gap-2">
@@ -61,7 +74,7 @@ const Page = () => {
               {skill.name}
             </Link>
           ))}
-          . I focus on <b>UI</b> design, explore <b>ML/DL</b> and I&apos;m passionate about <b>Agentic AI</b> systems.
+          . I focus on <b>UI/UX</b> design, exploring <b>GSAP</b> and I&apos;m passionate about <b>Agentic AI</b> systems.
         </p>
 
         <div className="w-full flex flex-row justify-start gap-3 md:p-0 mt-2">

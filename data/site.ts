@@ -1,5 +1,5 @@
 import { createElement } from "react";
-import { Code2, Mail, MapPin, User, type LucideIcon } from "lucide-react";
+import { Mail, MapPin, User, type LucideIcon } from "lucide-react";
 import type { IconType } from "react-icons";
 import {
   SiDrizzle,
@@ -30,7 +30,7 @@ const skill = (name: string, href: string, Icon: AppIcon, className: string) => 
   component: icon(Icon, className),
 });
 
-export const siteEmail = "oppurivinay25@gmail.com";
+export const siteEmail = "hello@vinayweb.in";
 
 export const heroConfig = {
   name: "Vinay Oppuri",
@@ -38,7 +38,7 @@ export const heroConfig = {
   title: ["A Full Stack Web Developer", "AI Engineer"],
   info: [
     { name: "Hyderabad, India", logo: icon(MapPin, "w-4 h-4") },
-    { name: "oppurivinay25@gmail.com", logo: icon(Mail, "w-4 h-4") },
+    { name: "hello@vinayweb.in", logo: icon(Mail, "w-4 h-4") },
     {name: "He/Him", logo: icon(User, "w-4 h-4")}
   ],
   mainSkills: [
