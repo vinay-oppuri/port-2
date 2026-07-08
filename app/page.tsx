@@ -29,8 +29,9 @@ const Page = () => {
                 className="text-muted-foreground text-sm md:text-base font-mono! tracking-tighter!"
                 interval={3}
               >
-                <span>AI Engineer</span>
+                <span>Applied AI Engineer</span>
                 <span>Full Stack Developer</span>
+                <span>Generative AI Engineer</span>
               </TextFlip>
             </div>
           </div>

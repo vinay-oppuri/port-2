@@ -35,7 +35,7 @@ export const siteEmail = "hello@vinayweb.in";
 export const heroConfig = {
   name: "Vinay Oppuri",
   fullName: "Oppuri Vinay Reddy",
-  title: ["A Full Stack Web Developer", "AI Engineer"],
+  title: ["A Full Stack Web Developer", "Applied AI Engineer", "Generative AI Engineer"],
   info: [
     { name: "Hyderabad, India", logo: icon(MapPin, "w-4 h-4") },
     { name: "hello@vinayweb.in", logo: icon(Mail, "w-4 h-4") },
