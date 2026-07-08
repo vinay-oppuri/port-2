@@ -13,15 +13,27 @@ interface ProjectCardsProps {
   projects: ProjectItem[];
 }
 
+const projectBackgrounds = [
+  "project-bg-ocean",
+  "project-bg-violet",
+  "project-bg-orange",
+  "project-bg-green",
+];
+
 export function ProjectCards({ projects }: ProjectCardsProps) {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-      {projects.map((project) => (
+      {projects.map((project, index) => (
         <Card
           key={project.title}
-          className="overflow-hidden p-0 pb-6 group clay-card clay-interactive"
+          className="overflow-hidden p-0 pb-6 group clay-card clay-card-interactive"
         >
-          <div className="relative h-48 md:h-48 w-full project-bg-ocean overflow-hidden group">
+          <div
+            className={cn(
+              "relative h-48 md:h-48 w-full overflow-hidden group",
+              projectBackgrounds[index % projectBackgrounds.length]
+            )}
+          >
             <div className="absolute top-2 left-2 z-20">
               <Badge
                 variant="secondary"
@@ -55,7 +67,7 @@ export function ProjectCards({ projects }: ProjectCardsProps) {
                 href={`/projects/${project.id}`}
                 className="flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors duration-300"
               >
-                <span className="text-white/90 rounded-md p-1 border border-white/10 bg-black/40 backdrop-blur-md shadow-sm">
+                <span className="text-white/80 rounded-md p-1 border border-white/10 bg-black/40 backdrop-blur-md shadow-sm">
                   <ChevronRightIcon className="w-4 h-4" />
                 </span>
               </Link>
@@ -66,7 +78,7 @@ export function ProjectCards({ projects }: ProjectCardsProps) {
               alt={project.title}
               width={600}
               height={300}
-              className="absolute -bottom-2 left-80 -translate-x-1/2 scale-150 h-auto border-2 border-white/30 shadow-2xl transition-all duration-500 ease-out transform-[perspective(1000px)_rotateX(40deg)_rotateZ(-15deg)]"
+              className="absolute -bottom-10 left-65 -translate-x-1/2 scale-120 h-auto border-2 border-white/10 shadow-2xl transition-all duration-500 ease-out group-hover:scale-130"
             />
           </div>
 

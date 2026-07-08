@@ -166,32 +166,6 @@ html {
   scrollbar-color: var(--ring) transparent;
 }
 
-@keyframes slide-down {
-  from {
-    opacity: 0;
-    transform: translateY(-6px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.animate-slide-down {
-  animation: slide-down 0.2s ease-out;
-}
-
-/* Hide scrollbar for Chrome, Safari, Edge */
-.no-scrollbar::-webkit-scrollbar {
-  display: none;
-}
-
-/* Hide scrollbar for Firefox */
-.no-scrollbar {
-  scrollbar-width: none;
-}
-
 .thin-scrollbar::-webkit-scrollbar {
   height: 6px;
   width: 6px;
@@ -209,10 +183,6 @@ html {
 .thin-scrollbar {
   scrollbar-width: thin;
   scrollbar-color: var(--muted-foreground) transparent;
-}
-
-.shadow-inner-strong {
-  @apply shadow-inner shadow-foreground/5 border border-foreground/5;
 }
 
 .btn-inner-shadow {
@@ -243,57 +213,21 @@ html {
   transition: box-shadow 0.2s ease;
 }
 
-/* Custom skill inner shadow */
-.skill-inner-shadow {
-  box-shadow:
-    inset 0 1px 2px rgba(0, 0, 0, 0.08),
-    inset 0 1px 4px rgba(0, 0, 0, 0.04);
-}
-
-.dark .skill-inner-shadow {
-  box-shadow:
-    inset 0 1px 2px rgba(255, 255, 255, 0.06),
-    inset 0 1px 4px rgba(255, 255, 255, 0.03);
-}
-
-/* Custom tag inner shadow */
-.tag-inner-shadow {
-  box-shadow:
-    inset 0 1px 2px rgba(0, 0, 0, 0.06),
-    inset 0 1px 3px rgba(0, 0, 0, 0.04);
-  transition: box-shadow 0.2s ease;
-}
-
-.tag-inner-shadow:hover {
-  box-shadow:
-    inset 0 1px 3px rgba(0, 0, 0, 0.08),
-    inset 0 2px 6px rgba(0, 0, 0, 0.06);
-}
-
-.dark .tag-inner-shadow {
-  box-shadow:
-    inset 0 1px 2px rgba(255, 255, 255, 0.04),
-    inset 0 1px 3px rgba(255, 255, 255, 0.03);
-}
-
-.dark .tag-inner-shadow:hover {
-  box-shadow:
-    inset 0 1px 3px rgba(255, 255, 255, 0.06),
-    inset 0 2px 6px rgba(255, 255, 255, 0.04);
-}
-
-.project-bg {
-  @apply bg-linear-to-br from-pink-500 via-purple-500 to-indigo-500;
-}
-
-/* Alternate 1: Ocean Breeze (Cool & Tech) */
+/* Project card backgrounds */
 .project-bg-ocean {
   @apply bg-linear-to-br from-cyan-500 via-blue-600 to-indigo-600;
 }
 
-/* Alternate 2: Sunset Glow (Warm & Vibrant) */
-.project-bg-sunset {
-  @apply bg-linear-to-br from-orange-400 via-rose-500 to-purple-600;
+.project-bg-orange {
+  @apply bg-linear-to-br from-amber-500 via-orange-600 to-rose-600;
+}
+
+.project-bg-violet {
+  @apply bg-linear-to-br from-fuchsia-500 via-violet-600 to-indigo-700;
+}
+
+.project-bg-green {
+  @apply bg-linear-to-br from-emerald-500 via-teal-600 to-cyan-700;
 }
 
 :root {
@@ -302,20 +236,6 @@ html {
 
 html {
   view-transition-name: root;
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0
-  }
-
-  to {
-    opacity: 1
-  }
-}
-
-.animate-fadeIn {
-  animation: fadeIn 0.4s ease-in-out;
 }
 
 /* --- Claymorphism Design System --- */
@@ -354,18 +274,6 @@ html {
     4px 4px 20px rgba(0, -0, 0, 0.2);
 }
 
-.clay-border {
-  box-shadow:
-    inset 4px 4px 8px rgba(255, 255, 255, 0.6),
-    inset -4px -4px 8px rgba(0, 0, 0, 0.04);
-}
-
-.dark .clay-border {
-  box-shadow:
-    inset 2px 2px 4px rgba(255, 255, 255, 0.08),
-    inset -2px -2px 4px rgba(0, 0, 0, 0.3);
-}
-
 .clay-badge {
   @apply rounded-lg bg-background/25 backdrop-blur-md border-dashed border-white/10 dark:border-white/5;
   box-shadow:
@@ -381,55 +289,6 @@ html {
     inset 2px 2px 4px rgba(255, 255, 255, 0.08),
     inset -2px -2px 4px rgba(0, 0, 0, 0.3),
     1px 2px 4px rgba(0, 0, 0, 0.15);
-}
-
-.clay-input {
-  @apply rounded-lg bg-black/5 dark:bg-black/20 border border-white/10 dark:border-white/5 outline-none transition-all px-4 py-2 text-foreground;
-  box-shadow:
-    inset 0 2px 4px rgba(0, 0, 0, 0.06),
-    inset 0 1px 2px rgba(0, 0, 0, 0.1);
-}
-
-.clay-input:focus {
-  @apply border-primary/40 backdrop-blur-md;
-}
-
-.dark .clay-input {
-  box-shadow:
-    inset 0 2px 4px rgba(0, 0, 0, 0.35),
-    inset 0 1px 2px rgba(0, 0, 0, 0.5);
-}
-
-/* Shadow only for existing components */
-.clay-shadow {
-  box-shadow:
-    inset 4px 4px 8px rgba(255, 255, 255, 0.8),
-    inset -4px -4px 8px rgba(0, 0, 0, 0.04),
-    3px 3px 10px rgba(0, 0, 0, 0.02);
-  transition: all 0.2s ease;
-}
-
-.dark .clay-shadow {
-  box-shadow:
-    inset 3px 3px 6px rgba(255, 255, 255, 0.06),
-    inset -3px -3px 6px rgba(0, 0, 0, 0.4),
-    3px 3px 10px rgba(0, 0, 0, 0.1);
-}
-
-/* Custom Clay style tailored for dark components like Dynamic Scroll Island */
-.clay-island {
-  box-shadow:
-    inset 3px 3px 6px rgba(255, 255, 255, 0.15),
-    inset -3px -3px 6px rgba(0, 0, 0, 0.8),
-    0 10px 20px rgba(0, 0, 0, 0.2);
-  transition: box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.dark .clay-island {
-  box-shadow:
-    inset 2px 2px 4px rgba(255, 255, 255, 0.06),
-    inset -3px -3px 6px rgba(0, 0, 0, 0.8),
-    0 10px 20px rgba(0, 0, 0, 0.4);
 }
 
 .clay-interactive {
@@ -450,22 +309,22 @@ html {
     8px 8px 16px rgba(0, 0, 0, 0.25);
 }
 
-@media (hover: hover) and (pointer: fine) {
-  .skill-chip:hover {
-    transform: translate3d(0, -2px, 0) scale(1.02);
-    background: color-mix(in oklch, var(--background) 92%, var(--foreground) 3%);
-    border-color: color-mix(in oklch, var(--foreground) 16%, transparent);
-    box-shadow:
-      inset 2px 2px 4px rgba(255, 255, 255, 0.55),
-      0 5px 12px rgba(0, 0, 0, 0.06);
-  }
+.clay-card-interactive {
+  @apply cursor-pointer;
+}
 
-  .dark .skill-chip:hover {
-    background: color-mix(in oklch, var(--background) 82%, white 8%);
-    box-shadow:
-      inset 2px 2px 4px rgba(255, 255, 255, 0.07),
-      0 6px 14px rgba(0, 0, 0, 0.22);
-  }
+.clay-card-interactive:hover {
+  box-shadow:
+    inset 4px 4px 8px rgba(255, 255, 255, 1),
+    inset -4px -4px 8px rgba(0, 0, 0, 0.06),
+    6px 6px 12px rgba(0, 0, 0, 0.05);
+}
+
+.dark .clay-card-interactive:hover {
+  box-shadow:
+    inset 4px 4px 8px rgba(255, 255, 255, 0.08),
+    inset -4px -4px 8px rgba(0, 0, 0, 0.5),
+    8px 8px 16px rgba(0, 0, 0, 0.25);
 }
 
 @media (max-width: 767px) {
@@ -479,45 +338,8 @@ html {
 
   .clay,
   .clay-card,
-  .clay-shadow,
   .clay-interactive,
-  .clay-button,
-  .skill-chip {
+  .clay-card-interactive {
     transition-duration: 160ms;
   }
 }
-
-/* Clay Button variant */
-.clay-button {
-  @apply rounded-xl font-medium px-4 py-2 transition-all flex items-center justify-center gap-2;
-  background-color: var(--secondary);
-  box-shadow:
-    inset 2px 2px 4px rgba(255, 255, 255, 0.8),
-    inset -2px -2px 4px rgba(0, 0, 0, 0.04),
-    2px 2px 6px rgba(0, 0, 0, 0.02);
-}
-
-.dark .clay-button {
-  box-shadow:
-    inset 2px 2px 4px rgba(255, 255, 255, 0.04),
-    inset -2px -2px 4px rgba(0, 0, 0, 0.3),
-    2px 2px 6px rgba(0, 0, 0, 0.1);
-}
-
-.clay-button:hover {
-  @apply -translate-y-0.5 scale-[1.02];
-  box-shadow:
-    inset 3px 3px 6px rgba(255, 255, 255, 0.9),
-    inset -3px -3px 6px rgba(0, 0, 0, 0.06),
-    4px 4px 8px rgba(0, 0, 0, 0.04);
-}
-
-.dark .clay-button:hover {
-  box-shadow:
-    inset 3px 3px 5px rgba(255, 255, 255, 0.06),
-    inset -3px -3px 5px rgba(0, 0, 0, 0.4),
-    4px 4px 8px rgba(0, 0, 0, 0.15);
-}
-
-/* --- Skeuomorphism Design System --- */
-/* Deleted obsolete skeuomorphism rulesets */
