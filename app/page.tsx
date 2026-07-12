@@ -1,13 +1,19 @@
 import Link from "@/components/ui/link";
 import { heroConfig, siteEmail, socialLinks } from "@/data";
 import { Button } from "@/components/ui/button";
-import ExperienceCard from "@/modules/home/sections/experience-section";
-import ProjectsPage from "@/modules/home/sections/projects-section";
 import { AvatarLogo } from "@/components/common/AvatarLogo";
 import { TextFlip } from "@/components/ui/text-flip";
 import { SendIcon } from "lucide-react";
 import { SiGoogledocs } from "react-icons/si";
 import dynamic from "next/dynamic";
+import { LazyRender } from "@/components/ui/lazy-render";
+
+const ExperienceCard = dynamic(
+  () => import("@/modules/home/sections/experience-section")
+);
+const ProjectsPage = dynamic(
+  () => import("@/modules/home/sections/projects-section")
+);
 
 const GitHubActivity = dynamic(
   () => import("@/modules/home/sections/github-activity-section")
@@ -28,7 +34,7 @@ const Page = () => {
       <DDScroll />
       <section id="hero" className="flex flex-col justify-center items-start space-y-4 mx-auto w-full min-h-screen px-4 py-12 md:px-8">
         <div className="flex items-center justify-center gap-3 md:gap-6 font-mono">
-          <AvatarLogo className="w-16 h-full sm:w-20 rounded-lg text-ring/85 dark:text-ring" />
+          <AvatarLogo className="w-16 h-full sm:w-20 rounded-lg! text-ring/85 dark:text-ring" />
           <div className="flex flex-col gap-1 md:gap-2">
             <h1 className="text-2xl sm:text-3xl font-mono font-bold leading-tight text-foreground">
               {heroConfig.name}
@@ -125,11 +131,21 @@ const Page = () => {
       </section>
 
       <section className="w-full flex flex-col gap-6 px-4 md:px-8 mx-auto pb-16">
-        <div id="experience"><ExperienceCard /></div>
-        <div id="projects"><ProjectsPage /></div>
-        <div id="skills"><SkillsSection /></div>
-        <div id="github"><GitHubActivity /></div>
-        <div id="contact"><ContactDialog /></div>
+        <LazyRender fallback={<div className="min-h-[400px]" />}>
+          <div id="experience"><ExperienceCard /></div>
+        </LazyRender>
+        <LazyRender fallback={<div className="min-h-[400px]" />}>
+          <div id="projects"><ProjectsPage /></div>
+        </LazyRender>
+        <LazyRender fallback={<div className="min-h-[350px]" />}>
+          <div id="skills"><SkillsSection /></div>
+        </LazyRender>
+        <LazyRender fallback={<div className="min-h-[220px]" />}>
+          <div id="github"><GitHubActivity /></div>
+        </LazyRender>
+        <LazyRender fallback={<div className="min-h-[500px]" />}>
+          <div id="contact"><ContactDialog /></div>
+        </LazyRender>
       </section>
     </main>
   );
