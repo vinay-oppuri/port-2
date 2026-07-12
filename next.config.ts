@@ -1,4 +1,9 @@
-module.exports = {
+import type { NextConfig } from "next";
+
+const nextConfig: NextConfig = {
+  images: {
+    formats: ["image/avif", "image/webp"],
+  },
   async headers() {
     return [
       {
@@ -13,3 +18,5 @@ module.exports = {
     ];
   },
 };
+
+export default nextConfig;

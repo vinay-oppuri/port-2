@@ -3,14 +3,24 @@ import { heroConfig, siteEmail, socialLinks } from "@/data";
 import { Button } from "@/components/ui/button";
 import ExperienceCard from "@/modules/home/sections/experience-section";
 import ProjectsPage from "@/modules/home/sections/projects-section";
-import GitHubActivity from "@/modules/home/sections/github-activity-section";
-import ContactDialog from "@/modules/home/sections/contact-section";
 import { AvatarLogo } from "@/components/common/AvatarLogo";
 import { TextFlip } from "@/components/ui/text-flip";
 import { SendIcon } from "lucide-react";
 import { SiGoogledocs } from "react-icons/si";
-import SkillsSection from "@/modules/home/sections/skills-section";
-import DDScroll from "@/components/common/dd-scroll";
+import dynamic from "next/dynamic";
+
+const GitHubActivity = dynamic(
+  () => import("@/modules/home/sections/github-activity-section")
+);
+const ContactDialog = dynamic(
+  () => import("@/modules/home/sections/contact-section")
+);
+const SkillsSection = dynamic(
+  () => import("@/modules/home/sections/skills-section")
+);
+const DDScroll = dynamic(
+  () => import("@/components/common/dd-scroll")
+);
 
 const Page = () => {
   return (
@@ -106,6 +116,7 @@ const Page = () => {
               href={link.href}
               target="_blank"
               rel="noopener noreferrer"
+              aria-label={link.name}
               className="w-8 h-8 flex items-center justify-center clay rounded-sm!">
               {link.icon}
             </Link>

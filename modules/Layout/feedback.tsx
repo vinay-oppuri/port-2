@@ -75,6 +75,7 @@ export const FeedbackDialog = () => {
         <Input
           type="text"
           name="name"
+          aria-label="Your Name"
           placeholder="Enter your name..."
           value={formData.name}
           onChange={handleChange}
@@ -83,6 +84,7 @@ export const FeedbackDialog = () => {
         />
         <Textarea
           name="feedback"
+          aria-label="Your Feedback"
           value={formData.feedback}
           onChange={handleChange}
           placeholder="Enter your feedback..."

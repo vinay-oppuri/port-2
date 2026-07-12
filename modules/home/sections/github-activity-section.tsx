@@ -21,6 +21,7 @@ export default function GitHubActivity() {
           href="https://github.com/vinay-oppuri"
           target="_blank"
           rel="noopener noreferrer"
+          aria-label="View Vinay's GitHub profile"
           className="text-sm text-muted-foreground hover:text-primary flex items-center gap-1 transition-colors font-medium"
         >
           <p className="md:block hidden">View Profile</p><MoveRight className="ml-2 w-4 h-4" />

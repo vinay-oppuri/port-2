@@ -15,12 +15,12 @@ const ExperienceAccordion = () => {
 
       {/* BOTTOM BUTTON */}
       <div className="w-full flex justify-center my-4">
-        <Link href="/experience">
-          <Button variant='outline' className="text-xs md:text-sm text-foreground/80 font-normal group hover:bg-primary/5 hover:text-primary transition-all duration-300 border-foreground/10 hover:border-primary/20">
+        <Button asChild variant='outline' className="text-xs md:text-sm text-foreground/80 font-normal group hover:bg-primary/5 hover:text-primary transition-all duration-300 border-foreground/10 hover:border-primary/20">
+          <Link href="/experience">
             Show all work experiences
             <span className="ml-2 group-hover:translate-x-1 transition-transform duration-300">→</span>
-          </Button>
-        </Link>
+          </Link>
+        </Button>
       </div>
     </div>
   );

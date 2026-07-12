@@ -166,6 +166,7 @@ export const ContactDialog = () => {
                                     <Input
                                         type="text"
                                         name="name"
+                                        aria-label="Full Name"
                                         placeholder="Full Name"
                                         value={formData.name}
                                         onChange={handleChange}
@@ -178,6 +179,7 @@ export const ContactDialog = () => {
                                     <Input
                                         type="email"
                                         name="email"
+                                        aria-label="Email Address"
                                         placeholder="Email Address"
                                         value={formData.email}
                                         onChange={handleChange}
@@ -189,6 +191,7 @@ export const ContactDialog = () => {
                                 <div className="flex flex-col gap-1.5">
                                     <Textarea
                                         name="message"
+                                        aria-label="Your Message"
                                         rows={4}
                                         placeholder="Your Message"
                                         value={formData.message}

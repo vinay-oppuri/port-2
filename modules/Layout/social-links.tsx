@@ -57,6 +57,7 @@ export const SocialLinks = () => {
               href={link.href}
               target="_blank"
               rel="noopener noreferrer"
+              aria-label={link.name}
               className="w-7 h-7 flex items-center justify-center rounded-full hover:bg-foreground! group"
             >
               {link.icon}

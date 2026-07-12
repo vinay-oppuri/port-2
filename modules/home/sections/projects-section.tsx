@@ -17,12 +17,12 @@ const ProjectsPage = () => {
 
       <ProjectCards projects={projects} />
       <div className="w-full flex justify-center my-4">
-        <Link href="/projects">
-          <Button variant='outline' className="text-xs md:text-sm text-foreground/80 font-normal group hover:bg-foreground/5 hover:text-foreground transition-all duration-300 border-foreground/10 hover:border-foreground/20">
+        <Button asChild variant='outline' className="text-xs md:text-sm text-foreground/80 font-normal group hover:bg-foreground/5 hover:text-foreground transition-all duration-300 border-foreground/10 hover:border-foreground/20">
+          <Link href="/projects">
             Show all projects
             <span className="ml-2 group-hover:translate-x-1 transition-transform duration-300">→</span>
-          </Button>
-        </Link>
+          </Link>
+        </Button>
       </div>
     </section>
   );

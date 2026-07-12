@@ -64,11 +64,12 @@ export const Header = () => {
   if (!mounted) return <HeaderSkeleton />;
 
   return (
-    <header className="sticky top-0 z-50 w-full max-w-3xl mx-auto flex flex-col backdrop-blur-lg transition-all">
+    <header className="sticky top-0 z-50 w-full max-w-3xl mx-auto flex flex-col backdrop-blur-sm transition-all">
       <div className="flex justify-between items-center px-4 py-4 w-full font-mono tracking-tighter">
         <div className="flex items-center space-x-3 sm:space-x-8">
           <Link
             href="/"
+            aria-label="Vinay Oppuri - Portfolio Home"
             className="flex items-center gap-0 group"
             onClick={(e) => {
               if (window.location.pathname === "/") {
@@ -105,7 +106,7 @@ export const Header = () => {
           <div className="flex items-center gap-1 p-1 rounded-full! border border-foreground/5">
             <SearchCommand />
             <div className="w-px h-4 bg-foreground/15" />
-            <Button variant="ghost" size="icon" className="h-8 w-8 rounded-full text-foreground/80 hover:text-foreground hover:bg-foreground/5 transition-all" onClick={toggleTheme}>
+            <Button aria-label="Toggle theme" variant="ghost" size="icon" className="h-8 w-8 rounded-full text-foreground/80 hover:text-foreground hover:bg-foreground/5 transition-all" onClick={toggleTheme}>
               {theme === 'dark' ? <Sun size={16} /> : <Moon size={16} />}
             </Button>
           </div>

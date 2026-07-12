@@ -65,6 +65,7 @@ export function ProjectCards({ projects }: ProjectCardsProps) {
             <div className="absolute top-2 right-2 z-20">
               <Link
                 href={`/projects/${project.id}`}
+                aria-label={`View details for project ${project.title}`}
                 className="flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors duration-300"
               >
                 <span className="text-white/80 rounded-md p-1 border border-white/10 bg-black/40 backdrop-blur-md shadow-sm">
@@ -156,7 +157,7 @@ export function ProjectCards({ projects }: ProjectCardsProps) {
                 {project.tags.length > 6 && (
                   <Tooltip>
                     <TooltipTrigger asChild>
-                      <Link href={`/projects/${project.id}`}>
+                      <Link href={`/projects/${project.id}`} aria-label={`View all ${project.tags.length} technologies for ${project.title}`}>
                         <Badge className="bg-transparent text-foreground p-1">
                           <span className="text-xs font-medium px-1">+{project.tags.length - 6}</span>
                         </Badge>

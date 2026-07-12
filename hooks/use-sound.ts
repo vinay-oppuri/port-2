@@ -1,8 +1,6 @@
 "use client";
 
-import { Howl } from "howler";
-
-let clickSound: Howl | null = null;
+let clickSound: import("howler").Howl | null = null;
 let lastPlayed = 0;
 
 export const playClickSound = () => {
@@ -12,13 +10,17 @@ export const playClickSound = () => {
   if (now - lastPlayed <= 50) return;
 
   if (!clickSound) {
-    clickSound = new Howl({
-      src: ["/sounds/click.mp3"],
-      volume: 0.1,
-      preload: true,
+    import("howler").then(({ Howl }) => {
+      clickSound = new Howl({
+        src: ["/sounds/click.mp3"],
+        volume: 0.1,
+        preload: true,
+      });
+      clickSound.play();
     });
+  } else {
+    clickSound.play();
   }
 
-  clickSound.play();
   lastPlayed = now;
 };

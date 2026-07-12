@@ -53,12 +53,12 @@ const ProjectDetailsPage = async ({ params }: ProjectDetailsPageProps) => {
 
   return (
     <div className="container mx-auto flex flex-col gap-4 px-4 py-8 md:py-12">
-      <Link href="/projects">
-        <Button className="mb-4 clay!">
+      <Button asChild className="mb-4 clay!">
+        <Link href="/projects">
           <ArrowLeft className="h-4 w-4" />
           Back to Projects
-        </Button>
-      </Link>
+        </Link>
+      </Button>
 
       <div className="space-y-8">
         <div className="relative w-full aspect-video rounded-lg overflow-hidden project-bg-ocean group shadow-2xl">

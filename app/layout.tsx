@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Source_Serif_4, JetBrains_Mono, Inter } from "next/font/google";
+import { JetBrains_Mono, Inter } from "next/font/google";
 import { ThemeProvider } from "next-themes";
 import "./globals.css";
 
@@ -13,17 +13,13 @@ import { Toaster } from "sonner";
 const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
   variable: "--font-jetbrains-mono",
+  display: "swap",
 });
 
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
-});
-
-const geistSans = Source_Serif_4({
-  subsets: ["latin"],
-  weight: "variable",
-  variable: "--font-serif",
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -89,7 +85,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${jetbrainsMono.variable} ${inter.variable} ${geistSans.variable} antialiased min-h-screen w-full overflow-x-hidden mx-auto flex flex-col items-center`}
+        className={`${jetbrainsMono.variable} ${inter.variable} antialiased min-h-screen w-full overflow-x-hidden mx-auto flex flex-col items-center`}
       >
         <ThemeProvider
           attribute="class"

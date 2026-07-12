@@ -68,8 +68,9 @@ export default function ContactPage() {
         <form className="space-y-6" onSubmit={handleSubmit}>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
             <div className="flex flex-col gap-2">
-              <label className="text-sm font-semibold text-foreground">Name *</label>
+              <label htmlFor="contact-name" className="text-sm font-semibold text-foreground">Name *</label>
               <Input
+                id="contact-name"
                 name="name"
                 value={formData.name}
                 onChange={handleChange}
@@ -80,8 +81,9 @@ export default function ContactPage() {
             </div>
 
             <div className="flex flex-col gap-2">
-              <label className="text-sm font-semibold text-foreground">Phone *</label>
+              <label htmlFor="contact-phone" className="text-sm font-semibold text-foreground">Phone *</label>
               <Input
+                id="contact-phone"
                 name="phone"
                 value={formData.phone}
                 onChange={handleChange}
@@ -93,8 +95,9 @@ export default function ContactPage() {
           </div>
 
           <div className="flex flex-col gap-2">
-            <label className="text-sm font-semibold text-foreground">Email *</label>
+            <label htmlFor="contact-email" className="text-sm font-semibold text-foreground">Email *</label>
             <Input
+              id="contact-email"
               name="email"
               type="email"
               value={formData.email}
@@ -106,8 +109,9 @@ export default function ContactPage() {
           </div>
 
           <div className="flex flex-col gap-2">
-            <label className="text-sm font-semibold text-foreground">Message *</label>
+            <label htmlFor="contact-message" className="text-sm font-semibold text-foreground">Message *</label>
             <Textarea
+              id="contact-message"
               name="message"
               value={formData.message}
               onChange={handleChange}
