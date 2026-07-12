@@ -166,6 +166,7 @@ export const ContactDialog = () => {
                                     <Input
                                         type="text"
                                         name="name"
+                                        autoComplete="name"
                                         aria-label="Full Name"
                                         placeholder="Full Name"
                                         value={formData.name}
@@ -179,6 +180,7 @@ export const ContactDialog = () => {
                                     <Input
                                         type="email"
                                         name="email"
+                                        autoComplete="email"
                                         aria-label="Email Address"
                                         placeholder="Email Address"
                                         value={formData.email}

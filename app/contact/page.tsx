@@ -72,6 +72,7 @@ export default function ContactPage() {
               <Input
                 id="contact-name"
                 name="name"
+                autoComplete="name"
                 value={formData.name}
                 onChange={handleChange}
                 placeholder="Your full name"
@@ -85,6 +86,7 @@ export default function ContactPage() {
               <Input
                 id="contact-phone"
                 name="phone"
+                autoComplete="tel"
                 value={formData.phone}
                 onChange={handleChange}
                 placeholder="+1 (123) xxx-xxxx"
@@ -100,6 +102,7 @@ export default function ContactPage() {
               id="contact-email"
               name="email"
               type="email"
+              autoComplete="email"
               value={formData.email}
               onChange={handleChange}
               placeholder="your.email@example.com"

@@ -72,16 +72,17 @@ export const FeedbackDialog = () => {
       }
     >
       <form className="space-y-4" onSubmit={handleSubmit}>
-        <Input
-          type="text"
-          name="name"
-          aria-label="Your Name"
-          placeholder="Enter your name..."
-          value={formData.name}
-          onChange={handleChange}
-          className="bg-foreground/3! rounded-sm placeholder:text-muted-foreground/50 text-foreground text-xs md:text-base border border-white/5!"
-          required
-        />
+         <Input
+           type="text"
+           name="name"
+           autoComplete="name"
+           aria-label="Your Name"
+           placeholder="Enter your name..."
+           value={formData.name}
+           onChange={handleChange}
+           className="bg-foreground/3! rounded-sm placeholder:text-muted-foreground/50 text-foreground text-xs md:text-base border border-white/5!"
+           required
+         />
         <Textarea
           name="feedback"
           aria-label="Your Feedback"

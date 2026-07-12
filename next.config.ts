@@ -11,7 +11,7 @@ const nextConfig: NextConfig = {
         headers: [
           {
             key: "Content-Security-Policy",
-            value: "script-src 'self' 'unsafe-inline' https://sdk.scdn.co;",
+            value: "script-src 'self' 'unsafe-inline' https://sdk.scdn.co https://static.cloudflareinsights.com;",
           },
         ],
       },
