@@ -6,7 +6,6 @@ import { TextFlip } from "@/components/ui/text-flip";
 import { SendIcon } from "lucide-react";
 import { SiGoogledocs } from "react-icons/si";
 import dynamic from "next/dynamic";
-import { LazyRender } from "@/components/ui/lazy-render";
 
 const ExperienceCard = dynamic(
   () => import("@/modules/home/sections/experience-section")
@@ -131,21 +130,11 @@ const Page = () => {
       </section>
 
       <section className="w-full flex flex-col gap-6 px-4 md:px-8 mx-auto pb-16">
-        <LazyRender fallback={<div className="min-h-[400px]" />}>
-          <div id="experience"><ExperienceCard /></div>
-        </LazyRender>
-        <LazyRender fallback={<div className="min-h-[400px]" />}>
-          <div id="projects"><ProjectsPage /></div>
-        </LazyRender>
-        <LazyRender fallback={<div className="min-h-[350px]" />}>
-          <div id="skills"><SkillsSection /></div>
-        </LazyRender>
-        <LazyRender fallback={<div className="min-h-[220px]" />}>
-          <div id="github"><GitHubActivity /></div>
-        </LazyRender>
-        <LazyRender fallback={<div className="min-h-[500px]" />}>
-          <div id="contact"><ContactDialog /></div>
-        </LazyRender>
+        <div id="experience"><ExperienceCard /></div>
+        <div id="projects"><ProjectsPage /></div>
+        <div id="skills"><SkillsSection /></div>
+        <div id="github"><GitHubActivity /></div>
+        <div id="contact"><ContactDialog /></div>
       </section>
     </main>
   );

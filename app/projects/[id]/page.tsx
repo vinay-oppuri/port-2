@@ -6,6 +6,7 @@ import Image from "next/image";
 import Link from "@/components/ui/link";
 import { notFound } from "next/navigation";
 import { Metadata } from "next";
+import { cn } from "@/lib/utils";
 
 interface ProjectDetailsPageProps {
   params: Promise<{ id: string }>;
@@ -43,9 +44,17 @@ export async function generateMetadata({ params }: ProjectDetailsPageProps): Pro
   };
 }
 
+const projectBackgrounds = [
+  "project-bg-ocean",
+  "project-bg-violet",
+  "project-bg-orange",
+  "project-bg-green",
+];
+
 const ProjectDetailsPage = async ({ params }: ProjectDetailsPageProps) => {
   const { id } = await params;
   const project = ProjectsData.find((p) => p.id === id);
+  const projectIndex = ProjectsData.findIndex((p) => p.id === id);
 
   if (!project) {
     notFound();
@@ -61,13 +70,18 @@ const ProjectDetailsPage = async ({ params }: ProjectDetailsPageProps) => {
       </Button>
 
       <div className="space-y-8">
-        <div className="relative w-full aspect-video rounded-lg overflow-hidden project-bg-ocean group shadow-2xl">
+        <div
+          className={cn(
+            "relative h-100 w-full overflow-hidden group rounded-lg",
+            projectBackgrounds[projectIndex % projectBackgrounds.length]
+          )}
+        >
           <Image
             src={project.imageUrl}
             alt={project.title}
             width={1200}
             height={600}
-            className="absolute -bottom-4 left-60 md:left-160 -translate-x-1/2 scale-120 md:scale-140 h-auto w-[90%] md:w-auto border-2 border-white/30 shadow-2xl transform-[perspective(1000px)_rotateX(20deg)_rotateZ(-10deg)] md:transform-[perspective(1000px)_rotateX(40deg)_rotateZ(-25deg)] object-cover object-top"
+            className="absolute -bottom-10 left-110 -translate-x-1/2 scale-100 h-auto border-2 border-white/10 shadow-2xl"
           />
         </div>
 
@@ -82,7 +96,7 @@ const ProjectDetailsPage = async ({ params }: ProjectDetailsPageProps) => {
               <Link href={project.liveUrl} target="_blank" rel="noopener noreferrer">
                 <Button className="gap-2 clay!">
                   <ExternalLink className="h-4 w-4" />
-                  Live Demo
+                  Live URL
                 </Button>
               </Link>
             )}
