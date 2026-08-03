@@ -79,7 +79,7 @@ export function ProjectCards({ projects }: ProjectCardsProps) {
               alt={project.title}
               width={600}
               height={300}
-              className="absolute -bottom-10 left-65 -translate-x-1/2 scale-120 h-auto border-2 border-white/10 shadow-2xl transition-all duration-500 ease-out group-hover:scale-130"
+              className="absolute -bottom-10 left-65 -translate-x-1/2 scale-120 h-auto border-2 rounded-lg border-white/10 shadow-2xl transition-all duration-500 ease-out group-hover:scale-130"
             />
           </div>
 

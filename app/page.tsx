@@ -90,7 +90,7 @@ const Page = () => {
               {skill.name}
             </Link>
           ))}
-          . I focus on <b>UI/UX</b> design, exploring <b>GSAP</b> and I&apos;m passionate about <b>Agentic AI</b> systems.
+          . I focus on <b>UI/UX</b> destails and I&apos;m passionate to build <b>Products.</b>
         </p>
 
         <div className="w-full flex flex-row justify-start gap-3 md:p-0 mt-2">

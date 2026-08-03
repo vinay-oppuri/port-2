@@ -1,12 +1,11 @@
 import { createElement } from "react";
 import type { IconType } from "react-icons";
 import {
-  SiFirebase,
   SiNextdotjs,
-  SiNodedotjs,
   SiReact,
   SiTailwindcss,
   SiTypescript,
+  SiVite,
 } from "react-icons/si";
 
 const icon = (Icon: IconType, className: string) => createElement(Icon, { className });
@@ -29,12 +28,11 @@ export const experiences = [
       technology("Tailwind CSS", SiTailwindcss, "h-5 w-5 text-[#38BDF8]"),
       technology("React", SiReact, "h-4 w-4 text-[#61DAFB]"),
       technology("TypeScript", SiTypescript, "h-4 w-4 text-[#3178C6]"),
-      technology("Node.js", SiNodedotjs, "h-5 w-5 text-[#3C873A]"),
-      technology("Firebase", SiFirebase, "h-5 w-5 text-[#FF6B35]"),
+      technology("Vite", SiVite, "h-4 w-4 text-[#646CFF]"),
     ],
     responsibilities: [
       "Maintain and enhance multiple official web platforms under the iiitr.ac.in domain, contributing to their modernization with a scalable Next.js App Router architecture",
-      "Developed the Training & Placement Cell Portal (tnp-iiitr.vercel.app) using Next.js and Tailwind CSS",
+      "Developed the Training & Placement Cell Portal (tnp.iiitr.ac.in) using React+Vite and Tailwind CSS",
       "Architected reusable and scalable components, improving development efficiency and maintainability across projects."
     ],
   },

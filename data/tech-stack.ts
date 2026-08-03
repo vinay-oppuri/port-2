@@ -20,6 +20,7 @@ import {
   SiAmazonwebservices,
   SiAmazons3,
   SiAmazonec2,
+  SiNestjs,
 } from "react-icons/si";
 import {
   Database,
@@ -59,7 +60,7 @@ export const fullStackSections: SkillGroupData[] = [
       { name: "Node.js",     icon: ic(SiNodedotjs, "w-5 h-5 md:w-6 md:h-6 text-[#339933]") },
       { name: "Express.js",  icon: ic(SiExpress,   "w-5 h-5 md:w-6 md:h-6 text-foreground") },
       { name: "FastAPI",     icon: ic(SiFastapi,   "w-5 h-5 md:w-6 md:h-6 text-[#009688]") },
-      { name: "tRPC",        icon: ic(SiTrpc,      "w-5 h-5 md:w-6 md:h-6 text-[#0D9488]") },
+      { name: "NestJS",      icon: ic(SiNestjs,    "w-5 h-5 md:w-6 md:h-6 text-[#E0234E]") },
       { name: "Better Auth", icon: ic(SiShadcnui,  "w-5 h-5 md:w-6 md:h-6 text-[#9333EA]") },
       { name: "Python",      icon: ic(SiPython,    "w-5 h-5 md:w-6 md:h-6 text-[#3776AB]") },
       { name: "DrizzleORM",  icon: ic(Droplet,     "w-5 h-5 md:w-6 md:h-6 text-[#C5F74F]") },
@@ -72,7 +73,6 @@ export const fullStackSections: SkillGroupData[] = [
     skills: [
       { name: "PostgreSQL", icon: ic(SiPostgresql, "w-5 h-5 md:w-6 md:h-6 text-[#336791]") },
       { name: "MongoDB",    icon: ic(SiMongodb,    "w-5 h-5 md:w-6 md:h-6 text-[#47A248]") },
-      { name: "Redis",      icon: ic(SiRedis,      "w-5 h-5 md:w-6 md:h-6 text-[#DC382D]") },
       { name: "NeonDB",     icon: ic(Database,     "w-5 h-5 md:w-6 md:h-6 text-[#00E599]") },
     ],
   },

@@ -45,6 +45,7 @@ export const heroConfig = {
     skill("pnpm", "https://pnpm.io/", SiPnpm, "h-4 w-4 text-foreground"),
     skill("Next.js", "https://nextjs.org/", SiNextdotjs, "h-4 w-4 text-foreground"),
     skill("Typescript", "https://www.typescriptlang.org/", SiTypescript, "h-4 w-4 text-[#3178C6]"),
+    skill("Nestjs", "https://nestjs.com/", SiNodedotjs, "h-4 w-4 text-[#E0234E]"),
     skill("Tailwind CSS", "https://tailwindcss.com/", SiTailwindcss, "h-4 w-4 text-[#38BDF8]"),
     skill("PostgreSQL", "https://www.postgresql.org/", SiPostgresql, "h-4 w-4 text-[#336791]"),
     skill("DrizzleORM", "https://orm.drizzle.team/", SiDrizzle, "h-4 w-4 text-[#0D9488]"),
