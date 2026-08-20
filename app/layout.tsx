@@ -8,6 +8,7 @@ import { Header } from "@/modules/Layout/header";
 import Footer from "@/modules/Layout/footer";
 import { ScrollToTop } from "@/components/ui/scroll-to-top";
 import { Toaster } from "sonner";
+import SmoothScroll from "@/components/smooth-scroll";
 
 
 const jetbrainsMono = JetBrains_Mono({
@@ -93,33 +94,35 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <script
-            type="application/ld+json"
-            dangerouslySetInnerHTML={{
-              __html: JSON.stringify({
-                "@context": "https://schema.org",
-                "@type": "Person",
-                name: "Vinay Oppuri",
-                url: "https://vinayweb.in",
-                jobTitle: "Full Stack & AI Engineer",
-                sameAs: [
-                  "https://x.com/vinayoppuri",
-                  "https://www.linkedin.com/in/vinay-oppuri/",
-                  "https://github.com/vinay-oppuri"
-                ]
-              })
-            }}
-          />
-          <SocialLinks />
-          <Header />
-          <div className="w-full px-2 md:px-0 max-w-3xl mx-auto">
-            {children}
-            <Footer />
-          </div>
-          {/* Bottom Blur */}
-          <div className="fixed bottom-0 w-full h-20 md:h-28 pointer-events-none z-40 bg-background/40 backdrop-blur-md mask-[linear-gradient(to_top,black_20%,transparent_100%)]" />
-          <ScrollToTop />
-          <Toaster richColors position="top-right" />
+          <SmoothScroll>
+            <script
+              type="application/ld+json"
+              dangerouslySetInnerHTML={{
+                __html: JSON.stringify({
+                  "@context": "https://schema.org",
+                  "@type": "Person",
+                  name: "Vinay Oppuri",
+                  url: "https://vinayweb.in",
+                  jobTitle: "Full Stack & AI Engineer",
+                  sameAs: [
+                    "https://x.com/vinayoppuri",
+                    "https://www.linkedin.com/in/vinay-oppuri/",
+                    "https://github.com/vinay-oppuri"
+                  ]
+                })
+              }}
+            />
+            <SocialLinks />
+            <Header />
+            <div className="w-full px-2 md:px-0 max-w-3xl mx-auto">
+              {children}
+              <Footer />
+            </div>
+            {/* Bottom Blur */}
+            <div className="fixed bottom-0 w-full h-20 md:h-28 pointer-events-none z-40 bg-background/40 backdrop-blur-md mask-[linear-gradient(to_top,black_20%,transparent_100%)]" />
+            <ScrollToTop />
+            <Toaster richColors position="top-right" />
+          </SmoothScroll>
         </ThemeProvider>
       </body>
     </html>
