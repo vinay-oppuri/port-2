@@ -25,7 +25,7 @@ const Page = () => {
             target="_blank"
             rel="noopener noreferrer"
           >
-            <Button variant="outline" className="gap-2">
+            <Button variant="outline" className="gap-2 cursor-pointer">
               <Download className="h-4 w-4" />
               Download PDF
             </Button>

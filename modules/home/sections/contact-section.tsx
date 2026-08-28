@@ -206,7 +206,7 @@ export const ContactDialog = () => {
                                 <Button
                                     type="submit"
                                     disabled={loading}
-                                    className="relative w-full mt-2 flex items-center justify-center gap-2 py-3 px-4 bg-foreground text-background font-semibold rounded-lg hover:bg-foreground/90 active:scale-[0.98] transition-all disabled:opacity-50 text-sm"
+                                    className="relative w-full mt-2 flex items-center justify-center gap-2 py-3 px-4 bg-foreground text-background font-semibold rounded-lg cursor-pointer hover:bg-foreground/90 active:scale-[0.98] transition-all disabled:opacity-50 text-sm"
                                 >
                                     {loading ? (
                                         <Loader2 className="w-4 h-4 animate-spin" />

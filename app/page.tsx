@@ -23,11 +23,16 @@ const ContactDialog = dynamic(
 const SkillsSection = dynamic(
   () => import("@/modules/home/sections/skills-section")
 );
+const QuoteSection = dynamic(
+  () => import("@/modules/home/sections/quote-section")
+);
 const DDScroll = dynamic(
   () => import("@/components/common/dd-scroll")
 );
 
+
 const Page = () => {
+
   return (
     <main className="w-full">
       <DDScroll />
@@ -135,6 +140,7 @@ const Page = () => {
         <div id="skills"><SkillsSection /></div>
         <div id="github"><GitHubActivity /></div>
         <div id="contact"><ContactDialog /></div>
+        <div id="quote"><QuoteSection /></div>
       </section>
     </main>
   );

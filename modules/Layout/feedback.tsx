@@ -64,7 +64,7 @@ export const FeedbackDialog = () => {
         <Button
           type="button"
           size="sm"
-          className="w-auto h-9! rounded-full px-5! text-xs bg-transparent! text-foreground/80 border! border-foreground/3! hover:border-foreground/40"
+          className="w-auto h-9! rounded-full px-5! text-xs bg-transparent! text-foreground/80 border! border-foreground/3! cursor-pointer hover:border-foreground/40"
         >
           <MessageSquare className="w-3.5 h-3.5 mr-1.5 fill-foreground/80" />
           Feedback
