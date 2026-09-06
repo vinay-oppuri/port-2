@@ -1,12 +1,13 @@
 import { ProjectsData } from "@/data";
 import { Button } from "@/components/ui/button";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
-import { ArrowLeft, ExternalLink, Github } from "lucide-react";
+import { ArrowLeft, ExternalLink, Github, Play } from "lucide-react";
 import Image from "next/image";
 import Link from "@/components/ui/link";
 import { notFound } from "next/navigation";
 import { Metadata } from "next";
 import { cn } from "@/lib/utils";
+import { VideoPlayer } from "@/components/ui/video-player";
 
 interface ProjectDetailsPageProps {
   params: Promise<{ id: string }>;
@@ -110,6 +111,22 @@ const ProjectDetailsPage = async ({ params }: ProjectDetailsPageProps) => {
             )}
           </div>
         </div>
+
+        {project.videoUrl && (
+          <section className="space-y-3 pt-2">
+            <h2 className="text-lg md:text-xl font-semibold flex items-center gap-2">
+              <Play className="w-4 h-4 text-emerald-500 fill-emerald-500" />
+              Demo Walkthrough
+            </h2>
+            <div className="w-full max-w-4xl rounded-xl overflow-hidden shadow-2xl">
+              <VideoPlayer
+                src={project.videoUrl}
+                poster={project.imageUrl}
+                title={project.title}
+              />
+            </div>
+          </section>
+        )}
 
         <div className="flex flex-col gap-8">
           <div className="space-y-8">

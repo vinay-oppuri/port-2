@@ -26,7 +26,21 @@ const tag = (name: string, Icon: IconType, className: string) => ({
   logo: icon(Icon, className),
 });
 
-export const ProjectsData = [
+export interface ProjectItem {
+  id: string;
+  title: string;
+  description: string;
+  features: string[];
+  motivation: string;
+  tags: { name: string; logo: React.ReactNode }[];
+  imageUrl: string;
+  videoUrl?: string;
+  liveUrl?: string;
+  githubUrl?: string;
+  status: string;
+}
+
+export const ProjectsData: ProjectItem[] = [
   {
     id: "rescomail",
     title: "Rescomail",
@@ -58,6 +72,7 @@ export const ProjectsData = [
       tag("Shadcn UI", SiShadcnui, "h-5 w-5 text-foreground"),
     ],
     imageUrl: "/projects/rescomail.png",
+    videoUrl: "/api/video/rescomail",
     liveUrl: "https://rescomail.vinayweb.in/",
     githubUrl: "https://github.com/vinay-oppuri/rescomail",
     status: "Operational",
