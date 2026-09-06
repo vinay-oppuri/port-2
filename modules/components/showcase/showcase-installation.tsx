@@ -131,7 +131,7 @@ export function ShowcaseInstallation({
                 )}
               </button>
             </div>
-            <pre className="p-4 overflow-auto font-mono text-xs leading-relaxed text-zinc-200 flex-1 thin-scrollbar">
+            <pre className="p-4 overflow-auto font-mono text-xs leading-relaxed text-muted-foreground flex-1 thin-scrollbar">
               <code>{componentCode}</code>
             </pre>
           </div>
