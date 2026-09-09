@@ -1,10 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import { Mail, ArrowUpRight, Loader2, CheckCircle2, SendIcon, Linkedin } from "lucide-react";
+import { Mail, ArrowUpRight, Loader2, CheckCircle2, Linkedin } from "lucide-react";
 import { FaXTwitter } from "react-icons/fa6";
 import { socialLinks, siteEmail } from "@/data";
-import { toast } from "sonner";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
@@ -16,6 +15,7 @@ export const ContactDialog = () => {
 
     const [loading, setLoading] = useState(false);
     const [submitted, setSubmitted] = useState(false);
+    const [errorMessage, setErrorMessage] = useState<string | null>(null);
     const [formData, setFormData] = useState({
         name: "",
         email: "",
@@ -25,12 +25,14 @@ export const ContactDialog = () => {
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const { name, value } = e.target;
         setFormData(prev => ({ ...prev, [name]: value }));
+        if (errorMessage) setErrorMessage(null);
     }
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
+        setErrorMessage(null);
         if (!formData.name.trim() || !formData.email.trim() || !formData.message.trim()) {
-            toast.error("Please fill in all fields.");
+            setErrorMessage("Please fill in all fields.");
             return;
         }
 
@@ -49,16 +51,15 @@ export const ContactDialog = () => {
             });
 
             if (response.ok) {
-                toast.success('Message sent successfully!');
                 setSubmitted(true);
                 setFormData({ name: "", email: "", message: "" });
             } else {
                 const errData = await response.json();
-                toast.error(errData.error?.message || 'Failed to send message.');
+                setErrorMessage(errData.error?.message || 'Failed to send message.');
             }
         } catch (error) {
             console.error('Error sending message:', error);
-            toast.error('An error occurred. Please try again.');
+            setErrorMessage('An error occurred. Please try again.');
         } finally {
             setLoading(false);
         }
@@ -90,7 +91,7 @@ export const ContactDialog = () => {
                                         <Linkedin className="w-5 h-5 shrink-0" />
                                     </div>
                                     <div className="flex flex-col overflow-hidden">
-                                        <span className="text-sm font-semibold text-muted-foreground">Let's Connect</span>
+                                        <span className="text-sm font-semibold text-muted-foreground">Let&apos;s Connect</span>
                                         <span className="text-xs text-muted-foreground/60 mt-0.5 truncate">Professional networking</span>
                                     </div>
                                 </div>
@@ -156,7 +157,7 @@ export const ContactDialog = () => {
                                 <CheckCircle2 className="w-12 h-12 text-emerald-500 animate-in zoom-in-50 duration-300" />
                                 <h3 className="text-lg font-bold text-foreground">Message Sent!</h3>
                                 <p className="text-xs text-muted-foreground">Thank you for reaching out.</p>
-                                <button onClick={() => setSubmitted(false)} className="text-xs underline text-foreground/60 hover:text-foreground mt-2">
+                                <button onClick={() => { setSubmitted(false); setErrorMessage(null); }} className="text-xs underline text-foreground/60 hover:text-foreground mt-2">
                                     Send another
                                 </button>
                             </div>
@@ -202,6 +203,10 @@ export const ContactDialog = () => {
                                         required
                                     />
                                 </div>
+
+                                {errorMessage && (
+                                    <p className="text-xs text-red-500 font-medium">{errorMessage}</p>
+                                )}
 
                                 <Button
                                     type="submit"

@@ -7,7 +7,6 @@ import { SocialLinks } from "@/modules/Layout/social-links";
 import { Header } from "@/modules/Layout/header";
 import Footer from "@/modules/Layout/footer";
 import { ScrollToTop } from "@/components/ui/scroll-to-top";
-import { Toaster } from "sonner";
 import SmoothScroll from "@/components/smooth-scroll";
 
 
@@ -121,7 +120,6 @@ export default function RootLayout({
             {/* Bottom Blur */}
             <div className="fixed bottom-0 w-full h-20 md:h-28 pointer-events-none z-40 bg-background/40 backdrop-blur-md mask-[linear-gradient(to_top,black_20%,transparent_100%)]" />
             <ScrollToTop />
-            <Toaster richColors position="top-right" />
           </SmoothScroll>
         </ThemeProvider>
       </body>

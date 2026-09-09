@@ -1,8 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { ArrowUpRight, Loader2, MessageSquare, SendIcon } from "lucide-react";
-import { toast } from "sonner";
+import { ArrowUpRight, MessageSquare, SendIcon } from "lucide-react";
 import { ResponsiveDialog } from "../../components/ui/responsive-dialog";
 import { Button } from "../../components/ui/button";
 import { Input } from "../../components/ui/input";
@@ -15,16 +14,19 @@ export const FeedbackDialog = () => {
   });
   const [loading, setLoading] = useState(false);
   const [open, setOpen] = useState(false);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
+    if (errorMessage) setErrorMessage(null);
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setErrorMessage(null);
     if (!formData.name.trim() || !formData.feedback.trim()) {
-      toast.error("Please fill in all fields");
+      setErrorMessage("Please fill in all fields");
       return;
     }
 
@@ -40,15 +42,15 @@ export const FeedbackDialog = () => {
       });
 
       if (response.ok) {
-        toast.success("Feedback sent successfully!");
         setFormData({ name: "", feedback: "" });
+        setErrorMessage(null);
         setOpen(false);
       } else {
-        toast.error("Failed to send feedback.");
+        setErrorMessage("Failed to send feedback.");
       }
     } catch (error) {
       console.error("Error sending feedback:", error);
-      toast.error("An error occurred.");
+      setErrorMessage("An error occurred.");
     } finally {
       setLoading(false);
     }
@@ -59,7 +61,10 @@ export const FeedbackDialog = () => {
       title="Share Feedback"
       description="Tell me what you liked and what could be improved."
       open={open}
-      onOpenChange={setOpen}
+      onOpenChange={(val) => {
+        setOpen(val);
+        if (!val) setErrorMessage(null);
+      }}
       trigger={
         <Button
           type="button"
@@ -92,6 +97,9 @@ export const FeedbackDialog = () => {
           className="w-full bg-foreground/3! rounded-sm py-3 px-4 min-h-38! resize-none transition-all placeholder:text-muted-foreground/50 text-foreground text-xs md:text-base border border-white/5"
           required
         />
+        {errorMessage && (
+          <p className="text-xs text-red-500 font-medium">{errorMessage}</p>
+        )}
         <Button type="submit" disabled={loading} className="relative w-full mx-auto text-xs">
           {loading ? "Sending..." : "Send Feedback"}
           {loading ? <SendIcon className="w-4 h-4 mr-2" /> : <div className="absolute right-0.5 bg-background text-foreground rounded-sm p-2"><ArrowUpRight className="w-4 h-4" /></div>}
