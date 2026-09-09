@@ -18,6 +18,7 @@ const technology = (name: string, Icon: IconType, className: string) => ({
 export const experiences = [
   {
     companyName: "IIIT Raichur Website",
+    companyUrl: "https://iiitr.ac.in/",
     logo: "/experience/collegelogo.png",
     status: "working",
     role: "Full Stack Developer",

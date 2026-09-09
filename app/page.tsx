@@ -3,6 +3,7 @@ import { heroConfig, siteEmail, socialLinks } from "@/data";
 import { Button } from "@/components/ui/button";
 import { AvatarLogo } from "@/components/common/AvatarLogo";
 import { TextFlip } from "@/components/ui/text-flip";
+import { LinkPreview } from "@/components/ui/link-preview";
 import { SendIcon } from "lucide-react";
 import { SiGoogledocs } from "react-icons/si";
 import dynamic from "next/dynamic";
@@ -81,22 +82,20 @@ const Page = () => {
           })}
         </div>
 
-        <p className="text-sm sm:text-base min-[1920px]:text-lg text-muted-foreground leading-relaxed flex flex-wrap font-mono tracking-tighter mt-4 gap-2">
+        <div className="text-sm sm:text-base min-[1920px]:text-lg text-muted-foreground leading-relaxed flex flex-wrap font-mono tracking-tighter mt-4 gap-2">
           I build interactive web apps using
           {heroConfig.mainSkills.map((skill, i) => (
-            <Link
+            <LinkPreview
               key={i}
-              href={skill.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center justify-center px-2 py-1 clay-badge text-xs text-foreground gap-1.5 clay-interactive"
+              url={skill.href}
+              className="inline-flex items-center justify-center px-2 py-1 clay-badge text-xs text-foreground gap-1.5 clay-interactive cursor-pointer"
             >
               {skill.component}
               {skill.name}
-            </Link>
+            </LinkPreview>
           ))}
           . I focus on <b>UI/UX</b> destails and I&apos;m passionate to build <b>Products.</b>
-        </p>
+        </div>
 
         <div className="w-full flex flex-row justify-start gap-3 md:p-0 mt-2">
           <Button

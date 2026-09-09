@@ -9,6 +9,7 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+import { LinkPreview } from "@/components/ui/link-preview";
 import { experiences } from "@/data";
 
 type ExperienceItem = (typeof experiences)[number];
@@ -36,22 +37,29 @@ export function ExperienceList({ items }: ExperienceListProps) {
 
           {/* Content */}
           <div className="pl-6 md:pl-8 pb-8 last:pb-0 relative -top-3">
-            <AccordionTrigger className="no-arrow p-0 hover:no-underline flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 md:gap-4 w-full text-left">
+            <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 md:gap-4 w-full text-left">
               <div className="flex flex-col gap-1.5 md:gap-1">
-                <h3 className="flex items-center gap-2 font-semibold text-sm md:text-base text-foreground/90">
-                  <div className="font-semibold">{exp.role}</div>
+                <div className="flex flex-wrap items-center gap-2 font-semibold text-sm md:text-base text-foreground/90">
+                  <AccordionTrigger className="no-arrow p-0 hover:no-underline font-semibold text-sm md:text-base text-foreground/90 [&>svg]:hidden cursor-pointer">
+                    {exp.role}
+                  </AccordionTrigger>
                   <div className="h-1 w-1 bg-foreground rounded-full" />
-                  <div className="text-xs text-muted-foreground font-sans">{exp.companyName}</div>
-                </h3>
-                <p className="text-xs md:text-sm text-muted-foreground">
+                  <LinkPreview
+                    url={("companyUrl" in exp && exp.companyUrl ? (exp.companyUrl as string) : "https://iiitr.ac.in/")}
+                    className="text-xs text-muted-foreground font-sans hover:text-foreground transition-colors underline decoration-dotted underline-offset-4 decoration-muted-foreground/60 hover:decoration-foreground cursor-pointer"
+                  >
+                    {exp.companyName}
+                  </LinkPreview>
+                </div>
+                <AccordionTrigger className="no-arrow p-0 hover:no-underline text-xs md:text-sm text-muted-foreground [&>svg]:hidden text-left cursor-pointer">
                   {exp.location}
-                </p>
+                </AccordionTrigger>
               </div>
 
-              <div className="text-xs sm:text-sm sm:text-right text-muted-foreground font-normal whitespace-nowrap pt-1 sm:pt-0">
-                <p>{exp.timeline}</p>
-              </div>
-            </AccordionTrigger>
+              <AccordionTrigger className="no-arrow p-0 hover:no-underline flex items-center gap-2 text-xs sm:text-sm sm:text-right text-muted-foreground font-normal whitespace-nowrap pt-1 sm:pt-0 cursor-pointer">
+                <span>{exp.timeline}</span>
+              </AccordionTrigger>
+            </div>
 
             <AccordionContent className="mt-4 space-y-6">
               {exp.responsibilities && exp.responsibilities.length > 0 && (
