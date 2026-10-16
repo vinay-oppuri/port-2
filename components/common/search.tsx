@@ -28,7 +28,7 @@ import {
   CommandSeparator,
 } from "@/components/ui/command"
 import { socialLinks } from "@/data/site"
-import Logo from "../../components/common/Logo"
+import Logo from "@/components/common/Logo"
 import { ResponsiveDialog } from "@/components/ui/responsive-dialog"
 import { useLenis } from "lenis/react"
 

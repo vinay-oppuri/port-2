@@ -14,7 +14,7 @@ export function ShowcaseUsage({ component }: { component: ShowcaseComponent }) {
           <p className="text-sm text-muted-foreground">Import structural context hooks or wrappers:</p>
           <div className="relative rounded-xl bg-muted/40 px-4 py-2.5 overflow-hidden shadow-inner">
             <code className="text-xs font-mono text-foreground">
-              <span className="text-purple-400">import</span> {"{"} <span className="text-sky-300">{component.name.replace(/\s+/g, '')}</span> {"}"} <span className="text-purple-400">from</span> <span className="text-amber-200">"{component.usageImport.split('from "')[1]?.replace('"', '') || component.usageImport.split('from ')[1]?.replace(/["']/g, '')}"</span>
+              <span className="text-purple-400">import</span> {"{"} <span className="text-sky-300">{component.name.replace(/\s+/g, '')}</span> {"}"} <span className="text-purple-400">from</span> <span className="text-amber-200">&quot;{component.usageImport.split('from "')[1]?.replace('"', '') || component.usageImport.split('from ')[1]?.replace(/["']/g, '')}&quot;</span>
             </code>
           </div>
         </div>

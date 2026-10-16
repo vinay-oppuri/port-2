@@ -39,7 +39,7 @@ export default async function Page({ params }: Props) {
   try {
     const componentPath = path.join(process.cwd(), "modules", "components", "comps", `${id}.tsx`);
     componentCode = await fs.readFile(componentPath, "utf8");
-  } catch (error) {
+  } catch {
     // Fallback if the component file doesn't exist
   }
 
@@ -47,7 +47,7 @@ export default async function Page({ params }: Props) {
   try {
     const demoPath = path.join(process.cwd(), "modules", "components", "demos", `${id}-demo.tsx`);
     demoCode = await fs.readFile(demoPath, "utf8");
-  } catch (error) {
+  } catch {
     // Fallback if registry reading fails
   }
 

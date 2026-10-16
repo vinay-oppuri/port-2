@@ -4,8 +4,6 @@ import { componentsData } from "@/data/components-data";
 import { ShowcaseHeader } from "./showcase/showcase-header";
 import { ShowcaseTabs } from "./showcase/showcase-tabs";
 import { ShowcaseInstallation } from "./showcase/showcase-installation";
-import { ShowcaseUsage } from "./showcase/showcase-usage";
-import { ShowcaseApi } from "./showcase/showcase-api";
 
 export function ComponentsShowcaseClient({
   componentId,

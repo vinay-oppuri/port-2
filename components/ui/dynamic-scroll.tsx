@@ -5,8 +5,8 @@ import {
   AnimatePresence,
   motion,
 } from "motion/react";
-import { useEffect, useRef, useState, type RefObject } from "react";
-import { TbChevronDown, TbChevronUp } from "react-icons/tb";
+import { useEffect, useRef, useState, useSyncExternalStore, type RefObject } from "react";
+import { TbChevronDown } from "react-icons/tb";
 import { Search, Sun, Moon } from "lucide-react";
 import { useTheme } from "next-themes";
 import { usePathname } from "next/navigation";
@@ -247,13 +247,13 @@ function Text({
   onToggle,
 }: Props & { open: boolean; value?: TOC_INTERFACE; onToggle?: () => void }) {
   const { theme, setTheme, resolvedTheme } = useTheme();
-  const [mounted, setMounted] = useState(false);
+  const mounted = useSyncExternalStore(
+    () => () => {},
+    () => true,
+    () => false
+  );
   const circum = 2 * Math.PI * 10 - 0.5;
   const progressCircleRef = useRef<SVGCircleElement>(null);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
 
   useEffect(() => {
     let raf = 0;

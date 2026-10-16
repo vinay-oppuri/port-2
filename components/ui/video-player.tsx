@@ -188,7 +188,7 @@ export function VideoPlayer({
   };
 
   // Volume change
-  const handleVolumeChange = (newVolume: number) => {
+  const handleVolumeChange = useCallback((newVolume: number) => {
     const video = videoRef.current;
     if (!video) return;
     const clamped = Math.max(0, Math.min(1, newVolume));
@@ -202,10 +202,10 @@ export function VideoPlayer({
       setIsMuted(false);
     }
     triggerControlsVisibility();
-  };
+  }, [isMuted, triggerControlsVisibility]);
 
   // Mute / Unmute toggle
-  const toggleMute = () => {
+  const toggleMute = useCallback(() => {
     const video = videoRef.current;
     if (!video) return;
     if (isMuted) {
@@ -220,10 +220,10 @@ export function VideoPlayer({
       setIsMuted(true);
     }
     triggerControlsVisibility();
-  };
+  }, [isMuted, volume, triggerControlsVisibility]);
 
   // Fullscreen toggle
-  const toggleFullscreen = async () => {
+  const toggleFullscreen = useCallback(async () => {
     const container = containerRef.current;
     if (!container) return;
 
@@ -238,7 +238,7 @@ export function VideoPlayer({
       await document.exitFullscreen();
       setIsFullscreen(false);
     }
-  };
+  }, []);
 
   // Listen to fullscreen changes
   useEffect(() => {
@@ -289,7 +289,7 @@ export function VideoPlayer({
     return () => {
       container.removeEventListener("keydown", handleKeyDown);
     };
-  }, [togglePlay, volume, isMuted]);
+  }, [togglePlay, volume, isMuted, handleVolumeChange, toggleMute, toggleFullscreen]);
 
   // Autoplay on mount
   useEffect(() => {
@@ -336,6 +336,7 @@ export function VideoPlayer({
     <div
       ref={containerRef}
       tabIndex={0}
+      aria-label={title || "Video player"}
       onMouseMove={triggerControlsVisibility}
       onMouseEnter={triggerControlsVisibility}
       onMouseLeave={() => {

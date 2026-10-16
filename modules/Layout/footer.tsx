@@ -2,8 +2,8 @@
 
 import { cloneElement, isValidElement } from "react";
 import Link from "@/components/ui/link";
-import { heroConfig, siteEmail, socialLinks } from "@/data";
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
+import { heroConfig, socialLinks } from "@/data";
+import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 import { FeedbackDialog } from "./feedback";
 
 const footerLinks = [

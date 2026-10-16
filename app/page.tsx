@@ -3,7 +3,7 @@ import { heroConfig, siteEmail, socialLinks } from "@/data";
 import { Button } from "@/components/ui/button";
 import { AvatarLogo } from "@/components/common/AvatarLogo";
 import { TextFlip } from "@/components/ui/text-flip";
-import { SendIcon, MapPin, Mail, MessageCircleIcon } from "lucide-react";
+import { MessageCircleIcon } from "lucide-react";
 import { SiGoogledocs } from "react-icons/si";
 import dynamic from "next/dynamic";
 
