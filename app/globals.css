@@ -7,11 +7,9 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-schibsted-grotesk), var(--font-inter), sans-serif;
+  --font-sans: var(--font-schibsted-grotesk);
   --font-mono: var(--font-schibsted-grotesk);
-  --font-schibsted-grotesk: var(--font-schibsted-grotesk);
-  --font-anton: var(--font-anton), sans-serif;
-  --font-serif: var(--font-serif);
+  --font-anton: var(--font-anton);
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -143,8 +141,21 @@
     @apply border-border outline-ring/50;
   }
 
+  html,
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-sans;
+    font-family: var(--font-schibsted-grotesk), sans-serif;
+  }
+
+  p,
+  li,
+  ul,
+  ol,
+  input,
+  textarea,
+  button,
+  select {
+    font-family: inherit;
   }
 
   /* Custom Scrollbar */
@@ -240,8 +251,9 @@ html {
 html {
   view-transition-name: root;
 }
+
 .font-anton {
-  font-family: var(--font-anton), sans-serif;
+  font-family: var(--font-anton), sans-serif !important;
 }
 
 /* Suppress Internet Download Manager (IDM) browser extension overlays */
@@ -265,6 +277,7 @@ div[class*="__idm_"] {
   0% {
     transform: translate3d(0, 0, 0);
   }
+
   100% {
     transform: translate3d(-50%, 0, 0);
   }
@@ -274,6 +287,7 @@ div[class*="__idm_"] {
   0% {
     transform: translate3d(-50%, 0, 0);
   }
+
   100% {
     transform: translate3d(0, 0, 0);
   }
@@ -290,6 +304,7 @@ div[class*="__idm_"] {
 }
 
 @media (prefers-reduced-motion: reduce) {
+
   .animate-marquee-left,
   .animate-marquee-right {
     animation-play-state: paused !important;
@@ -305,7 +320,8 @@ div[class*="__idm_"] {
 
 /* Hide scrollbar for IE, Edge and Firefox */
 .no-scrollbar {
-  -ms-overflow-style: none !important;  /* IE and Edge */
-  scrollbar-width: none !important;  /* Firefox */
+  -ms-overflow-style: none !important;
+  /* IE and Edge */
+  scrollbar-width: none !important;
+  /* Firefox */
 }
-

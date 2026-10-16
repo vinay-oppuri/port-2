@@ -20,12 +20,12 @@ export const navLinks = [
 const HeaderSkeleton = () => (
   <header
     aria-hidden="true"
-    className="sticky top-0 z-50 w-full max-w-3xl mx-auto flex flex-col backdrop-blur-lg animate-pulse"
+    className="sticky top-0 z-50 w-full max-w-2xl mx-auto flex flex-col backdrop-blur-2xl animate-pulse"
   >
-    <div className="flex justify-between items-center px-4 py-4 w-full font-mono">
+    <div className="flex justify-between items-center px-4 sm:px-0 py-4 w-full font-mono">
       <div className="flex items-center space-x-3 sm:space-x-8">
         <div className="flex items-center gap-0">
-          <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-foreground/10" />
+          <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-foreground/10 shrink-0" />
           <span className="hidden md:block ml-3 text-[18px] font-thin text-foreground/15 mx-2 leading-none select-none">
             /
           </span>
@@ -33,18 +33,16 @@ const HeaderSkeleton = () => (
         </div>
       </div>
 
-      <div className="hidden md:flex items-center space-x-6">
+      <nav aria-label="Loading navigation" className="hidden md:flex items-center space-x-4">
         {navLinks.map((_, idx) => (
           <div key={idx} className="h-3 w-12 rounded bg-foreground/10" />
         ))}
-      </div>
+      </nav>
 
-      <div className="flex items-center space-x-3">
-        <div className="flex items-center gap-1 p-1 rounded-full! border border-foreground/5">
-          <div className="h-8 w-20 rounded-full bg-foreground/10" />
-          <div className="w-px h-4 bg-foreground/15" />
-          <div className="h-8 w-8 rounded-full bg-foreground/10" />
-        </div>
+      <div className="flex items-center gap-1 p-1 rounded-full! border border-foreground/5">
+        <div className="h-7 w-16 rounded-full bg-foreground/10" />
+        <div className="w-px h-4 bg-foreground/15" />
+        <div className="h-7 w-7 rounded-full bg-foreground/10" />
       </div>
     </div>
   </header>
@@ -76,7 +74,7 @@ export const Header = () => {
           : "translate-y-0 opacity-100 pointer-events-auto"
       )}
     >
-      <div className="flex justify-between items-center px-4 py-4 w-full font-mono">
+      <div className="flex justify-between items-center px-4 sm:px-0 py-4 w-full font-mono">
         <div className="flex items-center space-x-3 sm:space-x-8">
           <Link
             href="/"

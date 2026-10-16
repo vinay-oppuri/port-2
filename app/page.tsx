@@ -23,16 +23,12 @@ const ContactDialog = dynamic(
 const SkillsSection = dynamic(
   () => import("@/modules/home/sections/skills-section")
 );
-const DDScroll = dynamic(
-  () => import("@/components/common/dd-scroll")
-);
 
 
 const Page = () => {
 
   return (
     <main className="w-full px-4 sm:px-0">
-      <DDScroll />
       <section id="hero" className="flex flex-col justify-center items-start space-y-5 mx-auto w-full min-h-[80vh] py-16 md:py-24">
         <div className="flex items-center gap-4 sm:gap-5">
           <AvatarLogo className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl border border-foreground/10 shrink-0 shadow-xs" />

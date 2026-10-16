@@ -8,6 +8,7 @@ import { Header } from "@/modules/Layout/header";
 import Footer from "@/modules/Layout/footer";
 import { ScrollToTop } from "@/components/ui/scroll-to-top";
 import SmoothScroll from "@/components/smooth-scroll";
+import DDScroll from "@/components/common/dd-scroll";
 
 
 const schibstedGrotesk = Schibsted_Grotesk({
@@ -119,6 +120,8 @@ export default function RootLayout({
               }}
             />
             <SocialLinks />
+            <DDScroll />
+
             {/* Top Blur */}
             <div className="fixed top-0 w-full h-20 md:h-28 pointer-events-none z-40 bg-background/40 backdrop-blur-md mask-[linear-gradient(to_bottom,black_20%,transparent_100%)]" />
             <Header />

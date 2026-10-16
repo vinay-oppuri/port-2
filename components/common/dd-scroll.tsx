@@ -15,12 +15,35 @@ const data: TOC_INTERFACE[] = [
   { name: "Contact", value: "contact", info: "Let's get in touch" },
 ];
 
+const pageRoutes = [
+  { name: "Work", href: "/experience" },
+  { name: "Projects", href: "/projects" },
+  { name: "Components", href: "/components" },
+  { name: "Blogs", href: "/blogs" },
+  { name: "Resume", href: "/resume" },
+  { name: "Contact", href: "/contact" },
+];
+
 export const DDScroll = () => {
   const isScrolled = useScrollThreshold(60);
   const [currentValue, setCurrentValue] = useState<TOC_INTERFACE>(data[0]);
   const router = useRouter();
   const pathname = usePathname();
   const isScrolling = useRef(false);
+
+  const activePage = pageRoutes.find(
+    (p) => pathname === p.href || pathname.startsWith(p.href + "/")
+  );
+  const pageValue: TOC_INTERFACE = activePage
+    ? { name: activePage.name, value: activePage.href }
+    : {
+        name:
+          pathname.replace(/^\//, "").split("/")[0].charAt(0).toUpperCase() +
+          pathname.replace(/^\//, "").split("/")[0].slice(1),
+        value: pathname,
+      };
+
+  const displayedValue = pathname !== "/" ? pageValue : currentValue;
 
   useEffect(() => {
     if (pathname !== "/") {
@@ -106,7 +129,7 @@ export const DDScroll = () => {
       <DynamicScrollIslandTOC
         title="Sections"
         data={data}
-        value={currentValue}
+        value={displayedValue}
         setValue={handleSelect}
       />
     </div>
