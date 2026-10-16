@@ -18,7 +18,7 @@ export default function IphoneDemo() {
           <p className="text-[10px] font-normal tracking-wide text-red-950/50 dark:text-white/45">
             {date}
           </p>
-          <h1 className="text-5xl font-bold tracking-tight text-white dark:text-white">
+          <h1 className="text-5xl font-bold text-white dark:text-white">
             {time}
           </h1>
         </div>

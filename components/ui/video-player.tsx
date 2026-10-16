@@ -533,7 +533,7 @@ export function VideoPlayer({
             </div>
 
             {/* Timestamp Counter */}
-            <div className="font-mono text-[11px] sm:text-xs text-white/90 pl-1 tracking-tight">
+            <div className="font-mono text-[11px] sm:text-xs text-white/90 pl-1">
               <span>{formatTime(currentTime)}</span>
               <span className="text-white/40 mx-1">/</span>
               <span className="text-white/60">{formatTime(duration)}</span>

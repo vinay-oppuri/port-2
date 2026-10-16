@@ -20,7 +20,7 @@ const HeaderSkeleton = () => (
     aria-hidden="true"
     className="sticky top-0 z-50 w-full max-w-3xl mx-auto flex flex-col backdrop-blur-lg animate-pulse"
   >
-    <div className="flex justify-between items-center px-4 py-4 w-full font-mono tracking-tighter">
+    <div className="flex justify-between items-center px-4 py-4 w-full font-mono">
       <div className="flex items-center space-x-3 sm:space-x-8">
         <div className="flex items-center gap-0">
           <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-foreground/10" />
@@ -38,7 +38,7 @@ const HeaderSkeleton = () => (
       </div>
 
       <div className="flex items-center space-x-3">
-        <div className="flex items-center gap-1 p-1 clay rounded-full!">
+        <div className="flex items-center gap-1 p-1 rounded-full! border border-foreground/5">
           <div className="h-8 w-20 rounded-full bg-foreground/10" />
           <div className="w-px h-4 bg-foreground/15" />
           <div className="h-8 w-8 rounded-full bg-foreground/10" />
@@ -64,8 +64,8 @@ export const Header = () => {
   if (!mounted) return <HeaderSkeleton />;
 
   return (
-    <header className="sticky top-0 z-50 w-full max-w-3xl mx-auto flex flex-col backdrop-blur-sm transition-all">
-      <div className="flex justify-between items-center px-4 py-4 w-full font-mono tracking-tighter">
+    <header className="sticky top-0 z-50 w-full max-w-2xl mx-auto flex flex-col backdrop-blur-2xl transition-all">
+      <div className="flex justify-between items-center px-4 py-4 w-full font-mono">
         <div className="flex items-center space-x-3 sm:space-x-8">
           <Link
             href="/"
@@ -90,7 +90,7 @@ export const Header = () => {
           </Link>
         </div>
 
-        <nav className="hidden md:flex items-center space-x-6 text-foreground text-sm font-medium">
+        <nav className="hidden md:flex items-center space-x-4 text-foreground text-xs font-medium">
           {navLinks.map((link, idx) => (
             <Link href={link.href} key={idx} className="group relative opacity-80 hover:opacity-100 transition-opacity duration-300">
               {link.name}
@@ -100,16 +100,12 @@ export const Header = () => {
         </nav>
 
         {/* Right: Theme Toggle + Mobile Menu Button */}
-        <div className="flex items-center space-x-3 ">
-
-          {/* Theme Toggle */}
-          <div className="flex items-center gap-1 p-1 rounded-full! border border-foreground/5">
-            <SearchCommand />
-            <div className="w-px h-4 bg-foreground/15" />
-            <Button aria-label="Toggle theme" variant="ghost" size="icon" className="h-8 w-8 rounded-full text-foreground/80 hover:text-foreground hover:bg-foreground/5 transition-all" onClick={toggleTheme}>
-              {theme === 'dark' ? <Sun size={16} /> : <Moon size={16} />}
-            </Button>
-          </div>
+        <div className="flex items-center gap-1 p-1 rounded-full! border border-foreground/5">
+          <SearchCommand />
+          <div className="w-px h-4 bg-foreground/15" />
+          <Button aria-label="Toggle theme" variant="ghost" size="icon" className="h-7 w-7 rounded-full text-foreground/80 hover:text-foreground hover:bg-foreground/5 transition-all" onClick={toggleTheme}>
+            {theme === 'dark' ? <Sun size={12} /> : <Moon size={12} />}
+          </Button>
         </div>
       </div>
     </header>

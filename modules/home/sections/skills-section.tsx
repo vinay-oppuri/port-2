@@ -53,7 +53,7 @@ export default function SkillsSection() {
                       <div className="flex items-center justify-center shrink-0 w-4.5 h-4.5 [&_svg]:w-full! [&_svg]:h-full!">
                         {skill.icon}
                       </div>
-                      <span className="text-xs font-mono tracking-tight whitespace-nowrap">
+                      <span className="text-xs font-mono whitespace-nowrap">
                         {skill.name}
                       </span>
                     </div>

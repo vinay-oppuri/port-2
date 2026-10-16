@@ -57,11 +57,11 @@ export function SearchCommand() {
       <Button
         variant="ghost"
         size="sm"
-        className="rounded-full gap-2 px-3 h-8 text-foreground/80 cursor-pointer hover:text-foreground hover:bg-foreground/5 transition-all"
+        className="rounded-full gap-2 px-3 h-7 text-foreground/80 cursor-pointer hover:text-foreground hover:bg-foreground/5 transition-all"
         onClick={() => setOpen(true)}
       >
-        <span className="text-xs font-medium inline-block">Search</span>
-        <Search size={16} />
+        <span className="text-xs inline-block">Search</span>
+        <Search size={10} />
       </Button>
       <ResponsiveDialog
         open={open}
@@ -73,7 +73,7 @@ export function SearchCommand() {
       >
         <Command className="border-none! bg-transparent!">
           <CommandInput className="pl-2! border-none! outline-none! ring-0!" placeholder="Type a command or search..." />
-          <CommandList className="bg-background font-mono tracking-tighter p-1 rounded-xl! border-none! [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] [&_[cmdk-item]]:cursor-pointer!">
+          <CommandList className="bg-background font-mono p-1 rounded-xl! border-none! [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] [&_[cmdk-item]]:cursor-pointer!">
             <CommandEmpty>No results found.</CommandEmpty>
             <CommandGroup heading="Navigation">
               <CommandItem onSelect={() => runCommand(() => router.push("/"))}>

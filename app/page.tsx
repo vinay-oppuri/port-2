@@ -3,8 +3,7 @@ import { heroConfig, siteEmail, socialLinks } from "@/data";
 import { Button } from "@/components/ui/button";
 import { AvatarLogo } from "@/components/common/AvatarLogo";
 import { TextFlip } from "@/components/ui/text-flip";
-import { LinkPreview } from "@/components/ui/link-preview";
-import { SendIcon } from "lucide-react";
+import { SendIcon, MapPin, Mail } from "lucide-react";
 import { SiGoogledocs } from "react-icons/si";
 import dynamic from "next/dynamic";
 
@@ -24,9 +23,6 @@ const ContactDialog = dynamic(
 const SkillsSection = dynamic(
   () => import("@/modules/home/sections/skills-section")
 );
-const QuoteSection = dynamic(
-  () => import("@/modules/home/sections/quote-section")
-);
 const DDScroll = dynamic(
   () => import("@/components/common/dd-scroll")
 );
@@ -37,17 +33,17 @@ const Page = () => {
   return (
     <main className="w-full">
       <DDScroll />
-      <section id="hero" className="flex flex-col justify-center items-start space-y-4 mx-auto w-full min-h-screen px-4 md:px-8">
-        <div className="flex items-center justify-center gap-3 md:gap-6 font-mono">
-          <AvatarLogo className="w-16 h-full sm:w-20 rounded-lg! text-ring/85 dark:text-ring" />
-          <div className="flex flex-col gap-1 md:gap-2">
-            <h1 className="text-2xl sm:text-3xl font-mono font-bold leading-tight text-foreground">
+      <section id="hero" className="flex flex-col justify-center items-start space-y-5 mx-auto w-full min-h-[80vh] py-16 md:py-24">
+        <div className="flex items-center gap-4 sm:gap-5">
+          <AvatarLogo className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl border border-foreground/10 shrink-0 shadow-xs" />
+          <div className="flex flex-col gap-1">
+            <h1 className="text-2xl sm:text-3xl font-bold text-foreground">
               {heroConfig.name}
             </h1>
             <div className="h-5 overflow-hidden relative inline-flex items-center py-2">
               <TextFlip
                 as="span"
-                className="text-muted-foreground text-sm md:text-base font-mono! tracking-tighter!"
+                className="text-muted-foreground text-sm sm:text-base"
                 interval={3}
               >
                 <span>Applied AI Engineer</span>
@@ -58,67 +54,47 @@ const Page = () => {
           </div>
         </div>
 
-        <div className="flex flex-col gap-2 my-4">
-          {heroConfig.info.map((info, i) => {
-            const isEmail = info.name === siteEmail;
-
-            return (
-              <div key={i} className="flex items-center gap-3 text-muted-foreground leading-relaxed ">
-                <div className="flex items-center justify-center w-9 h-9 clay">
-                  {info.logo}
-                </div>
-                {isEmail ? (
-                  <Link
-                    href={`mailto:${info.name}`}
-                    className="text-sm md:text-base font-mono tracking-tighter hover:underline underline-offset-4"
-                  >
-                    {info.name}
-                  </Link>
-                ) : (
-                  <span className="text-sm md:text-base font-mono tracking-tighter">{info.name}</span>
-                )}
-              </div>
-            );
-          })}
-        </div>
-
-        <div className="text-sm sm:text-base min-[1920px]:text-lg text-muted-foreground leading-relaxed flex flex-wrap font-mono tracking-tighter mt-4 gap-2">
-          I build interactive web apps using
-          {heroConfig.mainSkills.map((skill, i) => (
-            <LinkPreview
-              key={i}
-              url={skill.href}
-              className="inline-flex items-center justify-center px-2 py-1 clay-badge text-xs text-foreground gap-1.5 clay-interactive cursor-pointer"
-            >
-              {skill.component}
-              {skill.name}
-            </LinkPreview>
-          ))}
-          . I focus on <b>UI/UX</b> destails and I&apos;m passionate to build <b>Products.</b>
-        </div>
-
-        <div className="w-full flex flex-row justify-start gap-3 md:p-0 mt-2">
-          <Button
-            asChild
-            variant="outline"
-            className="h-9 md:h-10 text-xs md:text-sm clay hover:-translate-y-1! transition-all! duration-300! font-mono tracking-tighter!"
+        <div className="flex flex-wrap items-center gap-x-3 gap-y-1.5 text-xs sm:text-sm text-muted-foreground">
+          <Link
+            href={`mailto:${siteEmail}`}
+            className="inline-flex items-center gap-1.5 hover:text-foreground transition-colors underline underline-offset-4 decoration-foreground/30 hover:decoration-foreground"
           >
-            <Link href='/resume'>
-              <SiGoogledocs /> Resume / CV
-            </Link>
-          </Button>
+            {siteEmail}
+          </Link>
+        </div>
+
+        <div className="space-y-3 max-w-2xl text-muted-foreground text-sm sm:text-base leading-relaxed pt-1">
+          <p>
+            I build thoughtful, interactive web applications with a focus on polished UI/UX and product craftsmanship.
+          </p>
+          <p>
+            Deeply interested in <span className="text-foreground font-medium">Applied AI Engineering</span> and{" "}
+            <span className="text-foreground font-medium">Generative AI</span> — designing autonomous agent systems, intelligent interfaces, and production workflows powered by modern foundation models.
+          </p>
+        </div>
+
+        <div className="w-full flex flex-wrap items-center gap-3 pt-2">
           <Button
             asChild
             variant="default"
-            className="h-9 md:h-10 text-xs md:text-sm clay! bg-foreground! shadow-none! hover:-translate-y-1! transition-all! duration-300! font-mono tracking-tighter!"
+            className="h-9 md:h-10 text-xs md:text-sm bg-foreground text-background shadow-none hover:-translate-y-0.5 transition-all duration-200 cursor-pointer"
           >
             <Link href='/contact'>
-              <SendIcon /> Get in touch
+              <SendIcon className="w-3.5 h-3.5" /> Get in touch
+            </Link>
+          </Button>
+          <Button
+            asChild
+            variant="outline"
+            className="h-9 md:h-10 text-xs md:text-sm border-foreground/15 hover:border-foreground/30 hover:-translate-y-0.5 transition-all duration-200 cursor-pointer"
+          >
+            <Link href='/resume'>
+              <SiGoogledocs className="w-3.5 h-3.5" /> Resume / CV
             </Link>
           </Button>
         </div>
 
-        <div className="flex md:hidden items-center gap-2">
+        <div className="flex md:hidden items-center gap-2 pt-1">
           {socialLinks.map((link) => (
             <Link
               key={link.name}
@@ -126,20 +102,19 @@ const Page = () => {
               target="_blank"
               rel="noopener noreferrer"
               aria-label={link.name}
-              className="w-8 h-8 flex items-center justify-center clay rounded-sm!">
+              className="w-8 h-8 flex items-center justify-center border border-foreground/10 rounded-lg hover:bg-muted/50 transition-colors">
               {link.icon}
             </Link>
           ))}
         </div>
       </section>
 
-      <section className="w-full flex flex-col gap-6 px-4 md:px-8 mx-auto pb-16">
+      <section className="w-full flex flex-col gap-6 mx-auto pb-16">
         <div id="experience"><ExperienceCard /></div>
         <div id="projects"><ProjectsPage /></div>
         <div id="skills"><SkillsSection /></div>
         <div id="github"><GitHubActivity /></div>
         <div id="contact"><ContactDialog /></div>
-        <div id="quote"><QuoteSection /></div>
       </section>
     </main>
   );

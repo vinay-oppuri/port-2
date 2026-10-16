@@ -64,7 +64,7 @@ export default function ComponentsLayout({ children }: { children: React.ReactNo
           <Link
             href="/components"
             className={cn(
-              "text-sm md:text-base text-muted-foreground font-mono tracking-tighter hover:opacity-85 transition-all flex items-center gap-1.5",
+              "text-sm md:text-base text-muted-foreground font-mono hover:opacity-85 transition-all flex items-center gap-1.5",
               pathname === "/components" && "text-ring"
             )}
           >
@@ -76,7 +76,7 @@ export default function ComponentsLayout({ children }: { children: React.ReactNo
             {/* Quick Jump Dropdown */}
             <div className="hidden sm:block">
               <Select value={activeId} onValueChange={(val) => router.push(`/components/${val}`)}>
-                <SelectTrigger className="h-8 w-[180px] text-xs! clay">
+                <SelectTrigger className="h-8 w-[180px] text-xs!">
                   <SelectValue placeholder="Select Component" />
                 </SelectTrigger>
                 <SelectContent className="max-h-[300px] border-foreground/5!">
@@ -90,7 +90,7 @@ export default function ComponentsLayout({ children }: { children: React.ReactNo
             </div>
 
             {/* Prev & Next Navigation Buttons */}
-            <div className="flex items-center gap-1 p-1 clay bg-muted/40 border border-foreground/5 rounded-lg">
+            <div className="flex items-center gap-1 p-1 bg-muted/40 border border-foreground/5 rounded-lg">
               <button
                 onClick={handlePrev}
                 title="Previous Component"

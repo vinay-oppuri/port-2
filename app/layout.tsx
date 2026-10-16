@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { JetBrains_Mono, Inter } from "next/font/google";
+import { Schibsted_Grotesk, Inter } from "next/font/google";
 import { ThemeProvider } from "next-themes";
 import "./globals.css";
 
@@ -10,9 +10,9 @@ import { ScrollToTop } from "@/components/ui/scroll-to-top";
 import SmoothScroll from "@/components/smooth-scroll";
 
 
-const jetbrainsMono = JetBrains_Mono({
+const schibstedGrotesk = Schibsted_Grotesk({
   subsets: ["latin"],
-  variable: "--font-jetbrains-mono",
+  variable: "--font-schibsted-grotesk",
   display: "swap",
 });
 
@@ -85,7 +85,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${jetbrainsMono.variable} ${inter.variable} antialiased min-h-screen w-full overflow-x-hidden mx-auto flex flex-col items-center`}
+        className={`${schibstedGrotesk.variable} ${inter.variable} antialiased min-h-screen w-full overflow-x-hidden mx-auto flex flex-col items-center`}
       >
         <ThemeProvider
           attribute="class"
@@ -113,7 +113,7 @@ export default function RootLayout({
             />
             <SocialLinks />
             <Header />
-            <div className="w-full px-2 md:px-0 max-w-3xl mx-auto">
+            <div className="w-full px-2 md:px-0 max-w-2xl mx-auto">
               {children}
               <Footer />
             </div>

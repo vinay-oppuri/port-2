@@ -63,7 +63,7 @@ const ProjectDetailsPage = async ({ params }: ProjectDetailsPageProps) => {
 
   return (
     <div className="container mx-auto flex flex-col gap-4 px-4 py-8 md:py-12">
-      <Button asChild className="mb-4 clay!">
+      <Button asChild className="mb-4">
         <Link href="/projects">
           <ArrowLeft className="h-4 w-4" />
           Back to Projects
@@ -95,7 +95,7 @@ const ProjectDetailsPage = async ({ params }: ProjectDetailsPageProps) => {
           <div className="flex flex-wrap gap-4 pt-2">
             {project.liveUrl && (
               <Link href={project.liveUrl} target="_blank" rel="noopener noreferrer">
-                <Button className="gap-2 clay!">
+                <Button className="gap-2">
                   <ExternalLink className="h-4 w-4" />
                   Live URL
                 </Button>
@@ -103,7 +103,7 @@ const ProjectDetailsPage = async ({ params }: ProjectDetailsPageProps) => {
             )}
             {project.githubUrl && (
               <Link href={project.githubUrl} target="_blank" rel="noopener noreferrer">
-                <Button variant="outline" className="gap-2 clay!">
+                <Button variant="outline" className="gap-2">
                   <Github className="h-4 w-4" />
                   GitHub Repo
                 </Button>
@@ -170,7 +170,7 @@ const ProjectDetailsPage = async ({ params }: ProjectDetailsPageProps) => {
 
         <div className="pt-8 border-t flex justify-center">
           <Link href="/projects">
-            <Button className="clay!">
+            <Button>
               View All Projects
             </Button>
           </Link>

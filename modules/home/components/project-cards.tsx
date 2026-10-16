@@ -32,7 +32,7 @@ export function ProjectCards({ projects }: ProjectCardsProps) {
         {projects.map((project, index) => (
           <Card
             key={project.title}
-            className="overflow-hidden p-0 pb-6 group clay-card clay-card-interactive"
+            className="overflow-hidden p-0 pb-6 group hover:shadow-lg transition-all duration-300 cursor-pointer"
           >
             <div
               className={cn(
