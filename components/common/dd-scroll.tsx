@@ -3,6 +3,8 @@
 import { useEffect, useState, useRef } from "react";
 import { useRouter, usePathname } from "next/navigation";
 import DynamicScrollIslandTOC, { TOC_INTERFACE } from "@/components/ui/dynamic-scroll";
+import { useScrollThreshold } from "@/hooks/use-scroll-threshold";
+import { cn } from "@/lib/utils";
 
 const data: TOC_INTERFACE[] = [
   { name: "Home", value: "hero", info: "Start your journey here" },
@@ -14,6 +16,7 @@ const data: TOC_INTERFACE[] = [
 ];
 
 export const DDScroll = () => {
+  const isScrolled = useScrollThreshold(60);
   const [currentValue, setCurrentValue] = useState<TOC_INTERFACE>(data[0]);
   const router = useRouter();
   const pathname = usePathname();
@@ -91,9 +94,17 @@ export const DDScroll = () => {
   };
 
   return (
-    <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50">
+    <div
+      className={cn(
+        "fixed bottom-6 left-1/2 -translate-x-1/2 z-50",
+        "transition-all duration-500 ease-in-out",
+        isScrolled
+          ? "translate-y-0 opacity-100 pointer-events-auto"
+          : "translate-y-28 opacity-0 pointer-events-none"
+      )}
+    >
       <DynamicScrollIslandTOC
-        title="Section Navigation"
+        title="Sections"
         data={data}
         value={currentValue}
         setValue={handleSelect}

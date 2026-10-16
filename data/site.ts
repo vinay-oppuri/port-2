@@ -39,7 +39,7 @@ export const heroConfig = {
   info: [
     { name: "Hyderabad, India", logo: icon(MapPin, "w-4 h-4") },
     { name: "hello@vinayweb.in", logo: icon(Mail, "w-4 h-4") },
-    {name: "He/Him", logo: icon(User, "w-4 h-4")}
+    { name: "He/Him", logo: icon(User, "w-4 h-4") }
   ],
   mainSkills: [
     skill("pnpm", "https://pnpm.io/", SiPnpm, "h-4 w-4 text-foreground"),
@@ -80,16 +80,16 @@ export const socialLinks = [
   {
     name: "X (Twitter)",
     href: "https://x.com/vinayoppuri",
-    icon: icon(SiX, "text-muted-foreground group-hover:text-background!"),
+    icon: icon(SiX, "text-muted-foreground group-hover:text-foreground!"),
   },
-   {
+  {
     name: "LinkedIn",
     href: "https://www.linkedin.com/in/vinay-oppuri/",
-    icon: icon(SiLinkedin, "text-muted-foreground group-hover:text-background!"),
+    icon: icon(SiLinkedin, "text-muted-foreground group-hover:text-foreground!"),
   },
   {
     name: "Github",
     href: "https://github.com/vinay-oppuri",
-    icon: icon(SiGithub, "text-muted-foreground group-hover:text-background!"),
+    icon: icon(SiGithub, "text-muted-foreground group-hover:text-foreground!"),
   },
 ];

@@ -31,7 +31,7 @@ const DDScroll = dynamic(
 const Page = () => {
 
   return (
-    <main className="w-full">
+    <main className="w-full px-4 sm:px-0">
       <DDScroll />
       <section id="hero" className="flex flex-col justify-center items-start space-y-5 mx-auto w-full min-h-[80vh] py-16 md:py-24">
         <div className="flex items-center gap-4 sm:gap-5">
@@ -69,7 +69,7 @@ const Page = () => {
           </p>
           <p>
             Deeply interested in <span className="text-foreground font-medium">Applied AI Engineering</span> and{" "}
-            <span className="text-foreground font-medium">Generative AI</span> — designing autonomous agent systems, intelligent interfaces, and production workflows powered by modern foundation models.
+            <span className="text-foreground font-medium">Generative AI</span> - designing autonomous agent systems, intelligent interfaces, and production workflows powered by modern foundation models.
           </p>
         </div>
 

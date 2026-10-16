@@ -30,11 +30,30 @@ import {
 import { socialLinks } from "@/data/site"
 import Logo from "../../components/common/Logo"
 import { ResponsiveDialog } from "@/components/ui/responsive-dialog"
+import { useLenis } from "lenis/react"
+
+export function triggerSearchDialog() {
+  if (typeof window !== "undefined") {
+    window.dispatchEvent(new CustomEvent("open-search-dialog"));
+  }
+}
 
 export function SearchCommand() {
   const [open, setOpen] = React.useState(false)
   const router = useRouter()
   const { setTheme } = useTheme()
+  const lenis = useLenis()
+
+  React.useEffect(() => {
+    if (open) {
+      lenis?.stop()
+    } else {
+      lenis?.start()
+    }
+    return () => {
+      lenis?.start()
+    }
+  }, [open, lenis])
 
   React.useEffect(() => {
     const down = (e: KeyboardEvent) => {
@@ -43,8 +62,14 @@ export function SearchCommand() {
         setOpen((open) => !open)
       }
     }
+    const handleOpen = () => setOpen(true)
+
     document.addEventListener("keydown", down)
-    return () => document.removeEventListener("keydown", down)
+    window.addEventListener("open-search-dialog", handleOpen)
+    return () => {
+      document.removeEventListener("keydown", down)
+      window.removeEventListener("open-search-dialog", handleOpen)
+    }
   }, [])
 
   const runCommand = React.useCallback((command: () => unknown) => {
@@ -69,11 +94,11 @@ export function SearchCommand() {
         title="Command Palette"
         description="Search for commands, pages, and actions."
         hideHeader
-        className="sm:max-w-80! md:max-w-100! bg-muted/90! dark:bg-muted/40! border-none! backdrop-blur-2xl overflow-hidden p-2!"
+        className="sm:max-w-80! md:max-w-100! bg-muted/90! dark:bg-muted/40! border-none! backdrop-blur-2xl overflow-hidden p-2! overscroll-contain"
       >
-        <Command className="border-none! bg-transparent!">
+        <Command className="border-none! bg-transparent!" data-lenis-prevent>
           <CommandInput className="pl-2! border-none! outline-none! ring-0!" placeholder="Type a command or search..." />
-          <CommandList className="bg-background font-mono p-1 rounded-xl! border-none! [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] [&_[cmdk-item]]:cursor-pointer!">
+          <CommandList data-lenis-prevent className="bg-background font-mono p-1 rounded-xl! border-none! [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] [&_[cmdk-item]]:cursor-pointer! max-h-[300px] overflow-y-auto overscroll-contain">
             <CommandEmpty>No results found.</CommandEmpty>
             <CommandGroup heading="Navigation">
               <CommandItem onSelect={() => runCommand(() => router.push("/"))}>

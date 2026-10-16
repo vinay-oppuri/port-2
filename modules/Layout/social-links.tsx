@@ -58,7 +58,7 @@ export const SocialLinks = () => {
               target="_blank"
               rel="noopener noreferrer"
               aria-label={link.name}
-              className="w-7 h-7 flex items-center justify-center rounded-full hover:bg-foreground! group"
+              className="w-7 h-7 flex items-center justify-center rounded-full group"
             >
               {link.icon}
             </Link>

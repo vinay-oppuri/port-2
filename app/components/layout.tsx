@@ -64,7 +64,7 @@ export default function ComponentsLayout({ children }: { children: React.ReactNo
           <Link
             href="/components"
             className={cn(
-              "text-sm md:text-base text-muted-foreground font-mono hover:opacity-85 transition-all flex items-center gap-1.5",
+              "text-xs sm:text-sm text-muted-foreground font-mono hover:opacity-85 transition-all flex items-center gap-1.5",
               pathname === "/components" && "text-ring"
             )}
           >
@@ -76,7 +76,7 @@ export default function ComponentsLayout({ children }: { children: React.ReactNo
             {/* Quick Jump Dropdown */}
             <div className="hidden sm:block">
               <Select value={activeId} onValueChange={(val) => router.push(`/components/${val}`)}>
-                <SelectTrigger className="h-8 w-[180px] text-xs!">
+                <SelectTrigger className="h-8! w-[180px] text-xs! bg-muted/40! border-foreground/5!">
                   <SelectValue placeholder="Select Component" />
                 </SelectTrigger>
                 <SelectContent className="max-h-[300px] border-foreground/5!">

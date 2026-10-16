@@ -57,17 +57,12 @@ export default function ContactPage() {
       <div className="flex flex-col items-center text-center border-b gap-3 md:gap-6 mt-6 md:mt-12 mb-8 pb-8 px-4">
         <h1 className="text-2xl md:text-3xl font-anton tracking-wide">Contact</h1>
 
-        <p className="text-sm md:text-lg text-muted-foreground font-semibold">
+        <p className="text-sm md:text-base text-muted-foreground font-semibold">
           Get in touch with me. I will get back to you as soon as possible.
         </p>
       </div>
 
       <div className="max-w-3xl mx-auto">
-        <h2 className="text-2xl font-semibold mb-2">Send me a message</h2>
-        <p className="text-muted-foreground mb-8">
-          Fill out the form below and I will get back to you as soon as possible.
-        </p>
-
         {submitted ? (
           <div className="flex flex-col items-center justify-center py-16 gap-4 text-center border border-border/60 rounded-xl bg-card/40 p-6">
             <CheckCircle2 className="w-14 h-14 text-emerald-500 animate-in zoom-in-50 duration-300" />
@@ -99,7 +94,7 @@ export default function ContactPage() {
                   value={formData.name}
                   onChange={handleChange}
                   placeholder="Your full name"
-                  className="px-4 py-5 bg-background border-border text-sm md:text-base"
+                  className="h-9! px-4 bg-muted/40! border-foreground/5! text-xs md:text-sm"
                   required
                 />
               </div>
@@ -113,7 +108,7 @@ export default function ContactPage() {
                   value={formData.phone}
                   onChange={handleChange}
                   placeholder="+1 (123) xxx-xxxx"
-                  className="px-4 py-5 bg-background border-border text-sm md:text-base"
+                  className="h-9! px-4 bg-muted/40! border-foreground/5! text-xs md:text-sm"
                   required
                 />
               </div>
@@ -129,7 +124,7 @@ export default function ContactPage() {
                 value={formData.email}
                 onChange={handleChange}
                 placeholder="your.email@example.com"
-                className="px-4 py-5 bg-background border-border text-sm md:text-base"
+                className="h-9! px-4 bg-muted/40! border-foreground/5! text-xs md:text-sm"
                 required
               />
             </div>
@@ -142,7 +137,7 @@ export default function ContactPage() {
                 value={formData.message}
                 onChange={handleChange}
                 placeholder="Tell me about your project or just say hello..."
-                className="min-h-40 px-4 py-5 bg-background border-border text-sm md:text-base"
+                className="min-h-40 px-4 bg-muted/40! border-foreground/5! text-xs md:text-sm"
                 required
               />
             </div>
@@ -154,7 +149,7 @@ export default function ContactPage() {
             <Button
               type="submit"
               disabled={loading}
-              className="relative mt-4 pl-8! w-40 flex gap-2 text-xs md:text-sm">
+              className="h-9! relative mt-4 pl-8! w-40 flex gap-2 text-xs md:text-sm rounded-sm!">
               {loading ? (
                 <span>Sending...</span>
               ) : (

@@ -8,6 +8,8 @@ import { Button } from "@/components/ui/button";
 import Logo from "@/components/common/Logo";
 import { SearchCommand } from "@/components/common/search";
 import { playClickSound } from "@/hooks/use-sound";
+import { useScrollThreshold } from "@/hooks/use-scroll-threshold";
+import { cn } from "@/lib/utils";
 
 export const navLinks = [
   { name: "Work", href: "/experience" },
@@ -49,6 +51,7 @@ const HeaderSkeleton = () => (
 );
 
 export const Header = () => {
+  const isScrolled = useScrollThreshold(60);
   const { theme, setTheme } = useTheme();
   const mounted = useSyncExternalStore(
     () => () => { },
@@ -64,7 +67,15 @@ export const Header = () => {
   if (!mounted) return <HeaderSkeleton />;
 
   return (
-    <header className="sticky top-0 z-50 w-full max-w-2xl mx-auto flex flex-col backdrop-blur-2xl transition-all">
+    <header
+      className={cn(
+        "sticky top-0 z-50 w-full max-w-2xl mx-auto flex flex-col backdrop-blur-2xl",
+        "transition-all duration-500 ease-in-out",
+        isScrolled
+          ? "-translate-y-full opacity-0 pointer-events-none"
+          : "translate-y-0 opacity-100 pointer-events-auto"
+      )}
+    >
       <div className="flex justify-between items-center px-4 py-4 w-full font-mono">
         <div className="flex items-center space-x-3 sm:space-x-8">
           <Link
