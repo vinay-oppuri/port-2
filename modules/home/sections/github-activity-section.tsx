@@ -14,7 +14,7 @@ export default function GitHubActivity() {
       <header className="py-6 flex items-center justify-between">
         <div className="flex flex-col gap-1">
           <p className="text-sm text-muted-foreground font-mono">Featured</p>
-          <h2 className="text-2xl font-bold text-foreground">GitHub Activity</h2>
+          <h2 className="text-2xl font-anton tracking-wide text-foreground">GitHub Activity</h2>
         </div>
 
         <a
@@ -29,7 +29,7 @@ export default function GitHubActivity() {
       </header>
 
       {/* Calendar */}
-      <div className="px-4 py-6 overflow-x-auto flex justify-center rounded-xl bg-muted/40 border border-foreground/5">
+      <div className="px-4 py-6 overflow-x-auto flex justify-center rounded-xl bg-muted/20 border border-foreground/5">
         <GitHubCalendar
           username="vinay-oppuri"
           blockSize={9}

@@ -9,10 +9,10 @@ export const metadata: Metadata = {
 
 const Page = () => {
   return (
-    <div className="w-full min-h-screen mx-auto px-6 py-4 md:px-10 pb-20">
+    <div className="w-full min-h-screen mx-auto py-4 pb-20">
       <div className="flex flex-col items-center text-center border-b gap-3 md:gap-6 mt-6 md:mt-12 mb-8 md:mb-12 p-8">
-        <h1 className="text-2xl md:text-4xl font-bold">Resume</h1>
-        <p className="text-sm md:text-lg text-muted-foreground font-semibold">
+        <h1 className="text-2xl md:text-3xl font-anton tracking-wide">Resume</h1>
+        <p className="text-sm md:text-base text-muted-foreground font-semibold">
           View or download my resume.
         </p>
       </div>
@@ -32,7 +32,7 @@ const Page = () => {
           </a>
         </div>
 
-        <div className="w-full h-[800px] border rounded-xl overflow-hidden shadow-sm bg-muted/10">
+        <div className="w-full h-[852px]">
           <iframe
             src="/Resume.pdf#toolbar=0"
             className="w-full h-full"

@@ -32,7 +32,7 @@ export function ProjectCards({ projects }: ProjectCardsProps) {
         {projects.map((project, index) => (
           <Card
             key={project.title}
-            className="overflow-hidden p-0 pb-6 group hover:shadow-lg transition-all duration-300 cursor-pointer"
+            className="overflow-hidden p-0 pb-6 group hover:shadow-lg transition-all duration-300 cursor-pointer border-foreground/5!"
           >
             <div
               className={cn(
@@ -128,9 +128,9 @@ export function ProjectCards({ projects }: ProjectCardsProps) {
               )}
             </div>
 
-            <CardHeader>
+            <CardHeader className="-mb-4">
               <div className="flex flex-row justify-between items-center gap-2">
-                <CardTitle className="text-base sm:text-xl text-foreground transition-all duration-300">
+                <CardTitle className="text-base sm:text-lg text-foreground transition-all duration-300">
                   {project.title}
                 </CardTitle>
 
@@ -145,7 +145,7 @@ export function ProjectCards({ projects }: ProjectCardsProps) {
                           aria-label={`${project.title} live demo`}
                           className="hover:text-foreground transition-all duration-300 hover:scale-110 active:scale-95"
                         >
-                          <Globe className="h-5 w-5" />
+                          <Globe className="h-4 w-4" />
                         </Link>
                       </TooltipTrigger>
                       <TooltipContent>
@@ -164,7 +164,7 @@ export function ProjectCards({ projects }: ProjectCardsProps) {
                           aria-label={`${project.title} GitHub repository`}
                           className="hover:text-foreground transition-all duration-300 hover:scale-110 active:scale-95"
                         >
-                          <Github className="h-5 w-5" />
+                          <Github className="h-4 w-4" />
                         </Link>
                       </TooltipTrigger>
                       <TooltipContent>
@@ -181,39 +181,33 @@ export function ProjectCards({ projects }: ProjectCardsProps) {
                 {project.description}
               </p>
 
-              <div>
-                <p className="text-sm font-semibold text-muted-foreground mb-2">
-                  Technologies
-                </p>
-
-                <div className="flex flex-wrap items-center gap-1">
-                  {project.tags.slice(0, 6).map((tag, id) => (
-                    <Tooltip key={id}>
-                      <TooltipTrigger asChild>
-                        <Badge className="bg-transparent p-1">
-                          <span className="text-md">{tag.logo}</span>
+              <div className="flex flex-wrap items-center gap-0.5">
+                {project.tags.slice(0, 6).map((tag, id) => (
+                  <Tooltip key={id}>
+                    <TooltipTrigger asChild>
+                      <Badge className="bg-transparent p-1">
+                        <span className="text-xs">{tag.logo}</span>
+                      </Badge>
+                    </TooltipTrigger>
+                    <TooltipContent>
+                      <p>{tag.name}</p>
+                    </TooltipContent>
+                  </Tooltip>
+                ))}
+                {project.tags.length > 6 && (
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <Link href={`/projects/${project.id}`} aria-label={`View all ${project.tags.length} technologies for ${project.title}`}>
+                        <Badge className="bg-transparent text-foreground p-1">
+                          <span className="text-xs font-medium px-1">+{project.tags.length - 6}</span>
                         </Badge>
-                      </TooltipTrigger>
-                      <TooltipContent>
-                        <p>{tag.name}</p>
-                      </TooltipContent>
-                    </Tooltip>
-                  ))}
-                  {project.tags.length > 6 && (
-                    <Tooltip>
-                      <TooltipTrigger asChild>
-                        <Link href={`/projects/${project.id}`} aria-label={`View all ${project.tags.length} technologies for ${project.title}`}>
-                          <Badge className="bg-transparent text-foreground p-1">
-                            <span className="text-xs font-medium px-1">+{project.tags.length - 6}</span>
-                          </Badge>
-                        </Link>
-                      </TooltipTrigger>
-                      <TooltipContent>
-                        <p>View all technologies</p>
-                      </TooltipContent>
-                    </Tooltip>
-                  )}
-                </div>
+                      </Link>
+                    </TooltipTrigger>
+                    <TooltipContent>
+                      <p>View all technologies</p>
+                    </TooltipContent>
+                  </Tooltip>
+                )}
               </div>
             </CardContent>
           </Card>

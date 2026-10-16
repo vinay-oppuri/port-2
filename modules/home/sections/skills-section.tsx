@@ -18,7 +18,7 @@ export default function SkillsSection() {
     <section className="w-full flex flex-col gap-6 mt-10">
       <div className="flex flex-col gap-1">
         <p className="text-sm text-muted-foreground font-mono uppercase">Tech</p>
-        <h2 className="text-2xl font-bold text-foreground">Stack</h2>
+        <h2 className="text-2xl font-anton tracking-wide text-foreground">Stack</h2>
       </div>
 
       <div className="flex flex-col gap-5 w-full mt-2">
@@ -40,9 +40,8 @@ export default function SkillsSection() {
               {/* Horizontal Loop Marquee Track */}
               <div className="group relative w-full overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_5%,black_95%,transparent)] py-1">
                 <div
-                  className={`flex items-center gap-2.5 w-max ${
-                    isReverse ? "animate-marquee-right" : "animate-marquee-left"
-                  } group-hover:[animation-play-state:paused]`}
+                  className={`flex items-center gap-2.5 w-max ${isReverse ? "animate-marquee-right" : "animate-marquee-left"
+                    } group-hover:[animation-play-state:paused]`}
                   style={{ "--marquee-speed": `${duration}s` } as React.CSSProperties}
                 >
                   {loopedSkills.map((skill, sIdx) => (

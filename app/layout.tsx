@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Schibsted_Grotesk, Inter } from "next/font/google";
+import { Schibsted_Grotesk, Inter, Anton } from "next/font/google";
 import { ThemeProvider } from "next-themes";
 import "./globals.css";
 
@@ -19,6 +19,13 @@ const schibstedGrotesk = Schibsted_Grotesk({
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
+  display: "swap",
+});
+
+const anton = Anton({
+  weight: "400",
+  subsets: ["latin"],
+  variable: "--font-anton",
   display: "swap",
 });
 
@@ -85,7 +92,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${schibstedGrotesk.variable} ${inter.variable} antialiased min-h-screen w-full overflow-x-hidden mx-auto flex flex-col items-center`}
+        className={`${schibstedGrotesk.variable} ${inter.variable} ${anton.variable} antialiased min-h-screen w-full overflow-x-hidden mx-auto flex flex-col items-center`}
       >
         <ThemeProvider
           attribute="class"

@@ -55,7 +55,7 @@ export default function ContactPage() {
     <section className="w-full min-h-screen mx-auto py-4 md:py-8">
 
       <div className="flex flex-col items-center text-center border-b gap-3 md:gap-6 mt-6 md:mt-12 mb-8 pb-8 px-4">
-        <h1 className="text-2xl md:text-4xl font-bold">Contact</h1>
+        <h1 className="text-2xl md:text-3xl font-anton tracking-wide">Contact</h1>
 
         <p className="text-sm md:text-lg text-muted-foreground font-semibold">
           Get in touch with me. I will get back to you as soon as possible.

@@ -70,13 +70,13 @@ export const ContactDialog = () => {
             {/* Super Heading / Metadata overlay */}
             <div className="flex flex-col gap-1 mb-2">
                 <p className="text-sm text-muted-foreground font-mono">Let&apos;s</p>
-                <h2 className="text-2xl font-bold text-foreground">Connect</h2>
+                <h2 className="text-2xl font-anton tracking-wide text-foreground">Connect</h2>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full">
 
                 {/* Left Card: Get in Touch */}
-                <div className="p-4 sm:p-6 flex flex-col justify-between rounded-xl bg-muted/40 border border-foreground/5">
+                <div className="p-4 sm:p-6 flex flex-col justify-between rounded-xl bg-muted/20 border border-foreground/5">
                     <div className="flex flex-col gap-2">
                         <h2 className="text-lg md:text-xl font-bold text-foreground">Get in Touch</h2>
                         <p className="text-muted-foreground text-sm leading-relaxed max-w-sm">
@@ -85,7 +85,7 @@ export const ContactDialog = () => {
 
                         <div className="flex flex-col gap-3 mt-4">
                             {/* Schedule Call */}
-                            <a href="https://www.linkedin.com/in/vinay-oppuri/" target="_blank" rel="noopener noreferrer" className="flex items-center justify-between p-3 bg-muted/50 hover:bg-muted/80 border border-foreground/5 rounded-xl group transition-all duration-300">
+                            <a href="https://www.linkedin.com/in/vinay-oppuri/" target="_blank" rel="noopener noreferrer" className="flex items-center justify-between p-3 bg-muted/30 hover:bg-muted/50 border border-foreground/5 rounded-xl group transition-all duration-300">
                                 <div className="flex items-center gap-1">
                                     <div className="p-2.5 transition-colors text-muted-foreground group-hover:text-foreground">
                                         <Linkedin className="w-5 h-5 shrink-0" />
@@ -99,7 +99,7 @@ export const ContactDialog = () => {
                             </a>
 
                             {/* Email */}
-                            <a href={`mailto:${emailToUse}`} className="flex items-center justify-between p-3 bg-muted/50 hover:bg-muted/80 border border-foreground/5 rounded-xl group transition-all duration-300">
+                            <a href={`mailto:${emailToUse}`} className="flex items-center justify-between p-3 bg-muted/30 hover:bg-muted/50 border border-foreground/5 rounded-xl group transition-all duration-300">
                                 <div className="flex items-center gap-1">
                                     <div className="p-2.5 transition-colors text-muted-foreground group-hover:text-foreground">
                                         <Mail className="w-5 h-5 shrink-0" />
@@ -114,7 +114,7 @@ export const ContactDialog = () => {
 
                             {/* X / Twitter */}
                             {xLink && (
-                                <a href={xLink.href} target="_blank" rel="noopener noreferrer" className="flex items-center justify-between p-3 bg-muted/50 hover:bg-muted/80 border border-foreground/5 rounded-xl group transition-all duration-300">
+                                <a href={xLink.href} target="_blank" rel="noopener noreferrer" className="flex items-center justify-between p-3 bg-muted/30 hover:bg-muted/50 border border-foreground/5 rounded-xl group transition-all duration-300">
                                     <div className="flex items-center gap-1">
                                         <div className="p-2.5 transition-colors text-muted-foreground group-hover:text-foreground">
                                             <FaXTwitter className="w-5 h-5 shrink-0" />
@@ -145,7 +145,7 @@ export const ContactDialog = () => {
                 </div>
 
                 {/* Right Card: Send a Message Form */}
-                <div className="hidden md:flex flex-col justify-between p-4 sm:p-6 rounded-xl bg-muted/40 border border-foreground/5">
+                <div className="hidden md:flex flex-col justify-between p-4 sm:p-6 rounded-xl bg-muted/20 border border-foreground/5">
                     <div className="flex flex-col gap-2">
                         <h2 className="text-lg md:text-xl font-bold text-foreground">Send a Message</h2>
                         <p className="text-muted-foreground text-sm leading-relaxed max-w-sm">

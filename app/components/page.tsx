@@ -11,7 +11,7 @@ const Page = () => {
   return (
     <div className="w-full flex flex-col items-center pt-12 md:pt-24 px-4 text-center">
       <div className="flex flex-col items-start max-w-4xl w-full gap-8">
-        <h2 className="text-3xl text-left font-bold font-mono text-primary">Components Library</h2>
+        <h2 className="text-3xl text-left font-bold font-anton tracking-wide text-primary">Components Library</h2>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full text-left">
           {componentsData.map((component) => (

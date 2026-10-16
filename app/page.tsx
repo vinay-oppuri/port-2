@@ -3,7 +3,7 @@ import { heroConfig, siteEmail, socialLinks } from "@/data";
 import { Button } from "@/components/ui/button";
 import { AvatarLogo } from "@/components/common/AvatarLogo";
 import { TextFlip } from "@/components/ui/text-flip";
-import { SendIcon, MapPin, Mail } from "lucide-react";
+import { SendIcon, MapPin, Mail, MessageCircleIcon } from "lucide-react";
 import { SiGoogledocs } from "react-icons/si";
 import dynamic from "next/dynamic";
 
@@ -77,16 +77,16 @@ const Page = () => {
           <Button
             asChild
             variant="default"
-            className="h-9 md:h-10 text-xs md:text-sm bg-foreground text-background shadow-none hover:-translate-y-0.5 transition-all duration-200 cursor-pointer"
+            className="h-9 text-xs md:text-sm bg-foreground text-background shadow-none hover:-translate-y-0.5 transition-all duration-200 cursor-pointer"
           >
             <Link href='/contact'>
-              <SendIcon className="w-3.5 h-3.5" /> Get in touch
+              <MessageCircleIcon className="w-3.5 h-3.5 fill-background" /> Get in touch
             </Link>
           </Button>
           <Button
             asChild
             variant="outline"
-            className="h-9 md:h-10 text-xs md:text-sm border-foreground/15 hover:border-foreground/30 hover:-translate-y-0.5 transition-all duration-200 cursor-pointer"
+            className="h-9 text-xs md:text-sm border-foreground/15 hover:border-foreground/30 hover:-translate-y-0.5 transition-all duration-200 cursor-pointer"
           >
             <Link href='/resume'>
               <SiGoogledocs className="w-3.5 h-3.5" /> Resume / CV
