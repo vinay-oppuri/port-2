@@ -93,6 +93,14 @@ const DynamicScrollIslandTOC = ({
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, []);
 
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 768) setOpen(false);
+    };
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   function handleSelect(value: TOC_INTERFACE) {
     if (_v === undefined) {
       setInternalValue(value);
@@ -102,6 +110,9 @@ const DynamicScrollIslandTOC = ({
   }
 
   function handleToggle() {
+    if (typeof window !== "undefined" && window.innerWidth < 768) {
+      return;
+    }
     setOpen((prev) => !prev);
   }
 
@@ -207,7 +218,7 @@ const DynamicScrollIslandTOC = ({
       {/* Pill bar — compact, clean, static dimensions */}
       <div
         className={cn(
-          "relative flex items-center h-11 px-2 w-[min(200px,calc(100vw-32px))] rounded-full",
+          "relative flex items-center h-11 px-3 md:px-2 w-[140px] md:w-[min(200px,calc(100vw-32px))] rounded-full",
           "bg-black dark:bg-[#121212] border border-foreground/5 shadow-lg",
           "text-white dark:text-foreground/80 select-none",
           open && "ring-1 ring-white/10"
@@ -281,7 +292,7 @@ function Text({
           onToggle?.();
         }}
         aria-label={open ? "Close navigation menu" : "Open navigation menu"}
-        className="flex items-center gap-2 cursor-pointer flex-1 min-w-0 select-none text-left"
+        className="flex items-center gap-2 cursor-default md:cursor-pointer flex-1 min-w-0 select-none text-left"
       >
         <div className="flex items-center justify-center shrink-0">
           <svg
@@ -318,7 +329,7 @@ function Text({
           <p className="font-semibold text-xs whitespace-nowrap truncate">
             {value?.name || "Contents"}
           </p>
-          <div className="text-white/60 shrink-0">
+          <div className="hidden md:block text-white/60 shrink-0">
             <TbChevronDown
               strokeWidth={2.5}
               className={cn(
@@ -330,7 +341,7 @@ function Text({
         </div>
       </button>
 
-      <div className="flex items-center gap-1.5 shrink-0 pr-1">
+      <div className="hidden md:flex items-center gap-1.5 shrink-0 pr-1">
         <div className="w-px h-3.5 bg-white/15" />
         <button
           type="button"

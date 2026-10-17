@@ -21,6 +21,8 @@ const buttonVariants = cva(
         ghost:
           "hover:bg-accent hover:text-accent-foreground dark:hover:bg-accent/50",
         link: "text-primary underline-offset-4 hover:underline",
+        custom: "rounded-lg! text-white dark:text-neutral-950 btn-chat hover:brightness-110 dark:hover:brightness-95 hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98] transition-all duration-200 cursor-pointer",
+        customInverted: "rounded-lg! text-neutral-950 dark:text-white btn-chat-inverted hover:brightness-95 dark:hover:brightness-110 hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98] transition-all duration-200 cursor-pointer"
       },
       size: {
         default: "h-9 px-4 py-2 has-[>svg]:px-3",

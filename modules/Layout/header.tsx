@@ -70,7 +70,7 @@ export const Header = () => {
         "sticky top-0 z-50 w-full max-w-2xl mx-auto flex flex-col backdrop-blur-2xl",
         "transition-all duration-500 ease-in-out",
         isScrolled
-          ? "-translate-y-full opacity-0 pointer-events-none"
+          ? "translate-y-0 opacity-100 pointer-events-auto md:-translate-y-full md:opacity-0 md:pointer-events-none"
           : "translate-y-0 opacity-100 pointer-events-auto"
       )}
     >

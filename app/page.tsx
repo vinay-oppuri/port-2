@@ -72,17 +72,17 @@ const Page = () => {
         <div className="w-full flex flex-wrap items-center gap-3 pt-2">
           <Button
             asChild
-            variant="default"
-            className="h-9 text-xs md:text-sm bg-foreground text-background shadow-none hover:-translate-y-0.5 transition-all duration-200 cursor-pointer"
+            variant="custom"
+            className="h-9 px-6 text-xs sm:text-sm font-normal"
           >
             <Link href='/contact'>
-              <MessageCircleIcon className="w-3.5 h-3.5 fill-background" /> Get in touch
+              <MessageCircleIcon className="w-3.5 h-3.5 fill-current" /> Get in touch
             </Link>
           </Button>
           <Button
             asChild
-            variant="outline"
-            className="h-9 text-xs md:text-sm border-foreground/15 hover:border-foreground/30 hover:-translate-y-0.5 transition-all duration-200 cursor-pointer"
+            variant="customInverted"
+            className="h-9 px-6 text-xs sm:text-sm font-normal"
           >
             <Link href='/resume'>
               <SiGoogledocs className="w-3.5 h-3.5" /> Resume / CV
