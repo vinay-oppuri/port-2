@@ -55,12 +55,12 @@ const DynamicScrollIslandTOC = ({
   const displayValue: TOC_INTERFACE =
     pathname !== "/" && title !== "Component Selector"
       ? {
-          name: matchingPage
-            ? matchingPage.name
-            : pathname.replace(/^\//, "").split("/")[0].charAt(0).toUpperCase() +
-              pathname.replace(/^\//, "").split("/")[0].slice(1),
-          value: pathname,
-        }
+        name: matchingPage
+          ? matchingPage.name
+          : pathname.replace(/^\//, "").split("/")[0].charAt(0).toUpperCase() +
+          pathname.replace(/^\//, "").split("/")[0].slice(1),
+        value: pathname,
+      }
       : selectedValue;
 
   useEffect(() => {
@@ -93,14 +93,6 @@ const DynamicScrollIslandTOC = ({
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, []);
 
-  useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth < 768) setOpen(false);
-    };
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
-
   function handleSelect(value: TOC_INTERFACE) {
     if (_v === undefined) {
       setInternalValue(value);
@@ -110,9 +102,6 @@ const DynamicScrollIslandTOC = ({
   }
 
   function handleToggle() {
-    if (typeof window !== "undefined" && window.innerWidth < 768) {
-      return;
-    }
     setOpen((prev) => !prev);
   }
 
@@ -129,10 +118,10 @@ const DynamicScrollIslandTOC = ({
         <div
           role="dialog"
           aria-label="Navigation Menu"
-          className="absolute bottom-full mb-2 left-1/2 -translate-x-1/2 w-[min(340px,calc(100vw-32px))] rounded-2xl bg-black dark:bg-[#121212] border border-foreground/5 shadow-2xl p-2.5 flex flex-col z-50 text-white animate-in fade-in duration-150"
+          className="absolute bottom-full mb-2 left-1/2 -translate-x-1/2 w-[min(200px,calc(100vw-32px))] md:w-[min(340px,calc(100vw-32px))] rounded-2xl bg-black dark:bg-[#121212] border border-foreground/5 shadow-2xl p-2.5 flex flex-col z-50 text-white animate-in fade-in duration-150"
         >
-          {/* Top: Search bar button */}
-          <div className="w-full pb-2">
+          {/* Top: Search bar button - Hidden on mobile view */}
+          <div className="hidden md:block w-full pb-2">
             <button
               type="button"
               onClick={(e) => {
@@ -182,11 +171,11 @@ const DynamicScrollIslandTOC = ({
               </div>
             </div>
 
-            {/* Vertical Divider */}
-            <div className="w-px bg-white/10 self-stretch my-0.5 shrink-0" />
+            {/* Vertical Divider - Hidden on mobile view */}
+            <div className="hidden md:block w-px bg-white/10 self-stretch my-0.5 shrink-0" />
 
-            {/* Right: Pages */}
-            <div className="w-28 sm:w-32 flex flex-col shrink-0">
+            {/* Right: Pages - Hidden on mobile view */}
+            <div className="hidden md:flex w-28 sm:w-32 flex-col shrink-0">
               <div className="text-[10px] font-semibold text-neutral-500 uppercase tracking-wider px-2 pb-1.5 select-none">
                 Pages
               </div>
@@ -218,7 +207,7 @@ const DynamicScrollIslandTOC = ({
       {/* Pill bar — compact, clean, static dimensions */}
       <div
         className={cn(
-          "relative flex items-center h-11 px-3 md:px-2 w-[140px] md:w-[min(200px,calc(100vw-32px))] rounded-full",
+          "relative flex items-center h-11 px-3 md:px-2 w-[165px] md:w-[min(200px,calc(100vw-32px))] rounded-full",
           "bg-black dark:bg-[#121212] border border-foreground/5 shadow-lg",
           "text-white dark:text-foreground/80 select-none",
           open && "ring-1 ring-white/10"
@@ -292,7 +281,7 @@ function Text({
           onToggle?.();
         }}
         aria-label={open ? "Close navigation menu" : "Open navigation menu"}
-        className="flex items-center gap-2 cursor-default md:cursor-pointer flex-1 min-w-0 select-none text-left"
+        className="flex items-center gap-2 cursor-pointer flex-1 min-w-0 select-none text-left"
       >
         <div className="flex items-center justify-center shrink-0">
           <svg
@@ -329,7 +318,7 @@ function Text({
           <p className="font-semibold text-xs whitespace-nowrap truncate">
             {value?.name || "Contents"}
           </p>
-          <div className="hidden md:block text-white/60 shrink-0">
+          <div className="block text-white/60 shrink-0">
             <TbChevronDown
               strokeWidth={2.5}
               className={cn(

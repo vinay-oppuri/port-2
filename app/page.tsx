@@ -73,7 +73,7 @@ const Page = () => {
           <Button
             asChild
             variant="custom"
-            className="h-9 px-6 text-xs sm:text-sm font-normal"
+            className="h-9 px-6 text-xs sm:text-sm font-normal rounded-md!"
           >
             <Link href='/contact'>
               <MessageCircleIcon className="w-3.5 h-3.5 fill-current" /> Get in touch
@@ -82,7 +82,7 @@ const Page = () => {
           <Button
             asChild
             variant="customInverted"
-            className="h-9 px-6 text-xs sm:text-sm font-normal"
+            className="h-9 px-6 text-xs sm:text-sm font-normal rounded-md!"
           >
             <Link href='/resume'>
               <SiGoogledocs className="w-3.5 h-3.5" /> Resume / CV
@@ -98,7 +98,7 @@ const Page = () => {
               target="_blank"
               rel="noopener noreferrer"
               aria-label={link.name}
-              className="w-8 h-8 flex items-center justify-center border border-foreground/10 rounded-lg hover:bg-muted/50 transition-colors">
+              className="w-9 h-9 btn-chat-inverted flex items-center justify-center border border-foreground/10 rounded-md hover:bg-muted/50 transition-colors">
               {link.icon}
             </Link>
           ))}
